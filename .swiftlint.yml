@@ -1,0 +1,27 @@
+# reporter: xcode
+disabled_rules:
+  - todo
+  - trailing_whitespace
+excluded:
+  - Carthage
+  - Pods
+line_length: 300
+file_length: 500
+function_body_length:
+  - 50
+  - 100
+function_parameter_count: 10
+cyclomatic_complexity: 17
+type_body_length:
+  - 300
+  - 500
+variable_name:
+  excluded:
+    - id
+    - OK
+    - me
+    - URLString # URLStringConvertible protocol
+type_name:
+  excluded:
+    - W3 # font type
+    - W6 # font type
