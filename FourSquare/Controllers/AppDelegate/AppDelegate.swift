@@ -18,19 +18,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         setup()
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window?.rootViewController = LoginViewController.vc()
+        let homeViewController = HomeViewController.vc()
+        let navigationController = UINavigationController(rootViewController: homeViewController)
+        navigationController.navigationBar.hidden = true
+        let backgroundViewController = BackgroundViewController()
+        backgroundViewController.loadMenuView(navigationController, style: .SlideAbove)
+        window?.rootViewController = backgroundViewController
         window?.makeKeyAndVisible()
         return true
     }
-    
+
     private func setup() {
         setupThirdParties()
     }
-    
+
     private func setupThirdParties() {
         setupConsole()
     }
-    
+
     private func setupConsole() {
         #if DEBUG
             XCConsole.enabled = true
