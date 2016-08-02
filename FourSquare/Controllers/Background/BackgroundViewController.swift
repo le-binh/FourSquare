@@ -13,10 +13,18 @@ class BackgroundViewController: LGSideMenuController {
 
     var leftViewController = LeftSideMenuViewController()
 
+    var allMenuItems = [ItemMenu]()
+
+    var activeMenuItems = [ItemMenu]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.leftViewSwipeGestureEnabled = false
-        // Do any additional setup after loading the view.
+        for i in 0..<6 {
+            let item = ItemMenu(item: MenuItemsSlide(rawValue: i)!, active: false)
+            allMenuItems.append(item)
+        }
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.UpdateItem), name: "ChangeItem", object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,7 +36,7 @@ class BackgroundViewController: LGSideMenuController {
 
         super.rootViewController = initWithRootViewController
         leftViewController = LeftSideMenuViewController.vc()
-        self.setLeftViewEnabledWithWidth(250, presentationStyle: style, alwaysVisibleOptions: LGSideMenuAlwaysVisibleOptions.OnNone)
+        self.setLeftViewEnabledWithWidth(UIScreen.mainScreen().bounds.width * (2 / 3), presentationStyle: style, alwaysVisibleOptions: LGSideMenuAlwaysVisibleOptions.OnNone)
         self.leftViewStatusBarStyle = UIStatusBarStyle.Default
         self.leftViewStatusBarVisibleOptions = LGSideMenuStatusBarVisibleOptions.OnNone
         self.leftViewBackgroundColor = Color.BackgroundSlideMenu
@@ -40,6 +48,14 @@ class BackgroundViewController: LGSideMenuController {
     override func leftViewWillLayoutSubviewsWithSize(size: CGSize) {
         super.leftViewWillLayoutSubviewsWithSize(size)
         leftViewController.view.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+    }
+
+    func UpdateItem(notification: NSNotification) {
+        if let infoUser = notification.userInfo {
+            if let item = infoUser["item"] as? ItemMenu {
+                self.allMenuItems[item.item.rawValue] = item
+            }
+        }
     }
 
 }

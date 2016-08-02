@@ -41,9 +41,12 @@
 		99ED29131D5031960088FCAD /* CustomMenuItemsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED29111D5031960088FCAD /* CustomMenuItemsTableViewCell.xib */; };
 		99ED291E1D5058980088FCAD /* ViewForHeaderMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED291D1D5058980088FCAD /* ViewForHeaderMenuItems.swift */; };
 		99ED29201D5058A90088FCAD /* ViewForHeaderMenuItems.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED291F1D5058A90088FCAD /* ViewForHeaderMenuItems.xib */; };
-		99ED29221D50608F0088FCAD /* ChangeRootSlideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED29211D50608F0088FCAD /* ChangeRootSlideMenu.swift */; };
+		99ED29221D50608F0088FCAD /* SlideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED29211D50608F0088FCAD /* SlideMenu.swift */; };
 		99ED29261D507BB80088FCAD /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED29241D507BB80088FCAD /* FavoriteViewController.swift */; };
 		99ED29271D507BB80088FCAD /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED29251D507BB80088FCAD /* FavoriteViewController.xib */; };
+		99ED292B1D508B550088FCAD /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED29291D508B550088FCAD /* HistoryViewController.swift */; };
+		99ED292C1D508B550088FCAD /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED292A1D508B550088FCAD /* HistoryViewController.xib */; };
+		99ED292F1D5097470088FCAD /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED292E1D5097470088FCAD /* NavigationBar.swift */; };
 		B35E1E15FEE8C3C6451A025E /* Pods_FourSquareUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E829FABD06C07E08A3327FBD /* Pods_FourSquareUITests.framework */; };
 		C4A1F234F7B15EB608FFED5F /* Pods_FourSquareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75E17F665F372167F28CEE7D /* Pods_FourSquareTests.framework */; };
 /* End PBXBuildFile section */
@@ -109,9 +112,12 @@
 		99ED29111D5031960088FCAD /* CustomMenuItemsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomMenuItemsTableViewCell.xib; path = LeftSideMenu/CustomCellSectionMenuItems/CustomMenuItemsTableViewCell.xib; sourceTree = "<group>"; };
 		99ED291D1D5058980088FCAD /* ViewForHeaderMenuItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewForHeaderMenuItems.swift; path = LeftSideMenu/ViewForHeaderMenuItems/ViewForHeaderMenuItems.swift; sourceTree = "<group>"; };
 		99ED291F1D5058A90088FCAD /* ViewForHeaderMenuItems.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewForHeaderMenuItems.xib; path = LeftSideMenu/ViewForHeaderMenuItems/ViewForHeaderMenuItems.xib; sourceTree = "<group>"; };
-		99ED29211D50608F0088FCAD /* ChangeRootSlideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeRootSlideMenu.swift; sourceTree = "<group>"; };
+		99ED29211D50608F0088FCAD /* SlideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenu.swift; sourceTree = "<group>"; };
 		99ED29241D507BB80088FCAD /* FavoriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteViewController.swift; path = Favorite/FavoriteViewController.swift; sourceTree = "<group>"; };
 		99ED29251D507BB80088FCAD /* FavoriteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FavoriteViewController.xib; path = Favorite/FavoriteViewController.xib; sourceTree = "<group>"; };
+		99ED29291D508B550088FCAD /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryViewController.swift; path = History/HistoryViewController.swift; sourceTree = "<group>"; };
+		99ED292A1D508B550088FCAD /* HistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HistoryViewController.xib; path = History/HistoryViewController.xib; sourceTree = "<group>"; };
+		99ED292E1D5097470088FCAD /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationBar.swift; path = NavigationBar/NavigationBar.swift; sourceTree = "<group>"; };
 		E37BF99A7CA69EE3CBDCC9C8 /* Pods-FourSquare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FourSquare.release.xcconfig"; path = "Pods/Target Support Files/Pods-FourSquare/Pods-FourSquare.release.xcconfig"; sourceTree = "<group>"; };
 		E829FABD06C07E08A3327FBD /* Pods_FourSquareUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FourSquareUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F273E0404268C54970D2CE4D /* Pods-FourSquareUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FourSquareUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FourSquareUITests/Pods-FourSquareUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -217,6 +223,7 @@
 		2DC364BA1D4B0AC8006514EE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				99ED29281D508AFF0088FCAD /* History */,
 				99ED29231D507B8D0088FCAD /* Favorite */,
 				99EB2A261D4F50920024FEF9 /* Home */,
 				99EB2A211D4F4F970024FEF9 /* LeftSideMenu */,
@@ -237,7 +244,7 @@
 				2DC364EB1D4B335C006514EE /* Colors.swift */,
 				2DC364ED1D4B3367006514EE /* Constants.swift */,
 				2DC364EF1D4B3383006514EE /* Errors.swift */,
-				99ED29211D50608F0088FCAD /* ChangeRootSlideMenu.swift */,
+				99ED29211D50608F0088FCAD /* SlideMenu.swift */,
 			);
 			path = Define;
 			sourceTree = "<group>";
@@ -278,6 +285,7 @@
 		2DC364C11D4B0AC8006514EE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				99ED292D1D5095530088FCAD /* NavigationBar */,
 				2DC364E01D4B18D6006514EE /* Button */,
 			);
 			path = Views;
@@ -426,6 +434,23 @@
 			name = Favorite;
 			sourceTree = "<group>";
 		};
+		99ED29281D508AFF0088FCAD /* History */ = {
+			isa = PBXGroup;
+			children = (
+				99ED29291D508B550088FCAD /* HistoryViewController.swift */,
+				99ED292A1D508B550088FCAD /* HistoryViewController.xib */,
+			);
+			name = History;
+			sourceTree = "<group>";
+		};
+		99ED292D1D5095530088FCAD /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				99ED292E1D5097470088FCAD /* NavigationBar.swift */,
+			);
+			name = NavigationBar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -550,6 +575,7 @@
 				2DC364CC1D4B0CAE006514EE /* LaunchScreen.storyboard in Resources */,
 				99EB2A2A1D4F50B20024FEF9 /* HomeViewController.xib in Resources */,
 				2DC364C31D4B0B3C006514EE /* Assets.xcassets in Resources */,
+				99ED292C1D508B550088FCAD /* HistoryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,6 +742,7 @@
 				2DC364EC1D4B335C006514EE /* Colors.swift in Sources */,
 				2DC364E21D4B190E006514EE /* LoginButton.swift in Sources */,
 				2DC364F01D4B3383006514EE /* Errors.swift in Sources */,
+				99ED292F1D5097470088FCAD /* NavigationBar.swift in Sources */,
 				2DC364EA1D4B334F006514EE /* Strings.swift in Sources */,
 				99EB2A291D4F50B20024FEF9 /* HomeViewController.swift in Sources */,
 				99ED29121D5031960088FCAD /* CustomMenuItemsTableViewCell.swift in Sources */,
@@ -726,13 +753,14 @@
 				2DC364E61D4B19C4006514EE /* ApiPath.swift in Sources */,
 				99EB2A1F1D4F4CCB0024FEF9 /* BackgroundViewController.swift in Sources */,
 				2DC364FA1D4B3E59006514EE /* BaseService.swift in Sources */,
+				99ED292B1D508B550088FCAD /* HistoryViewController.swift in Sources */,
 				2DC364F61D4B3830006514EE /* ApiManager.swift in Sources */,
 				2DC364F41D4B3812006514EE /* ResponseSerializer.swift in Sources */,
 				2DC364E81D4B3344006514EE /* Keys.swift in Sources */,
 				2DC364E41D4B1922006514EE /* User.swift in Sources */,
 				2DC364C61D4B0BD7006514EE /* AppDelegate.swift in Sources */,
 				99EB2A241D4F4FC60024FEF9 /* LeftSideMenuViewController.swift in Sources */,
-				99ED29221D50608F0088FCAD /* ChangeRootSlideMenu.swift in Sources */,
+				99ED29221D50608F0088FCAD /* SlideMenu.swift in Sources */,
 				2DC364F81D4B3CB5006514EE /* LoginService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

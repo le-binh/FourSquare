@@ -19,10 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setup()
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let homeViewController = HomeViewController.vc()
-        let navigationController = UINavigationController(rootViewController: homeViewController)
-        navigationController.navigationBar.hidden = true
+        let navigationHomeController = UINavigationController(rootViewController: homeViewController)
+        navigationHomeController.navigationBar.hidden = true
         let backgroundViewController = BackgroundViewController()
-        backgroundViewController.loadMenuView(navigationController, style: .SlideAbove)
+        backgroundViewController.loadMenuView(navigationHomeController, style: .SlideAbove)
         window?.rootViewController = backgroundViewController
         window?.makeKeyAndVisible()
         return true

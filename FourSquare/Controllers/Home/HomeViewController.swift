@@ -22,9 +22,7 @@ class HomeViewController: UIViewController {
     }
 
     @IBAction func showSideMenuAction(sender: AnyObject) {
-        if let getRootBackground = SlideMenu.getRootBackground {
-            getRootBackground.showHideLeftViewAnimated(true, completionHandler: nil)
-        }
+        SlideMenu.getRootBackground.showHideLeftViewAnimated(true, completionHandler: nil)
     }
 
     @IBAction func showListOrMapAction(sender: AnyObject) {

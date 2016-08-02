@@ -81,6 +81,7 @@ enum MainMenuSlide: Int {
 }
 
 enum MenuItemsSlide: Int {
+
     case Drinks
     case Coffee
     case Arts
@@ -160,6 +161,7 @@ extension LeftSideMenuViewController: UITableViewDataSource {
             let mainMenuSlide = MainMenuSlide(rawValue: indexPath.row)
 
             cell.setUI(mainMenuSlide!.title, icon: mainMenuSlide!.icon)
+
             return cell
 
         case .MenuItems:
@@ -167,7 +169,7 @@ extension LeftSideMenuViewController: UITableViewDataSource {
 
             let menuItemsSlide = MenuItemsSlide(rawValue: indexPath.row)
 
-            cell.setUI(menuItemsSlide!.title)
+            cell.setUI(menuItemsSlide!)
 
             cell.selectionStyle = .None
 
@@ -221,11 +223,16 @@ extension LeftSideMenuViewController: UITableViewDelegate {
             }
             switch mainMenuSlide {
             case .Home:
-                print("Home")
+                SlideMenu.getRootViewController.popToRootViewControllerAnimated(false)
+                SlideMenu.getRootBackground.hideLeftViewAnimated(true, completionHandler: nil)
             case .Favorite:
-                print("Favorite")
+                let favoriteViewController = FavoriteViewController.vc()
+                SlideMenu.getRootViewController.pushViewController(favoriteViewController, animated: false)
+                SlideMenu.getRootBackground.hideLeftViewAnimated(true, completionHandler: nil)
             case .History:
-                print("History")
+                let historyViewController = HistoryViewController.vc()
+                SlideMenu.getRootViewController.pushViewController(historyViewController, animated: false)
+                SlideMenu.getRootBackground.hideLeftViewAnimated(true, completionHandler: nil)
             }
         default:
             return
