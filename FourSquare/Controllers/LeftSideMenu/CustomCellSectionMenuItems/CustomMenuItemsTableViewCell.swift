@@ -24,7 +24,11 @@ class CustomMenuItemsTableViewCell: UITableViewCell {
     }
 
     func setHeightForSwitch() {
-        self.menuItemsActiveSwitch.transform = CGAffineTransformMakeScale(0.5, 0.5)
+        self.menuItemsActiveSwitch.transform = CGAffineTransformMakeScale(0.7, 0.7)
+    }
+
+    func setUI(title: String) {
+        self.menuItemTitleLable.text = title
     }
 
 }

@@ -39,6 +39,8 @@
 		99ED290E1D502CC80088FCAD /* CustomMainMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED290C1D502CC80088FCAD /* CustomMainMenuTableViewCell.xib */; };
 		99ED29121D5031960088FCAD /* CustomMenuItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED29101D5031960088FCAD /* CustomMenuItemsTableViewCell.swift */; };
 		99ED29131D5031960088FCAD /* CustomMenuItemsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED29111D5031960088FCAD /* CustomMenuItemsTableViewCell.xib */; };
+		99ED291E1D5058980088FCAD /* ViewForHeaderMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED291D1D5058980088FCAD /* ViewForHeaderMenuItems.swift */; };
+		99ED29201D5058A90088FCAD /* ViewForHeaderMenuItems.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED291F1D5058A90088FCAD /* ViewForHeaderMenuItems.xib */; };
 		B35E1E15FEE8C3C6451A025E /* Pods_FourSquareUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E829FABD06C07E08A3327FBD /* Pods_FourSquareUITests.framework */; };
 		C4A1F234F7B15EB608FFED5F /* Pods_FourSquareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75E17F665F372167F28CEE7D /* Pods_FourSquareTests.framework */; };
 /* End PBXBuildFile section */
@@ -102,6 +104,8 @@
 		99ED290C1D502CC80088FCAD /* CustomMainMenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomMainMenuTableViewCell.xib; path = LeftSideMenu/CustomCellSectionMainMenu/CustomMainMenuTableViewCell.xib; sourceTree = "<group>"; };
 		99ED29101D5031960088FCAD /* CustomMenuItemsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomMenuItemsTableViewCell.swift; path = LeftSideMenu/CustomCellSectionMenuItems/CustomMenuItemsTableViewCell.swift; sourceTree = "<group>"; };
 		99ED29111D5031960088FCAD /* CustomMenuItemsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomMenuItemsTableViewCell.xib; path = LeftSideMenu/CustomCellSectionMenuItems/CustomMenuItemsTableViewCell.xib; sourceTree = "<group>"; };
+		99ED291D1D5058980088FCAD /* ViewForHeaderMenuItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewForHeaderMenuItems.swift; path = LeftSideMenu/ViewForHeaderMenuItems/ViewForHeaderMenuItems.swift; sourceTree = "<group>"; };
+		99ED291F1D5058A90088FCAD /* ViewForHeaderMenuItems.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewForHeaderMenuItems.xib; path = LeftSideMenu/ViewForHeaderMenuItems/ViewForHeaderMenuItems.xib; sourceTree = "<group>"; };
 		E37BF99A7CA69EE3CBDCC9C8 /* Pods-FourSquare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FourSquare.release.xcconfig"; path = "Pods/Target Support Files/Pods-FourSquare/Pods-FourSquare.release.xcconfig"; sourceTree = "<group>"; };
 		E829FABD06C07E08A3327FBD /* Pods_FourSquareUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FourSquareUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F273E0404268C54970D2CE4D /* Pods-FourSquareUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FourSquareUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FourSquareUITests/Pods-FourSquareUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -360,6 +364,7 @@
 		99EB2A211D4F4F970024FEF9 /* LeftSideMenu */ = {
 			isa = PBXGroup;
 			children = (
+				99ED29181D5055B50088FCAD /* ViewForHeaderMenuItems */,
 				99ED290F1D5031600088FCAD /* CustomCellSectionMenuItems */,
 				99ED29061D502C180088FCAD /* CustomCellSectionMainMenu */,
 				99EB2A221D4F4FC60024FEF9 /* LeftSideMenuViewController.swift */,
@@ -393,6 +398,15 @@
 				99ED29111D5031960088FCAD /* CustomMenuItemsTableViewCell.xib */,
 			);
 			name = CustomCellSectionMenuItems;
+			sourceTree = "<group>";
+		};
+		99ED29181D5055B50088FCAD /* ViewForHeaderMenuItems */ = {
+			isa = PBXGroup;
+			children = (
+				99ED291D1D5058980088FCAD /* ViewForHeaderMenuItems.swift */,
+				99ED291F1D5058A90088FCAD /* ViewForHeaderMenuItems.xib */,
+			);
+			name = ViewForHeaderMenuItems;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -509,6 +523,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99ED290E1D502CC80088FCAD /* CustomMainMenuTableViewCell.xib in Resources */,
+				99ED29201D5058A90088FCAD /* ViewForHeaderMenuItems.xib in Resources */,
 				99EB2A201D4F4CCB0024FEF9 /* BackgroundViewController.xib in Resources */,
 				2DC364DB1D4B1741006514EE /* Info.plist in Resources */,
 				2DC364DA1D4B0FED006514EE /* LoginViewController.xib in Resources */,
@@ -685,6 +700,7 @@
 				2DC364EA1D4B334F006514EE /* Strings.swift in Sources */,
 				99EB2A291D4F50B20024FEF9 /* HomeViewController.swift in Sources */,
 				99ED29121D5031960088FCAD /* CustomMenuItemsTableViewCell.swift in Sources */,
+				99ED291E1D5058980088FCAD /* ViewForHeaderMenuItems.swift in Sources */,
 				2DC364D91D4B0FED006514EE /* LoginViewController.swift in Sources */,
 				99ED290D1D502CC80088FCAD /* CustomMainMenuTableViewCell.swift in Sources */,
 				2DC364EE1D4B3367006514EE /* Constants.swift in Sources */,

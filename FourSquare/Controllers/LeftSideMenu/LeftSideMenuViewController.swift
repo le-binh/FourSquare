@@ -32,10 +32,19 @@ enum SlideMenuSection: Int {
         }
     }
 
-    var height: CGFloat {
+    var heightOfRow: CGFloat {
         switch self {
         case .MainMenu:
-            return 0
+            return 60
+        case .MenuItems:
+            return 40
+        }
+    }
+
+    var heightOfSection: CGFloat {
+        switch self {
+        case .MainMenu:
+            return 0.000001
         case .MenuItems:
             return 45
         }
@@ -58,6 +67,43 @@ enum MainMenuSlide: Int {
         }
     }
 
+    var icon: UIImage {
+        switch self {
+        case .Home:
+            return UIImage(named: "menu_home_ic")!
+        case .Favorite:
+            return UIImage(named: "menu_favorite_ic")!
+        case .History:
+            return UIImage(named: "menu_history_ic")!
+        }
+    }
+
+}
+
+enum MenuItemsSlide: Int {
+    case Drinks
+    case Coffee
+    case Arts
+    case Outdoors
+    case Sights
+    case Trending
+
+    var title: String {
+        switch self {
+        case .Drinks:
+            return "Drinks"
+        case .Coffee:
+            return "Coffee"
+        case .Arts:
+            return "Arts"
+        case .Outdoors:
+            return "Outdoors"
+        case .Sights:
+            return "Sights"
+        case .Trending:
+            return "Trending"
+        }
+    }
 }
 
 class LeftSideMenuViewController: UIViewController {
@@ -83,6 +129,7 @@ class LeftSideMenuViewController: UIViewController {
     private func setUpMenuTableView() {
         self.menuTableView.registerNib(CustomMainMenuTableViewCell)
         self.menuTableView.registerNib(CustomMenuItemsTableViewCell)
+        self.menuTableView.registerNib(ViewForHeaderMenuItems)
         self.menuTableView.delegate = self
         self.menuTableView.dataSource = self
     }
@@ -103,12 +150,27 @@ extension LeftSideMenuViewController: UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
+
+        let slideMenuSection = SlideMenuSection(rawValue: indexPath.section)
+
+        switch slideMenuSection! {
+        case .MainMenu:
             let cell = tableView.dequeue(CustomMainMenuTableViewCell)
+
+            let mainMenuSlide = MainMenuSlide(rawValue: indexPath.row)
+
+            cell.setUI(mainMenuSlide!.title, icon: mainMenuSlide!.icon)
             return cell
-        default:
+
+        case .MenuItems:
             let cell = tableView.dequeue(CustomMenuItemsTableViewCell)
+
+            let menuItemsSlide = MenuItemsSlide(rawValue: indexPath.row)
+
+            cell.setUI(menuItemsSlide!.title)
+            
+            cell.selectionStyle = .None
+            
             return cell
         }
     }
@@ -117,10 +179,56 @@ extension LeftSideMenuViewController: UITableViewDataSource {
 extension LeftSideMenuViewController: UITableViewDelegate {
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return 60
+
+        guard let slideMenuSection = SlideMenuSection(rawValue: indexPath.section) else {
+            return 0
         }
-        return 40
+        return slideMenuSection.heightOfRow
     }
 
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard let slideMenuSection = SlideMenuSection(rawValue: section) else {
+            return 0
+        }
+        return slideMenuSection.heightOfSection
+    }
+
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.000001
+    }
+
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let slideMenuSection = SlideMenuSection(rawValue: section) else {
+            return nil
+        }
+        switch slideMenuSection {
+        case .MainMenu:
+            return nil
+        default:
+            let view = tableView.dequeue(ViewForHeaderMenuItems)
+            return view
+        }
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        guard let slideMenuSection = SlideMenuSection(rawValue: indexPath.section) else {
+            return
+        }
+        switch slideMenuSection {
+        case .MainMenu:
+            guard let mainMenuSlide = MainMenuSlide(rawValue: indexPath.row) else {
+                return
+            }
+            switch mainMenuSlide {
+            case .Home:
+                print("Home")
+            case .Favorite:
+                print("Favorite")
+            case .History:
+                print("History")
+            }
+        default:
+            return
+        }
+    }
 }
