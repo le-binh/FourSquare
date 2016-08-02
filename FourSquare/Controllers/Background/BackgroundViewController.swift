@@ -31,7 +31,7 @@ class BackgroundViewController: LGSideMenuController {
         self.setLeftViewEnabledWithWidth(250, presentationStyle: style, alwaysVisibleOptions: LGSideMenuAlwaysVisibleOptions.OnNone)
         self.leftViewStatusBarStyle = UIStatusBarStyle.Default
         self.leftViewStatusBarVisibleOptions = LGSideMenuStatusBarVisibleOptions.OnNone
-        self.leftViewBackgroundColor = UIColor(red: 62 / 255, green: 39 / 255, blue: 35 / 255, alpha: 1)
+        self.leftViewBackgroundColor = Color.BackgroundSlideMenu
         leftViewController.view.backgroundColor = UIColor.clearColor()
         self.leftView().addSubview(leftViewController.view)
 

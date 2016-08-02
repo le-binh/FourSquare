@@ -1,33 +1,29 @@
 //
-//  HomeViewController.swift
+//  FavoriteViewController.swift
 //  FourSquare
 //
-//  Created by Mylo Ho on 8/1/16.
+//  Created by Mylo Ho on 8/2/16.
 //  Copyright © 2016 Le Van Binh. All rights reserved.
 //
 
 import UIKit
 
-class HomeViewController: UIViewController {
-
+class FavoriteViewController: UIViewController {
     @IBOutlet weak var navigationBarView: UIView!
     @IBOutlet weak var sideMenuButton: UIButton!
-    @IBOutlet weak var listOrMapMenuButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 
     @IBAction func showSideMenuAction(sender: AnyObject) {
-        if let getRootBackground = SlideMenu.getRootBackground {
-            getRootBackground.showHideLeftViewAnimated(true, completionHandler: nil)
-        }
-    }
-
-    @IBAction func showListOrMapAction(sender: AnyObject) {
     }
 
 }

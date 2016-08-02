@@ -168,9 +168,9 @@ extension LeftSideMenuViewController: UITableViewDataSource {
             let menuItemsSlide = MenuItemsSlide(rawValue: indexPath.row)
 
             cell.setUI(menuItemsSlide!.title)
-            
+
             cell.selectionStyle = .None
-            
+
             return cell
         }
     }

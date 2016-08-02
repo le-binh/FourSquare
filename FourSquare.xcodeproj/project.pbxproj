@@ -41,6 +41,9 @@
 		99ED29131D5031960088FCAD /* CustomMenuItemsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED29111D5031960088FCAD /* CustomMenuItemsTableViewCell.xib */; };
 		99ED291E1D5058980088FCAD /* ViewForHeaderMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED291D1D5058980088FCAD /* ViewForHeaderMenuItems.swift */; };
 		99ED29201D5058A90088FCAD /* ViewForHeaderMenuItems.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED291F1D5058A90088FCAD /* ViewForHeaderMenuItems.xib */; };
+		99ED29221D50608F0088FCAD /* ChangeRootSlideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED29211D50608F0088FCAD /* ChangeRootSlideMenu.swift */; };
+		99ED29261D507BB80088FCAD /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED29241D507BB80088FCAD /* FavoriteViewController.swift */; };
+		99ED29271D507BB80088FCAD /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED29251D507BB80088FCAD /* FavoriteViewController.xib */; };
 		B35E1E15FEE8C3C6451A025E /* Pods_FourSquareUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E829FABD06C07E08A3327FBD /* Pods_FourSquareUITests.framework */; };
 		C4A1F234F7B15EB608FFED5F /* Pods_FourSquareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75E17F665F372167F28CEE7D /* Pods_FourSquareTests.framework */; };
 /* End PBXBuildFile section */
@@ -106,6 +109,9 @@
 		99ED29111D5031960088FCAD /* CustomMenuItemsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomMenuItemsTableViewCell.xib; path = LeftSideMenu/CustomCellSectionMenuItems/CustomMenuItemsTableViewCell.xib; sourceTree = "<group>"; };
 		99ED291D1D5058980088FCAD /* ViewForHeaderMenuItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewForHeaderMenuItems.swift; path = LeftSideMenu/ViewForHeaderMenuItems/ViewForHeaderMenuItems.swift; sourceTree = "<group>"; };
 		99ED291F1D5058A90088FCAD /* ViewForHeaderMenuItems.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewForHeaderMenuItems.xib; path = LeftSideMenu/ViewForHeaderMenuItems/ViewForHeaderMenuItems.xib; sourceTree = "<group>"; };
+		99ED29211D50608F0088FCAD /* ChangeRootSlideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeRootSlideMenu.swift; sourceTree = "<group>"; };
+		99ED29241D507BB80088FCAD /* FavoriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteViewController.swift; path = Favorite/FavoriteViewController.swift; sourceTree = "<group>"; };
+		99ED29251D507BB80088FCAD /* FavoriteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FavoriteViewController.xib; path = Favorite/FavoriteViewController.xib; sourceTree = "<group>"; };
 		E37BF99A7CA69EE3CBDCC9C8 /* Pods-FourSquare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FourSquare.release.xcconfig"; path = "Pods/Target Support Files/Pods-FourSquare/Pods-FourSquare.release.xcconfig"; sourceTree = "<group>"; };
 		E829FABD06C07E08A3327FBD /* Pods_FourSquareUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FourSquareUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F273E0404268C54970D2CE4D /* Pods-FourSquareUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FourSquareUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FourSquareUITests/Pods-FourSquareUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -211,6 +217,7 @@
 		2DC364BA1D4B0AC8006514EE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				99ED29231D507B8D0088FCAD /* Favorite */,
 				99EB2A261D4F50920024FEF9 /* Home */,
 				99EB2A211D4F4F970024FEF9 /* LeftSideMenu */,
 				99EB2A1C1D4F4C980024FEF9 /* Background */,
@@ -230,6 +237,7 @@
 				2DC364EB1D4B335C006514EE /* Colors.swift */,
 				2DC364ED1D4B3367006514EE /* Constants.swift */,
 				2DC364EF1D4B3383006514EE /* Errors.swift */,
+				99ED29211D50608F0088FCAD /* ChangeRootSlideMenu.swift */,
 			);
 			path = Define;
 			sourceTree = "<group>";
@@ -409,6 +417,15 @@
 			name = ViewForHeaderMenuItems;
 			sourceTree = "<group>";
 		};
+		99ED29231D507B8D0088FCAD /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				99ED29241D507BB80088FCAD /* FavoriteViewController.swift */,
+				99ED29251D507BB80088FCAD /* FavoriteViewController.xib */,
+			);
+			name = Favorite;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -529,6 +546,7 @@
 				2DC364DA1D4B0FED006514EE /* LoginViewController.xib in Resources */,
 				99EB2A251D4F4FC60024FEF9 /* LeftSideMenuViewController.xib in Resources */,
 				99ED29131D5031960088FCAD /* CustomMenuItemsTableViewCell.xib in Resources */,
+				99ED29271D507BB80088FCAD /* FavoriteViewController.xib in Resources */,
 				2DC364CC1D4B0CAE006514EE /* LaunchScreen.storyboard in Resources */,
 				99EB2A2A1D4F50B20024FEF9 /* HomeViewController.xib in Resources */,
 				2DC364C31D4B0B3C006514EE /* Assets.xcassets in Resources */,
@@ -693,6 +711,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99ED29261D507BB80088FCAD /* FavoriteViewController.swift in Sources */,
 				2DC364DF1D4B1892006514EE /* UIScrollView.swift in Sources */,
 				2DC364EC1D4B335C006514EE /* Colors.swift in Sources */,
 				2DC364E21D4B190E006514EE /* LoginButton.swift in Sources */,
@@ -713,6 +732,7 @@
 				2DC364E41D4B1922006514EE /* User.swift in Sources */,
 				2DC364C61D4B0BD7006514EE /* AppDelegate.swift in Sources */,
 				99EB2A241D4F4FC60024FEF9 /* LeftSideMenuViewController.swift in Sources */,
+				99ED29221D50608F0088FCAD /* ChangeRootSlideMenu.swift in Sources */,
 				2DC364F81D4B3CB5006514EE /* LoginService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
