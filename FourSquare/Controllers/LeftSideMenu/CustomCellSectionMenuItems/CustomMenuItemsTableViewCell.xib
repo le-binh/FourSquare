@@ -27,20 +27,21 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Q1-4J-HcG">
-                                <rect key="frame" x="235" y="46" width="51" height="19.5"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Q1-4J-HcG">
+                                <rect key="frame" x="235" y="40" width="51" height="31"/>
+                                <color key="onTintColor" red="0.49803921568627452" green="0.70980392156862748" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1Q1-4J-HcG" firstAttribute="centerY" secondItem="Lr2-8w-cA8" secondAttribute="centerY" id="4hh-0E-dqc"/>
+                            <constraint firstItem="1Q1-4J-HcG" firstAttribute="centerY" secondItem="g5e-rh-rjY" secondAttribute="centerY" id="0Wd-o3-tMf"/>
                             <constraint firstAttribute="trailing" secondItem="1Q1-4J-HcG" secondAttribute="trailing" constant="20" id="Vbm-ul-DOW"/>
                             <constraint firstItem="Lr2-8w-cA8" firstAttribute="leading" secondItem="g5e-rh-rjY" secondAttribute="leading" constant="20" id="cGe-yw-mLd"/>
-                            <constraint firstItem="1Q1-4J-HcG" firstAttribute="height" secondItem="Lr2-8w-cA8" secondAttribute="height" id="hs1-Az-pvy"/>
                             <constraint firstItem="Lr2-8w-cA8" firstAttribute="centerY" secondItem="g5e-rh-rjY" secondAttribute="centerY" id="qWy-GU-X4V"/>
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="g5e-rh-rjY" secondAttribute="bottom" id="PSj-Vf-HLK"/>
                     <constraint firstItem="g5e-rh-rjY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Wqj-la-ppE"/>
@@ -48,6 +49,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="g5e-rh-rjY" secondAttribute="trailing" id="nns-nD-GrW"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="menuItemTitleLable" destination="Lr2-8w-cA8" id="cDE-ok-6Fk"/>
                 <outlet property="menuItemsActiveSwitch" destination="1Q1-4J-HcG" id="q89-Bc-chH"/>

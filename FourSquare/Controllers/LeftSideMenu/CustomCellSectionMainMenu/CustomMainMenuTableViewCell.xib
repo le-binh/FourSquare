@@ -37,6 +37,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="IyA-Tx-0HE" secondAttribute="trailing" id="6LQ-uU-oE7"/>
                     <constraint firstItem="IyA-Tx-0HE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Ktf-ai-N85"/>
@@ -44,6 +45,7 @@
                     <constraint firstItem="IyA-Tx-0HE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="mwj-0F-hvu"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="menuIconImageView" destination="15d-zv-Zbb" id="jNn-Hh-s6V"/>
                 <outlet property="menuTitleLabel" destination="Xf9-L0-Eqc" id="c08-k8-2xl"/>

@@ -14,13 +14,17 @@ class CustomMenuItemsTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.setHeightForSwitch()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+
+    func setHeightForSwitch() {
+        self.menuItemsActiveSwitch.transform = CGAffineTransformMakeScale(0.5, 0.5)
     }
 
 }
