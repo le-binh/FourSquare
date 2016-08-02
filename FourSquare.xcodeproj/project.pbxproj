@@ -35,6 +35,10 @@
 		99EB2A251D4F4FC60024FEF9 /* LeftSideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99EB2A231D4F4FC60024FEF9 /* LeftSideMenuViewController.xib */; };
 		99EB2A291D4F50B20024FEF9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EB2A271D4F50B20024FEF9 /* HomeViewController.swift */; };
 		99EB2A2A1D4F50B20024FEF9 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99EB2A281D4F50B20024FEF9 /* HomeViewController.xib */; };
+		99ED290D1D502CC80088FCAD /* CustomMainMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED290B1D502CC80088FCAD /* CustomMainMenuTableViewCell.swift */; };
+		99ED290E1D502CC80088FCAD /* CustomMainMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED290C1D502CC80088FCAD /* CustomMainMenuTableViewCell.xib */; };
+		99ED29121D5031960088FCAD /* CustomMenuItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED29101D5031960088FCAD /* CustomMenuItemsTableViewCell.swift */; };
+		99ED29131D5031960088FCAD /* CustomMenuItemsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED29111D5031960088FCAD /* CustomMenuItemsTableViewCell.xib */; };
 		B35E1E15FEE8C3C6451A025E /* Pods_FourSquareUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E829FABD06C07E08A3327FBD /* Pods_FourSquareUITests.framework */; };
 		C4A1F234F7B15EB608FFED5F /* Pods_FourSquareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75E17F665F372167F28CEE7D /* Pods_FourSquareTests.framework */; };
 /* End PBXBuildFile section */
@@ -94,6 +98,10 @@
 		99EB2A231D4F4FC60024FEF9 /* LeftSideMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LeftSideMenuViewController.xib; path = LeftSideMenu/LeftSideMenuViewController.xib; sourceTree = "<group>"; };
 		99EB2A271D4F50B20024FEF9 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Home/HomeViewController.swift; sourceTree = "<group>"; };
 		99EB2A281D4F50B20024FEF9 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeViewController.xib; path = Home/HomeViewController.xib; sourceTree = "<group>"; };
+		99ED290B1D502CC80088FCAD /* CustomMainMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomMainMenuTableViewCell.swift; path = LeftSideMenu/CustomCellSectionMainMenu/CustomMainMenuTableViewCell.swift; sourceTree = "<group>"; };
+		99ED290C1D502CC80088FCAD /* CustomMainMenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomMainMenuTableViewCell.xib; path = LeftSideMenu/CustomCellSectionMainMenu/CustomMainMenuTableViewCell.xib; sourceTree = "<group>"; };
+		99ED29101D5031960088FCAD /* CustomMenuItemsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomMenuItemsTableViewCell.swift; path = LeftSideMenu/CustomCellSectionMenuItems/CustomMenuItemsTableViewCell.swift; sourceTree = "<group>"; };
+		99ED29111D5031960088FCAD /* CustomMenuItemsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomMenuItemsTableViewCell.xib; path = LeftSideMenu/CustomCellSectionMenuItems/CustomMenuItemsTableViewCell.xib; sourceTree = "<group>"; };
 		E37BF99A7CA69EE3CBDCC9C8 /* Pods-FourSquare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FourSquare.release.xcconfig"; path = "Pods/Target Support Files/Pods-FourSquare/Pods-FourSquare.release.xcconfig"; sourceTree = "<group>"; };
 		E829FABD06C07E08A3327FBD /* Pods_FourSquareUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FourSquareUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F273E0404268C54970D2CE4D /* Pods-FourSquareUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FourSquareUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FourSquareUITests/Pods-FourSquareUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -352,6 +360,8 @@
 		99EB2A211D4F4F970024FEF9 /* LeftSideMenu */ = {
 			isa = PBXGroup;
 			children = (
+				99ED290F1D5031600088FCAD /* CustomCellSectionMenuItems */,
+				99ED29061D502C180088FCAD /* CustomCellSectionMainMenu */,
 				99EB2A221D4F4FC60024FEF9 /* LeftSideMenuViewController.swift */,
 				99EB2A231D4F4FC60024FEF9 /* LeftSideMenuViewController.xib */,
 			);
@@ -365,6 +375,24 @@
 				99EB2A281D4F50B20024FEF9 /* HomeViewController.xib */,
 			);
 			name = Home;
+			sourceTree = "<group>";
+		};
+		99ED29061D502C180088FCAD /* CustomCellSectionMainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				99ED290B1D502CC80088FCAD /* CustomMainMenuTableViewCell.swift */,
+				99ED290C1D502CC80088FCAD /* CustomMainMenuTableViewCell.xib */,
+			);
+			name = CustomCellSectionMainMenu;
+			sourceTree = "<group>";
+		};
+		99ED290F1D5031600088FCAD /* CustomCellSectionMenuItems */ = {
+			isa = PBXGroup;
+			children = (
+				99ED29101D5031960088FCAD /* CustomMenuItemsTableViewCell.swift */,
+				99ED29111D5031960088FCAD /* CustomMenuItemsTableViewCell.xib */,
+			);
+			name = CustomCellSectionMenuItems;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -480,10 +508,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99ED290E1D502CC80088FCAD /* CustomMainMenuTableViewCell.xib in Resources */,
 				99EB2A201D4F4CCB0024FEF9 /* BackgroundViewController.xib in Resources */,
 				2DC364DB1D4B1741006514EE /* Info.plist in Resources */,
 				2DC364DA1D4B0FED006514EE /* LoginViewController.xib in Resources */,
 				99EB2A251D4F4FC60024FEF9 /* LeftSideMenuViewController.xib in Resources */,
+				99ED29131D5031960088FCAD /* CustomMenuItemsTableViewCell.xib in Resources */,
 				2DC364CC1D4B0CAE006514EE /* LaunchScreen.storyboard in Resources */,
 				99EB2A2A1D4F50B20024FEF9 /* HomeViewController.xib in Resources */,
 				2DC364C31D4B0B3C006514EE /* Assets.xcassets in Resources */,
@@ -654,7 +684,9 @@
 				2DC364F01D4B3383006514EE /* Errors.swift in Sources */,
 				2DC364EA1D4B334F006514EE /* Strings.swift in Sources */,
 				99EB2A291D4F50B20024FEF9 /* HomeViewController.swift in Sources */,
+				99ED29121D5031960088FCAD /* CustomMenuItemsTableViewCell.swift in Sources */,
 				2DC364D91D4B0FED006514EE /* LoginViewController.swift in Sources */,
+				99ED290D1D502CC80088FCAD /* CustomMainMenuTableViewCell.swift in Sources */,
 				2DC364EE1D4B3367006514EE /* Constants.swift in Sources */,
 				2DC364E61D4B19C4006514EE /* ApiPath.swift in Sources */,
 				99EB2A1F1D4F4CCB0024FEF9 /* BackgroundViewController.swift in Sources */,

@@ -15,7 +15,7 @@ class BackgroundViewController: LGSideMenuController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.leftViewSwipeGestureEnabled = false
         // Do any additional setup after loading the view.
     }
 
@@ -31,7 +31,7 @@ class BackgroundViewController: LGSideMenuController {
         self.setLeftViewEnabledWithWidth(250, presentationStyle: style, alwaysVisibleOptions: LGSideMenuAlwaysVisibleOptions.OnNone)
         self.leftViewStatusBarStyle = UIStatusBarStyle.Default
         self.leftViewStatusBarVisibleOptions = LGSideMenuStatusBarVisibleOptions.OnNone
-        self.leftViewBackgroundColor = UIColor(white: 1, alpha: 0.8)
+        self.leftViewBackgroundColor = UIColor(red: 62 / 255, green: 39 / 255, blue: 35 / 255, alpha: 1)
         leftViewController.view.backgroundColor = UIColor.clearColor()
         self.leftView().addSubview(leftViewController.view)
 
