@@ -17,9 +17,9 @@ enum SlideMenuSection: Int {
     var title: String {
         switch self {
         case .MainMenu:
-            return ""
+            return Strings.MainMenuSectionTitle
         case .MenuItems:
-            return "Menu Items"
+            return Strings.MenuItemsSectionTitle
         }
     }
 
@@ -32,7 +32,7 @@ enum SlideMenuSection: Int {
         }
     }
 
-    var heightOfRow: CGFloat {
+    var rowHeight: CGFloat {
         switch self {
         case .MainMenu:
             return 60
@@ -41,7 +41,7 @@ enum SlideMenuSection: Int {
         }
     }
 
-    var heightOfSection: CGFloat {
+    var sectionHeight: CGFloat {
         switch self {
         case .MainMenu:
             return 0.000001
@@ -59,11 +59,11 @@ enum MainMenuSlide: Int {
     var title: String {
         switch self {
         case .Home:
-            return "Home"
+            return Strings.MainMenuHomeTitle
         case .Favorite:
-            return "Favorite"
+            return Strings.MainMenuFavoriteTitle
         case .History:
-            return "History"
+            return Strings.MainMenuHistoryTitle
         }
     }
 
@@ -92,17 +92,17 @@ enum MenuItemsSlide: Int {
     var title: String {
         switch self {
         case .Drinks:
-            return "Drinks"
+            return Strings.MenuItemsDrinksTitle
         case .Coffee:
-            return "Coffee"
+            return Strings.MenuItemsCoffeeTitle
         case .Arts:
-            return "Arts"
+            return Strings.MenuItemsArtsTitle
         case .Outdoors:
-            return "Outdoors"
+            return Strings.MenuItemsOutdoorsTitle
         case .Sights:
-            return "Sights"
+            return Strings.MenuItemsSightsTitle
         case .Trending:
-            return "Trending"
+            return Strings.MenuItemsTrendingTitle
         }
     }
 }
@@ -160,7 +160,7 @@ extension LeftSideMenuViewController: UITableViewDataSource {
 
             let mainMenuSlide = MainMenuSlide(rawValue: indexPath.row)
 
-            cell.setUI(mainMenuSlide!.title, icon: mainMenuSlide!.icon)
+            cell.configureCell(mainMenuSlide!.title, icon: mainMenuSlide!.icon)
 
             return cell
 
@@ -169,7 +169,7 @@ extension LeftSideMenuViewController: UITableViewDataSource {
 
             let menuItemsSlide = MenuItemsSlide(rawValue: indexPath.row)
 
-            cell.setUI(menuItemsSlide!)
+            cell.configureCell(menuItemsSlide!)
 
             cell.selectionStyle = .None
 
@@ -185,14 +185,14 @@ extension LeftSideMenuViewController: UITableViewDelegate {
         guard let slideMenuSection = SlideMenuSection(rawValue: indexPath.section) else {
             return 0
         }
-        return slideMenuSection.heightOfRow
+        return slideMenuSection.rowHeight
     }
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         guard let slideMenuSection = SlideMenuSection(rawValue: section) else {
             return 0
         }
-        return slideMenuSection.heightOfSection
+        return slideMenuSection.sectionHeight
     }
 
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

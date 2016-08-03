@@ -13,13 +13,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var navigationBarView: UIView!
     @IBOutlet weak var sideMenuButton: UIButton!
     @IBOutlet weak var listOrMapMenuButton: UIButton!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 
     @IBAction func showSideMenuAction(sender: AnyObject) {
         SlideMenu.getRootBackground.showHideLeftViewAnimated(true, completionHandler: nil)

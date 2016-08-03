@@ -11,4 +11,15 @@ import Foundation
 struct Strings {
     static let Okey = "OK"
     static let Cancel = "Cancel"
+    static let MainMenuSectionTitle = ""
+    static let MenuItemsSectionTitle = "Menu Items"
+    static let MainMenuHomeTitle = "Home"
+    static let MainMenuFavoriteTitle = "Favorite"
+    static let MainMenuHistoryTitle = "History"
+    static let MenuItemsDrinksTitle = "Drinks"
+    static let MenuItemsCoffeeTitle = "Coffee"
+    static let MenuItemsArtsTitle = "Arts"
+    static let MenuItemsOutdoorsTitle = "Outdoors"
+    static let MenuItemsSightsTitle = "Sights"
+    static let MenuItemsTrendingTitle = "Trending"
 }

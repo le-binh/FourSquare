@@ -8,14 +8,15 @@
 
 import UIKit
 import LGSideMenuController
+import SwiftUtils
 
 class BackgroundViewController: LGSideMenuController {
 
     var leftViewController = LeftSideMenuViewController()
 
-    var allMenuItems = [ItemMenu]()
+    var allMenuItems: [ItemMenu] = []
 
-    var activeMenuItems = [ItemMenu]()
+    var activeMenuItems: [ItemMenu] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,19 +25,15 @@ class BackgroundViewController: LGSideMenuController {
             let item = ItemMenu(item: MenuItemsSlide(rawValue: i)!, active: false)
             allMenuItems.append(item)
         }
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.UpdateItem), name: "ChangeItem", object: nil)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.updateItem), name: NotificationCenterKey.updateItemsMenu, object: nil)
     }
 
     func loadMenuView(initWithRootViewController: UIViewController, style: LGSideMenuPresentationStyle) {
 
+        let leftSlideViewWidth = kScreenSize.width * (2 / 3)
         super.rootViewController = initWithRootViewController
         leftViewController = LeftSideMenuViewController.vc()
-        self.setLeftViewEnabledWithWidth(UIScreen.mainScreen().bounds.width * (2 / 3), presentationStyle: style, alwaysVisibleOptions: LGSideMenuAlwaysVisibleOptions.OnNone)
+        self.setLeftViewEnabledWithWidth(leftSlideViewWidth, presentationStyle: style, alwaysVisibleOptions: LGSideMenuAlwaysVisibleOptions.OnNone)
         self.leftViewStatusBarStyle = UIStatusBarStyle.Default
         self.leftViewStatusBarVisibleOptions = LGSideMenuStatusBarVisibleOptions.OnNone
         self.leftViewBackgroundColor = Color.BackgroundSlideMenu
@@ -50,9 +47,9 @@ class BackgroundViewController: LGSideMenuController {
         leftViewController.view.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
     }
 
-    func UpdateItem(notification: NSNotification) {
+    func updateItem(notification: NSNotification) {
         if let infoUser = notification.userInfo {
-            if let item = infoUser["item"] as? ItemMenu {
+            if let item = infoUser[NotificationCenterUserInfo.menuItem] as? ItemMenu {
                 self.allMenuItems[item.item.rawValue] = item
             }
         }
