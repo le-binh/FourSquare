@@ -11,35 +11,97 @@ import PureLayout
 
 class NavigationBar: UIView {
 
-    var titleLabel: UILabel!
-    var leftButton: UIButton!
-    var rightButton: UIButton!
+    // MARK:- Properties
+
+    var barHeight: CGFloat = 64
+    var barButtonPadding: CGFloat = 20
+    private var titleLabel: UILabel!
+    private let titleViewInsets = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+
+    var leftBarButton: UIButton? {
+        willSet {
+            leftBarButton?.removeFromSuperview()
+        }
+
+        didSet {
+            if let button = leftBarButton {
+                addSubview(button)
+            }
+        }
+    }
+    var rightBarButton: UIButton? {
+        willSet {
+            rightBarButton?.removeFromSuperview()
+        }
+
+        didSet {
+            if let button = rightBarButton {
+                addSubview(button)
+            }
+        }
+    }
+    var titleView: UIView? {
+        willSet {
+            titleView?.removeFromSuperview()
+        }
+
+        didSet {
+            if let view = titleView {
+                addSubview(view)
+            }
+            titleLabel.hidden = titleView != nil
+        }
+    }
+    var title: String? {
+        didSet {
+            titleLabel.attributedText = NSAttributedString(string: title ?? "", attributes: UINavigationBar.appearance().titleTextAttributes)
+        }
+    }
+
+    var rightBarButtonHidden: Bool = false {
+        didSet {
+            rightBarButton?.hidden = rightBarButtonHidden
+        }
+    }
+    // MARK:- LifeCycle
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.configView()
+        commonInit()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        commonInit()
     }
 
-    func configView() {
-        // Config Title Label
-        self.titleLabel = UILabel(forAutoLayout: ())
-        self.titleLabel.text = "Explore"
-        self.addSubview(self.titleLabel)
-
-        // Config Left Button
-        self.leftButton = UIButton(forAutoLayout: ())
-        self.leftButton.setImage(UIImage(named: "side_menu_ic"), forState: .Normal)
-        self.addSubview(self.leftButton)
-
-        // Config Right Button
-        self.rightButton = UIButton(forAutoLayout: ())
-        self.rightButton.setImage(UIImage(named: "list_map_ic"), forState: .Normal)
-        self.addSubview(self.rightButton)
-
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let leftBarButtonWidth = barButtonWidth(leftBarButton, padding: barButtonPadding)
+        let rightBarButtonWidth = barButtonWidth(rightBarButton, padding: barButtonPadding)
+        leftBarButton?.frame = CGRect(x: 0, y: 0, width: leftBarButtonWidth, height: bounds.height)
+        rightBarButton?.frame = CGRect(x: bounds.width - rightBarButtonWidth, y: 0, width: rightBarButtonWidth, height: bounds.height)
+        let titleViewWidth = bounds.width - (leftBarButtonWidth + rightBarButtonWidth) - (titleViewInsets.left + titleViewInsets.right)
+        let titleViewHeight = bounds.height - (titleViewInsets.top + titleViewInsets.bottom)
+        titleLabel.frame = CGRect(x: leftBarButtonWidth, y: titleViewInsets.top, width: titleViewWidth, height: titleViewHeight)
+        titleView?.frame = titleLabel.frame
     }
 
+    // MARK:- Private functions
+
+    private func commonInit() {
+        titleLabel = UILabel()
+        addSubview(titleLabel)
+        configureSubviews()
+    }
+
+    private func configureSubviews() {
+        titleLabel.textAlignment = .Center
+    }
+
+    private func barButtonWidth(button: UIButton?, padding: CGFloat) -> CGFloat {
+        let buttonSize = leftBarButton?.imageView?.image?.size ?? CGSize(width: 0, height: 0)
+        let buttonSizeWidth = buttonSize.width + 2 * barButtonPadding
+        return buttonSizeWidth
+    }
 }

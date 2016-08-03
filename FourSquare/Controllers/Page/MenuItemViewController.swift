@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import SwiftUtils
 
-class MenuItemViewController: UIViewController {
+class MenuItemViewController: ViewController {
+
+    // MARK:- Outlet
 
     @IBOutlet weak var venueTableView: UITableView!
 
@@ -22,6 +25,11 @@ class MenuItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpTableView()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
     }
 
     // MARK:- Private Function
@@ -52,6 +60,6 @@ extension MenuItemViewController: UITableViewDataSource {
 
 extension MenuItemViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 141
+        return 140
     }
 }

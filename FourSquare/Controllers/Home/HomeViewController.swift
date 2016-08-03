@@ -28,11 +28,12 @@ enum DefaultMenuItem: Int {
     }
 }
 
-class HomeViewController: UIViewController {
+class HomeViewController: ViewController {
 
     @IBOutlet weak var navigationBarView: UIView!
     @IBOutlet weak var sideMenuButton: UIButton!
     @IBOutlet weak var listOrMapMenuButton: UIButton!
+    @IBOutlet weak var viewOfPageMenu: UIView!
 
     // MARK:- Properties
 
@@ -44,7 +45,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setDefaultMenuItems()
+        self.itemViewControllers = self.setDefaultMenuItems()
         self.setUpMenuPage(isDefault: true)
         self.setUpNotificationCenter()
     }
@@ -60,8 +61,10 @@ class HomeViewController: UIViewController {
 
     // MARK:- Private Function
 
-    private func setDefaultMenuItems() {
-        self.itemViewControllers.removeAll()
+    private func setDefaultMenuItems() -> [UIViewController] {
+
+        var viewControllers: [UIViewController] = []
+
         for i in 0..<3 {
             let pageViewController = MenuItemViewController.vc()
             guard let defaultItemMenu = DefaultMenuItem(rawValue: i) else {
@@ -69,8 +72,9 @@ class HomeViewController: UIViewController {
             }
             pageViewController.title = defaultItemMenu.title
             pageViewController.defaultItem = defaultItemMenu
-            self.itemViewControllers.append(pageViewController)
+            viewControllers.append(pageViewController)
         }
+        return viewControllers
     }
 
     private func setUpMenuPage(isDefault isDefault: Bool) {
@@ -85,7 +89,7 @@ class HomeViewController: UIViewController {
                 .SelectionIndicatorColor(Color.Orange253),
                 .SelectedMenuItemLabelColor(Color.Orange253)]
 
-        self.pageMenu = CAPSPageMenu(viewControllers: self.itemViewControllers, frame: CGRect(x: 0, y: 64, width: kScreenSize.width, height: kScreenSize.height - 64), pageMenuOptions: parameters)
+        self.pageMenu = CAPSPageMenu(viewControllers: self.itemViewControllers, frame: self.viewOfPageMenu.frame, pageMenuOptions: parameters)
         if let pageMenu = self.pageMenu {
             self.view.addSubview(pageMenu.view)
         }
@@ -100,7 +104,7 @@ class HomeViewController: UIViewController {
         let isChangeActiveMenuItems = self.compareTwoArray(self.activeMenuItems, newArray: newActiveMenuItems)
         if !isChangeActiveMenuItems {
             self.activeMenuItems = newActiveMenuItems
-            self.setDefaultMenuItems()
+            self.itemViewControllers = self.setDefaultMenuItems()
             for i in 0..<self.activeMenuItems.count {
                 let pageViewController = MenuItemViewController.vc()
                 guard let activeMenuItem: MenuItemsSlide = self.activeMenuItems[i].item else {
@@ -110,6 +114,7 @@ class HomeViewController: UIViewController {
                 pageViewController.menuItem = activeMenuItem
                 self.itemViewControllers.append(pageViewController)
             }
+
             if newActiveMenuItems.count == 0 {
                 self.setUpMenuPage(isDefault: true)
                 return

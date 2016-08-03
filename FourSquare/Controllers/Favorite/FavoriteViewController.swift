@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwiftUtils
 
-class FavoriteViewController: UIViewController {
+class FavoriteViewController: ViewController {
     @IBOutlet weak var navigationBarView: UIView!
     @IBOutlet weak var sideMenuButton: UIButton!
 
