@@ -45,7 +45,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setDefaultMenuItems()
-        self.setUpMenuPage(isDefault: true)
+        self.setUpMenuPage()
         self.setUpNotificationCenter()
     }
 
@@ -73,11 +73,8 @@ class HomeViewController: UIViewController {
         }
     }
 
-    private func setUpMenuPage(isDefault isDefault: Bool) {
-        var menuItemWidth = (kScreenSize.width - 20) / 3
-        if !isDefault {
-            menuItemWidth = (kScreenSize.width - 20) / 3.5
-        }
+    private func setUpMenuPage() {
+        let menuItemWidth = (kScreenSize.width - 20) / 3
         let parameters: [CAPSPageMenuOption] = [.MenuHeight(35),
                 .MenuMargin(5),
                 .MenuItemWidth(menuItemWidth),
@@ -110,12 +107,7 @@ class HomeViewController: UIViewController {
                 pageViewController.menuItem = activeMenuItem
                 self.itemViewControllers.append(pageViewController)
             }
-            if self.activeMenuItems.count == 0 {
-                self.setUpMenuPage(isDefault: true)
-            } else {
-                self.setUpMenuPage(isDefault: false)
-            }
-
+            self.setUpMenuPage()
         }
     }
 
