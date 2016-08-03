@@ -12,7 +12,7 @@ class CustomMenuItemsTableViewCell: UITableViewCell {
     @IBOutlet weak var menuItemTitleLable: UILabel!
     @IBOutlet weak var menuItemsActiveSwitch: UISwitch!
 
-    var itemMenu: ItemMenu!
+    var itemMenu: ItemMenu = ItemMenu()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,11 +44,15 @@ class CustomMenuItemsTableViewCell: UITableViewCell {
 }
 
 class ItemMenu: NSObject {
-    var item: MenuItemsSlide!
-    var active: Bool!
+    var item: MenuItemsSlide
+    var active: Bool
 
     init(item: MenuItemsSlide, active: Bool) {
         self.item = item
         self.active = active
+    }
+
+    override convenience init() {
+        self.init(item: MenuItemsSlide(rawValue: 0)!, active: false)
     }
 }

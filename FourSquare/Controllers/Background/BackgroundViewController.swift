@@ -22,7 +22,10 @@ class BackgroundViewController: LGSideMenuController {
         super.viewDidLoad()
         self.leftViewSwipeGestureEnabled = false
         for i in 0..<6 {
-            let item = ItemMenu(item: MenuItemsSlide(rawValue: i)!, active: false)
+            guard let menuItem = MenuItemsSlide(rawValue: i) else {
+                continue
+            }
+            let item = ItemMenu(item: menuItem, active: false)
             allMenuItems.append(item)
         }
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.updateItem), name: NotificationCenterKey.updateItemsMenu, object: nil)
@@ -36,7 +39,7 @@ class BackgroundViewController: LGSideMenuController {
         self.setLeftViewEnabledWithWidth(leftSlideViewWidth, presentationStyle: style, alwaysVisibleOptions: LGSideMenuAlwaysVisibleOptions.OnNone)
         self.leftViewStatusBarStyle = UIStatusBarStyle.Default
         self.leftViewStatusBarVisibleOptions = LGSideMenuStatusBarVisibleOptions.OnNone
-        self.leftViewBackgroundColor = Color.BackgroundSlideMenu
+        self.leftViewBackgroundColor = Color.Brown62
         leftViewController.view.backgroundColor = UIColor.clearColor()
         self.leftView().addSubview(leftViewController.view)
 
