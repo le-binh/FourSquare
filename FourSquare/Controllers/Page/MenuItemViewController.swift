@@ -27,7 +27,7 @@ class MenuItemViewController: UIViewController {
     // MARK:- Private Function
 
     private func setUpTableView() {
-        self.venueTableView.registerNib(VenueTableViewCell)
+        self.venueTableView.registerNib(VenueItemTableViewCell)
         self.venueTableView.delegate = self
         self.venueTableView.dataSource = self
     }
@@ -43,7 +43,7 @@ extension MenuItemViewController: UITableViewDataSource {
         return 5
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(VenueTableViewCell)
+        let cell = tableView.dequeue(VenueItemTableViewCell)
         return cell
     }
 }

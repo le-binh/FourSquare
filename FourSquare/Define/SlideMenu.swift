@@ -11,5 +11,4 @@ import UIKit
 class SlideMenu {
     static let getRootBackground = (UIApplication.sharedApplication().delegate?.window!!.rootViewController as? BackgroundViewController)!
     static let getRootViewController = (SlideMenu.getRootBackground.rootViewController as? UINavigationController)!
-
 }
