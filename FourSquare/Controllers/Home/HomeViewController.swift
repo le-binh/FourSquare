@@ -30,10 +30,8 @@ enum DefaultMenuItem: Int {
 
 class HomeViewController: ViewController {
 
-    @IBOutlet weak var navigationBarView: UIView!
-    @IBOutlet weak var sideMenuButton: UIButton!
-    @IBOutlet weak var listOrMapMenuButton: UIButton!
     @IBOutlet weak var viewOfPageMenu: UIView!
+    @IBOutlet weak var navigationBar: NavigationBar?
 
     // MARK:- Properties
 
@@ -45,6 +43,8 @@ class HomeViewController: ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Explore"
+        self.configureNavigationBar()
         self.itemViewControllers = self.setDefaultMenuItems()
         self.setUpMenuPage(isDefault: true)
         self.setUpNotificationCenter()
@@ -52,14 +52,30 @@ class HomeViewController: ViewController {
 
     // MARK:- Action
 
-    @IBAction func showSideMenuAction(sender: AnyObject) {
+    func showSideMenuAction(sender: AnyObject) {
         SlideMenu.getRootBackground.showHideLeftViewAnimated(true, completionHandler: nil)
     }
 
-    @IBAction func showListOrMapAction(sender: AnyObject) {
+    // MARK:- Public Functions
+
+    func configureNavigationBar() {
+        self.setNavigationBarItem()
     }
 
     // MARK:- Private Function
+
+    private func setNavigationBarItem() {
+        navigationBar?.title = self.title
+        self.addMenuLeftButton()
+
+    }
+
+    private func addMenuLeftButton() {
+        let menuButton = UIButton()
+        menuButton.setImage(UIImage(named: "side_menu_ic"), forState: .Normal)
+        menuButton.addTarget(self, action: #selector(self.showSideMenuAction), forControlEvents: .TouchUpInside)
+        navigationBar?.leftBarButton = menuButton
+    }
 
     private func setDefaultMenuItems() -> [UIViewController] {
 
@@ -123,7 +139,7 @@ class HomeViewController: ViewController {
         }
     }
 
-    func compareTwoArray(oldArray: [ItemMenu], newArray: [ItemMenu]) -> Bool {
+    private func compareTwoArray(oldArray: [ItemMenu], newArray: [ItemMenu]) -> Bool {
         if oldArray.count == newArray.count {
             for i in 0..<oldArray.count {
                 if oldArray[i].item.rawValue != newArray[i].item.rawValue {

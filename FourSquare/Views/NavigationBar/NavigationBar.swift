@@ -13,10 +13,10 @@ class NavigationBar: UIView {
 
     // MARK:- Properties
 
-    var barHeight: CGFloat = 64
+    // var barHeight: CGFloat = 64
     var barButtonPadding: CGFloat = 20
     private var titleLabel: UILabel!
-    private let titleViewInsets = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+    private let titleViewInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 
     var leftBarButton: UIButton? {
         willSet {
