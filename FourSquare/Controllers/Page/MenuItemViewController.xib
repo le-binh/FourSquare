@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuItemViewController" customModule="FourSquare" customModuleProvider="target">
             <connections>
+                <outlet property="venueTableView" destination="sY4-Fd-j5w" id="Qhh-Tl-YjE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
