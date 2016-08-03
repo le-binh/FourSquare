@@ -14,12 +14,19 @@ class MenuItemViewController: UIViewController {
 
     // MARK:- Properties
 
-    var titleOfMenu: String = ""
+    var defaultItem: DefaultMenuItem?
+    var menuItem: MenuItemsSlide?
 
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let menuItem = self.menuItem {
+            print(menuItem.title)
+        }
+        if let defaultItem = self.defaultItem {
+            print(defaultItem.title)
+        }
     }
 
 }

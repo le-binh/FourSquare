@@ -11,11 +11,24 @@ import LGSideMenuController
 
 class BackgroundViewController: LGSideMenuController {
 
+    // MARK:- Singleton
+
+    class var sharedInstance: BackgroundViewController {
+        struct Static {
+            static let instance: BackgroundViewController = BackgroundViewController()
+        }
+        return Static.instance
+    }
+
+    // MARK:- Properties
+
     var leftViewController = LeftSideMenuViewController()
 
     var allMenuItems = [ItemMenu]()
 
     var activeMenuItems = [ItemMenu]()
+
+    // MARK:- Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,13 +37,15 @@ class BackgroundViewController: LGSideMenuController {
             let item = ItemMenu(item: MenuItemsSlide(rawValue: i)!, active: false)
             allMenuItems.append(item)
         }
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.UpdateItem), name: "ChangeItem", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.updateItem), name: "ChangeItem", object: nil)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func leftViewWillLayoutSubviewsWithSize(size: CGSize) {
+        super.leftViewWillLayoutSubviewsWithSize(size)
+        leftViewController.view.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
     }
+
+    // MARK:- Public Function
 
     func loadMenuView(initWithRootViewController: UIViewController, style: LGSideMenuPresentationStyle) {
 
@@ -45,12 +60,7 @@ class BackgroundViewController: LGSideMenuController {
 
     }
 
-    override func leftViewWillLayoutSubviewsWithSize(size: CGSize) {
-        super.leftViewWillLayoutSubviewsWithSize(size)
-        leftViewController.view.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-    }
-
-    func UpdateItem(notification: NSNotification) {
+    func updateItem(notification: NSNotification) {
         if let infoUser = notification.userInfo {
             if let item = infoUser["item"] as? ItemMenu {
                 self.allMenuItems[item.item.rawValue] = item
