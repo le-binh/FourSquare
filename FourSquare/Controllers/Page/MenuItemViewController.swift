@@ -21,12 +21,37 @@ class MenuItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let menuItem = self.menuItem {
-            print(menuItem.title)
-        }
-        if let defaultItem = self.defaultItem {
-            print(defaultItem.title)
-        }
+        self.setUpTableView()
     }
 
+    // MARK:- Private Function
+
+    private func setUpTableView() {
+        self.venueTableView.registerNib(VenueTableViewCell)
+        self.venueTableView.delegate = self
+        self.venueTableView.dataSource = self
+    }
+}
+
+//MARK:- Table View Delegate
+
+extension MenuItemViewController: UITableViewDataSource {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(VenueTableViewCell)
+        return cell
+    }
+}
+
+//MARK:- Table View Datasource
+
+extension MenuItemViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 141
+    }
 }

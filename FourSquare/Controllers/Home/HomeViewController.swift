@@ -110,7 +110,12 @@ class HomeViewController: UIViewController {
                 pageViewController.menuItem = activeMenuItem
                 self.itemViewControllers.append(pageViewController)
             }
-            self.setUpMenuPage(isDefault: false)
+            if self.activeMenuItems.count == 0 {
+                self.setUpMenuPage(isDefault: true)
+            } else {
+                self.setUpMenuPage(isDefault: false)
+            }
+
         }
     }
 
