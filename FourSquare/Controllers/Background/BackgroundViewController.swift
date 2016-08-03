@@ -60,6 +60,7 @@ class BackgroundViewController: LGSideMenuController {
         self.activeMenuItems = self.allMenuItems.filter({
             $0.active == true
         })
+
     }
 
 }

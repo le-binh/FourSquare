@@ -29,7 +29,8 @@
 		2DC364F81D4B3CB5006514EE /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC364F71D4B3CB5006514EE /* LoginService.swift */; };
 		2DC364FA1D4B3E59006514EE /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC364F91D4B3E59006514EE /* BaseService.swift */; };
 		6FD3714FA0A95CADC3956C61 /* Pods_FourSquare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC15CD9639F8CC4F71EE7E39 /* Pods_FourSquare.framework */; };
-		99193EC81D517A3000CCD51E /* NavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99193EC71D517A3000CCD51E /* NavigationBar.xib */; };
+		993AD6631D51A1E100B945FA /* MenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993AD6611D51A1E100B945FA /* MenuItemViewController.swift */; };
+		993AD6641D51A1E100B945FA /* MenuItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 993AD6621D51A1E100B945FA /* MenuItemViewController.xib */; };
 		99EB2A1F1D4F4CCB0024FEF9 /* BackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EB2A1D1D4F4CCB0024FEF9 /* BackgroundViewController.swift */; };
 		99EB2A201D4F4CCB0024FEF9 /* BackgroundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99EB2A1E1D4F4CCB0024FEF9 /* BackgroundViewController.xib */; };
 		99EB2A241D4F4FC60024FEF9 /* LeftSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EB2A221D4F4FC60024FEF9 /* LeftSideMenuViewController.swift */; };
@@ -101,7 +102,8 @@
 		70672F30AFA21B18568485EB /* Pods-FourSquare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FourSquare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FourSquare/Pods-FourSquare.debug.xcconfig"; sourceTree = "<group>"; };
 		75E17F665F372167F28CEE7D /* Pods_FourSquareTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FourSquareTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90B930BF0939262C8CA47B5E /* Pods-FourSquareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FourSquareTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FourSquareTests/Pods-FourSquareTests.release.xcconfig"; sourceTree = "<group>"; };
-		99193EC71D517A3000CCD51E /* NavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NavigationBar.xib; path = NavigationBar/NavigationBar.xib; sourceTree = "<group>"; };
+		993AD6611D51A1E100B945FA /* MenuItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemViewController.swift; path = Page/MenuItemViewController.swift; sourceTree = "<group>"; };
+		993AD6621D51A1E100B945FA /* MenuItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MenuItemViewController.xib; path = Page/MenuItemViewController.xib; sourceTree = "<group>"; };
 		99EB2A1D1D4F4CCB0024FEF9 /* BackgroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundViewController.swift; path = Background/BackgroundViewController.swift; sourceTree = "<group>"; };
 		99EB2A1E1D4F4CCB0024FEF9 /* BackgroundViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BackgroundViewController.xib; path = Background/BackgroundViewController.xib; sourceTree = "<group>"; };
 		99EB2A221D4F4FC60024FEF9 /* LeftSideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeftSideMenuViewController.swift; path = LeftSideMenu/LeftSideMenuViewController.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 		2DC364BA1D4B0AC8006514EE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				993AD65C1D519F3F00B945FA /* Page */,
 				99ED29281D508AFF0088FCAD /* History */,
 				99ED29231D507B8D0088FCAD /* Favorite */,
 				99EB2A261D4F50920024FEF9 /* Home */,
@@ -370,6 +373,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		993AD65C1D519F3F00B945FA /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				993AD6611D51A1E100B945FA /* MenuItemViewController.swift */,
+				993AD6621D51A1E100B945FA /* MenuItemViewController.xib */,
+			);
+			name = Page;
+			sourceTree = "<group>";
+		};
 		99EB2A1C1D4F4C980024FEF9 /* Background */ = {
 			isa = PBXGroup;
 			children = (
@@ -449,7 +461,6 @@
 			isa = PBXGroup;
 			children = (
 				99ED292E1D5097470088FCAD /* NavigationBar.swift */,
-				99193EC71D517A3000CCD51E /* NavigationBar.xib */,
 			);
 			name = NavigationBar;
 			sourceTree = "<group>";
@@ -568,11 +579,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				99ED290E1D502CC80088FCAD /* CustomMainMenuTableViewCell.xib in Resources */,
+				993AD6641D51A1E100B945FA /* MenuItemViewController.xib in Resources */,
 				99ED29201D5058A90088FCAD /* ViewForHeaderMenuItems.xib in Resources */,
 				99EB2A201D4F4CCB0024FEF9 /* BackgroundViewController.xib in Resources */,
 				2DC364DB1D4B1741006514EE /* Info.plist in Resources */,
 				2DC364DA1D4B0FED006514EE /* LoginViewController.xib in Resources */,
-				99193EC81D517A3000CCD51E /* NavigationBar.xib in Resources */,
 				99EB2A251D4F4FC60024FEF9 /* LeftSideMenuViewController.xib in Resources */,
 				99ED29131D5031960088FCAD /* CustomMenuItemsTableViewCell.xib in Resources */,
 				99ED29271D507BB80088FCAD /* FavoriteViewController.xib in Resources */,
@@ -743,6 +754,7 @@
 			files = (
 				99ED29261D507BB80088FCAD /* FavoriteViewController.swift in Sources */,
 				2DC364DF1D4B1892006514EE /* UIScrollView.swift in Sources */,
+				993AD6631D51A1E100B945FA /* MenuItemViewController.swift in Sources */,
 				2DC364EC1D4B335C006514EE /* Colors.swift in Sources */,
 				2DC364E21D4B190E006514EE /* LoginButton.swift in Sources */,
 				2DC364F01D4B3383006514EE /* Errors.swift in Sources */,

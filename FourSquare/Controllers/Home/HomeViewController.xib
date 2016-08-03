@@ -71,6 +71,7 @@
                 <constraint firstItem="F4g-zw-9nC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wJt-pZ-VJL"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="28" y="287"/>
         </view>
     </objects>
     <resources>
