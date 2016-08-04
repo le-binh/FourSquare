@@ -16,6 +16,7 @@ class CustomMenuItemsTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectionStyle = .None
         self.setupUI()
     }
 

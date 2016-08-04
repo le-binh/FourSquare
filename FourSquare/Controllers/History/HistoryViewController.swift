@@ -13,7 +13,7 @@ class HistoryViewController: UIViewController {
     @IBOutlet weak var navigationBarView: UIView!
     @IBOutlet weak var sideMenuButton: UIButton!
     @IBAction func showSideMenuAction(sender: AnyObject) {
-        SlideMenu.getRootBackground.showHideLeftViewAnimated(true, completionHandler: nil)
+        UIApplication.sharedApplication().backgroundViewController()?.showHideLeftViewAnimated(true, completionHandler: nil)
     }
 
 }

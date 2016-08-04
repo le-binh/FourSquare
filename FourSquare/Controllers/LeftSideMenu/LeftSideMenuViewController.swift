@@ -152,26 +152,30 @@ extension LeftSideMenuViewController: UITableViewDataSource {
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        let slideMenuSection = SlideMenuSection(rawValue: indexPath.section)
+        guard let slideMenuSection = SlideMenuSection(rawValue: indexPath.section) else {
+            return UITableViewCell()
+        }
 
-        switch slideMenuSection! {
+        switch slideMenuSection {
         case .MainMenu:
             let cell = tableView.dequeue(CustomMainMenuTableViewCell)
 
-            let mainMenuSlide = MainMenuSlide(rawValue: indexPath.row)
+            guard let mainMenuSlide = MainMenuSlide(rawValue: indexPath.row) else {
+                return cell
+            }
 
-            cell.configureCell(mainMenuSlide!.title, icon: mainMenuSlide!.icon)
+            cell.configureCell(mainMenuSlide.title, icon: mainMenuSlide.icon)
 
             return cell
 
         case .MenuItems:
             let cell = tableView.dequeue(CustomMenuItemsTableViewCell)
 
-            let menuItemsSlide = MenuItemsSlide(rawValue: indexPath.row)
+            guard let menuItemsSlide = MenuItemsSlide(rawValue: indexPath.row) else {
+                return cell
+            }
 
-            cell.configureCell(menuItemsSlide!)
-
-            cell.selectionStyle = .None
+            cell.configureCell(menuItemsSlide)
 
             return cell
         }
@@ -223,16 +227,16 @@ extension LeftSideMenuViewController: UITableViewDelegate {
             }
             switch mainMenuSlide {
             case .Home:
-                SlideMenu.getRootViewController.popToRootViewControllerAnimated(false)
-                SlideMenu.getRootBackground.hideLeftViewAnimated(true, completionHandler: nil)
+                UIApplication.sharedApplication().navigationController()?.popToRootViewControllerAnimated(false)
+                UIApplication.sharedApplication().backgroundViewController()?.hideLeftViewAnimated(true, completionHandler: nil)
             case .Favorite:
                 let favoriteViewController = FavoriteViewController.vc()
-                SlideMenu.getRootViewController.pushViewController(favoriteViewController, animated: false)
-                SlideMenu.getRootBackground.hideLeftViewAnimated(true, completionHandler: nil)
+                UIApplication.sharedApplication().navigationController()?.pushViewController(favoriteViewController, animated: false)
+                UIApplication.sharedApplication().backgroundViewController()?.hideLeftViewAnimated(true, completionHandler: nil)
             case .History:
                 let historyViewController = HistoryViewController.vc()
-                SlideMenu.getRootViewController.pushViewController(historyViewController, animated: false)
-                SlideMenu.getRootBackground.hideLeftViewAnimated(true, completionHandler: nil)
+                UIApplication.sharedApplication().navigationController()?.pushViewController(historyViewController, animated: false)
+                UIApplication.sharedApplication().backgroundViewController()?.hideLeftViewAnimated(true, completionHandler: nil)
             }
         default:
             return

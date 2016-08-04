@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var listOrMapMenuButton: UIButton!
 
     @IBAction func showSideMenuAction(sender: AnyObject) {
-        SlideMenu.getRootBackground.showHideLeftViewAnimated(true, completionHandler: nil)
+        UIApplication.sharedApplication().backgroundViewController()?.showHideLeftViewAnimated(true, completionHandler: nil)
     }
 
     @IBAction func showListOrMapAction(sender: AnyObject) {

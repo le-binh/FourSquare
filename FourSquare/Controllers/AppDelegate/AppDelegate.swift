@@ -18,20 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         setup()
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window?.rootViewController = self.getRootViewController()
+        window?.rootViewController = self.rootViewController()
         window?.makeKeyAndVisible()
         return true
     }
 
-    func getRootViewController() -> UIViewController {
+    func rootViewController() -> UIViewController {
         let backgroundViewController = BackgroundViewController()
-
         let homeViewController = HomeViewController.vc()
         let navigationHomeController = UINavigationController(rootViewController: homeViewController)
         navigationHomeController.navigationBar.hidden = true
-
         backgroundViewController.loadMenuView(navigationHomeController, style: .SlideAbove)
-
         return backgroundViewController
     }
 
