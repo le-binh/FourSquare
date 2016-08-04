@@ -23,7 +23,7 @@ class BackgroundViewController: LGSideMenuController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.leftViewSwipeGestureEnabled = false
-        self.configureDefaultListMenuItem()
+        self.configureAllMenuItems()
         self.setUpNotificationCenter()
     }
 
@@ -63,7 +63,7 @@ class BackgroundViewController: LGSideMenuController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.updateItem), name: NotificationCenterKey.updateItemsMenu, object: nil)
     }
 
-    private func configureDefaultListMenuItem() {
+    private func configureAllMenuItems() {
         for i in 0..<6 {
             guard let menuItem = MenuItemsSlide(rawValue: i) else {
                 continue
