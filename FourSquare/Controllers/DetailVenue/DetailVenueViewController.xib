@@ -24,37 +24,33 @@
                         <constraint firstAttribute="height" constant="44" id="qhd-cd-47y"/>
                     </constraints>
                 </view>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aJn-qG-ozO">
-                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                    <subviews>
-                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="HTM-pn-94m">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="213"/>
-                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="S0d-MJ-ylD">
-                                <size key="itemSize" width="50" height="50"/>
-                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            </collectionViewFlowLayout>
-                        </collectionView>
-                    </subviews>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="HTM-pn-94m" secondAttribute="trailing" id="EiF-qg-y8R"/>
-                        <constraint firstItem="HTM-pn-94m" firstAttribute="top" secondItem="aJn-qG-ozO" secondAttribute="top" id="eox-6I-LJD"/>
-                        <constraint firstItem="HTM-pn-94m" firstAttribute="leading" secondItem="aJn-qG-ozO" secondAttribute="leading" id="pU5-Oe-4Fx"/>
-                    </constraints>
-                </scrollView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="HTM-pn-94m">
+                    <rect key="frame" x="0.0" y="64" width="320" height="213"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="S0d-MJ-ylD">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gtK-nu-KZv">
+                    <rect key="frame" x="0.0" y="277" width="320" height="291"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="HTM-pn-94m" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1kQ-Ap-GLH"/>
                 <constraint firstItem="WUP-kC-U0h" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="COj-9a-8En"/>
-                <constraint firstAttribute="bottom" secondItem="aJn-qG-ozO" secondAttribute="bottom" id="U4M-4n-Ac2"/>
-                <constraint firstItem="HTM-pn-94m" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="250/667" id="c8G-oS-hT9"/>
+                <constraint firstItem="gtK-nu-KZv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CtU-HG-60Y"/>
+                <constraint firstAttribute="trailing" secondItem="HTM-pn-94m" secondAttribute="trailing" id="Lnm-S9-4nc"/>
+                <constraint firstItem="HTM-pn-94m" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="250/667" id="XmE-Pm-T17"/>
+                <constraint firstItem="gtK-nu-KZv" firstAttribute="top" secondItem="HTM-pn-94m" secondAttribute="bottom" id="YyE-9d-z9P"/>
+                <constraint firstItem="HTM-pn-94m" firstAttribute="top" secondItem="WUP-kC-U0h" secondAttribute="bottom" id="adM-du-fOu"/>
                 <constraint firstItem="WUP-kC-U0h" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="f5P-Cm-4o5"/>
-                <constraint firstItem="aJn-qG-ozO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ifo-Jy-97I"/>
-                <constraint firstAttribute="trailing" secondItem="aJn-qG-ozO" secondAttribute="trailing" id="jHh-zL-XSX"/>
+                <constraint firstAttribute="bottom" secondItem="gtK-nu-KZv" secondAttribute="bottom" id="faw-mS-M0v"/>
+                <constraint firstAttribute="trailing" secondItem="gtK-nu-KZv" secondAttribute="trailing" id="lRJ-ab-HQR"/>
                 <constraint firstAttribute="trailing" secondItem="WUP-kC-U0h" secondAttribute="trailing" id="pQR-44-y7z"/>
-                <constraint firstItem="HTM-pn-94m" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="scT-mL-PFd"/>
-                <constraint firstItem="aJn-qG-ozO" firstAttribute="top" secondItem="WUP-kC-U0h" secondAttribute="bottom" id="upa-UA-Dtb"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="210" y="326"/>
