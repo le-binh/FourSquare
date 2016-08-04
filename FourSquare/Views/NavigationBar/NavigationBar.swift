@@ -63,6 +63,15 @@ class NavigationBar: UIView {
             rightBarButton?.hidden = rightBarButtonHidden
         }
     }
+
+//    var menuLeftButtonShow: Bool? {
+//
+//    }
+//
+//    var backLeftButtonShow: Bool? {
+//
+//    }
+
     // MARK:- LifeCycle
 
     override init(frame: CGRect) {

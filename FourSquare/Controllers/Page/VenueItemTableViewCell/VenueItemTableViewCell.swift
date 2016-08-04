@@ -10,16 +10,18 @@ import UIKit
 
 class VenueItemTableViewCell: UITableViewCell {
 
+    // MARK:- Properties
+
     @IBOutlet weak var venueContentView: UIView!
     @IBOutlet weak var verifiedImageView: UIImageView!
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var nameVenueLabel: UILabel!
     @IBOutlet weak var ratingVenueLabel: UILabel!
-    @IBOutlet weak var addressStreetLabel: UILabel!
-    @IBOutlet weak var addressCityLabel: UILabel!
     @IBOutlet weak var categoryVenueLabel: UILabel!
     @IBOutlet weak var priceVenueLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+
+    // MARK:- Life Cycle
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,16 +29,16 @@ class VenueItemTableViewCell: UITableViewCell {
         self.setUpUI()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    // MARK:- Private Functions
 
-        // Configure the view for the selected state
-    }
-
-    func setUpUI() {
-        let value: CGFloat = 1
-        self.venueContentView.cornerRadiusWith(value)
-        self.venueContentView.border(color: Color.Gray235, width: 1)
+    private func setUpUI() {
+        let radiusOfVenueContentView: CGFloat = 4
+        self.venueContentView.cornerRadiusWith(radiusOfVenueContentView)
+        self.venueContentView.border(color: UIColor.grayColor(), width: 0.5)
+        self.venueContentView.shadow(color: UIColor.redColor(), offset: CGSize(width: 5, height: 5), opacity: 0.5, radius: 1)
+        self.ratingVenueLabel.backgroundColor = Color.Green125
+        let radiusOfRatingLabel: CGFloat = self.ratingVenueLabel.frame.width / 2
+        self.ratingVenueLabel.cornerRadiusWith(radiusOfRatingLabel)
     }
 
 }

@@ -15,4 +15,5 @@ struct Color {
     static let BackgroundSlideMenu = UIColor.RGB(62, 39, 35)
     static let Gray235 = UIColor.RGB(235, 233, 233)
     static let Orange253 = UIColor.RGB(253, 154, 62)
+    static let Green125 = UIColor.RGB(125, 183, 57)
 }
