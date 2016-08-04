@@ -30,6 +30,9 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1Q1-4J-HcG">
                                 <rect key="frame" x="235" y="40" width="51" height="31"/>
                                 <color key="onTintColor" red="0.49803921568627452" green="0.70980392156862748" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="getActiveOfItem:" destination="KGk-i7-Jjw" eventType="valueChanged" id="ljr-m9-JAa"/>
+                                </connections>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

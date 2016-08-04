@@ -42,7 +42,7 @@ class BaseViewController: ViewController {
     }
 
     func menuAction(sender: AnyClass) {
-        SlideMenu.getRootBackground.showHideLeftViewAnimated(true, completionHandler: nil)
+        UIApplication.sharedApplication().backgroundViewController()?.showHideLeftViewAnimated(true, completionHandler: nil)
     }
 
     func setupNavigationBar() {

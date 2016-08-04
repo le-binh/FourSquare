@@ -89,6 +89,7 @@ class HomeViewController: BaseViewController {
         if let pageMenu = self.pageMenu {
             self.view.addSubview(pageMenu.view)
         }
+
     }
 
     private func setUpNotificationCenter() {

@@ -29,6 +29,9 @@
 		2DC364F81D4B3CB5006514EE /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC364F71D4B3CB5006514EE /* LoginService.swift */; };
 		2DC364FA1D4B3E59006514EE /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC364F91D4B3E59006514EE /* BaseService.swift */; };
 		6FD3714FA0A95CADC3956C61 /* Pods_FourSquare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC15CD9639F8CC4F71EE7E39 /* Pods_FourSquare.framework */; };
+		99193EC81D517A3000CCD51E /* NavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99193EC71D517A3000CCD51E /* NavigationBar.xib */; };
+		993AD65B1D518BEE00B945FA /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993AD65A1D518BEE00B945FA /* NotificationCenter.swift */; };
+		999165DD1D52E92C00320877 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999165DC1D52E92C00320877 /* UIApplication.swift */; };
 		9987AA0E1D52F83C00AB7E6D /* VenueItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9987AA0C1D52F83C00AB7E6D /* VenueItemTableViewCell.swift */; };
 		9987AA0F1D52F83C00AB7E6D /* VenueItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9987AA0D1D52F83C00AB7E6D /* VenueItemTableViewCell.xib */; };
 		9987AA121D52F84C00AB7E6D /* MenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9987AA101D52F84C00AB7E6D /* MenuItemViewController.swift */; };
@@ -46,7 +49,6 @@
 		99ED29131D5031960088FCAD /* CustomMenuItemsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED29111D5031960088FCAD /* CustomMenuItemsTableViewCell.xib */; };
 		99ED291E1D5058980088FCAD /* ViewForHeaderMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED291D1D5058980088FCAD /* ViewForHeaderMenuItems.swift */; };
 		99ED29201D5058A90088FCAD /* ViewForHeaderMenuItems.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED291F1D5058A90088FCAD /* ViewForHeaderMenuItems.xib */; };
-		99ED29221D50608F0088FCAD /* SlideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED29211D50608F0088FCAD /* SlideMenu.swift */; };
 		99ED29261D507BB80088FCAD /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED29241D507BB80088FCAD /* FavoriteViewController.swift */; };
 		99ED29271D507BB80088FCAD /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ED29251D507BB80088FCAD /* FavoriteViewController.xib */; };
 		99ED292B1D508B550088FCAD /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED29291D508B550088FCAD /* HistoryViewController.swift */; };
@@ -106,6 +108,9 @@
 		70672F30AFA21B18568485EB /* Pods-FourSquare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FourSquare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FourSquare/Pods-FourSquare.debug.xcconfig"; sourceTree = "<group>"; };
 		75E17F665F372167F28CEE7D /* Pods_FourSquareTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FourSquareTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90B930BF0939262C8CA47B5E /* Pods-FourSquareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FourSquareTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FourSquareTests/Pods-FourSquareTests.release.xcconfig"; sourceTree = "<group>"; };
+		99193EC71D517A3000CCD51E /* NavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NavigationBar.xib; path = NavigationBar/NavigationBar.xib; sourceTree = "<group>"; };
+		993AD65A1D518BEE00B945FA /* NotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
+		999165DC1D52E92C00320877 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		9987AA0C1D52F83C00AB7E6D /* VenueItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VenueItemTableViewCell.swift; path = Base/PageBase/VenueItemTableViewCell/VenueItemTableViewCell.swift; sourceTree = "<group>"; };
 		9987AA0D1D52F83C00AB7E6D /* VenueItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VenueItemTableViewCell.xib; path = Base/PageBase/VenueItemTableViewCell/VenueItemTableViewCell.xib; sourceTree = "<group>"; };
 		9987AA101D52F84C00AB7E6D /* MenuItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemViewController.swift; path = Base/PageBase/MenuItemViewController.swift; sourceTree = "<group>"; };
@@ -123,7 +128,6 @@
 		99ED29111D5031960088FCAD /* CustomMenuItemsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomMenuItemsTableViewCell.xib; path = LeftSideMenu/CustomCellSectionMenuItems/CustomMenuItemsTableViewCell.xib; sourceTree = "<group>"; };
 		99ED291D1D5058980088FCAD /* ViewForHeaderMenuItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewForHeaderMenuItems.swift; path = LeftSideMenu/ViewForHeaderMenuItems/ViewForHeaderMenuItems.swift; sourceTree = "<group>"; };
 		99ED291F1D5058A90088FCAD /* ViewForHeaderMenuItems.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewForHeaderMenuItems.xib; path = LeftSideMenu/ViewForHeaderMenuItems/ViewForHeaderMenuItems.xib; sourceTree = "<group>"; };
-		99ED29211D50608F0088FCAD /* SlideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenu.swift; sourceTree = "<group>"; };
 		99ED29241D507BB80088FCAD /* FavoriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteViewController.swift; path = Favorite/FavoriteViewController.swift; sourceTree = "<group>"; };
 		99ED29251D507BB80088FCAD /* FavoriteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FavoriteViewController.xib; path = Favorite/FavoriteViewController.xib; sourceTree = "<group>"; };
 		99ED29291D508B550088FCAD /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryViewController.swift; path = History/HistoryViewController.swift; sourceTree = "<group>"; };
@@ -257,7 +261,7 @@
 				2DC364EB1D4B335C006514EE /* Colors.swift */,
 				2DC364ED1D4B3367006514EE /* Constants.swift */,
 				2DC364EF1D4B3383006514EE /* Errors.swift */,
-				99ED29211D50608F0088FCAD /* SlideMenu.swift */,
+				993AD65A1D518BEE00B945FA /* NotificationCenter.swift */,
 			);
 			path = Define;
 			sourceTree = "<group>";
@@ -341,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				2DC364DE1D4B1892006514EE /* UIScrollView.swift */,
+				999165DC1D52E92C00320877 /* UIApplication.swift */,
 				99F661A91D526887009A0E47 /* UIView.swift */,
 			);
 			path = UIKit;
@@ -781,6 +786,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				999165DD1D52E92C00320877 /* UIApplication.swift in Sources */,
 				99ED29261D507BB80088FCAD /* FavoriteViewController.swift in Sources */,
 				2DC364DF1D4B1892006514EE /* UIScrollView.swift in Sources */,
 				2DC364EC1D4B335C006514EE /* Colors.swift in Sources */,
@@ -790,6 +796,7 @@
 				2DC364EA1D4B334F006514EE /* Strings.swift in Sources */,
 				99EB2A291D4F50B20024FEF9 /* HomeViewController.swift in Sources */,
 				99ED29121D5031960088FCAD /* CustomMenuItemsTableViewCell.swift in Sources */,
+				993AD65B1D518BEE00B945FA /* NotificationCenter.swift in Sources */,
 				99ED291E1D5058980088FCAD /* ViewForHeaderMenuItems.swift in Sources */,
 				2DC364D91D4B0FED006514EE /* LoginViewController.swift in Sources */,
 				99ED290D1D502CC80088FCAD /* CustomMainMenuTableViewCell.swift in Sources */,

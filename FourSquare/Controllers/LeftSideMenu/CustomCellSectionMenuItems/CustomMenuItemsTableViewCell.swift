@@ -12,47 +12,48 @@ class CustomMenuItemsTableViewCell: UITableViewCell {
     @IBOutlet weak var menuItemTitleLable: UILabel!
     @IBOutlet weak var menuItemsActiveSwitch: UISwitch!
 
-    var itemMenu = ItemMenu(item: MenuItemsSlide(rawValue: 0)!, active: false)
+    var itemMenu: ItemMenu = ItemMenu()
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.setHeightForSwitch()
-        self.menuItemsActiveSwitch.addTarget(self, action: #selector(self.getActiveOfItem), forControlEvents: .ValueChanged)
+        self.selectionStyle = .None
+        self.setupUI()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    @IBAction func getActiveOfItem(sender: AnyObject) {
+        if self.menuItemsActiveSwitch.on {
+            self.itemMenu.active = true
+        } else {
+            self.itemMenu.active = false
+        }
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.updateItemsMenu, object: nil, userInfo: [NotificationCenterUserInfo.menuItem: self.itemMenu])
+    }
 
-        // Configure the view for the selected state
+    func setupUI() {
+        self.setHeightForSwitch()
     }
 
     func setHeightForSwitch() {
         self.menuItemsActiveSwitch.transform = CGAffineTransformMakeScale(0.7, 0.7)
     }
 
-    func setUI(item: MenuItemsSlide) {
+    func configureCell(item: MenuItemsSlide) {
         self.menuItemTitleLable.text = item.title
         self.itemMenu.item = item
     }
 
-    func getActiveOfItem() {
-        if self.menuItemsActiveSwitch.on {
-            self.itemMenu.active = true
-            NSNotificationCenter.defaultCenter().postNotificationName("ChangeItem", object: nil, userInfo: ["item": self.itemMenu])
-        } else {
-            self.itemMenu.active = false
-            NSNotificationCenter.defaultCenter().postNotificationName("ChangeItem", object: nil, userInfo: ["item": self.itemMenu])
-        }
-    }
-
 }
 
-class ItemMenu: AnyObject {
-    var item: MenuItemsSlide = MenuItemsSlide(rawValue: 0)!
-    var active: Bool = false
+class ItemMenu: NSObject {
+    var item: MenuItemsSlide
+    var active: Bool
 
     init(item: MenuItemsSlide, active: Bool) {
         self.item = item
         self.active = active
+    }
+
+    override convenience init() {
+        self.init(item: MenuItemsSlide(rawValue: 0)!, active: false)
     }
 }
