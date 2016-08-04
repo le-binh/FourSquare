@@ -16,8 +16,8 @@ class LoginService: BaseService {
         parameters["user_name"] = username
         parameters["password"] = password
         request(.POST, path: path, parameters: parameters) { (result) in
-            //TODO:- Process the result
-            
+            // TODO:- Process the result
+
             dispatch_async(dispatch_get_main_queue()) {
                 completion?(result: result)
             }

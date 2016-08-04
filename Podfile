@@ -14,6 +14,7 @@ target 'FourSquare' do
   pod 'SVProgressHUD', '2.0.3'
   pod 'PureLayout', '3.0.2'
   pod 'HanekeSwift', '0.10.1'
+  pod 'LGSideMenuController', '~> 1.0'
     
   # Utils
   pod 'XCConsole', '1.2.2'

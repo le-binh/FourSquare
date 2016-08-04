@@ -23,17 +23,17 @@ extension Request {
             }
         }
     }
-    
+
     private func validateResult(result: JSObject) -> Result<JSObject, NSError> {
-        //TODO:- Edit this validation code depending on response structure
-        
+        // TODO:- Edit this validation code depending on response structure
+
         if let success = result["success"] as? Bool where success {
             guard let data = result["data"] as? JSObject else {
                 return Result.Failure(Error.JSON)
             }
             return Result.Success(data)
         } else {
-            guard let code = result["code"] as? Int, let data = result["data"] as? JSObject, let message = data["message"] as? String else {
+            guard let code = result["code"] as? Int, data = result["data"] as? JSObject, message = data["message"] as? String else {
                 return Result.Failure(Error.JSON)
             }
             let error = Error.errorWithCode(code, description: message)

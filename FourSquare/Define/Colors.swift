@@ -12,4 +12,5 @@ import SwiftUtils
 
 struct Color {
     static let White216 = UIColor.RGB(216, 216, 216)
+    static let Brown62 = UIColor.RGB(62, 39, 35)
 }
