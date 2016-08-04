@@ -53,7 +53,7 @@ class BackgroundViewController: LGSideMenuController {
         self.leftViewStatusBarStyle = UIStatusBarStyle.Default
         self.leftViewStatusBarVisibleOptions = LGSideMenuStatusBarVisibleOptions.OnNone
         self.leftViewBackgroundColor = Color.Brown62
-        leftViewController.view.backgroundColor = UIColor.clearColor()
+        leftViewController.view.backgroundColor = self.leftViewBackgroundColor
         self.leftView().addSubview(leftViewController.view)
     }
 

@@ -45,7 +45,7 @@ class HomeViewController: BaseViewController {
         super.viewDidLoad()
         self.configureNavigationBar()
         self.itemViewControllers = self.setDefaultMenuItems()
-        self.setUpMenuPage(isDefault: true)
+        self.dismissLeftSideMenu()
         self.setUpNotificationCenter()
     }
 
@@ -55,6 +55,7 @@ class HomeViewController: BaseViewController {
 
     func configureNavigationBar() {
         self.isMenuLeftBarButton = true
+        self.isMapRightBarButton = true
     }
 
     private func setDefaultMenuItems() -> [UIViewController] {
@@ -117,6 +118,8 @@ class HomeViewController: BaseViewController {
                 return
             }
             self.setUpMenuPage(isDefault: false)
+        } else {
+            self.setUpMenuPage(isDefault: true)
         }
     }
 
