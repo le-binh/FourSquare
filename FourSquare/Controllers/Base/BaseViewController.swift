@@ -11,26 +11,58 @@ import SwiftUtils
 
 class BaseViewController: ViewController {
 
-    // MARK:- Properties
+    // MARK:- Property
 
     @IBOutlet weak var navigationBar: NavigationBar?
+
+    var isMenuLeftBarButton: Bool? {
+        didSet {
+            guard let isMenuButton = self.isMenuLeftBarButton else {
+                return
+            }
+            if isMenuButton {
+                self.addMenuLeftBarButton()
+            } else {
+                self.addBackLeftBarButton()
+            }
+        }
+    }
 
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureNavigationBar()
+        self.setupNavigationBar()
     }
 
-    // MARK:- Public Functions
+    // MARK: Public Functions
 
-    func configureNavigationBar() {
-        self.setNavigationBarItem()
+    func backAction(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
     }
 
-    // MARK:- Private Function
+    func menuAction(sender: AnyClass) {
+        SlideMenu.getRootBackground.showHideLeftViewAnimated(true, completionHandler: nil)
+    }
 
-    private func setNavigationBarItem() {
+    func setupNavigationBar() {
+        setNavigationBarItem()
+    }
+
+    func setNavigationBarItem() {
+        navigationBar?.title = self.title
+    }
+
+    // MARK:- Private functions
+
+    private func addMenuLeftBarButton() {
+        let menuButton = UIButton()
+        menuButton.setImage(UIImage(named: "side_menu_ic"), forState: .Normal)
+        menuButton.addTarget(self, action: #selector(self.menuAction), forControlEvents: .TouchUpInside)
+        navigationBar?.leftBarButton = menuButton
+    }
+
+    private func addBackLeftBarButton() {
 
     }
 

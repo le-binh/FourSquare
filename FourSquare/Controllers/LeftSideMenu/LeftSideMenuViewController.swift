@@ -227,10 +227,12 @@ extension LeftSideMenuViewController: UITableViewDelegate {
                 SlideMenu.getRootBackground.hideLeftViewAnimated(true, completionHandler: nil)
             case .Favorite:
                 let favoriteViewController = FavoriteViewController.vc()
+                SlideMenu.getRootViewController.popToRootViewControllerAnimated(false)
                 SlideMenu.getRootViewController.pushViewController(favoriteViewController, animated: false)
                 SlideMenu.getRootBackground.hideLeftViewAnimated(true, completionHandler: nil)
             case .History:
                 let historyViewController = HistoryViewController.vc()
+                SlideMenu.getRootViewController.popToRootViewControllerAnimated(false)
                 SlideMenu.getRootViewController.pushViewController(historyViewController, animated: false)
                 SlideMenu.getRootBackground.hideLeftViewAnimated(true, completionHandler: nil)
             }

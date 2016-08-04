@@ -28,10 +28,9 @@ enum DefaultMenuItem: Int {
     }
 }
 
-class HomeViewController: ViewController {
+class HomeViewController: BaseViewController {
 
     @IBOutlet weak var viewOfPageMenu: UIView!
-    @IBOutlet weak var navigationBar: NavigationBar?
 
     // MARK:- Properties
 
@@ -42,39 +41,20 @@ class HomeViewController: ViewController {
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
-        super.viewDidLoad()
         self.title = "Explore"
+        super.viewDidLoad()
         self.configureNavigationBar()
         self.itemViewControllers = self.setDefaultMenuItems()
         self.setUpMenuPage(isDefault: true)
         self.setUpNotificationCenter()
     }
 
-    // MARK:- Action
-
-    func showSideMenuAction(sender: AnyObject) {
-        SlideMenu.getRootBackground.showHideLeftViewAnimated(true, completionHandler: nil)
-    }
-
     // MARK:- Public Functions
-
-    func configureNavigationBar() {
-        self.setNavigationBarItem()
-    }
 
     // MARK:- Private Function
 
-    private func setNavigationBarItem() {
-        navigationBar?.title = self.title
-        self.addMenuLeftButton()
-
-    }
-
-    private func addMenuLeftButton() {
-        let menuButton = UIButton()
-        menuButton.setImage(UIImage(named: "side_menu_ic"), forState: .Normal)
-        menuButton.addTarget(self, action: #selector(self.showSideMenuAction), forControlEvents: .TouchUpInside)
-        navigationBar?.leftBarButton = menuButton
+    func configureNavigationBar() {
+        self.isMenuLeftBarButton = true
     }
 
     private func setDefaultMenuItems() -> [UIViewController] {
