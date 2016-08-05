@@ -8,6 +8,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailVenueViewController" customModule="FourSquare" customModuleProvider="target">
             <connections>
+                <outlet property="detailVenueTableView" destination="q8F-bb-uCr" id="qB3-qo-RuI"/>
+                <outlet property="imagesPageView" destination="zhX-SA-hSO" id="Dsa-ox-Jn8"/>
                 <outlet property="navigationBar" destination="WUP-kC-U0h" id="JD9-JS-DEM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,33 +26,28 @@
                         <constraint firstAttribute="height" constant="44" id="qhd-cd-47y"/>
                     </constraints>
                 </view>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="HTM-pn-94m">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhX-SA-hSO">
                     <rect key="frame" x="0.0" y="64" width="320" height="213"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="S0d-MJ-ylD">
-                        <size key="itemSize" width="50" height="50"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                </collectionView>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gtK-nu-KZv">
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="q8F-bb-uCr">
                     <rect key="frame" x="0.0" y="277" width="320" height="291"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="HTM-pn-94m" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1kQ-Ap-GLH"/>
                 <constraint firstItem="WUP-kC-U0h" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="COj-9a-8En"/>
-                <constraint firstItem="gtK-nu-KZv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CtU-HG-60Y"/>
-                <constraint firstAttribute="trailing" secondItem="HTM-pn-94m" secondAttribute="trailing" id="Lnm-S9-4nc"/>
-                <constraint firstItem="HTM-pn-94m" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="250/667" id="XmE-Pm-T17"/>
-                <constraint firstItem="gtK-nu-KZv" firstAttribute="top" secondItem="HTM-pn-94m" secondAttribute="bottom" id="YyE-9d-z9P"/>
-                <constraint firstItem="HTM-pn-94m" firstAttribute="top" secondItem="WUP-kC-U0h" secondAttribute="bottom" id="adM-du-fOu"/>
+                <constraint firstAttribute="trailing" secondItem="zhX-SA-hSO" secondAttribute="trailing" id="Dd0-c8-nYe"/>
+                <constraint firstItem="zhX-SA-hSO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NBq-4m-UGt"/>
+                <constraint firstItem="zhX-SA-hSO" firstAttribute="top" secondItem="WUP-kC-U0h" secondAttribute="bottom" id="WaX-0T-Iic"/>
+                <constraint firstItem="zhX-SA-hSO" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="250/667" id="Xqd-zT-mN4"/>
+                <constraint firstItem="q8F-bb-uCr" firstAttribute="top" secondItem="zhX-SA-hSO" secondAttribute="bottom" id="aW6-ht-oTx"/>
                 <constraint firstItem="WUP-kC-U0h" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="f5P-Cm-4o5"/>
-                <constraint firstAttribute="bottom" secondItem="gtK-nu-KZv" secondAttribute="bottom" id="faw-mS-M0v"/>
-                <constraint firstAttribute="trailing" secondItem="gtK-nu-KZv" secondAttribute="trailing" id="lRJ-ab-HQR"/>
+                <constraint firstItem="q8F-bb-uCr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kpw-ft-1iz"/>
+                <constraint firstAttribute="trailing" secondItem="q8F-bb-uCr" secondAttribute="trailing" id="lQh-jM-9m4"/>
                 <constraint firstAttribute="trailing" secondItem="WUP-kC-U0h" secondAttribute="trailing" id="pQR-44-y7z"/>
+                <constraint firstAttribute="bottom" secondItem="q8F-bb-uCr" secondAttribute="bottom" id="sgn-eU-G75"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="210" y="326"/>
