@@ -11,14 +11,10 @@ import SwiftUtils
 
 class MenuItemViewController: ViewController {
 
-    // MARK:- Outlet
-
-    @IBOutlet weak var venueTableView: UITableView!
-
     // MARK:- Properties
 
-    var defaultItem: DefaultMenuItem?
-    var menuItem: MenuItemsSlide?
+    @IBOutlet weak var venueTableView: UITableView?
+    let rowHeight: CGFloat = 140
 
     // MARK:- Life Cycle
 
@@ -35,9 +31,11 @@ class MenuItemViewController: ViewController {
     // MARK:- Private Function
 
     private func setUpTableView() {
-        self.venueTableView.registerNib(VenueItemTableViewCell)
-        self.venueTableView.delegate = self
-        self.venueTableView.dataSource = self
+        self.venueTableView?.backgroundColor = Color.Caramel255
+        self.venueTableView?.separatorStyle = .None
+        self.venueTableView?.registerNib(VenueItemTableViewCell)
+        self.venueTableView?.delegate = self
+        self.venueTableView?.dataSource = self
     }
 }
 
@@ -64,7 +62,6 @@ extension MenuItemViewController: UITableViewDataSource {
 
 extension MenuItemViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let rowHeight: CGFloat = 140
         return rowHeight
     }
 }
