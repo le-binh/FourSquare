@@ -14,6 +14,7 @@ class DetailVenueViewController: BaseViewController {
 
     @IBOutlet weak var imagesPageView: UIView!
     @IBOutlet weak var detailVenueTableView: UITableView!
+    @IBOutlet weak var imagesPageControl: UIPageControl!
     private var imagePageViewController: UIPageViewController?
 
     private let imageNames = ["detail_venue_image", "thumbnail_venue", "detail_venue_image"]
@@ -25,17 +26,25 @@ class DetailVenueViewController: BaseViewController {
         self.configureImagePageViewController()
     }
 
+    // MARK:- Action
+
+    @IBAction func didTapBackAction(sender: AnyObject) {
+    }
+
+    @IBAction func didTapNextAction(sender: AnyObject) {
+    }
+
     // MARK:- Private Functions
 
     private func configureImagePageViewController() {
         self.createImagePageViewController()
-        self.setUpImagePageViewController()
+        self.setUpImagesPageControler()
     }
 
     private func createImagePageViewController() {
         imagePageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
         self.imagePageViewController?.dataSource = self
-
+        self.imagePageViewController?.delegate = self
         if imageNames.count > 0 {
             guard let firstController = getPageItemViewController(0) else {
                 return
@@ -43,7 +52,6 @@ class DetailVenueViewController: BaseViewController {
             let startingViewControllers = [firstController]
             imagePageViewController?.setViewControllers(startingViewControllers, direction: .Forward, animated: false, completion: nil)
         }
-
         guard let pageViewController = self.imagePageViewController else {
             return
         }
@@ -51,7 +59,11 @@ class DetailVenueViewController: BaseViewController {
         self.imagesPageView.addSubview(pageViewController.view)
         pageViewController.view.frame = self.imagesPageView.bounds
         pageViewController.didMoveToParentViewController(self)
+    }
 
+    private func setUpImagesPageControler() {
+        self.imagesPageControl.numberOfPages = self.imageNames.count
+        self.imagesPageControl.currentPage = 0
     }
 
     private func setUpImagePageViewController() {
@@ -62,15 +74,44 @@ class DetailVenueViewController: BaseViewController {
     }
 
     private func getPageItemViewController(itemIndex: Int) -> ImagePageItemViewController? {
-
         if itemIndex < imageNames.count {
             let imagePageItemViewController = ImagePageItemViewController.vc()
             imagePageItemViewController.itemIndex = itemIndex
             imagePageItemViewController.imageName = imageNames[itemIndex]
             return imagePageItemViewController
         }
-
         return nil
+    }
+
+    private func setCurrentPage() {
+        self.imagesPageControl.currentPage = self.currentControllerIndex()
+    }
+
+    // MARK:- Public Functions
+
+    func currentControllerIndex() -> Int {
+        let pageItemController = self.currentController()
+        if let controller = pageItemController as? ImagePageItemViewController {
+            return controller.itemIndex
+        }
+        return -1
+    }
+
+    func currentController() -> UIViewController? {
+        if self.imagePageViewController?.viewControllers?.count > 0 {
+            return self.imagePageViewController?.viewControllers?[0]
+        }
+        return nil
+    }
+}
+
+//MARK:- Page View Controller Delegate
+
+extension DetailVenueViewController: UIPageViewControllerDelegate {
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if completed {
+            self.setCurrentPage()
+        }
     }
 }
 
@@ -78,6 +119,7 @@ class DetailVenueViewController: BaseViewController {
 
 extension DetailVenueViewController: UIPageViewControllerDataSource {
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+        self.setCurrentPage()
         guard let pageItemViewController = viewController as? ImagePageItemViewController else {
             return nil
         }
@@ -88,6 +130,7 @@ extension DetailVenueViewController: UIPageViewControllerDataSource {
     }
 
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+        self.setCurrentPage()
         guard let pageItemViewController = viewController as? ImagePageItemViewController else {
             return nil
         }
@@ -95,13 +138,5 @@ extension DetailVenueViewController: UIPageViewControllerDataSource {
             return getPageItemViewController(pageItemViewController.itemIndex + 1)
         }
         return nil
-    }
-
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return self.imageNames.count
-    }
-
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return 0
     }
 }
