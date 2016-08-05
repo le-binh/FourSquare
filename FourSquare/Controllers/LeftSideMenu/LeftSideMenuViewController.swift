@@ -234,23 +234,17 @@ extension LeftSideMenuViewController: UITableViewDelegate {
             guard let mainMenuSlide = MainMenuSlide(rawValue: indexPath.row) else {
                 return
             }
+            if currentMainMenuSide == mainMenuSlide {
+                break
+            }
             switch mainMenuSlide {
             case .Home:
-                if currentMainMenuSide == mainMenuSlide {
-                    break
-                }
                 let homeViewController = HomeViewController.vc()
                 self.changeRootViewController(homeViewController)
             case .Favorite:
-                if currentMainMenuSide == mainMenuSlide {
-                    break
-                }
                 let favoriteViewController = FavoriteViewController.vc()
                 self.changeRootViewController(favoriteViewController)
             case .History:
-                if currentMainMenuSide == mainMenuSlide {
-                    break
-                }
                 let historyViewController = HistoryViewController.vc()
                 self.changeRootViewController(historyViewController)
             }

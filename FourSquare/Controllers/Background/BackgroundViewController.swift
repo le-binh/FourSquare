@@ -14,12 +14,7 @@ class BackgroundViewController: LGSideMenuController {
 
     // MARK:- Singleton
 
-    class var sharedInstance: BackgroundViewController {
-        struct Static {
-            static let instance: BackgroundViewController = BackgroundViewController()
-        }
-        return Static.instance
-    }
+    static let sharedInstance = BackgroundViewController()
 
     // MARK:- Properties
 
