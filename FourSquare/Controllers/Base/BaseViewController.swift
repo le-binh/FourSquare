@@ -61,7 +61,10 @@ class BaseViewController: ViewController {
     }
 
     private func addBackLeftBarButton() {
-
+        let menuButton = UIButton()
+        menuButton.setImage(UIImage(named: "back_button_ic"), forState: .Normal)
+        menuButton.addTarget(self, action: #selector(self.backAction), forControlEvents: .TouchUpInside)
+        navigationBar?.leftBarButton = menuButton
     }
 
     private func addMapRightBarButton() {
