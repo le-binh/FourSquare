@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUtils
+import LGSideMenuController
 
 enum SlideMenuSection: Int {
 
@@ -113,6 +114,8 @@ class LeftSideMenuViewController: UIViewController {
 
     @IBOutlet weak var menuTableView: UITableView!
 
+    var currentMainMenuSide = MainMenuSlide(rawValue: 0)
+
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
@@ -133,6 +136,12 @@ class LeftSideMenuViewController: UIViewController {
         self.menuTableView.registerNib(ViewForHeaderMenuItems)
         self.menuTableView.delegate = self
         self.menuTableView.dataSource = self
+    }
+
+    private func changeRootViewController(viewController: UIViewController) {
+        let navi = UINavigationController(rootViewController: viewController)
+        navi.navigationBar.hidden = true
+        UIApplication.sharedApplication().backgroundViewController()?.rootViewController = navi
     }
 
 }
@@ -225,19 +234,22 @@ extension LeftSideMenuViewController: UITableViewDelegate {
             guard let mainMenuSlide = MainMenuSlide(rawValue: indexPath.row) else {
                 return
             }
+            if currentMainMenuSide == mainMenuSlide {
+                break
+            }
             switch mainMenuSlide {
             case .Home:
-                UIApplication.sharedApplication().navigationController()?.popToRootViewControllerAnimated(false)
-                UIApplication.sharedApplication().backgroundViewController()?.hideLeftViewAnimated(true, completionHandler: nil)
+                let homeViewController = HomeViewController.vc()
+                self.changeRootViewController(homeViewController)
             case .Favorite:
                 let favoriteViewController = FavoriteViewController.vc()
-                UIApplication.sharedApplication().navigationController()?.pushViewController(favoriteViewController, animated: false)
-                UIApplication.sharedApplication().backgroundViewController()?.hideLeftViewAnimated(true, completionHandler: nil)
+                self.changeRootViewController(favoriteViewController)
             case .History:
                 let historyViewController = HistoryViewController.vc()
-                UIApplication.sharedApplication().navigationController()?.pushViewController(historyViewController, animated: false)
-                UIApplication.sharedApplication().backgroundViewController()?.hideLeftViewAnimated(true, completionHandler: nil)
+                self.changeRootViewController(historyViewController)
             }
+            self.currentMainMenuSide = mainMenuSlide
+            UIApplication.sharedApplication().backgroundViewController()?.hideLeftViewAnimated(true, completionHandler: nil)
         default:
             return
         }

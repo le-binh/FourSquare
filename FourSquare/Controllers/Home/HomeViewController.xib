@@ -2,15 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10117"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="FourSquare" customModuleProvider="target">
             <connections>
-                <outlet property="listOrMapMenuButton" destination="G2Q-Yo-3ez" id="o0i-bG-raa"/>
-                <outlet property="navigationBarView" destination="F4g-zw-9nC" id="PiV-yl-VYO"/>
-                <outlet property="sideMenuButton" destination="s48-o5-ADP" id="VAs-Qk-t9M"/>
+                <outlet property="navigationBar" destination="F4g-zw-9nC" id="9nA-5A-Nvl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewOfPageMenu" destination="dhc-eg-amd" id="DOk-fo-jg2"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -18,41 +17,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F4g-zw-9nC">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explore" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="En7-kt-QEn">
-                            <rect key="frame" x="131" y="31" width="57" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s48-o5-ADP">
-                            <rect key="frame" x="15" y="32.5" width="23" height="19"/>
-                            <state key="normal" backgroundImage="side_menu_ic"/>
-                            <connections>
-                                <action selector="showSideMenuAction:" destination="-1" eventType="touchUpInside" id="FpX-6p-z1x"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2Q-Yo-3ez">
-                            <rect key="frame" x="278" y="28.5" width="27" height="27"/>
-                            <state key="normal" backgroundImage="list_map_ic"/>
-                            <connections>
-                                <action selector="showListOrMapAction:" destination="-1" eventType="touchUpInside" id="zf9-6b-OSd"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="s48-o5-ADP" firstAttribute="centerY" secondItem="F4g-zw-9nC" secondAttribute="centerY" constant="10" id="3oo-Ka-kBm"/>
-                        <constraint firstAttribute="trailing" secondItem="G2Q-Yo-3ez" secondAttribute="trailing" constant="15" id="8wv-Ct-Kda"/>
-                        <constraint firstItem="En7-kt-QEn" firstAttribute="centerY" secondItem="F4g-zw-9nC" secondAttribute="centerY" constant="10" id="AFU-a8-Tia"/>
-                        <constraint firstItem="s48-o5-ADP" firstAttribute="leading" secondItem="F4g-zw-9nC" secondAttribute="leading" constant="15" id="EDc-41-CX8"/>
-                        <constraint firstItem="G2Q-Yo-3ez" firstAttribute="centerY" secondItem="s48-o5-ADP" secondAttribute="centerY" id="RMW-WD-bEJ"/>
-                        <constraint firstItem="En7-kt-QEn" firstAttribute="centerX" secondItem="F4g-zw-9nC" secondAttribute="centerX" id="WwJ-qS-nk8"/>
-                        <constraint firstAttribute="height" constant="64" id="pej-Qf-0Xf"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JnD-xf-el4">
                     <rect key="frame" x="0.0" y="64" width="320" height="1"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -60,21 +24,33 @@
                         <constraint firstAttribute="height" constant="1" id="15X-0J-ZeP"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dhc-eg-amd">
+                    <rect key="frame" x="0.0" y="65" width="320" height="503"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F4g-zw-9nC" customClass="NavigationBar" customModule="FourSquare" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="pej-Qf-0Xf"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="F4g-zw-9nC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Djx-hT-mcr"/>
+                <constraint firstItem="F4g-zw-9nC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="Djx-hT-mcr"/>
                 <constraint firstItem="JnD-xf-el4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EiV-gC-Iv1"/>
+                <constraint firstAttribute="trailing" secondItem="dhc-eg-amd" secondAttribute="trailing" id="Kzg-Dv-Kf2"/>
                 <constraint firstItem="JnD-xf-el4" firstAttribute="top" secondItem="F4g-zw-9nC" secondAttribute="bottom" id="Nu8-kL-t7l"/>
+                <constraint firstAttribute="bottom" secondItem="dhc-eg-amd" secondAttribute="bottom" id="QrC-d6-gdr"/>
                 <constraint firstAttribute="trailing" secondItem="F4g-zw-9nC" secondAttribute="trailing" id="UrU-8e-Bec"/>
+                <constraint firstItem="dhc-eg-amd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XON-VW-zse"/>
                 <constraint firstAttribute="trailing" secondItem="JnD-xf-el4" secondAttribute="trailing" id="Zo3-gP-5UB"/>
+                <constraint firstItem="dhc-eg-amd" firstAttribute="top" secondItem="JnD-xf-el4" secondAttribute="bottom" id="uyn-rt-2D8"/>
                 <constraint firstItem="F4g-zw-9nC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wJt-pZ-VJL"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="28" y="287"/>
         </view>
     </objects>
-    <resources>
-        <image name="list_map_ic" width="27" height="27"/>
-        <image name="side_menu_ic" width="23" height="19"/>
-    </resources>
 </document>

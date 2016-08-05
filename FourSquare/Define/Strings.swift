@@ -11,6 +11,9 @@ import Foundation
 struct Strings {
     static let Okey = "OK"
     static let Cancel = "Cancel"
+    static let MenuItemTopPicks = "Top Picks"
+    static let MenuItemFood = "Food"
+    static let MenuItemShops = "Shops"
     static let MainMenuSectionTitle = ""
     static let MenuItemsSectionTitle = "Menu Items"
     static let MainMenuHomeTitle = "Home"
@@ -22,4 +25,7 @@ struct Strings {
     static let MenuItemsOutdoorsTitle = "Outdoors"
     static let MenuItemsSightsTitle = "Sights"
     static let MenuItemsTrendingTitle = "Trending"
+    static let HomeTitle = "Explore"
+    static let FavoriteTitle = "Favorite"
+    static let HistoryTitle = "History"
 }

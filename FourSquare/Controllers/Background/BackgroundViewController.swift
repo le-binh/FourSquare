@@ -12,6 +12,10 @@ import SwiftUtils
 
 class BackgroundViewController: LGSideMenuController {
 
+    // MARK:- Singleton
+
+    static let sharedInstance = BackgroundViewController()
+
     // MARK:- Properties
 
     var leftViewController = LeftSideMenuViewController()
@@ -19,6 +23,8 @@ class BackgroundViewController: LGSideMenuController {
     var activeMenuItems: [ItemMenu] = []
 
     // MARK: Life Cycle
+
+    // MARK:- Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +48,7 @@ class BackgroundViewController: LGSideMenuController {
         self.leftViewStatusBarStyle = UIStatusBarStyle.Default
         self.leftViewStatusBarVisibleOptions = LGSideMenuStatusBarVisibleOptions.OnNone
         self.leftViewBackgroundColor = Color.Brown62
-        leftViewController.view.backgroundColor = UIColor.clearColor()
+        leftViewController.view.backgroundColor = self.leftViewBackgroundColor
         self.leftView().addSubview(leftViewController.view)
     }
 
@@ -52,9 +58,7 @@ class BackgroundViewController: LGSideMenuController {
                 self.allMenuItems[item.item.rawValue] = item
             }
         }
-        self.activeMenuItems = self.allMenuItems.filter({
-            $0.active == true
-        })
+        self.activeMenuItems = self.allMenuItems.filter({ $0.active })
     }
 
     // MARK:- Private Functions

@@ -24,10 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func rootViewController() -> UIViewController {
-        let backgroundViewController = BackgroundViewController()
         let homeViewController = HomeViewController.vc()
         let navigationHomeController = UINavigationController(rootViewController: homeViewController)
         navigationHomeController.navigationBar.hidden = true
+        let backgroundViewController = BackgroundViewController.sharedInstance
         backgroundViewController.loadMenuView(navigationHomeController, style: .SlideAbove)
         return backgroundViewController
     }

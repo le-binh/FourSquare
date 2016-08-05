@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwiftUtils
 
-class HistoryViewController: UIViewController {
+class HistoryViewController: ViewController {
 
     @IBOutlet weak var navigationBarView: UIView!
     @IBOutlet weak var sideMenuButton: UIButton!
