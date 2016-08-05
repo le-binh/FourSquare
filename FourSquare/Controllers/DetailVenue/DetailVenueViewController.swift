@@ -43,6 +43,7 @@ class DetailVenueViewController: BaseViewController {
     private func configureImagePageViewController() {
         self.createImagePageViewController()
         self.setUpImagesPageControler()
+        self.beforePageButton.hidden = true
     }
 
     private func createImagePageViewController() {
@@ -131,16 +132,8 @@ class DetailVenueViewController: BaseViewController {
 
     private func checkCurrentPageToHiddenButton() {
         let currentIndex = self.currentControllerIndex()
-        if currentIndex == 0 {
-            self.beforePageButton.hidden = true
-        } else {
-            self.beforePageButton.hidden = false
-        }
-        if currentIndex == self.imageNames.count {
-            self.afterPageButton.hidden = true
-        } else {
-            self.afterPageButton.hidden = false
-        }
+        self.beforePageButton.hidden = (currentIndex == 0) ? true : false
+        self.afterPageButton.hidden = (currentIndex == self.imageNames.count - 1) ? true : false
     }
 
     // MARK:- Public Functions
