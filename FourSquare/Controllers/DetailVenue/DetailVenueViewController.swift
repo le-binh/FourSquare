@@ -16,7 +16,7 @@ class DetailVenueViewController: BaseViewController {
     @IBOutlet weak var detailVenueTableView: UITableView!
     private var imagePageViewController: UIPageViewController?
 
-    private let imageNames = ["thumbnail_venue"]
+    private let imageNames = ["detail_venue_image", "thumbnail_venue", "detail_venue_image"]
 
     // MARK:- Life Cycle
 
@@ -49,6 +49,7 @@ class DetailVenueViewController: BaseViewController {
         }
         self.addChildViewController(pageViewController)
         self.imagesPageView.addSubview(pageViewController.view)
+        pageViewController.view.frame = self.imagesPageView.bounds
         pageViewController.didMoveToParentViewController(self)
 
     }

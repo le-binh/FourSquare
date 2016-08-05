@@ -14,7 +14,14 @@ class ImagePageItemViewController: UIViewController {
 
     @IBOutlet weak var venueImageView: UIImageView!
     var itemIndex: Int = 0
-    var imageName: String = "thumnail_venue"
+    var imageName: String = "" {
+        didSet {
+            if let imageView = venueImageView {
+                imageView.image = UIImage(named: imageName)
+                self.venueImageView.image = imageView.image
+            }
+        }
+    }
 
     // MARK:- Life Cycle
 
