@@ -8,6 +8,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailVenueViewController" customModule="FourSquare" customModuleProvider="target">
             <connections>
+                <outlet property="afterPageButton" destination="vPb-b3-Wri" id="G9w-jO-5Lw"/>
+                <outlet property="beforePageButton" destination="mGN-ZR-nsR" id="3Cg-ky-noK"/>
                 <outlet property="detailVenueTableView" destination="q8F-bb-uCr" id="qB3-qo-RuI"/>
                 <outlet property="imagesPageControl" destination="w1l-XE-4jD" id="dui-xv-TvR"/>
                 <outlet property="imagesPageView" destination="zhX-SA-hSO" id="Dsa-ox-Jn8"/>

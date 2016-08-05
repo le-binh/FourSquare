@@ -16,6 +16,8 @@ class DetailVenueViewController: BaseViewController {
     @IBOutlet weak var detailVenueTableView: UITableView!
     @IBOutlet weak var imagesPageControl: UIPageControl!
     private var imagePageViewController: UIPageViewController?
+    @IBOutlet weak var beforePageButton: UIButton!
+    @IBOutlet weak var afterPageButton: UIButton!
 
     private let imageNames = ["detail_venue_image", "thumbnail_venue", "detail_venue_image"]
 
@@ -29,9 +31,11 @@ class DetailVenueViewController: BaseViewController {
     // MARK:- Action
 
     @IBAction func didTapBackAction(sender: AnyObject) {
+        self.scrollToBackViewController()
     }
 
     @IBAction func didTapNextAction(sender: AnyObject) {
+        self.scrollToNextViewController()
     }
 
     // MARK:- Private Functions
@@ -85,6 +89,43 @@ class DetailVenueViewController: BaseViewController {
 
     private func setCurrentPage() {
         self.imagesPageControl.currentPage = self.currentControllerIndex()
+    }
+
+    private func scrollToNextViewController() {
+        if self.currentControllerIndex() == self.imageNames.count {
+            return
+        }
+        guard let imagePageViewController: UIPageViewController = self.imagePageViewController else {
+            return
+        }
+        if let currentViewController = self.currentController(), nextViewController = pageViewController(imagePageViewController, viewControllerAfterViewController: currentViewController) {
+            self.scrollToViewController(nextViewController)
+        }
+    }
+
+    private func scrollToViewController(viewController: UIViewController,
+        direction: UIPageViewControllerNavigationDirection = .Forward) {
+            guard let imagePageViewController: UIPageViewController = self.imagePageViewController else {
+                return
+            }
+            imagePageViewController.setViewControllers([viewController],
+                direction: direction,
+                animated: true,
+                completion: { (finished) -> Void in
+                    self.setCurrentPage()
+            })
+    }
+
+    private func scrollToBackViewController() {
+        if self.currentControllerIndex() == 0 {
+            return
+        }
+        guard let imagePageViewController: UIPageViewController = self.imagePageViewController else {
+            return
+        }
+        if let currentViewController = self.currentController(), backViewController = pageViewController(imagePageViewController, viewControllerBeforeViewController: currentViewController) {
+            self.scrollToViewController(backViewController, direction: .Reverse)
+        }
     }
 
     // MARK:- Public Functions
