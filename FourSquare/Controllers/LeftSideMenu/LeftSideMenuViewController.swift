@@ -138,7 +138,7 @@ class LeftSideMenuViewController: UIViewController {
         self.menuTableView.dataSource = self
     }
 
-    private func changeRootViewWith(viewController: UIViewController) {
+    private func changeRootViewController(viewController: UIViewController) {
         let navi = UINavigationController(rootViewController: viewController)
         navi.navigationBar.hidden = true
         UIApplication.sharedApplication().backgroundViewController()?.rootViewController = navi
@@ -240,19 +240,19 @@ extension LeftSideMenuViewController: UITableViewDelegate {
                     break
                 }
                 let homeViewController = HomeViewController.vc()
-                self.changeRootViewWith(homeViewController)
+                self.changeRootViewController(homeViewController)
             case .Favorite:
                 if currentMainMenuSide == mainMenuSlide {
                     break
                 }
                 let favoriteViewController = FavoriteViewController.vc()
-                self.changeRootViewWith(favoriteViewController)
+                self.changeRootViewController(favoriteViewController)
             case .History:
                 if currentMainMenuSide == mainMenuSlide {
                     break
                 }
                 let historyViewController = HistoryViewController.vc()
-                self.changeRootViewWith(historyViewController)
+                self.changeRootViewController(historyViewController)
             }
             self.currentMainMenuSide = mainMenuSlide
             UIApplication.sharedApplication().backgroundViewController()?.hideLeftViewAnimated(true, completionHandler: nil)
