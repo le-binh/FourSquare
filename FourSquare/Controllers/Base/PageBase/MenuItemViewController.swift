@@ -64,6 +64,7 @@ extension MenuItemViewController: UITableViewDataSource {
 
 extension MenuItemViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 140
+        let rowHeight: CGFloat = 140
+        return rowHeight
     }
 }

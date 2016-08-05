@@ -15,32 +15,6 @@ class BaseViewController: ViewController {
 
     @IBOutlet weak var navigationBar: NavigationBar?
 
-    var isMenuLeftBarButton: Bool? {
-        didSet {
-            guard let isMenuButton = self.isMenuLeftBarButton else {
-                return
-            }
-            if isMenuButton {
-                self.addMenuLeftBarButton()
-            } else {
-                self.addBackLeftBarButton()
-            }
-        }
-    }
-
-    var isMapRightBarButton: Bool? {
-        didSet {
-            guard let isMapButton = self.isMapRightBarButton else {
-                return
-            }
-            if isMapButton {
-                self.addMapRightBarButton()
-            } else {
-                self.addPageRightBarButton()
-            }
-        }
-    }
-
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
@@ -68,6 +42,13 @@ class BaseViewController: ViewController {
 
     func setNavigationBarItem() {
         navigationBar?.title = self.title
+        if let rootNavigation = navigationController?.viewControllers.first {
+            if rootNavigation == self {
+                addMenuLeftBarButton()
+            } else {
+                addBackLeftBarButton()
+            }
+        }
     }
 
     // MARK:- Private functions

@@ -41,10 +41,10 @@ class HomeViewController: BaseViewController {
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
-        self.title = "Explore"
+        self.title = Strings.HomeTitle
         super.viewDidLoad()
-        self.configureNavigationBar()
         self.itemViewControllers = self.setDefaultMenuItems()
+        self.setUpMenuPage(isDefault: true)
         self.updatePageMenuItem()
         self.setUpNotificationCenter()
     }
@@ -52,11 +52,6 @@ class HomeViewController: BaseViewController {
     // MARK:- Public Functions
 
     // MARK:- Private Function
-
-    func configureNavigationBar() {
-        self.isMenuLeftBarButton = true
-        self.isMapRightBarButton = true
-    }
 
     private func setDefaultMenuItems() -> [UIViewController] {
 
@@ -75,22 +70,24 @@ class HomeViewController: BaseViewController {
     }
 
     private func setUpMenuPage(isDefault isDefault: Bool) {
-        var menuItemWidth = (kScreenSize.width - 20) / 3
-        if !isDefault {
-            menuItemWidth = (kScreenSize.width - 20) / 3.5
-        }
-        let parameters: [CAPSPageMenuOption] = [.MenuHeight(35),
-                .MenuMargin(5),
-                .MenuItemWidth(menuItemWidth),
-                .ScrollMenuBackgroundColor(Color.Gray235),
-                .SelectionIndicatorColor(Color.Orange253),
-                .SelectedMenuItemLabelColor(Color.Orange253)]
-
+        let parameters: [CAPSPageMenuOption] = parametersOfPageMenu(isDefault)
         self.pageMenu = CAPSPageMenu(viewControllers: self.itemViewControllers, frame: self.viewOfPageMenu.frame, pageMenuOptions: parameters)
         if let pageMenu = self.pageMenu {
             self.view.addSubview(pageMenu.view)
         }
 
+    }
+
+    private func parametersOfPageMenu(isDefault: Bool) -> [CAPSPageMenuOption] {
+        let menuItemWidth = isDefault ? kScreenSize.width / 3: kScreenSize.width / 3.5
+        let menuHeight: CGFloat = 35
+        let parameters: [CAPSPageMenuOption] = [.MenuHeight(menuHeight),
+                .MenuItemWidth(menuItemWidth),
+                .MenuMargin(0),
+                .ScrollMenuBackgroundColor(Color.Gray235),
+                .SelectionIndicatorColor(Color.Orange253),
+                .SelectedMenuItemLabelColor(Color.Orange253)]
+        return parameters
     }
 
     private func setUpNotificationCenter() {
@@ -99,40 +96,48 @@ class HomeViewController: BaseViewController {
 
     @objc private func updatePageMenuItem() {
         let newActiveMenuItems = BackgroundViewController.sharedInstance.activeMenuItems
-        let isChangeActiveMenuItems = self.compareTwoArray(self.activeMenuItems, newArray: newActiveMenuItems)
-        if !isChangeActiveMenuItems {
-            self.activeMenuItems = newActiveMenuItems
-            self.itemViewControllers = self.setDefaultMenuItems()
-            for i in 0..<self.activeMenuItems.count {
-                let pageViewController = MenuItemViewController.vc()
-                guard let activeMenuItem: MenuItemsSlide = self.activeMenuItems[i].item else {
-                    continue
-                }
-                pageViewController.title = activeMenuItem.title
-                pageViewController.menuItem = activeMenuItem
-                self.itemViewControllers.append(pageViewController)
-            }
-
-            if newActiveMenuItems.count == 0 {
-                self.setUpMenuPage(isDefault: true)
-                return
-            }
-            self.setUpMenuPage(isDefault: false)
-        } else {
-            self.setUpMenuPage(isDefault: true)
+        if !isChangeActiveMenuItems(newActiveMenuItems) {
+            self.changeMenuItems(newActiveMenuItems)
         }
     }
 
-    private func compareTwoArray(oldArray: [ItemMenu], newArray: [ItemMenu]) -> Bool {
-        if oldArray.count == newArray.count {
-            for i in 0..<oldArray.count {
-                if oldArray[i].item.rawValue != newArray[i].item.rawValue {
-                    return false
-                }
+    private func changeMenuItems(newActiveMenuItems: [ItemMenu]) {
+        self.activeMenuItems = newActiveMenuItems
+        self.itemViewControllers = self.setDefaultMenuItems()
+        self.addActiveMenuItems()
+        self.setUpNewActiveMenuItems()
+    }
+
+    private func addActiveMenuItems() {
+        for i in 0..<self.activeMenuItems.count {
+            let pageViewController = MenuItemViewController.vc()
+            guard let activeMenuItem: MenuItemsSlide = self.activeMenuItems[i].item else {
+                continue
             }
-            return true
-        } else {
+            pageViewController.title = activeMenuItem.title
+            pageViewController.menuItem = activeMenuItem
+            self.itemViewControllers.append(pageViewController)
+        }
+    }
+
+    private func setUpNewActiveMenuItems() {
+        if self.activeMenuItems.count == 0 {
+            self.setUpMenuPage(isDefault: true)
+            return
+        }
+        self.setUpMenuPage(isDefault: false)
+    }
+
+    private func isChangeActiveMenuItems(newActiveMenuItems: [ItemMenu]) -> Bool {
+        let oldActiveMenuItems = self.activeMenuItems
+        if oldActiveMenuItems.count != newActiveMenuItems.count {
             return false
         }
+        for (index, element) in oldActiveMenuItems.enumerate() {
+            if element.item != newActiveMenuItems[index].item {
+                return false
+            }
+        }
+        return true
     }
 }

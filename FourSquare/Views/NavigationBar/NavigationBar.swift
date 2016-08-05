@@ -64,14 +64,6 @@ class NavigationBar: UIView {
         }
     }
 
-//    var menuLeftButtonShow: Bool? {
-//
-//    }
-//
-//    var backLeftButtonShow: Bool? {
-//
-//    }
-
     // MARK:- LifeCycle
 
     override init(frame: CGRect) {

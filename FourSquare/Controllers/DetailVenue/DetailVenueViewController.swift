@@ -112,6 +112,7 @@ class DetailVenueViewController: BaseViewController {
                 direction: direction,
                 animated: true,
                 completion: { (finished) -> Void in
+                    self.checkCurrentPageToHiddenButton()
                     self.setCurrentPage()
             })
     }
@@ -125,6 +126,20 @@ class DetailVenueViewController: BaseViewController {
         }
         if let currentViewController = self.currentController(), backViewController = pageViewController(imagePageViewController, viewControllerBeforeViewController: currentViewController) {
             self.scrollToViewController(backViewController, direction: .Reverse)
+        }
+    }
+
+    private func checkCurrentPageToHiddenButton() {
+        let currentIndex = self.currentControllerIndex()
+        if currentIndex == 0 {
+            self.beforePageButton.hidden = true
+        } else {
+            self.beforePageButton.hidden = false
+        }
+        if currentIndex == self.imageNames.count {
+            self.afterPageButton.hidden = true
+        } else {
+            self.afterPageButton.hidden = false
         }
     }
 
@@ -151,6 +166,7 @@ class DetailVenueViewController: BaseViewController {
 extension DetailVenueViewController: UIPageViewControllerDelegate {
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
+            self.checkCurrentPageToHiddenButton()
             self.setCurrentPage()
         }
     }

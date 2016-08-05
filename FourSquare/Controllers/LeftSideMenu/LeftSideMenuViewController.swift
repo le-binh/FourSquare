@@ -235,6 +235,7 @@ extension LeftSideMenuViewController: UITableViewDelegate {
                 return
             }
             if currentMainMenuSide == mainMenuSlide {
+                UIApplication.sharedApplication().backgroundViewController()?.hideLeftViewAnimated(true, completionHandler: nil)
                 break
             }
             switch mainMenuSlide {

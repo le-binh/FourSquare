@@ -25,4 +25,7 @@ struct Strings {
     static let MenuItemsOutdoorsTitle = "Outdoors"
     static let MenuItemsSightsTitle = "Sights"
     static let MenuItemsTrendingTitle = "Trending"
+    static let HomeTitle = "Explore"
+    static let FavoriteTitle = "Favorite"
+    static let HistoryTitle = "History"
 }
