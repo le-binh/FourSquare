@@ -78,21 +78,15 @@ class HomeViewController: BaseViewController {
     }
 
     private func parametersOfPageMenu(isDefault: Bool) -> [CAPSPageMenuOption] {
-        let menuItemPadding: CGFloat = 5
-        var numberOfItemWillShowOnMenu: CGFloat = 3
-        if !isDefault {
-            numberOfItemWillShowOnMenu = 3.5
-        }
-        let menuItemWidth = (kScreenSize.width - 4 * menuItemPadding) / numberOfItemWillShowOnMenu
+        let menuItemWidth = isDefault ? kScreenSize.width / 3: kScreenSize.width / 3.5
         let menuHeight: CGFloat = 35
         let parameters: [CAPSPageMenuOption] = [.MenuHeight(menuHeight),
-                .MenuMargin(menuItemPadding),
                 .MenuItemWidth(menuItemWidth),
+                .MenuMargin(0),
                 .ScrollMenuBackgroundColor(Color.Gray235),
                 .SelectionIndicatorColor(Color.Orange253),
                 .SelectedMenuItemLabelColor(Color.Orange253)]
         return parameters
-
     }
 
     private func setUpNotificationCenter() {
@@ -101,8 +95,7 @@ class HomeViewController: BaseViewController {
 
     @objc private func dismissLeftSideMenu() {
         let newActiveMenuItems = BackgroundViewController.sharedInstance.activeMenuItems
-        let isChangeActiveMenuItems = self.compareTwoArray(self.activeMenuItems, newArray: newActiveMenuItems)
-        if !isChangeActiveMenuItems {
+        if !isChangeActiveMenuItems(newActiveMenuItems) {
             self.changeMenuItems(newActiveMenuItems)
         }
     }
@@ -134,16 +127,16 @@ class HomeViewController: BaseViewController {
         self.setUpMenuPage(isDefault: false)
     }
 
-    private func compareTwoArray(oldArray: [ItemMenu], newArray: [ItemMenu]) -> Bool {
-        if oldArray.count == newArray.count {
-            for i in 0..<oldArray.count {
-                if oldArray[i].item != newArray[i].item {
-                    return false
-                }
-            }
-            return true
-        } else {
+    private func isChangeActiveMenuItems(newActiveMenuItems: [ItemMenu]) -> Bool {
+        let oldActiveMenuItems = self.activeMenuItems
+        if oldActiveMenuItems.count != newActiveMenuItems.count {
             return false
         }
+        for (index, element) in oldActiveMenuItems.enumerate() {
+            if element.item != newActiveMenuItems[index].item {
+                return false
+            }
+        }
+        return true
     }
 }

@@ -58,10 +58,7 @@ class BackgroundViewController: LGSideMenuController {
                 self.allMenuItems[item.item.rawValue] = item
             }
         }
-        self.activeMenuItems = self.allMenuItems.filter({
-            $0.active == true
-        })
-
+        self.activeMenuItems = self.allMenuItems.filter({ $0.active })
     }
 
     // MARK:- Private Functions
