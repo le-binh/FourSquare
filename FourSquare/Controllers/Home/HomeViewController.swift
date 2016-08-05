@@ -43,7 +43,6 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         self.title = "Explore"
         super.viewDidLoad()
-        self.configureNavigationBar()
         self.itemViewControllers = self.setDefaultMenuItems()
         self.setUpMenuPage(isDefault: true)
         self.setUpNotificationCenter()
@@ -52,10 +51,6 @@ class HomeViewController: BaseViewController {
     // MARK:- Public Functions
 
     // MARK:- Private Function
-
-    func configureNavigationBar() {
-        self.isMenuLeftBarButton = true
-    }
 
     private func setDefaultMenuItems() -> [UIViewController] {
 
