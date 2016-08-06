@@ -282,14 +282,44 @@ extension DetailVenueViewController: UITableViewDataSource {
             guard let infomationSection = InfomationSection(rawValue: indexPath.row) else {
                 return UITableViewCell()
             }
-            // When Have Data, consider all case
+            let cell = tableView.dequeue(DefaultVenueDetailCell)
+            cell.titleLabel.text = infomationSection.title
             switch infomationSection {
-            case .Address:
-                let cell = tableView.dequeue(MapDetailVenueCell)
+            case .Name:
+                cell.textDetailLabel.text = "Phố xưa"
                 return cell
-            default:
-                let cell = tableView.dequeue(DefaultVenueDetailCell)
+            case .Address:
+                let cellMap = tableView.dequeue(MapDetailVenueCell)
+                cellMap.addressLabel.text = "17 Phan Đình Phùng, Hải Châu, Đà Nẵng"
+                return cellMap
+            case .Contact:
+
                 cell.titleLabel.text = infomationSection.title
+                cell.textDetailLabel.text = "0935307484"
+                return cell
+            case .Categories:
+                cell.titleLabel.text = infomationSection.title
+                cell.textDetailLabel.text = "Coffee Shop"
+                return cell
+            case .Hours:
+                cell.titleLabel.text = infomationSection.title
+                cell.textDetailLabel.text = "11:00~21:00"
+                return cell
+            case .Rating:
+                cell.titleLabel.text = infomationSection.title
+                cell.textDetailLabel.text = "8.2"
+                return cell
+            case .PriceTier:
+                cell.titleLabel.text = infomationSection.title
+                cell.textDetailLabel.text = "2"
+                return cell
+            case .Verified:
+                cell.titleLabel.text = infomationSection.title
+                cell.textDetailLabel.text = "Yes"
+                return cell
+            case .Website:
+                cell.titleLabel.text = infomationSection.title
+                cell.textDetailLabel.text = "thiendia.com"
                 return cell
             }
         case .Tips:

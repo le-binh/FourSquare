@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var homeViewController: HomeViewController?
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         setup()
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -24,7 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func rootViewController() -> UIViewController {
-        let homeViewController = HomeViewController.vc()
+        self.homeViewController = HomeViewController.vc()
+        guard let homeViewController = self.homeViewController else {
+            return UIViewController()
+        }
         let navigationHomeController = UINavigationController(rootViewController: homeViewController)
         navigationHomeController.navigationBar.hidden = true
         let backgroundViewController = BackgroundViewController.sharedInstance
