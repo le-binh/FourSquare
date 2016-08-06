@@ -99,7 +99,6 @@ class HomeViewController: BaseViewController {
         if let pageMenu = self.pageMenu {
             self.view.addSubview(pageMenu.view)
         }
-
     }
 
     private func parametersOfPageMenu(isDefault: Bool) -> [CAPSPageMenuOption] {
@@ -121,6 +120,9 @@ class HomeViewController: BaseViewController {
     @objc private func updatePageMenuItem() {
         let newActiveMenuItems = BackgroundViewController.sharedInstance.activeMenuItems
         if !isChangeActiveMenuItems(newActiveMenuItems) {
+            if let pageMenu = self.pageMenu {
+                pageMenu.view.removeFromSuperview()
+            }
             self.changeMenuItems(newActiveMenuItems)
         }
     }
