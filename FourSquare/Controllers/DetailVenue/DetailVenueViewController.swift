@@ -8,6 +8,62 @@
 
 import UIKit
 
+enum DetailVenueSection: Int {
+    case Information
+    case Tips
+    var title: String {
+        switch self {
+        case .Information:
+            return Strings.DetailVenueTitleInformation
+        case .Tips:
+            return Strings.DetailVenueTitleTips
+        }
+    }
+    var numberOfRow: Int {
+        switch self {
+        case .Information:
+            return 9
+        case .Tips:
+            return 5
+        }
+    }
+}
+
+enum InfomationSection: Int {
+    case Name
+    case Address
+    case Contact
+    case Categories
+    case Hours
+    case Rating
+    case PriceTier
+    case Verified
+    case Website
+
+    var title: String {
+        switch self {
+        case .Name:
+            return Strings.InfomationTitleName
+        case .Address:
+            return Strings.InfomationTitleAddress
+        case .Contact:
+            return Strings.InfomationTitleContact
+        case .Categories:
+            return Strings.InfomationTitleCategories
+        case .Hours:
+            return Strings.InfomationTitleHours
+        case .Rating:
+            return Strings.InfomationTitleRating
+        case .PriceTier:
+            return Strings.InfomationTitlePriceTier
+        case .Verified:
+            return Strings.InfomationTitleVerified
+        case .Website:
+            return Strings.InfomationTitleWebsite
+        }
+    }
+}
+
 class DetailVenueViewController: BaseViewController {
 
     // MARK:- Properties
@@ -19,6 +75,8 @@ class DetailVenueViewController: BaseViewController {
     @IBOutlet weak var beforePageButton: UIButton!
     @IBOutlet weak var afterPageButton: UIButton!
 
+    let sectionTableViewHeight: CGFloat = 30
+
     private let imageNames = ["detail_venue_image", "thumbnail_venue", "detail_venue_image"]
 
     // MARK:- Life Cycle
@@ -26,6 +84,7 @@ class DetailVenueViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureImagePageViewController()
+        self.configureTableView()
     }
 
     // MARK:- Action
@@ -44,6 +103,17 @@ class DetailVenueViewController: BaseViewController {
         self.createImagePageViewController()
         self.setUpImagesPageControler()
         self.beforePageButton.hidden = true
+    }
+
+    private func configureTableView() {
+        self.detailVenueTableView.registerNib(ViewHeaderVenueDetail)
+        self.detailVenueTableView.registerNib(DefaultVenueDetailCell)
+        self.detailVenueTableView.registerNib(MapDetailVenueCell)
+        self.detailVenueTableView.registerNib(TipsDetailVenueCell)
+        self.detailVenueTableView.delegate = self
+        self.detailVenueTableView.dataSource = self
+        self.detailVenueTableView.rowHeight = UITableViewAutomaticDimension
+        self.detailVenueTableView.estimatedRowHeight = 51
     }
 
     private func createImagePageViewController() {
@@ -188,5 +258,64 @@ extension DetailVenueViewController: UIPageViewControllerDataSource {
             return getPageItemViewController(pageItemViewController.itemIndex + 1)
         }
         return nil
+    }
+}
+
+//MARK:- Table View Datasource
+
+extension DetailVenueViewController: UITableViewDataSource {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let detailVenueSection = DetailVenueSection(rawValue: section) else {
+            return 0
+        }
+        return detailVenueSection.numberOfRow
+    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        guard let detailVenueSection = DetailVenueSection(rawValue: indexPath.section) else {
+            return UITableViewCell()
+        }
+        switch detailVenueSection {
+        case .Information:
+            guard let infomationSection = InfomationSection(rawValue: indexPath.row) else {
+                return UITableViewCell()
+            }
+            // When Have Data, consider all case
+            switch infomationSection {
+            case .Address:
+                let cell = tableView.dequeue(MapDetailVenueCell)
+                return cell
+            default:
+                let cell = tableView.dequeue(DefaultVenueDetailCell)
+                cell.titleLabel.text = infomationSection.title
+                return cell
+            }
+        case .Tips:
+            let cell = tableView.dequeue(TipsDetailVenueCell)
+            return cell
+        }
+    }
+}
+
+//MARK:- Table View Delegate
+
+extension DetailVenueViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return self.sectionTableViewHeight
+    }
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let detailVenueSection = DetailVenueSection(rawValue: section) else {
+            return nil
+        }
+        let view = tableView.dequeue(ViewHeaderVenueDetail)
+        switch detailVenueSection {
+        case .Information:
+            view.titleHeader.text = "Information"
+        case .Tips:
+            view.titleHeader.text = "Tips"
+        }
+        return view
     }
 }

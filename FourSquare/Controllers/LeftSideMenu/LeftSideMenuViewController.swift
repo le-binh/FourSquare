@@ -221,6 +221,7 @@ extension LeftSideMenuViewController: UITableViewDelegate {
             return nil
         default:
             let view = tableView.dequeue(ViewForHeaderMenuItems)
+            view.titleMenu.text = "Menu Items"
             return view
         }
     }
