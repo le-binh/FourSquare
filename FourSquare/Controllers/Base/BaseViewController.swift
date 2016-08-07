@@ -36,6 +36,10 @@ class BaseViewController: ViewController {
 
     }
 
+    func favoriteAction(sender: AnyObject) {
+
+    }
+
     func setupNavigationBar() {
         setNavigationBarItem()
     }
@@ -45,8 +49,10 @@ class BaseViewController: ViewController {
         if let rootNavigation = navigationController?.viewControllers.first {
             if rootNavigation == self {
                 addMenuLeftBarButton()
+                addMapRightBarButton()
             } else {
                 addBackLeftBarButton()
+                addInactiveFavoriteRightBarButton()
             }
         }
     }
@@ -75,7 +81,24 @@ class BaseViewController: ViewController {
     }
 
     private func addPageRightBarButton() {
+        let menuButton = UIButton()
+        menuButton.setImage(UIImage(named: "list_table_ic"), forState: .Normal)
+        menuButton.addTarget(self, action: #selector(self.mapAction), forControlEvents: .TouchUpInside)
+        navigationBar?.rightBarButton = menuButton
+    }
 
+    private func addActiveFavoriteRightBarButton() {
+        let menuButton = UIButton()
+        menuButton.setImage(UIImage(named: "active_favorite_ic"), forState: .Normal)
+        menuButton.addTarget(self, action: #selector(self.favoriteAction), forControlEvents: .TouchUpInside)
+        navigationBar?.rightBarButton = menuButton
+    }
+
+    private func addInactiveFavoriteRightBarButton() {
+        let menuButton = UIButton()
+        menuButton.setImage(UIImage(named: "inactive_favorite_ic"), forState: .Normal)
+        menuButton.addTarget(self, action: #selector(self.favoriteAction), forControlEvents: .TouchUpInside)
+        navigationBar?.rightBarButton = menuButton
     }
 
 }

@@ -50,6 +50,7 @@
 		99A89EA31D5707FE00429962 /* MapDetailVenueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99A89EA11D5707FE00429962 /* MapDetailVenueViewController.xib */; };
 		99AA465F1D542A8F004EFCB2 /* ImagePageItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AA465D1D542A8F004EFCB2 /* ImagePageItemViewController.swift */; };
 		99AA46601D542A8F004EFCB2 /* ImagePageItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99AA465E1D542A8F004EFCB2 /* ImagePageItemViewController.xib */; };
+		99BE7C291D5798A300CCCBFB /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BE7C281D5798A300CCCBFB /* UIImage.swift */; };
 		99C581081D54FD180095EE7F /* TopPicksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C581061D54FD180095EE7F /* TopPicksViewController.swift */; };
 		99C581091D54FD180095EE7F /* TopPicksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C581071D54FD180095EE7F /* TopPicksViewController.xib */; };
 		99C5810C1D54FE9C0095EE7F /* ArtsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C5810A1D54FE9C0095EE7F /* ArtsViewController.swift */; };
@@ -159,6 +160,7 @@
 		99A89EA11D5707FE00429962 /* MapDetailVenueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapDetailVenueViewController.xib; sourceTree = "<group>"; };
 		99AA465D1D542A8F004EFCB2 /* ImagePageItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePageItemViewController.swift; sourceTree = "<group>"; };
 		99AA465E1D542A8F004EFCB2 /* ImagePageItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImagePageItemViewController.xib; sourceTree = "<group>"; };
+		99BE7C281D5798A300CCCBFB /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		99C581061D54FD180095EE7F /* TopPicksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopPicksViewController.swift; sourceTree = "<group>"; };
 		99C581071D54FD180095EE7F /* TopPicksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopPicksViewController.xib; sourceTree = "<group>"; };
 		99C5810A1D54FE9C0095EE7F /* ArtsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtsViewController.swift; sourceTree = "<group>"; };
@@ -409,6 +411,7 @@
 				2DC364DE1D4B1892006514EE /* UIScrollView.swift */,
 				999165DC1D52E92C00320877 /* UIApplication.swift */,
 				99F661A91D526887009A0E47 /* UIView.swift */,
+				99BE7C281D5798A300CCCBFB /* UIImage.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1032,6 +1035,7 @@
 				99ED29261D507BB80088FCAD /* FavoriteViewController.swift in Sources */,
 				2DC364DF1D4B1892006514EE /* UIScrollView.swift in Sources */,
 				99C581081D54FD180095EE7F /* TopPicksViewController.swift in Sources */,
+				99BE7C291D5798A300CCCBFB /* UIImage.swift in Sources */,
 				2DC364EC1D4B335C006514EE /* Colors.swift in Sources */,
 				2DC364E21D4B190E006514EE /* LoginButton.swift in Sources */,
 				2DC364F01D4B3383006514EE /* Errors.swift in Sources */,

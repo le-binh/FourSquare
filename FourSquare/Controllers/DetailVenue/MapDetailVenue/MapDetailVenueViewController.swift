@@ -31,6 +31,7 @@ class MapDetailVenueViewController: BaseViewController {
         self.title = "Phố xưa"
         super.viewDidLoad()
         self.setUpUI()
+        self.addMarker()
     }
 
     // MARK:- Private Functions
@@ -43,6 +44,15 @@ class MapDetailVenueViewController: BaseViewController {
         self.ratingVenueLabel.backgroundColor = Color.Green125
         let radiusOfRatingLabel: CGFloat = self.ratingVenueLabel.frame.width / 2
         self.ratingVenueLabel.cornerRadiusWith(radiusOfRatingLabel)
+    }
+
+    private func addMarker() {
+        let market = GMSMarker()
+        market.position = CLLocationCoordinate2DMake(CLLocationDegrees(16.072157), CLLocationDegrees(108.226832))
+        market.icon = UIImage(named: "selected_marker_ic")
+        market.map = self.googleMapView
+        self.googleMapView.camera = GMSCameraPosition(target: market.position, zoom: 14, bearing: 0, viewingAngle: 0)
+
     }
 
 }
