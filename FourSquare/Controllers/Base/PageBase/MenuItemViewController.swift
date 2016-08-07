@@ -9,7 +9,7 @@
 import UIKit
 import SwiftUtils
 
-class MenuItemViewController: ViewController {
+class MenuItemViewController: BaseViewController {
 
     // MARK:- Properties
 

@@ -9,11 +9,12 @@
 import UIKit
 import SwiftUtils
 
-class FavoriteViewController: ViewController {
-    @IBOutlet weak var navigationBarView: UIView!
-    @IBOutlet weak var sideMenuButton: UIButton!
-    @IBAction func showSideMenuAction(sender: AnyObject) {
-        UIApplication.sharedApplication().backgroundViewController()?.showHideLeftViewAnimated(true, completionHandler: nil)
+class FavoriteViewController: MenuItemViewController {
+
+    override func viewDidLoad() {
+        self.title = Strings.FavoriteTitle
+        super.viewDidLoad()
+        self.navigationBar?.rightBarButtonHidden = true
     }
 
 }
