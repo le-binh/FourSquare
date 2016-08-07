@@ -1,17 +1,20 @@
 //
-//  VenueItemTableViewCell.swift
+//  MapDetailVenueViewController.swift
 //  FourSquare
 //
-//  Created by Mylo Ho on 8/4/16.
+//  Created by Mylo Ho on 8/7/16.
 //  Copyright © 2016 Le Van Binh. All rights reserved.
 //
 
 import UIKit
+import GoogleMaps
 
-class VenueItemTableViewCell: UITableViewCell {
+class MapDetailVenueViewController: BaseViewController {
 
     // MARK:- Properties
 
+    @IBOutlet weak var googleMapView: GMSMapView!
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var venueContentView: UIView!
     @IBOutlet weak var verifiedImageView: UIImageView!
     @IBOutlet weak var thumbnailImageView: UIImageView!
@@ -20,13 +23,13 @@ class VenueItemTableViewCell: UITableViewCell {
     @IBOutlet weak var ratingVenueLabel: UILabel!
     @IBOutlet weak var categoryVenueLabel: UILabel!
     @IBOutlet weak var priceVenueLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var distanceVenueLabel: UILabel!
 
     // MARK:- Life Cycle
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.selectionStyle = .None
+    override func viewDidLoad() {
+        self.title = "Phố xưa"
+        super.viewDidLoad()
         self.setUpUI()
     }
 

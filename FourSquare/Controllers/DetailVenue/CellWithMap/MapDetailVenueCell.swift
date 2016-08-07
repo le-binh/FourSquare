@@ -11,9 +11,11 @@ import UIKit
 class MapDetailVenueCell: UITableViewCell {
 
     @IBOutlet weak var addressLabel: UILabel!
+    var detailVenueViewController: DetailVenueViewController?
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.selectionStyle = .None
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -22,6 +24,8 @@ class MapDetailVenueCell: UITableViewCell {
         // Configure the view for the selected state
     }
     @IBAction func mapDetailVenueAction(sender: AnyObject) {
+        let mapDetailVenueViewController = MapDetailVenueViewController.vc()
+        self.detailVenueViewController?.navigationController?.pushViewController(mapDetailVenueViewController, animated: true)
     }
 
 }

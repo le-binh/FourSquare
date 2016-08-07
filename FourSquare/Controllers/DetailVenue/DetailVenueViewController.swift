@@ -291,6 +291,7 @@ extension DetailVenueViewController: UITableViewDataSource {
             case .Address:
                 let cellMap = tableView.dequeue(MapDetailVenueCell)
                 cellMap.addressLabel.text = "17 Phan Đình Phùng, Hải Châu, Đà Nẵng"
+                cellMap.detailVenueViewController = self
                 return cellMap
             case .Contact:
 
@@ -342,9 +343,9 @@ extension DetailVenueViewController: UITableViewDelegate {
         let view = tableView.dequeue(ViewHeaderVenueDetail)
         switch detailVenueSection {
         case .Information:
-            view.titleHeader.text = "Information"
+            view.titleHeader.text = Strings.DetailVenueTitleInformation
         case .Tips:
-            view.titleHeader.text = "Tips"
+            view.titleHeader.text = Strings.DetailVenueTitleTips
         }
         return view
     }

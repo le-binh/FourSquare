@@ -54,7 +54,7 @@ extension MenuItemViewController: UITableViewDataSource {
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let detailVenueViewController = DetailVenueViewController.vc()
-        detailVenueViewController.title = "ABC"
+        detailVenueViewController.title = "Phố xưa"
         UIApplication.sharedApplication().navigationController()?.pushViewController(detailVenueViewController, animated: true)
     }
 }

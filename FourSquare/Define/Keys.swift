@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+class Keys {
+    static let goolgeMapsApiKey = "AIzaSyDhZ85KOTfckm3IEwM0-5zsZK5fLq1pF5Q"
+}

@@ -9,6 +9,7 @@
 import UIKit
 import SwiftUtils
 import XCConsole
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,9 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         setup()
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.setUpGoogleMapAPIKey()
         window?.rootViewController = self.rootViewController()
         window?.makeKeyAndVisible()
         return true
+    }
+
+    func setUpGoogleMapAPIKey() {
+        GMSServices.provideAPIKey(Keys.goolgeMapsApiKey)
     }
 
     func rootViewController() -> UIViewController {
