@@ -2,11 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="FourSquare" customModuleProvider="target">
             <connections>
+                <outlet property="backCollectionCellButton" destination="ctP-Qg-4Dy" id="aZZ-9Q-pRa"/>
+                <outlet property="nextCollectionCellButton" destination="v57-hX-xyi" id="ZCS-GP-bdz"/>
+                <outlet property="venueCollectionView" destination="Kuc-ug-cT4" id="AeS-pD-IBv"/>
                 <outlet property="venueMapView" destination="RUc-9q-e4Y" id="yab-As-2Qg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,15 +23,53 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Kuc-ug-cT4">
+                    <rect key="frame" x="0.0" y="434" width="320" height="124"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="124" id="Zhq-fx-iuM"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="20" minimumInteritemSpacing="0.0" id="6hz-fH-Wco">
+                        <size key="itemSize" width="50" height="140"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ctP-Qg-4Dy">
+                    <rect key="frame" x="2" y="485" width="18" height="22"/>
+                    <state key="normal" image="back_collection_ic"/>
+                    <connections>
+                        <action selector="backCollectionCellAction:" destination="-1" eventType="touchUpInside" id="2Pq-lC-CIE"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v57-hX-xyi">
+                    <rect key="frame" x="300" y="485" width="18" height="22"/>
+                    <state key="normal" image="next_collection_ic"/>
+                    <connections>
+                        <action selector="nextCollectionCellAction:" destination="-1" eventType="touchUpInside" id="T5o-sV-oBx"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="RUc-9q-e4Y" secondAttribute="bottom" id="3ch-82-Zu9"/>
                 <constraint firstItem="RUc-9q-e4Y" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Gld-iP-ffV"/>
+                <constraint firstAttribute="trailing" secondItem="Kuc-ug-cT4" secondAttribute="trailing" id="KSp-A8-Rag"/>
+                <constraint firstItem="ctP-Qg-4Dy" firstAttribute="centerY" secondItem="Kuc-ug-cT4" secondAttribute="centerY" id="LsT-L6-czX"/>
+                <constraint firstItem="ctP-Qg-4Dy" firstAttribute="leading" secondItem="Kuc-ug-cT4" secondAttribute="leading" constant="2" id="O9S-m8-FbV"/>
                 <constraint firstItem="RUc-9q-e4Y" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SQi-7M-y3v"/>
+                <constraint firstItem="v57-hX-xyi" firstAttribute="centerY" secondItem="Kuc-ug-cT4" secondAttribute="centerY" id="bpW-em-slH"/>
                 <constraint firstAttribute="trailing" secondItem="RUc-9q-e4Y" secondAttribute="trailing" id="cDe-cf-yqV"/>
+                <constraint firstItem="Kuc-ug-cT4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cLd-Ff-5jw"/>
+                <constraint firstAttribute="bottom" secondItem="Kuc-ug-cT4" secondAttribute="bottom" constant="10" id="xzx-yY-jd1"/>
+                <constraint firstItem="v57-hX-xyi" firstAttribute="trailing" secondItem="Kuc-ug-cT4" secondAttribute="trailing" constant="-2" id="zXA-oV-NHH"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="126" y="285"/>
         </view>
     </objects>
+    <resources>
+        <image name="back_collection_ic" width="18" height="18"/>
+        <image name="next_collection_ic" width="18" height="18"/>
+    </resources>
 </document>

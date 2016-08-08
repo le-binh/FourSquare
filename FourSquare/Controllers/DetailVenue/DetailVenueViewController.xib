@@ -3,7 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailVenueViewController" customModule="FourSquare" customModuleProvider="target">
@@ -30,26 +30,29 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhX-SA-hSO">
-                    <rect key="frame" x="0.0" y="64" width="320" height="213"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="213.5"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="zhX-SA-hSO" secondAttribute="height" multiplier="3:2" id="l3S-ZM-0jD"/>
+                    </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="q8F-bb-uCr">
-                    <rect key="frame" x="0.0" y="277" width="320" height="291"/>
+                    <rect key="frame" x="0.0" y="277.5" width="320" height="290.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <pageControl opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="w1l-XE-4jD">
-                    <rect key="frame" x="148" y="240" width="23" height="37"/>
+                    <rect key="frame" x="148.5" y="240.5" width="23" height="37"/>
                     <color key="pageIndicatorTintColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                 </pageControl>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mGN-ZR-nsR">
-                    <rect key="frame" x="10" y="159" width="13" height="22"/>
+                    <rect key="frame" x="10" y="159.5" width="13" height="22"/>
                     <state key="normal" image="back_page_ic"/>
                     <connections>
                         <action selector="didTapBackAction:" destination="-1" eventType="touchUpInside" id="arR-eF-3I9"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vPb-b3-Wri">
-                    <rect key="frame" x="297" y="159" width="13" height="22"/>
+                    <rect key="frame" x="297" y="159.5" width="13" height="22"/>
                     <state key="normal" image="next_page_ic"/>
                     <connections>
                         <action selector="didTapNextAction:" destination="-1" eventType="touchUpInside" id="0E4-he-Ioy"/>
@@ -65,7 +68,6 @@
                 <constraint firstItem="zhX-SA-hSO" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="S4N-2D-jww"/>
                 <constraint firstItem="vPb-b3-Wri" firstAttribute="centerY" secondItem="zhX-SA-hSO" secondAttribute="centerY" id="TI7-ed-le7"/>
                 <constraint firstItem="zhX-SA-hSO" firstAttribute="top" secondItem="WUP-kC-U0h" secondAttribute="bottom" id="WaX-0T-Iic"/>
-                <constraint firstItem="zhX-SA-hSO" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="250/667" id="Xqd-zT-mN4"/>
                 <constraint firstItem="w1l-XE-4jD" firstAttribute="bottom" secondItem="zhX-SA-hSO" secondAttribute="bottom" id="ZZh-6e-rxV"/>
                 <constraint firstItem="q8F-bb-uCr" firstAttribute="top" secondItem="zhX-SA-hSO" secondAttribute="bottom" id="aW6-ht-oTx"/>
                 <constraint firstItem="mGN-ZR-nsR" firstAttribute="centerY" secondItem="zhX-SA-hSO" secondAttribute="centerY" id="d3t-hV-duX"/>
