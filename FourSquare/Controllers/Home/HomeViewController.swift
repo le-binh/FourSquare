@@ -132,6 +132,10 @@ class HomeViewController: BaseViewController {
     @objc private func updatePageMenuItem() {
         let newActiveMenuItems = BackgroundViewController.sharedInstance.activeMenuItems
         if !isChangeActiveMenuItems(newActiveMenuItems) {
+            if self.didShowMapView {
+                self.changeMapViewToTableView()
+                self.didShowMapView = false
+            }
             if let pageMenu = self.pageMenu {
                 pageMenu.view.removeFromSuperview()
             }

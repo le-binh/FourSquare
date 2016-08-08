@@ -9,10 +9,13 @@
 import UIKit
 
 enum DetailVenueSection: Int {
+    case PageImage
     case Information
     case Tips
     var title: String {
         switch self {
+        case .PageImage:
+            return ""
         case .Information:
             return Strings.DetailVenueTitleInformation
         case .Tips:
@@ -21,6 +24,8 @@ enum DetailVenueSection: Int {
     }
     var numberOfRow: Int {
         switch self {
+        case .PageImage:
+            return 0
         case .Information:
             return 9
         case .Tips:
@@ -68,204 +73,40 @@ class DetailVenueViewController: BaseViewController {
 
     // MARK:- Properties
 
-    @IBOutlet weak var imagesPageView: UIView!
     @IBOutlet weak var detailVenueTableView: UITableView!
-    @IBOutlet weak var imagesPageControl: UIPageControl!
-    private var imagePageViewController: UIPageViewController?
-    @IBOutlet weak var beforePageButton: UIButton!
-    @IBOutlet weak var afterPageButton: UIButton!
 
     let sectionTableViewHeight: CGFloat = 30
 
-    private let imageNames = ["detail_venue_image", "thumbnail_venue", "detail_venue_image"]
+    let imageNames = ["detail_venue_image", "thumbnail_venue", "detail_venue_image"]
 
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureImagePageViewController()
         self.configureTableView()
     }
 
-    // MARK:- Action
-
-    @IBAction func didTapBackAction(sender: AnyObject) {
-        self.scrollToBackViewController()
-    }
-
-    @IBAction func didTapNextAction(sender: AnyObject) {
-        self.scrollToNextViewController()
-    }
-
     // MARK:- Private Functions
-
-    private func configureImagePageViewController() {
-        self.createImagePageViewController()
-        self.setUpImagesPageControler()
-        self.beforePageButton.hidden = true
-    }
 
     private func configureTableView() {
         self.detailVenueTableView.registerNib(ViewHeaderVenueDetail)
         self.detailVenueTableView.registerNib(DefaultVenueDetailCell)
         self.detailVenueTableView.registerNib(MapDetailVenueCell)
         self.detailVenueTableView.registerNib(TipsDetailVenueCell)
+        self.detailVenueTableView.registerNib(PageImageHeaderView)
         self.detailVenueTableView.delegate = self
         self.detailVenueTableView.dataSource = self
         self.detailVenueTableView.rowHeight = UITableViewAutomaticDimension
         self.detailVenueTableView.estimatedRowHeight = 51
     }
 
-    private func createImagePageViewController() {
-        imagePageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
-        self.imagePageViewController?.dataSource = self
-        self.imagePageViewController?.delegate = self
-        if imageNames.count > 0 {
-            guard let firstController = getPageItemViewController(0) else {
-                return
-            }
-            let startingViewControllers = [firstController]
-            imagePageViewController?.setViewControllers(startingViewControllers, direction: .Forward, animated: false, completion: nil)
-        }
-        guard let pageViewController = self.imagePageViewController else {
-            return
-        }
-        self.addChildViewController(pageViewController)
-        self.imagesPageView.addSubview(pageViewController.view)
-        pageViewController.view.frame = self.imagesPageView.bounds
-        pageViewController.didMoveToParentViewController(self)
-    }
-
-    private func setUpImagesPageControler() {
-        self.imagesPageControl.numberOfPages = self.imageNames.count
-        self.imagesPageControl.currentPage = 0
-    }
-
-    private func setUpImagePageViewController() {
-        let appearance = UIPageControl.appearance()
-        appearance.pageIndicatorTintColor = UIColor.grayColor()
-        appearance.currentPageIndicatorTintColor = UIColor.whiteColor()
-        appearance.backgroundColor = UIColor.clearColor()
-    }
-
-    private func getPageItemViewController(itemIndex: Int) -> ImagePageItemViewController? {
-        if itemIndex < imageNames.count {
-            let imagePageItemViewController = ImagePageItemViewController.vc()
-            imagePageItemViewController.itemIndex = itemIndex
-            imagePageItemViewController.imageName = imageNames[itemIndex]
-            return imagePageItemViewController
-        }
-        return nil
-    }
-
-    private func setCurrentPage() {
-        self.imagesPageControl.currentPage = self.currentControllerIndex()
-    }
-
-    private func scrollToNextViewController() {
-        if self.currentControllerIndex() == self.imageNames.count {
-            return
-        }
-        guard let imagePageViewController: UIPageViewController = self.imagePageViewController else {
-            return
-        }
-        if let currentViewController = self.currentController(), nextViewController = pageViewController(imagePageViewController, viewControllerAfterViewController: currentViewController) {
-            self.scrollToViewController(nextViewController)
-        }
-    }
-
-    private func scrollToViewController(viewController: UIViewController,
-        direction: UIPageViewControllerNavigationDirection = .Forward) {
-            guard let imagePageViewController: UIPageViewController = self.imagePageViewController else {
-                return
-            }
-            imagePageViewController.setViewControllers([viewController],
-                direction: direction,
-                animated: true,
-                completion: { (finished) -> Void in
-                    self.checkCurrentPageToHiddenButton()
-                    self.setCurrentPage()
-            })
-    }
-
-    private func scrollToBackViewController() {
-        if self.currentControllerIndex() == 0 {
-            return
-        }
-        guard let imagePageViewController: UIPageViewController = self.imagePageViewController else {
-            return
-        }
-        if let currentViewController = self.currentController(), backViewController = pageViewController(imagePageViewController, viewControllerBeforeViewController: currentViewController) {
-            self.scrollToViewController(backViewController, direction: .Reverse)
-        }
-    }
-
-    private func checkCurrentPageToHiddenButton() {
-        let currentIndex = self.currentControllerIndex()
-        self.beforePageButton.hidden = (currentIndex == 0) ? true : false
-        self.afterPageButton.hidden = (currentIndex == self.imageNames.count - 1) ? true : false
-    }
-
-    // MARK:- Public Functions
-
-    func currentControllerIndex() -> Int {
-        let pageItemController = self.currentController()
-        if let controller = pageItemController as? ImagePageItemViewController {
-            return controller.itemIndex
-        }
-        return -1
-    }
-
-    func currentController() -> UIViewController? {
-        if self.imagePageViewController?.viewControllers?.count > 0 {
-            return self.imagePageViewController?.viewControllers?[0]
-        }
-        return nil
-    }
-}
-
-//MARK:- Page View Controller Delegate
-
-extension DetailVenueViewController: UIPageViewControllerDelegate {
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if completed {
-            self.checkCurrentPageToHiddenButton()
-            self.setCurrentPage()
-        }
-    }
-}
-
-//MARK:- Page View Controller DataSource
-
-extension DetailVenueViewController: UIPageViewControllerDataSource {
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        self.setCurrentPage()
-        guard let pageItemViewController = viewController as? ImagePageItemViewController else {
-            return nil
-        }
-        if pageItemViewController.itemIndex > 0 {
-            return getPageItemViewController(pageItemViewController.itemIndex - 1)
-        }
-        return nil
-    }
-
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        self.setCurrentPage()
-        guard let pageItemViewController = viewController as? ImagePageItemViewController else {
-            return nil
-        }
-        if pageItemViewController.itemIndex + 1 < imageNames.count {
-            return getPageItemViewController(pageItemViewController.itemIndex + 1)
-        }
-        return nil
-    }
 }
 
 //MARK:- Table View Datasource
 
 extension DetailVenueViewController: UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let detailVenueSection = DetailVenueSection(rawValue: section) else {
@@ -278,6 +119,8 @@ extension DetailVenueViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         switch detailVenueSection {
+        case .PageImage:
+            return UITableViewCell()
         case .Information:
             guard let infomationSection = InfomationSection(rawValue: indexPath.row) else {
                 return UITableViewCell()
@@ -334,7 +177,15 @@ extension DetailVenueViewController: UITableViewDataSource {
 
 extension DetailVenueViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return self.sectionTableViewHeight
+        guard let detailVenueSection = DetailVenueSection(rawValue: section) else {
+            return 0
+        }
+        switch detailVenueSection {
+        case .PageImage:
+            return (2 / 3) * self.detailVenueTableView.frame.width
+        default:
+            return self.sectionTableViewHeight
+        }
     }
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let detailVenueSection = DetailVenueSection(rawValue: section) else {
@@ -342,6 +193,11 @@ extension DetailVenueViewController: UITableViewDelegate {
         }
         let view = tableView.dequeue(ViewHeaderVenueDetail)
         switch detailVenueSection {
+        case .PageImage:
+            let view = tableView.dequeue(PageImageHeaderView)
+            // self.addChildViewController(view.imagePageViewController!)
+            view.imageNames = self.imageNames
+            return view
         case .Information:
             view.titleHeader.text = Strings.DetailVenueTitleInformation
         case .Tips:

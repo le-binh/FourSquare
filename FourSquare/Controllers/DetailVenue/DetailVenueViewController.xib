@@ -3,16 +3,11 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailVenueViewController" customModule="FourSquare" customModuleProvider="target">
             <connections>
-                <outlet property="afterPageButton" destination="vPb-b3-Wri" id="G9w-jO-5Lw"/>
-                <outlet property="beforePageButton" destination="mGN-ZR-nsR" id="3Cg-ky-noK"/>
                 <outlet property="detailVenueTableView" destination="q8F-bb-uCr" id="qB3-qo-RuI"/>
-                <outlet property="imagesPageControl" destination="w1l-XE-4jD" id="dui-xv-TvR"/>
-                <outlet property="imagesPageView" destination="zhX-SA-hSO" id="Dsa-ox-Jn8"/>
                 <outlet property="navigationBar" destination="WUP-kC-U0h" id="JD9-JS-DEM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -29,52 +24,18 @@
                         <constraint firstAttribute="height" constant="44" id="qhd-cd-47y"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhX-SA-hSO">
-                    <rect key="frame" x="0.0" y="64" width="320" height="213.5"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="zhX-SA-hSO" secondAttribute="height" multiplier="3:2" id="l3S-ZM-0jD"/>
-                    </constraints>
-                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="q8F-bb-uCr">
-                    <rect key="frame" x="0.0" y="277.5" width="320" height="290.5"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
-                <pageControl opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="w1l-XE-4jD">
-                    <rect key="frame" x="148.5" y="240.5" width="23" height="37"/>
-                    <color key="pageIndicatorTintColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
-                </pageControl>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mGN-ZR-nsR">
-                    <rect key="frame" x="10" y="159.5" width="13" height="22"/>
-                    <state key="normal" image="back_page_ic"/>
-                    <connections>
-                        <action selector="didTapBackAction:" destination="-1" eventType="touchUpInside" id="arR-eF-3I9"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vPb-b3-Wri">
-                    <rect key="frame" x="297" y="159.5" width="13" height="22"/>
-                    <state key="normal" image="next_page_ic"/>
-                    <connections>
-                        <action selector="didTapNextAction:" destination="-1" eventType="touchUpInside" id="0E4-he-Ioy"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="vPb-b3-Wri" firstAttribute="trailing" secondItem="zhX-SA-hSO" secondAttribute="trailing" constant="-10" id="B2I-eq-AwF"/>
                 <constraint firstItem="WUP-kC-U0h" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="COj-9a-8En"/>
-                <constraint firstItem="w1l-XE-4jD" firstAttribute="centerX" secondItem="zhX-SA-hSO" secondAttribute="centerX" id="KJT-MI-nSc"/>
-                <constraint firstItem="zhX-SA-hSO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NBq-4m-UGt"/>
-                <constraint firstItem="zhX-SA-hSO" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="S4N-2D-jww"/>
-                <constraint firstItem="vPb-b3-Wri" firstAttribute="centerY" secondItem="zhX-SA-hSO" secondAttribute="centerY" id="TI7-ed-le7"/>
-                <constraint firstItem="zhX-SA-hSO" firstAttribute="top" secondItem="WUP-kC-U0h" secondAttribute="bottom" id="WaX-0T-Iic"/>
-                <constraint firstItem="w1l-XE-4jD" firstAttribute="bottom" secondItem="zhX-SA-hSO" secondAttribute="bottom" id="ZZh-6e-rxV"/>
-                <constraint firstItem="q8F-bb-uCr" firstAttribute="top" secondItem="zhX-SA-hSO" secondAttribute="bottom" id="aW6-ht-oTx"/>
-                <constraint firstItem="mGN-ZR-nsR" firstAttribute="centerY" secondItem="zhX-SA-hSO" secondAttribute="centerY" id="d3t-hV-duX"/>
+                <constraint firstItem="q8F-bb-uCr" firstAttribute="top" secondItem="WUP-kC-U0h" secondAttribute="bottom" id="cqY-ng-OaC"/>
                 <constraint firstItem="WUP-kC-U0h" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="f5P-Cm-4o5"/>
                 <constraint firstItem="q8F-bb-uCr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kpw-ft-1iz"/>
                 <constraint firstAttribute="trailing" secondItem="q8F-bb-uCr" secondAttribute="trailing" id="lQh-jM-9m4"/>
-                <constraint firstItem="mGN-ZR-nsR" firstAttribute="leading" secondItem="zhX-SA-hSO" secondAttribute="leading" constant="10" id="ofL-UO-bhh"/>
                 <constraint firstAttribute="trailing" secondItem="WUP-kC-U0h" secondAttribute="trailing" id="pQR-44-y7z"/>
                 <constraint firstAttribute="bottom" secondItem="q8F-bb-uCr" secondAttribute="bottom" id="sgn-eU-G75"/>
             </constraints>
@@ -82,8 +43,4 @@
             <point key="canvasLocation" x="210" y="326"/>
         </view>
     </objects>
-    <resources>
-        <image name="back_page_ic" width="13" height="22"/>
-        <image name="next_page_ic" width="13" height="22"/>
-    </resources>
 </document>
