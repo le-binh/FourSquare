@@ -35,6 +35,7 @@ class MenuItemViewController: BaseViewController {
         self.venueTableView?.separatorStyle = .None
         self.venueTableView?.registerNib(VenueItemTableViewCell)
         self.venueTableView?.dataSource = self
+        self.venueTableView?.delegate = self
         self.venueTableView?.rowHeight = self.rowHeight
     }
 }
@@ -52,6 +53,11 @@ extension MenuItemViewController: UITableViewDataSource {
         let cell = tableView.dequeue(VenueItemTableViewCell)
         return cell
     }
+}
+
+//MARK:- Table View Delegate
+
+extension MenuItemViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let detailVenueViewController = DetailVenueViewController.vc()
         detailVenueViewController.title = "Phố xưa"
