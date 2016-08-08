@@ -36,9 +36,11 @@ class BaseViewController: ViewController {
     func mapAction(sender: AnyObject) {
         if didShowMapView {
             addMapRightBarButton()
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.changeToTableView, object: nil)
             didShowMapView = false
         } else {
             addPageRightBarButton()
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.changeToMapView, object: nil)
             didShowMapView = true
         }
     }

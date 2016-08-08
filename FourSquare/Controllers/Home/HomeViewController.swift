@@ -37,22 +37,22 @@ class HomeViewController: BaseViewController {
     var pageMenu: CAPSPageMenu?
     var itemViewControllers: [UIViewController] = []
     var activeMenuItems: [ItemMenu] = []
-    var topPicksViewController: TopPicksViewController?
-    var foodViewController: FoodViewController?
-    var shopsViewController: ShopsViewController?
-    var drinksViewController: DrinksViewController?
-    var coffeeViewController: CoffeeViewController?
-    var artsViewController: ArtsViewController?
-    var outdoorsViewController: OutdoorsViewController?
-    var sightsViewController: SightsViewController?
-    var trendingViewController: TrendingViewController?
+    var topPicksViewController: TopPicksViewController = TopPicksViewController.vc()
+    var foodViewController: FoodViewController = FoodViewController.vc()
+    var shopsViewController: ShopsViewController = ShopsViewController.vc()
+    lazy var drinksViewController: DrinksViewController = DrinksViewController.vc()
+    lazy var coffeeViewController: CoffeeViewController = CoffeeViewController.vc()
+    lazy var artsViewController: ArtsViewController = ArtsViewController.vc()
+    lazy var outdoorsViewController: OutdoorsViewController = OutdoorsViewController.vc()
+    lazy var sightsViewController: SightsViewController = SightsViewController.vc()
+    lazy var trendingViewController: TrendingViewController = TrendingViewController.vc()
+    lazy var mapViewController: MapViewController = MapViewController.vc()
 
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
         self.title = Strings.HomeTitle
         super.viewDidLoad()
-        self.initMenuItemViewController()
         self.itemViewControllers = self.setDefaultMenuItems()
         self.setUpMenuPage(isDefault: true)
         self.updatePageMenuItem()
@@ -63,33 +63,19 @@ class HomeViewController: BaseViewController {
 
     // MARK:- Private Function
 
-    func initMenuItemViewController() {
-        self.topPicksViewController = TopPicksViewController.vc()
-        self.foodViewController = FoodViewController.vc()
-        self.shopsViewController = ShopsViewController.vc()
-        self.drinksViewController = DrinksViewController.vc()
-        self.coffeeViewController = CoffeeViewController.vc()
-        self.artsViewController = ArtsViewController.vc()
-        self.outdoorsViewController = OutdoorsViewController.vc()
-        self.sightsViewController = SightsViewController.vc()
-        self.trendingViewController = TrendingViewController.vc()
-    }
-
     private func setDefaultMenuItems() -> [UIViewController] {
         // self.initMenuItemViewController()
         var viewControllers: [UIViewController] = []
-        if let topPicksViewController = self.topPicksViewController {
-            topPicksViewController.title = Strings.MenuItemTopPicks
-            viewControllers.append(topPicksViewController)
-        }
-        if let foodViewController = self.foodViewController {
-            foodViewController.title = Strings.MenuItemFood
-            viewControllers.append(foodViewController)
-        }
-        if let shopsViewController = self.shopsViewController {
-            shopsViewController.title = Strings.MenuItemShops
-            viewControllers.append(shopsViewController)
-        }
+
+        self.topPicksViewController.title = Strings.MenuItemTopPicks
+        viewControllers.append(topPicksViewController)
+
+        self.foodViewController.title = Strings.MenuItemFood
+        viewControllers.append(foodViewController)
+
+        self.shopsViewController.title = Strings.MenuItemShops
+        viewControllers.append(shopsViewController)
+
         return viewControllers
     }
 
@@ -115,6 +101,27 @@ class HomeViewController: BaseViewController {
 
     private func setUpNotificationCenter() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.updatePageMenuItem), name: kLGSideMenuControllerWillDismissLeftViewNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.changeTableViewToMapView), name: NotificationCenterKey.changeToMapView, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.changeMapViewToTableView), name: NotificationCenterKey.changeToTableView, object: nil)
+    }
+
+    @objc private func changeTableViewToMapView() {
+        self.mapViewController = MapViewController.vc()
+        let mapViewFrameX = self.viewOfPageMenu.frame.origin.x
+        guard let menuHeight = self.pageMenu?.menuHeight else {
+            return
+        }
+        let mapViewFrameY = self.viewOfPageMenu.frame.origin.x + menuHeight
+        let mapViewFrameWidth = self.viewOfPageMenu.frame.width
+        let mapViewFrameHeight = self.viewOfPageMenu.frame.height - menuHeight
+
+        mapViewController.view.frame = CGRect(x: mapViewFrameX, y: mapViewFrameY, width: mapViewFrameWidth, height: mapViewFrameHeight)
+        self.addChildViewController(mapViewController)
+        self.viewOfPageMenu.addSubview(mapViewController.view)
+    }
+
+    @objc private func changeMapViewToTableView() {
+        self.mapViewController.view.removeFromSuperview()
     }
 
     @objc private func updatePageMenuItem() {
@@ -138,35 +145,23 @@ class HomeViewController: BaseViewController {
         for element in self.activeMenuItems {
             switch element.item {
             case .Arts:
-                if let artsViewController = self.artsViewController {
-                    artsViewController.title = element.item.title
-                    itemViewControllers.append(artsViewController)
-                }
+                artsViewController.title = element.item.title
+                itemViewControllers.append(artsViewController)
             case .Coffee:
-                if let coffeeViewController = self.coffeeViewController {
-                    coffeeViewController.title = element.item.title
-                    itemViewControllers.append(coffeeViewController)
-                }
+                coffeeViewController.title = element.item.title
+                itemViewControllers.append(coffeeViewController)
             case .Drinks:
-                if let drinksViewController = self.drinksViewController {
-                    drinksViewController.title = element.item.title
-                    itemViewControllers.append(drinksViewController)
-                }
+                drinksViewController.title = element.item.title
+                itemViewControllers.append(drinksViewController)
             case .Outdoors:
-                if let outdoorsViewController = self.outdoorsViewController {
-                    outdoorsViewController.title = element.item.title
-                    itemViewControllers.append(outdoorsViewController)
-                }
+                outdoorsViewController.title = element.item.title
+                itemViewControllers.append(outdoorsViewController)
             case .Sights:
-                if let sightsViewController = self.sightsViewController {
-                    sightsViewController.title = element.item.title
-                    itemViewControllers.append(sightsViewController)
-                }
+                sightsViewController.title = element.item.title
+                itemViewControllers.append(sightsViewController)
             case .Trending:
-                if let trendingViewController = self.trendingViewController {
-                    trendingViewController.title = element.item.title
-                    itemViewControllers.append(trendingViewController)
-                }
+                trendingViewController.title = element.item.title
+                itemViewControllers.append(trendingViewController)
             }
         }
     }
