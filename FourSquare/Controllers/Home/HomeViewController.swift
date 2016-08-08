@@ -45,6 +45,7 @@ class HomeViewController: BaseViewController {
         super.viewDidLoad()
         self.itemViewControllers = self.setDefaultMenuItems()
         self.setUpMenuPage(isDefault: true)
+        self.updatePageMenuItem()
         self.setUpNotificationCenter()
     }
 
@@ -90,10 +91,10 @@ class HomeViewController: BaseViewController {
     }
 
     private func setUpNotificationCenter() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.dismissLeftSideMenu), name: kLGSideMenuControllerWillDismissLeftViewNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.updatePageMenuItem), name: kLGSideMenuControllerWillDismissLeftViewNotification, object: nil)
     }
 
-    @objc private func dismissLeftSideMenu() {
+    @objc private func updatePageMenuItem() {
         let newActiveMenuItems = BackgroundViewController.sharedInstance.activeMenuItems
         if !isChangeActiveMenuItems(newActiveMenuItems) {
             self.changeMenuItems(newActiveMenuItems)

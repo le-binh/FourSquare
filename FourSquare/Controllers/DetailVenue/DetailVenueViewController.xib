@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailVenueViewController" customModule="FourSquare" customModuleProvider="target">
+            <connections>
+                <outlet property="afterPageButton" destination="vPb-b3-Wri" id="G9w-jO-5Lw"/>
+                <outlet property="beforePageButton" destination="mGN-ZR-nsR" id="3Cg-ky-noK"/>
+                <outlet property="detailVenueTableView" destination="q8F-bb-uCr" id="qB3-qo-RuI"/>
+                <outlet property="imagesPageControl" destination="w1l-XE-4jD" id="dui-xv-TvR"/>
+                <outlet property="imagesPageView" destination="zhX-SA-hSO" id="Dsa-ox-Jn8"/>
+                <outlet property="navigationBar" destination="WUP-kC-U0h" id="JD9-JS-DEM"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUP-kC-U0h" customClass="NavigationBar" customModule="FourSquare" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="qhd-cd-47y"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhX-SA-hSO">
+                    <rect key="frame" x="0.0" y="64" width="320" height="213"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="q8F-bb-uCr">
+                    <rect key="frame" x="0.0" y="277" width="320" height="291"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="w1l-XE-4jD">
+                    <rect key="frame" x="140" y="240" width="39" height="37"/>
+                </pageControl>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mGN-ZR-nsR">
+                    <rect key="frame" x="10" y="159" width="13" height="22"/>
+                    <state key="normal" image="back_page_ic"/>
+                    <connections>
+                        <action selector="didTapBackAction:" destination="-1" eventType="touchUpInside" id="arR-eF-3I9"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vPb-b3-Wri">
+                    <rect key="frame" x="297" y="159" width="13" height="22"/>
+                    <state key="normal" image="next_page_ic"/>
+                    <connections>
+                        <action selector="didTapNextAction:" destination="-1" eventType="touchUpInside" id="0E4-he-Ioy"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="vPb-b3-Wri" firstAttribute="trailing" secondItem="zhX-SA-hSO" secondAttribute="trailing" constant="-10" id="B2I-eq-AwF"/>
+                <constraint firstItem="WUP-kC-U0h" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="COj-9a-8En"/>
+                <constraint firstItem="w1l-XE-4jD" firstAttribute="centerX" secondItem="zhX-SA-hSO" secondAttribute="centerX" id="KJT-MI-nSc"/>
+                <constraint firstItem="zhX-SA-hSO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NBq-4m-UGt"/>
+                <constraint firstItem="zhX-SA-hSO" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="S4N-2D-jww"/>
+                <constraint firstItem="vPb-b3-Wri" firstAttribute="centerY" secondItem="zhX-SA-hSO" secondAttribute="centerY" id="TI7-ed-le7"/>
+                <constraint firstItem="zhX-SA-hSO" firstAttribute="top" secondItem="WUP-kC-U0h" secondAttribute="bottom" id="WaX-0T-Iic"/>
+                <constraint firstItem="zhX-SA-hSO" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="250/667" id="Xqd-zT-mN4"/>
+                <constraint firstItem="w1l-XE-4jD" firstAttribute="bottom" secondItem="zhX-SA-hSO" secondAttribute="bottom" id="ZZh-6e-rxV"/>
+                <constraint firstItem="q8F-bb-uCr" firstAttribute="top" secondItem="zhX-SA-hSO" secondAttribute="bottom" id="aW6-ht-oTx"/>
+                <constraint firstItem="mGN-ZR-nsR" firstAttribute="centerY" secondItem="zhX-SA-hSO" secondAttribute="centerY" id="d3t-hV-duX"/>
+                <constraint firstItem="WUP-kC-U0h" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="f5P-Cm-4o5"/>
+                <constraint firstItem="q8F-bb-uCr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kpw-ft-1iz"/>
+                <constraint firstAttribute="trailing" secondItem="q8F-bb-uCr" secondAttribute="trailing" id="lQh-jM-9m4"/>
+                <constraint firstItem="mGN-ZR-nsR" firstAttribute="leading" secondItem="zhX-SA-hSO" secondAttribute="leading" constant="10" id="ofL-UO-bhh"/>
+                <constraint firstAttribute="trailing" secondItem="WUP-kC-U0h" secondAttribute="trailing" id="pQR-44-y7z"/>
+                <constraint firstAttribute="bottom" secondItem="q8F-bb-uCr" secondAttribute="bottom" id="sgn-eU-G75"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="210" y="326"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="back_page_ic" width="13" height="22"/>
+        <image name="next_page_ic" width="13" height="22"/>
+    </resources>
+</document>

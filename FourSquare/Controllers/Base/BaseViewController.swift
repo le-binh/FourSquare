@@ -28,8 +28,12 @@ class BaseViewController: ViewController {
         navigationController?.popViewControllerAnimated(true)
     }
 
-    func menuAction(sender: AnyClass) {
+    func menuAction(sender: AnyObject) {
         UIApplication.sharedApplication().backgroundViewController()?.showHideLeftViewAnimated(true, completionHandler: nil)
+    }
+
+    func mapAction(sender: AnyObject) {
+
     }
 
     func setupNavigationBar() {
@@ -57,6 +61,17 @@ class BaseViewController: ViewController {
     }
 
     private func addBackLeftBarButton() {
+
+    }
+
+    private func addMapRightBarButton() {
+        let menuButton = UIButton()
+        menuButton.setImage(UIImage(named: "list_map_ic"), forState: .Normal)
+        menuButton.addTarget(self, action: #selector(self.mapAction), forControlEvents: .TouchUpInside)
+        navigationBar?.rightBarButton = menuButton
+    }
+
+    private func addPageRightBarButton() {
 
     }
 

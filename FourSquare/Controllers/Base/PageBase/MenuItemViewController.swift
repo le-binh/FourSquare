@@ -54,6 +54,10 @@ extension MenuItemViewController: UITableViewDataSource {
         let cell = tableView.dequeue(VenueItemTableViewCell)
         return cell
     }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let detailVenueViewController = DetailVenueViewController.vc()
+        UIApplication.sharedApplication().navigationController()?.pushViewController(detailVenueViewController, animated: true)
+    }
 }
 
 //MARK:- Table View Datasource

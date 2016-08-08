@@ -43,11 +43,21 @@
                             <constraint firstItem="Lr2-8w-cA8" firstAttribute="centerY" secondItem="g5e-rh-rjY" secondAttribute="centerY" id="qWy-GU-X4V"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M7Y-VJ-V7c">
+                        <rect key="frame" x="0.0" y="126" width="320" height="0.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="Grs-zQ-dIv"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="g5e-rh-rjY" secondAttribute="bottom" id="PSj-Vf-HLK"/>
+                    <constraint firstAttribute="trailing" secondItem="M7Y-VJ-V7c" secondAttribute="trailing" id="StE-5j-0ra"/>
                     <constraint firstItem="g5e-rh-rjY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Wqj-la-ppE"/>
+                    <constraint firstItem="M7Y-VJ-V7c" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="XPi-ep-3ce"/>
+                    <constraint firstAttribute="bottom" secondItem="M7Y-VJ-V7c" secondAttribute="bottom" id="g4q-Yf-xSb"/>
                     <constraint firstItem="g5e-rh-rjY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="gPl-N9-HY3"/>
                     <constraint firstAttribute="trailingMargin" secondItem="g5e-rh-rjY" secondAttribute="trailing" id="nns-nD-GrW"/>
                 </constraints>
