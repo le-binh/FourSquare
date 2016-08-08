@@ -95,9 +95,9 @@ class HomeViewController: BaseViewController {
 
     private func setUpMenuPage(isDefault isDefault: Bool) {
         let parameters: [CAPSPageMenuOption] = parametersOfPageMenu(isDefault)
-        self.pageMenu = CAPSPageMenu(viewControllers: self.itemViewControllers, frame: self.viewOfPageMenu.frame, pageMenuOptions: parameters)
+        self.pageMenu = CAPSPageMenu(viewControllers: self.itemViewControllers, frame: self.viewOfPageMenu.bounds, pageMenuOptions: parameters)
         if let pageMenu = self.pageMenu {
-            self.view.addSubview(pageMenu.view)
+            self.viewOfPageMenu.addSubview(pageMenu.view)
         }
     }
 

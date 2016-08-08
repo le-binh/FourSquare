@@ -14,6 +14,7 @@ class BaseViewController: ViewController {
     // MARK:- Property
 
     @IBOutlet weak var navigationBar: NavigationBar?
+    var didShowMapView = false
 
     // MARK:- Life Cycle
 
@@ -33,7 +34,13 @@ class BaseViewController: ViewController {
     }
 
     func mapAction(sender: AnyObject) {
-
+        if didShowMapView {
+            addMapRightBarButton()
+            didShowMapView = false
+        } else {
+            addPageRightBarButton()
+            didShowMapView = true
+        }
     }
 
     func favoriteAction(sender: AnyObject) {
@@ -76,7 +83,7 @@ class BaseViewController: ViewController {
     private func addMapRightBarButton() {
         let menuButton = UIButton()
         menuButton.setImage(UIImage(named: "list_map_ic"), forState: .Normal)
-        menuButton.addTarget(self, action: #selector(self.mapAction), forControlEvents: .TouchUpInside)
+        menuButton.addTarget(self, action: #selector(self.mapAction(_:)), forControlEvents: .TouchUpInside)
         navigationBar?.rightBarButton = menuButton
     }
 

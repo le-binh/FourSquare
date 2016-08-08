@@ -72,7 +72,7 @@ extension MenuItemViewController: UITableViewDelegate {
 extension MenuItemViewController {
 
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        print(self.title)
+
     }
 
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
