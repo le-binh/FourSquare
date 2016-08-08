@@ -34,12 +34,13 @@ class MenuItemViewController: BaseViewController {
         self.venueTableView?.backgroundColor = Color.Caramel255
         self.venueTableView?.separatorStyle = .None
         self.venueTableView?.registerNib(VenueItemTableViewCell)
-        self.venueTableView?.delegate = self
         self.venueTableView?.dataSource = self
+        self.venueTableView?.delegate = self
+        self.venueTableView?.rowHeight = self.rowHeight
     }
 }
 
-//MARK:- Table View Delegate
+//MARK:- Table View Datasource
 
 extension MenuItemViewController: UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -52,18 +53,15 @@ extension MenuItemViewController: UITableViewDataSource {
         let cell = tableView.dequeue(VenueItemTableViewCell)
         return cell
     }
+}
+
+//MARK:- Table View Delegate
+
+extension MenuItemViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let detailVenueViewController = DetailVenueViewController.vc()
         detailVenueViewController.title = "Phố xưa"
         UIApplication.sharedApplication().navigationController()?.pushViewController(detailVenueViewController, animated: true)
-    }
-}
-
-//MARK:- Table View Datasource
-
-extension MenuItemViewController: UITableViewDelegate {
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return rowHeight
     }
 }
 

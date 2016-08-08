@@ -21,14 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         setup()
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.setUpGoogleMapAPIKey()
         window?.rootViewController = self.rootViewController()
         window?.makeKeyAndVisible()
         return true
-    }
-
-    func setUpGoogleMapAPIKey() {
-        GMSServices.provideAPIKey(Keys.goolgeMapsApiKey)
     }
 
     func rootViewController() -> UIViewController {
@@ -49,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func setupThirdParties() {
         setupConsole()
+        setupGoogleMapAPIKey()
     }
 
     private func setupConsole() {
@@ -57,5 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #else
             XCConsole.enabled = false
         #endif
+    }
+
+    func setupGoogleMapAPIKey() {
+        GMSServices.provideAPIKey(Keys.goolgeMapsApiKey)
     }
 }
