@@ -106,7 +106,12 @@ class HomeViewController: BaseViewController {
     }
 
     @objc private func changeTableViewToMapView() {
-        self.mapViewController = MapViewController.vc()
+        guard let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate else {
+            return
+        }
+        if let mapViewController = appDelegate.mapViewController {
+            self.mapViewController = mapViewController
+        }
         let mapViewFrameX = self.viewOfPageMenu.frame.origin.x
         guard let menuHeight = self.pageMenu?.menuHeight else {
             return

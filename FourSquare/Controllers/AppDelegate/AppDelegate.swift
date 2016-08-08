@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     var homeViewController: HomeViewController?
+    var mapViewController: MapViewController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         setup()
@@ -28,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func rootViewController() -> UIViewController {
         self.homeViewController = HomeViewController.vc()
+        self.mapViewController = MapViewController.vc()
         guard let homeViewController = self.homeViewController else {
             return UIViewController()
         }
