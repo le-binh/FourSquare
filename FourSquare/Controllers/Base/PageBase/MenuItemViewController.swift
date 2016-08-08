@@ -9,16 +9,12 @@
 import UIKit
 import SwiftUtils
 
-class MenuItemViewController: ViewController {
-
-    // MARK:- Outlet
-
-    @IBOutlet weak var venueTableView: UITableView!
+class MenuItemViewController: BaseViewController {
 
     // MARK:- Properties
 
-    var defaultItem: DefaultMenuItem?
-    var menuItem: MenuItemsSlide?
+    @IBOutlet weak var venueTableView: UITableView?
+    let rowHeight: CGFloat = 140
 
     // MARK:- Life Cycle
 
@@ -35,13 +31,16 @@ class MenuItemViewController: ViewController {
     // MARK:- Private Function
 
     private func setUpTableView() {
-        self.venueTableView.registerNib(VenueItemTableViewCell)
-        self.venueTableView.delegate = self
-        self.venueTableView.dataSource = self
+        self.venueTableView?.backgroundColor = Color.Caramel255
+        self.venueTableView?.separatorStyle = .None
+        self.venueTableView?.registerNib(VenueItemTableViewCell)
+        self.venueTableView?.dataSource = self
+        self.venueTableView?.delegate = self
+        self.venueTableView?.rowHeight = self.rowHeight
     }
 }
 
-//MARK:- Table View Delegate
+//MARK:- Table View Datasource
 
 extension MenuItemViewController: UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -54,17 +53,28 @@ extension MenuItemViewController: UITableViewDataSource {
         let cell = tableView.dequeue(VenueItemTableViewCell)
         return cell
     }
+}
+
+//MARK:- Table View Delegate
+
+extension MenuItemViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let detailVenueViewController = DetailVenueViewController.vc()
+        detailVenueViewController.title = "Phố xưa"
         UIApplication.sharedApplication().navigationController()?.pushViewController(detailVenueViewController, animated: true)
     }
 }
 
-//MARK:- Table View Datasource
+//MARK:- Scroll View Delegate
 
-extension MenuItemViewController: UITableViewDelegate {
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let rowHeight: CGFloat = 140
-        return rowHeight
+extension MenuItemViewController {
+
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+
     }
+
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+
+    }
+
 }

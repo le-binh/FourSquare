@@ -35,6 +35,9 @@
                 <constraint firstAttribute="trailing" secondItem="7rl-th-FS9" secondAttribute="trailing" id="ldR-G6-RLX"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="titleMenu" destination="3kI-j1-iC7" id="1DC-Ix-xwC"/>
+            </connections>
             <point key="canvasLocation" x="422" y="250.5"/>
         </view>
     </objects>

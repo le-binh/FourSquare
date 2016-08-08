@@ -37,6 +37,15 @@ class HomeViewController: BaseViewController {
     var pageMenu: CAPSPageMenu?
     var itemViewControllers: [UIViewController] = []
     var activeMenuItems: [ItemMenu] = []
+    var topPicksViewController: TopPicksViewController = TopPicksViewController.vc()
+    var foodViewController: FoodViewController = FoodViewController.vc()
+    var shopsViewController: ShopsViewController = ShopsViewController.vc()
+    lazy var drinksViewController: DrinksViewController = DrinksViewController.vc()
+    lazy var coffeeViewController: CoffeeViewController = CoffeeViewController.vc()
+    lazy var artsViewController: ArtsViewController = ArtsViewController.vc()
+    lazy var outdoorsViewController: OutdoorsViewController = OutdoorsViewController.vc()
+    lazy var sightsViewController: SightsViewController = SightsViewController.vc()
+    lazy var trendingViewController: TrendingViewController = TrendingViewController.vc()
 
     // MARK:- Life Cycle
 
@@ -54,28 +63,27 @@ class HomeViewController: BaseViewController {
     // MARK:- Private Function
 
     private func setDefaultMenuItems() -> [UIViewController] {
-
+        // self.initMenuItemViewController()
         var viewControllers: [UIViewController] = []
 
-        for i in 0..<3 {
-            let pageViewController = MenuItemViewController.vc()
-            guard let defaultItemMenu = DefaultMenuItem(rawValue: i) else {
-                continue
-            }
-            pageViewController.title = defaultItemMenu.title
-            pageViewController.defaultItem = defaultItemMenu
-            viewControllers.append(pageViewController)
-        }
+        topPicksViewController.title = Strings.MenuItemTopPicks
+        viewControllers.append(topPicksViewController)
+
+        foodViewController.title = Strings.MenuItemFood
+        viewControllers.append(foodViewController)
+
+        shopsViewController.title = Strings.MenuItemShops
+        viewControllers.append(shopsViewController)
+
         return viewControllers
     }
 
     private func setUpMenuPage(isDefault isDefault: Bool) {
         let parameters: [CAPSPageMenuOption] = parametersOfPageMenu(isDefault)
-        self.pageMenu = CAPSPageMenu(viewControllers: self.itemViewControllers, frame: self.viewOfPageMenu.frame, pageMenuOptions: parameters)
+        self.pageMenu = CAPSPageMenu(viewControllers: self.itemViewControllers, frame: self.viewOfPageMenu.bounds, pageMenuOptions: parameters)
         if let pageMenu = self.pageMenu {
-            self.view.addSubview(pageMenu.view)
+            self.viewOfPageMenu.addSubview(pageMenu.view)
         }
-
     }
 
     private func parametersOfPageMenu(isDefault: Bool) -> [CAPSPageMenuOption] {
@@ -97,6 +105,9 @@ class HomeViewController: BaseViewController {
     @objc private func updatePageMenuItem() {
         let newActiveMenuItems = BackgroundViewController.sharedInstance.activeMenuItems
         if !isChangeActiveMenuItems(newActiveMenuItems) {
+            if let pageMenu = self.pageMenu {
+                pageMenu.view.removeFromSuperview()
+            }
             self.changeMenuItems(newActiveMenuItems)
         }
     }
@@ -109,14 +120,27 @@ class HomeViewController: BaseViewController {
     }
 
     private func addActiveMenuItems() {
-        for i in 0..<self.activeMenuItems.count {
-            let pageViewController = MenuItemViewController.vc()
-            guard let activeMenuItem: MenuItemsSlide = self.activeMenuItems[i].item else {
-                continue
+        for element in self.activeMenuItems {
+            switch element.item {
+            case .Arts:
+                artsViewController.title = element.item.title
+                itemViewControllers.append(artsViewController)
+            case .Coffee:
+                coffeeViewController.title = element.item.title
+                itemViewControllers.append(coffeeViewController)
+            case .Drinks:
+                drinksViewController.title = element.item.title
+                itemViewControllers.append(drinksViewController)
+            case .Outdoors:
+                outdoorsViewController.title = element.item.title
+                itemViewControllers.append(outdoorsViewController)
+            case .Sights:
+                sightsViewController.title = element.item.title
+                itemViewControllers.append(sightsViewController)
+            case .Trending:
+                trendingViewController.title = element.item.title
+                itemViewControllers.append(trendingViewController)
             }
-            pageViewController.title = activeMenuItem.title
-            pageViewController.menuItem = activeMenuItem
-            self.itemViewControllers.append(pageViewController)
         }
     }
 

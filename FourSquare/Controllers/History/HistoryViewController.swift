@@ -9,12 +9,10 @@
 import UIKit
 import SwiftUtils
 
-class HistoryViewController: ViewController {
-
-    @IBOutlet weak var navigationBarView: UIView!
-    @IBOutlet weak var sideMenuButton: UIButton!
-    @IBAction func showSideMenuAction(sender: AnyObject) {
-        UIApplication.sharedApplication().backgroundViewController()?.showHideLeftViewAnimated(true, completionHandler: nil)
+class HistoryViewController: MenuItemViewController {
+    override func viewDidLoad() {
+        self.title = Strings.HistoryTitle
+        super.viewDidLoad()
+        self.navigationBar?.rightBarButtonHidden = true
     }
-
 }

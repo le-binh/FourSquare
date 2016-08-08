@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="122" id="KGk-i7-Jjw" customClass="TipsDetailVenueCell" customModule="FourSquare" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="326" height="74"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="326" height="73.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="June 09, 2016 15:30" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zuz-rg-ldq">
+                        <rect key="frame" x="53" y="26.5" width="81" height="10"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumbnail_venue" translatesAutoresizingMaskIntoConstraints="NO" id="4mP-kQ-1ZG">
+                        <rect key="frame" x="8" y="8" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="BXn-VO-tan"/>
+                            <constraint firstAttribute="width" constant="35" id="P5c-W9-G1l"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Probably the best coffee in Danang. Drip Coffee is really good and strong" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36Q-A4-uma">
+                        <rect key="frame" x="53" y="8" width="255" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="36Q-A4-uma" secondAttribute="trailing" constant="10" id="3ec-sc-y9Y"/>
+                    <constraint firstItem="4mP-kQ-1ZG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="94B-jd-oZe"/>
+                    <constraint firstItem="36Q-A4-uma" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="9fy-Vg-ykL"/>
+                    <constraint firstItem="Zuz-rg-ldq" firstAttribute="top" secondItem="36Q-A4-uma" secondAttribute="bottom" constant="4" id="JtB-qV-7eb"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Zuz-rg-ldq" secondAttribute="bottom" id="L7Z-kr-fTc"/>
+                    <constraint firstItem="Zuz-rg-ldq" firstAttribute="leading" secondItem="36Q-A4-uma" secondAttribute="leading" id="OiN-cx-ajO"/>
+                    <constraint firstItem="36Q-A4-uma" firstAttribute="leading" secondItem="4mP-kQ-1ZG" secondAttribute="trailing" constant="10" id="cvh-HT-6zZ"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="4mP-kQ-1ZG" secondAttribute="bottom" id="etm-Sz-Xeo"/>
+                    <constraint firstItem="4mP-kQ-1ZG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="wOq-WY-JSv"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="234" y="344"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="thumbnail_venue" width="165" height="125"/>
+    </resources>
+</document>

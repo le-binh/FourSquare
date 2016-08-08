@@ -11,7 +11,7 @@ import Alamofire
 
 struct ApiPath {
     static let baseURL = "https://api.foursquare.com/v2/venues"
-    
+
     struct User: URLStringConvertible {
         private static var path: String { return baseURL + "/user" }
         static var login: String { return baseURL + "/login" }

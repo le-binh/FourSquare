@@ -16,4 +16,5 @@ struct Color {
     static let Orange253 = UIColor.RGB(253, 154, 62)
     static let Green125 = UIColor.RGB(125, 183, 57)
     static let Brown62 = UIColor.RGB(62, 39, 35)
+    static let Caramel255 = UIColor.RGB(255, 250, 240)
 }
