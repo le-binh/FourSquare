@@ -30,10 +30,10 @@ enum DefaultMenuItem: Int {
 
 class HomeViewController: BaseViewController {
 
-    @IBOutlet weak var viewOfPageMenu: UIView!
-
     // MARK:- Properties
 
+    @IBOutlet weak var viewOfPageMenu: UIView!
+    @IBOutlet weak var searchButton: UIButton!
     var pageMenu: CAPSPageMenu?
     var itemViewControllers: [UIViewController] = []
     var activeMenuItems: [ItemMenu] = []
@@ -62,7 +62,8 @@ class HomeViewController: BaseViewController {
     // MARK:- Action
 
     @IBAction func searchAction(sender: AnyObject) {
-        print("Push Search View Controller")
+        let searchVenueViewController = SearchVenueViewController.vc()
+        self.navigationController?.pushViewController(searchVenueViewController, animated: true)
     }
 
     // MARK:- Public Functions
@@ -112,6 +113,7 @@ class HomeViewController: BaseViewController {
     }
 
     @objc private func changeTableViewToMapView() {
+        self.searchButton.hidden = true
         guard let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate else {
             return
         }
@@ -132,6 +134,7 @@ class HomeViewController: BaseViewController {
     }
 
     @objc private func changeMapViewToTableView() {
+        self.searchButton.hidden = false
         self.mapViewController.view.removeFromSuperview()
     }
 

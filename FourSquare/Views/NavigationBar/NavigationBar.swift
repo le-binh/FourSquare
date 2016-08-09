@@ -8,6 +8,7 @@
 
 import UIKit
 import PureLayout
+import SwiftUtils
 
 class NavigationBar: UIView {
 
@@ -94,6 +95,9 @@ class NavigationBar: UIView {
         titleLabel = UILabel()
         addSubview(titleLabel)
         configureSubviews()
+        let lineView = UIView(frame: CGRect(x: 0, y: self.frame.height - 1, width: kScreenSize.width, height: 1))
+        lineView.backgroundColor = UIColor.grayColor()
+        addSubview(lineView)
     }
 
     private func configureSubviews() {

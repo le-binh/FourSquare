@@ -3,11 +3,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="FourSquare" customModuleProvider="target">
             <connections>
                 <outlet property="navigationBar" destination="F4g-zw-9nC" id="9nA-5A-Nvl"/>
+                <outlet property="searchButton" destination="JcG-YH-L6j" id="ekO-Af-06D"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewOfPageMenu" destination="dhc-eg-amd" id="DOk-fo-jg2"/>
             </connections>
@@ -17,13 +20,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JnD-xf-el4">
-                    <rect key="frame" x="0.0" y="64" width="320" height="1"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="1" id="15X-0J-ZeP"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F4g-zw-9nC" customClass="NavigationBar" customModule="FourSquare" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -32,11 +28,14 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dhc-eg-amd">
-                    <rect key="frame" x="0.0" y="65" width="320" height="503"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JcG-YH-L6j">
-                    <rect key="frame" x="247" y="495" width="88" height="88"/>
+                    <rect key="frame" x="260" y="508" width="75" height="75"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="JcG-YH-L6j" secondAttribute="height" multiplier="1:1" id="51U-tE-MUP"/>
+                    </constraints>
                     <state key="normal" image="search_button_ic"/>
                     <connections>
                         <action selector="searchAction:" destination="-1" eventType="touchUpInside" id="aDR-Ch-5nt"/>
@@ -47,15 +46,13 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="JcG-YH-L6j" secondAttribute="trailing" constant="-15" id="1cW-Iz-eo7"/>
                 <constraint firstItem="F4g-zw-9nC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="Djx-hT-mcr"/>
-                <constraint firstItem="JnD-xf-el4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EiV-gC-Iv1"/>
                 <constraint firstAttribute="trailing" secondItem="dhc-eg-amd" secondAttribute="trailing" id="Kzg-Dv-Kf2"/>
-                <constraint firstItem="JnD-xf-el4" firstAttribute="top" secondItem="F4g-zw-9nC" secondAttribute="bottom" id="Nu8-kL-t7l"/>
                 <constraint firstAttribute="bottom" secondItem="JcG-YH-L6j" secondAttribute="bottom" constant="-15" id="OuW-l3-hII"/>
                 <constraint firstAttribute="bottom" secondItem="dhc-eg-amd" secondAttribute="bottom" id="QrC-d6-gdr"/>
                 <constraint firstAttribute="trailing" secondItem="F4g-zw-9nC" secondAttribute="trailing" id="UrU-8e-Bec"/>
                 <constraint firstItem="dhc-eg-amd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XON-VW-zse"/>
-                <constraint firstAttribute="trailing" secondItem="JnD-xf-el4" secondAttribute="trailing" id="Zo3-gP-5UB"/>
-                <constraint firstItem="dhc-eg-amd" firstAttribute="top" secondItem="JnD-xf-el4" secondAttribute="bottom" id="uyn-rt-2D8"/>
+                <constraint firstItem="dhc-eg-amd" firstAttribute="top" secondItem="F4g-zw-9nC" secondAttribute="bottom" id="e1X-fP-oRf"/>
+                <constraint firstItem="JcG-YH-L6j" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="88/375" id="fCQ-5E-tcz"/>
                 <constraint firstItem="F4g-zw-9nC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wJt-pZ-VJL"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

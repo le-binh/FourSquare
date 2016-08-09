@@ -39,4 +39,5 @@ struct Strings {
     static let InfomationTitlePriceTier = "Price tier"
     static let InfomationTitleVerified = "Verified"
     static let InfomationTitleWebsite = "Website"
+    static let SearchTitle = "Search"
 }

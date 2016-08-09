@@ -24,6 +24,15 @@ class BaseViewController: ViewController {
             }
         }
     }
+    var didAddFavorite: Bool = false {
+        didSet {
+            if didAddFavorite {
+                addActiveFavoriteRightBarButton()
+            } else {
+                addInactiveFavoriteRightBarButton()
+            }
+        }
+    }
 
     // MARK:- Life Cycle
 
@@ -53,7 +62,11 @@ class BaseViewController: ViewController {
     }
 
     func favoriteAction(sender: AnyObject) {
-
+        if didAddFavorite {
+            didAddFavorite = false
+        } else {
+            didAddFavorite = true
+        }
     }
 
     func setupNavigationBar() {
