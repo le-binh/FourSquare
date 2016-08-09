@@ -59,6 +59,12 @@ class HomeViewController: BaseViewController {
         self.setUpNotificationCenter()
     }
 
+    // MARK:- Action
+
+    @IBAction func searchAction(sender: AnyObject) {
+        print("Push Search View Controller")
+    }
+
     // MARK:- Public Functions
 
     // MARK:- Private Function
