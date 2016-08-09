@@ -59,6 +59,10 @@ class HomeViewController: BaseViewController {
         self.setUpNotificationCenter()
     }
 
+    deinit {
+        self.removeNotificationCenter()
+    }
+
     // MARK:- Action
 
     @IBAction func searchAction(sender: AnyObject) {
@@ -68,6 +72,10 @@ class HomeViewController: BaseViewController {
     // MARK:- Public Functions
 
     // MARK:- Private Function
+
+    private func removeNotificationCenter() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 
     private func setDefaultMenuItems() -> [UIViewController] {
         // self.initMenuItemViewController()
@@ -133,6 +141,7 @@ class HomeViewController: BaseViewController {
 
     @objc private func changeMapViewToTableView() {
         self.mapViewController.view.removeFromSuperview()
+        self.mapViewController.removeFromParentViewController()
     }
 
     @objc private func updatePageMenuItem() {
