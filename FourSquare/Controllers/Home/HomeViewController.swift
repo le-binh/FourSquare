@@ -123,9 +123,9 @@ class HomeViewController: BaseViewController {
         guard let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate else {
             return
         }
-        if let mapViewController = appDelegate.mapViewController {
-            self.mapViewController = mapViewController
-        }
+        let mapViewController = appDelegate.mapViewController
+        self.mapViewController = mapViewController
+
         let mapViewFrameX = self.viewOfPageMenu.frame.origin.x
         guard let menuHeight = self.pageMenu?.menuHeight else {
             return
@@ -151,9 +151,9 @@ class HomeViewController: BaseViewController {
                 self.changeMapViewToTableView()
                 self.didShowMapView = false
             }
-            if let pageMenu = self.pageMenu {
-                pageMenu.view.removeFromSuperview()
-            }
+
+            self.pageMenu?.view.removeFromSuperview()
+
             self.changeMenuItems(newActiveMenuItems)
         }
     }

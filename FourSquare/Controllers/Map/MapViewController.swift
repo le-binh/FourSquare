@@ -22,8 +22,8 @@ class MapViewController: UIViewController {
     let numberOfItems: Int = 4
     var indexMarker: Int = 0
     var markers: [MarkerMap] = []
-    var locationDegrees: [(Double, Double)] = [(16.071574, 108.234338), (16.077554, 108.231892), (16.075863, 108.238329), (16.072523, 108.230476)]
-
+    var locationDegrees: [(lat: Double, long: Double)] = [(16.071574, 108.234338), (16.077554, 108.231892), (16.075863, 108.238329), (16.072523, 108.230476)]
+    var zoomLevel: Float = 14
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
@@ -37,7 +37,7 @@ class MapViewController: UIViewController {
     // MARK:- Action
 
     @IBAction func backCollectionCellAction(sender: AnyObject) {
-        let indexRow = self.indexVisible() - 1
+        let indexRow = self.visibleIndex() - 1
         if indexRow < 0 {
             return
         }
@@ -45,7 +45,7 @@ class MapViewController: UIViewController {
     }
 
     @IBAction func nextCollectionCellAction(sender: AnyObject) {
-        let indexRow = self.indexVisible() + 1
+        let indexRow = self.visibleIndex() + 1
         if indexRow == self.numberOfItems {
             return
         }
@@ -102,14 +102,14 @@ class MapViewController: UIViewController {
             marker.map = self.venueMapView
         }
 
-        self.venueMapView.camera = GMSCameraPosition(target: marker.position, zoom: 14, bearing: 0, viewingAngle: 0)
-        self.indexMarker += 1
+        self.venueMapView.camera = GMSCameraPosition(target: marker.position, zoom: self.zoomLevel, bearing: 0, viewingAngle: 0)
+        self.indexMarker = self.indexMarker + 1
     }
 
     private func addMultiMarker() {
         self.indexMarker = 0
         for element in self.locationDegrees {
-            addMarker(element.0, element.1)
+            addMarker(element.lat, element.long)
         }
     }
 
@@ -126,7 +126,7 @@ class MapViewController: UIViewController {
         self.venueMapView.selectedMarker = selectedMarker
     }
 
-    private func indexVisible() -> Int {
+    private func visibleIndex() -> Int {
         guard let indexPathVisible = self.venueCollectionView.indexPathsForVisibleItems().first else {
             return -1
         }
@@ -163,13 +163,13 @@ extension MapViewController: UICollectionViewDelegate {
 
 extension MapViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        let marker = self.markers[self.indexVisible()]
+        let marker = self.markers[self.visibleIndex()]
         self.setSelectedMarker(marker)
         self.resetMarkersIconWithout(marker)
     }
 
     func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
-        let marker = self.markers[self.indexVisible()]
+        let marker = self.markers[self.visibleIndex()]
         self.setSelectedMarker(marker)
         self.resetMarkersIconWithout(marker)
     }

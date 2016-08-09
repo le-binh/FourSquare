@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    var homeViewController: HomeViewController?
-    var mapViewController: MapViewController?
+    var homeViewController: HomeViewController = HomeViewController.vc()
+    var mapViewController: MapViewController = MapViewController.vc()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         setup()
@@ -28,11 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func rootViewController() -> UIViewController {
-        self.homeViewController = HomeViewController.vc()
-        self.mapViewController = MapViewController.vc()
-        guard let homeViewController = self.homeViewController else {
-            return UIViewController()
-        }
         let navigationHomeController = UINavigationController(rootViewController: homeViewController)
         navigationHomeController.navigationBar.hidden = true
         let backgroundViewController = BackgroundViewController.sharedInstance
