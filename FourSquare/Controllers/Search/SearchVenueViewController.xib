@@ -15,6 +15,7 @@
                 <outlet property="searchAgainButton" destination="Nmg-qq-K09" id="Gu9-QC-Qgi"/>
                 <outlet property="searchBoxHeightLayoutConstraint" destination="5Ik-6u-qXl" id="FTi-cS-0aJ"/>
                 <outlet property="searchBoxView" destination="h98-nU-zEq" id="fzG-ND-pn0"/>
+                <outlet property="searchVenueButton" destination="U9Q-Y1-dcY" id="b8O-Su-12T"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

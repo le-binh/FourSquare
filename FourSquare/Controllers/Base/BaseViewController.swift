@@ -58,12 +58,16 @@ class BaseViewController: ViewController {
             didShowMapView = false
             if !isSearchViewController {
                 NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.changeToTableView, object: nil)
+                return
             }
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.changeToTableViewSearch, object: nil)
         } else {
             didShowMapView = true
             if !isSearchViewController {
                 NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.changeToMapView, object: nil)
+                return
             }
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.changeToMapViewSearch, object: nil)
         }
     }
 
