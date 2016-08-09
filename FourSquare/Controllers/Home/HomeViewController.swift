@@ -54,7 +54,7 @@ class HomeViewController: BaseViewController {
         self.title = Strings.HomeTitle
         super.viewDidLoad()
         self.itemViewControllers = self.setDefaultMenuItems()
-        self.setUpMenuPage(isDefault: true)
+        self.configureMenuPage()
         self.updatePageMenuItem()
         self.setUpNotificationCenter()
     }
@@ -73,6 +73,11 @@ class HomeViewController: BaseViewController {
     // MARK:- Public Functions
 
     // MARK:- Private Function
+
+    private func configureMenuPage() {
+        self.setUpMenuPage(isDefault: true)
+        self.pageMenu?.delegate = self
+    }
 
     private func setDefaultMenuItems() -> [UIViewController] {
         // self.initMenuItemViewController()
@@ -207,5 +212,11 @@ class HomeViewController: BaseViewController {
             }
         }
         return true
+    }
+}
+
+extension HomeViewController: CAPSPageMenuDelegate {
+    func didMoveToPage(controller: UIViewController, index: Int) {
+
     }
 }
