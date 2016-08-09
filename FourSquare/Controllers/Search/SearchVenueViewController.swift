@@ -20,6 +20,7 @@ class SearchVenueViewController: BaseViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var searchBoxHeightLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchVenueButton: UIButton!
+    var currentViewController: UIViewController!
     var searchBoxHeight: CGFloat = 0
 
     // MARK:- Life Cycle
@@ -30,6 +31,11 @@ class SearchVenueViewController: BaseViewController {
         self.setupUI()
         self.getDataFromUI()
         self.configureContainerView()
+        self.configureNotificationCenter()
+    }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     // MARK:- Action
@@ -75,6 +81,41 @@ class SearchVenueViewController: BaseViewController {
         tableViewSearchViewController.view.frame = self.containerView.bounds
         self.addChildViewController(tableViewSearchViewController)
         self.containerView.addSubview(tableViewSearchViewController.view)
+        self.currentViewController = tableViewSearchViewController
+    }
+
+    private func configureNotificationCenter() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.changeTableViewToMapView), name: NotificationCenterKey.changeToMapViewSearch, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.changeMapViewToTableView), name: NotificationCenterKey.changeToTableViewSearch, object: nil)
+    }
+
+    @objc private func changeTableViewToMapView() {
+        let mapSearchViewController = MapSearchViewController.vc()
+        self.cycleViewController(currentViewController, toViewController: mapSearchViewController)
+        self.currentViewController = mapSearchViewController
+    }
+
+    @objc private func changeMapViewToTableView() {
+        let tableViewSearchViewController = TableViewSearchViewController.vc()
+        self.cycleViewController(currentViewController, toViewController: tableViewSearchViewController)
+        self.currentViewController = tableViewSearchViewController
+    }
+
+    private func cycleViewController(oldViewController: UIViewController, toViewController newViewController: UIViewController) {
+        oldViewController.willMoveToParentViewController(nil)
+        newViewController.view.frame = self.containerView.bounds
+        self.addChildViewController(newViewController)
+        self.containerView.addSubview(newViewController.view)
+        newViewController.view.alpha = 0
+        newViewController.view.layoutIfNeeded()
+        UIView.animateWithDuration(0.3, animations: {
+            newViewController.view.alpha = 1
+            oldViewController.view.alpha = 0
+        }) { (complete) in
+            oldViewController.view.removeFromSuperview()
+            oldViewController.removeFromParentViewController()
+            newViewController.didMoveToParentViewController(self)
+        }
     }
 
 }
