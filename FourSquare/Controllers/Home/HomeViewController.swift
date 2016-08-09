@@ -59,6 +59,10 @@ class HomeViewController: BaseViewController {
         self.setUpNotificationCenter()
     }
 
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
     // MARK:- Action
 
     @IBAction func searchAction(sender: AnyObject) {

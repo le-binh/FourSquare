@@ -15,6 +15,8 @@ class BaseViewController: ViewController {
 
     @IBOutlet weak var navigationBar: NavigationBar?
 
+    var isSearchViewController = false
+
     var didShowMapView: Bool = false {
         didSet {
             if didShowMapView {
@@ -53,11 +55,15 @@ class BaseViewController: ViewController {
 
     func mapAction(sender: AnyObject) {
         if didShowMapView {
-            NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.changeToTableView, object: nil)
             didShowMapView = false
+            if !isSearchViewController {
+                NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.changeToTableView, object: nil)
+            }
         } else {
-            NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.changeToMapView, object: nil)
             didShowMapView = true
+            if !isSearchViewController {
+                NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.changeToMapView, object: nil)
+            }
         }
     }
 
