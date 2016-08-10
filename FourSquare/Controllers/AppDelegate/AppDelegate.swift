@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func setupConsole() {
-        XCConsole.enabled = true
+//        XCConsole.enabled = true
 //        #if DEBUG
 //            XCConsole.enabled = true
 //        #else
