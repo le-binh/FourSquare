@@ -34,6 +34,11 @@ class MapDetailVenueViewController: BaseViewController {
         self.addMarker()
     }
 
+    override func favoriteAction(sender: AnyObject) {
+        super.favoriteAction(sender)
+        didAddFavorite = !didAddFavorite
+    }
+
     // MARK:- Private Functions
 
     private func setUpUI() {

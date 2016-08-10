@@ -63,6 +63,16 @@ class HomeViewController: BaseViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
+    override func showAndHideMapViewAction(sender: AnyObject) {
+        super.showAndHideMapViewAction(sender)
+        if didShowMapView {
+            self.changeMapViewToTableView()
+        } else {
+            self.changeTableViewToMapView()
+        }
+        didShowMapView = !didShowMapView
+    }
+
     // MARK:- Action
 
     @IBAction func searchAction(sender: AnyObject) {
@@ -117,11 +127,9 @@ class HomeViewController: BaseViewController {
 
     private func setUpNotificationCenter() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.updatePageMenuItem), name: kLGSideMenuControllerWillDismissLeftViewNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.changeTableViewToMapView), name: NotificationCenterKey.changeToMapView, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.changeMapViewToTableView), name: NotificationCenterKey.changeToTableView, object: nil)
     }
 
-    @objc private func changeTableViewToMapView() {
+    private func changeTableViewToMapView() {
         self.searchButton.hidden = true
         guard let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate else {
             return
@@ -142,7 +150,7 @@ class HomeViewController: BaseViewController {
         self.viewOfPageMenu.addSubview(mapViewController.view)
     }
 
-    @objc private func changeMapViewToTableView() {
+    private func changeMapViewToTableView() {
         self.searchButton.hidden = false
         self.mapViewController.view.removeFromSuperview()
     }

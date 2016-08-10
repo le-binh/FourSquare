@@ -85,7 +85,10 @@ class DetailVenueViewController: BaseViewController {
         super.viewDidLoad()
         self.configureTableView()
     }
-
+    override func favoriteAction(sender: AnyObject) {
+        super.favoriteAction(sender)
+        didAddFavorite = !didAddFavorite
+    }
     // MARK:- Private Functions
 
     private func configureTableView() {

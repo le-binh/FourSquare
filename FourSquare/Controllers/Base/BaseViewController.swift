@@ -15,8 +15,6 @@ class BaseViewController: ViewController {
 
     @IBOutlet weak var navigationBar: NavigationBar?
 
-    var isSearchViewController = false
-
     var didShowMapView: Bool = false {
         didSet {
             if didShowMapView {
@@ -49,34 +47,14 @@ class BaseViewController: ViewController {
         navigationController?.popViewControllerAnimated(true)
     }
 
-    func menuAction(sender: AnyObject) {
+    func showMenuAction(sender: AnyObject) {
         UIApplication.sharedApplication().backgroundViewController()?.showHideLeftViewAnimated(true, completionHandler: nil)
     }
 
-    func mapAction(sender: AnyObject) {
-        if didShowMapView {
-            didShowMapView = false
-            if !isSearchViewController {
-                NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.changeToTableView, object: nil)
-                return
-            }
-            NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.changeToTableViewSearch, object: nil)
-        } else {
-            didShowMapView = true
-            if !isSearchViewController {
-                NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.changeToMapView, object: nil)
-                return
-            }
-            NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.changeToMapViewSearch, object: nil)
-        }
+    func showAndHideMapViewAction(sender: AnyObject) {
     }
 
     func favoriteAction(sender: AnyObject) {
-        if didAddFavorite {
-            didAddFavorite = false
-        } else {
-            didAddFavorite = true
-        }
     }
 
     func setupNavigationBar() {
@@ -101,7 +79,7 @@ class BaseViewController: ViewController {
     private func addMenuLeftBarButton() {
         let menuButton = UIButton()
         menuButton.setImage(UIImage(named: "side_menu_ic"), forState: .Normal)
-        menuButton.addTarget(self, action: #selector(self.menuAction), forControlEvents: .TouchUpInside)
+        menuButton.addTarget(self, action: #selector(self.showMenuAction), forControlEvents: .TouchUpInside)
         navigationBar?.leftBarButton = menuButton
     }
 
@@ -115,14 +93,14 @@ class BaseViewController: ViewController {
     private func addMapRightBarButton() {
         let menuButton = UIButton()
         menuButton.setImage(UIImage(named: "list_map_ic"), forState: .Normal)
-        menuButton.addTarget(self, action: #selector(self.mapAction(_:)), forControlEvents: .TouchUpInside)
+        menuButton.addTarget(self, action: #selector(self.showAndHideMapViewAction), forControlEvents: .TouchUpInside)
         navigationBar?.rightBarButton = menuButton
     }
 
     private func addPageRightBarButton() {
         let menuButton = UIButton()
         menuButton.setImage(UIImage(named: "list_table_ic"), forState: .Normal)
-        menuButton.addTarget(self, action: #selector(self.mapAction), forControlEvents: .TouchUpInside)
+        menuButton.addTarget(self, action: #selector(self.showAndHideMapViewAction), forControlEvents: .TouchUpInside)
         navigationBar?.rightBarButton = menuButton
     }
 

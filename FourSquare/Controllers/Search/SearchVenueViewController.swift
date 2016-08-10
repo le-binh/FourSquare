@@ -31,11 +31,16 @@ class SearchVenueViewController: BaseViewController {
         self.setupUI()
         self.getDataFromUI()
         self.configureContainerView()
-        self.configureNotificationCenter()
     }
 
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+    override func showAndHideMapViewAction(sender: AnyObject) {
+        super.showAndHideMapViewAction(sender)
+        if didShowMapView {
+            self.changeMapViewToTableView()
+        } else {
+            self.changeTableViewToMapView()
+        }
+        didShowMapView = !didShowMapView
     }
 
     // MARK:- Action
@@ -73,7 +78,6 @@ class SearchVenueViewController: BaseViewController {
 
     private func configureUINavigationBar() {
         self.didShowMapView = false
-        self.isSearchViewController = true
     }
 
     private func configureContainerView() {
@@ -84,18 +88,13 @@ class SearchVenueViewController: BaseViewController {
         self.currentViewController = tableViewSearchViewController
     }
 
-    private func configureNotificationCenter() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.changeTableViewToMapView), name: NotificationCenterKey.changeToMapViewSearch, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.changeMapViewToTableView), name: NotificationCenterKey.changeToTableViewSearch, object: nil)
-    }
-
-    @objc private func changeTableViewToMapView() {
+    private func changeTableViewToMapView() {
         let mapSearchViewController = MapSearchViewController.vc()
         self.cycleViewController(currentViewController, toViewController: mapSearchViewController)
         self.currentViewController = mapSearchViewController
     }
 
-    @objc private func changeMapViewToTableView() {
+    private func changeMapViewToTableView() {
         let tableViewSearchViewController = TableViewSearchViewController.vc()
         self.cycleViewController(currentViewController, toViewController: tableViewSearchViewController)
         self.currentViewController = tableViewSearchViewController
