@@ -22,8 +22,6 @@ class BackgroundViewController: LGSideMenuController {
     var allMenuItems: [ItemMenu] = []
     var activeMenuItems: [ItemMenu] = []
 
-    // MARK: Life Cycle
-
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
@@ -36,6 +34,10 @@ class BackgroundViewController: LGSideMenuController {
     override func leftViewWillLayoutSubviewsWithSize(size: CGSize) {
         super.leftViewWillLayoutSubviewsWithSize(size)
         leftViewController.view.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+    }
+
+    deinit {
+        self.removeNotificationCenter()
     }
 
     // MARK:- Public Funtions
@@ -65,6 +67,10 @@ class BackgroundViewController: LGSideMenuController {
 
     private func setUpNotificationCenter() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.updateItem), name: NotificationCenterKey.updateItemsMenu, object: nil)
+    }
+
+    private func removeNotificationCenter() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     private func configureAllMenuItems() {

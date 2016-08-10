@@ -10,6 +10,8 @@ import Foundation
 
 struct NotificationCenterKey {
     static let updateItemsMenu = "ChangeItem"
+    static let changeToMapView = "ChangeToMapView"
+    static let changeToTableView = "ChangeToTableView"
 }
 struct NotificationCenterUserInfo {
     static let menuItem = "item"

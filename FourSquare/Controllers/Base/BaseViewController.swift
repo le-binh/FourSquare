@@ -14,7 +14,16 @@ class BaseViewController: ViewController {
     // MARK:- Property
 
     @IBOutlet weak var navigationBar: NavigationBar?
-    var didShowMapView = false
+
+    var didShowMapView: Bool = false {
+        didSet {
+            if didShowMapView {
+                addPageRightBarButton()
+            } else {
+                addMapRightBarButton()
+            }
+        }
+    }
 
     // MARK:- Life Cycle
 
@@ -35,10 +44,10 @@ class BaseViewController: ViewController {
 
     func mapAction(sender: AnyObject) {
         if didShowMapView {
-            addMapRightBarButton()
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.changeToTableView, object: nil)
             didShowMapView = false
         } else {
-            addPageRightBarButton()
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.changeToMapView, object: nil)
             didShowMapView = true
         }
     }

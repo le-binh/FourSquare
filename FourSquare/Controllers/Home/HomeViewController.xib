@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="FourSquare" customModuleProvider="target">
@@ -24,10 +24,6 @@
                         <constraint firstAttribute="height" constant="1" id="15X-0J-ZeP"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dhc-eg-amd">
-                    <rect key="frame" x="0.0" y="65" width="320" height="503"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F4g-zw-9nC" customClass="NavigationBar" customModule="FourSquare" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -35,13 +31,26 @@
                         <constraint firstAttribute="height" constant="44" id="pej-Qf-0Xf"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dhc-eg-amd">
+                    <rect key="frame" x="0.0" y="65" width="320" height="503"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JcG-YH-L6j">
+                    <rect key="frame" x="247" y="495" width="88" height="88"/>
+                    <state key="normal" image="search_button_ic"/>
+                    <connections>
+                        <action selector="searchAction:" destination="-1" eventType="touchUpInside" id="aDR-Ch-5nt"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="JcG-YH-L6j" secondAttribute="trailing" constant="-15" id="1cW-Iz-eo7"/>
                 <constraint firstItem="F4g-zw-9nC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="Djx-hT-mcr"/>
                 <constraint firstItem="JnD-xf-el4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EiV-gC-Iv1"/>
                 <constraint firstAttribute="trailing" secondItem="dhc-eg-amd" secondAttribute="trailing" id="Kzg-Dv-Kf2"/>
                 <constraint firstItem="JnD-xf-el4" firstAttribute="top" secondItem="F4g-zw-9nC" secondAttribute="bottom" id="Nu8-kL-t7l"/>
+                <constraint firstAttribute="bottom" secondItem="JcG-YH-L6j" secondAttribute="bottom" constant="-15" id="OuW-l3-hII"/>
                 <constraint firstAttribute="bottom" secondItem="dhc-eg-amd" secondAttribute="bottom" id="QrC-d6-gdr"/>
                 <constraint firstAttribute="trailing" secondItem="F4g-zw-9nC" secondAttribute="trailing" id="UrU-8e-Bec"/>
                 <constraint firstItem="dhc-eg-amd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XON-VW-zse"/>
@@ -53,4 +62,7 @@
             <point key="canvasLocation" x="28" y="287"/>
         </view>
     </objects>
+    <resources>
+        <image name="search_button_ic" width="88" height="88"/>
+    </resources>
 </document>

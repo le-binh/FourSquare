@@ -46,6 +46,7 @@ class HomeViewController: BaseViewController {
     lazy var outdoorsViewController: OutdoorsViewController = OutdoorsViewController.vc()
     lazy var sightsViewController: SightsViewController = SightsViewController.vc()
     lazy var trendingViewController: TrendingViewController = TrendingViewController.vc()
+    lazy var mapViewController: MapViewController = MapViewController.vc()
 
     // MARK:- Life Cycle
 
@@ -58,21 +59,35 @@ class HomeViewController: BaseViewController {
         self.setUpNotificationCenter()
     }
 
+    deinit {
+        self.removeNotificationCenter()
+    }
+
+    // MARK:- Action
+
+    @IBAction func searchAction(sender: AnyObject) {
+        print("Push Search View Controller")
+    }
+
     // MARK:- Public Functions
 
     // MARK:- Private Function
+
+    private func removeNotificationCenter() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 
     private func setDefaultMenuItems() -> [UIViewController] {
         // self.initMenuItemViewController()
         var viewControllers: [UIViewController] = []
 
-        topPicksViewController.title = Strings.MenuItemTopPicks
+        self.topPicksViewController.title = Strings.MenuItemTopPicks
         viewControllers.append(topPicksViewController)
 
-        foodViewController.title = Strings.MenuItemFood
+        self.foodViewController.title = Strings.MenuItemFood
         viewControllers.append(foodViewController)
 
-        shopsViewController.title = Strings.MenuItemShops
+        self.shopsViewController.title = Strings.MenuItemShops
         viewControllers.append(shopsViewController)
 
         return viewControllers
@@ -100,14 +115,38 @@ class HomeViewController: BaseViewController {
 
     private func setUpNotificationCenter() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.updatePageMenuItem), name: kLGSideMenuControllerWillDismissLeftViewNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.changeTableViewToMapView), name: NotificationCenterKey.changeToMapView, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.changeMapViewToTableView), name: NotificationCenterKey.changeToTableView, object: nil)
+    }
+
+    @objc private func changeTableViewToMapView() {
+        let mapViewFrameX = self.viewOfPageMenu.frame.origin.x
+        guard let menuHeight = self.pageMenu?.menuHeight else {
+            return
+        }
+        let mapViewFrameY = self.viewOfPageMenu.frame.origin.x + menuHeight
+        let mapViewFrameWidth = self.viewOfPageMenu.frame.width
+        let mapViewFrameHeight = self.viewOfPageMenu.frame.height - menuHeight
+        mapViewController.view.frame = CGRect(x: mapViewFrameX, y: mapViewFrameY, width: mapViewFrameWidth, height: mapViewFrameHeight)
+        self.addChildViewController(mapViewController)
+        self.viewOfPageMenu.addSubview(mapViewController.view)
+    }
+
+    @objc private func changeMapViewToTableView() {
+        self.mapViewController.view.removeFromSuperview()
+        self.mapViewController.removeFromParentViewController()
     }
 
     @objc private func updatePageMenuItem() {
         let newActiveMenuItems = BackgroundViewController.sharedInstance.activeMenuItems
         if !isChangeActiveMenuItems(newActiveMenuItems) {
-            if let pageMenu = self.pageMenu {
-                pageMenu.view.removeFromSuperview()
+            if self.didShowMapView {
+                self.changeMapViewToTableView()
+                self.didShowMapView = false
             }
+
+            self.pageMenu?.view.removeFromSuperview()
+
             self.changeMenuItems(newActiveMenuItems)
         }
     }
