@@ -23,7 +23,8 @@ struct ApiPath {
     }
 
     struct Explore: URLStringConvertible {
-        var URLString: String { return baseURL + "/explore" }
+        static var path: String { return baseURL + "/explore" }
+        var URLString: String { return "" }
     }
 
     struct Venue: URLStringConvertible {
@@ -31,14 +32,7 @@ struct ApiPath {
         init(id: String) {
             self.id = id
         }
+        var photos: String { return baseURL + "/\(id)/photos" }
         var URLString: String { return baseURL + "/\(id)" }
-    }
-
-    struct VenuePhotos: URLStringConvertible {
-        private let id: String
-        init(id: String) {
-            self.id = id
-        }
-        var URLString: String { return baseURL + "/\(id)/photos" }
     }
 }

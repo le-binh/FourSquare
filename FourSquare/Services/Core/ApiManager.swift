@@ -12,7 +12,7 @@ import Alamofire
 typealias Result = Alamofire.Result
 typealias METHOD = Alamofire.Method
 
-typealias JSObject = [String : AnyObject]
+typealias JSObject = [String: AnyObject]
 typealias JSArray = [JSObject]
 typealias Completion = (result: Result <JSObject, NSError>) -> Void
 
@@ -20,15 +20,15 @@ let apiManager = ApiManager()
 
 class ApiManager {
     private let manager = Manager.sharedInstance
-    
+
     func logout() {
         reset()
     }
-    
+
     func reset() {
         manager.session.cancelAllTalks()
     }
-    
+
     func request(method: METHOD, path: URLStringConvertible, parameters: JSObject? = nil, completion: Completion) -> Request {
         let parameters = parameters ?? JSObject()
         let encoding: ParameterEncoding = (method == .GET ? .URL : .JSON)

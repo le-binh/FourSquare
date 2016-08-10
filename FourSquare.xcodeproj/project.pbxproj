@@ -42,6 +42,8 @@
 		992A1D811D59C7260047B63B /* MapSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 992A1D7F1D59C7260047B63B /* MapSearchViewController.xib */; };
 		993AD65B1D518BEE00B945FA /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993AD65A1D518BEE00B945FA /* NotificationCenter.swift */; };
 		994B95521D5ACAF10013D9E3 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994B95511D5ACAF10013D9E3 /* Venue.swift */; };
+		994B95541D5B07390013D9E3 /* VenueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994B95531D5B07390013D9E3 /* VenueService.swift */; };
+		994B95561D5B0FF40013D9E3 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994B95551D5B0FF40013D9E3 /* Services.swift */; };
 		9956F3E81D54906D00748882 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9956F3E71D54906D00748882 /* HomeViewController.xib */; };
 		996DF4011D56461100693216 /* ViewHeaderVenueDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996DF4001D56461100693216 /* ViewHeaderVenueDetail.swift */; };
 		996DF4031D56462300693216 /* ViewHeaderVenueDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 996DF4021D56462300693216 /* ViewHeaderVenueDetail.xib */; };
@@ -166,6 +168,8 @@
 		992A1D7F1D59C7260047B63B /* MapSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapSearchViewController.xib; sourceTree = "<group>"; };
 		993AD65A1D518BEE00B945FA /* NotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
 		994B95511D5ACAF10013D9E3 /* Venue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
+		994B95531D5B07390013D9E3 /* VenueService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueService.swift; sourceTree = "<group>"; };
+		994B95551D5B0FF40013D9E3 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		9956F3E71D54906D00748882 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeViewController.xib; path = Home/HomeViewController.xib; sourceTree = "<group>"; };
 		996DF4001D56461100693216 /* ViewHeaderVenueDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewHeaderVenueDetail.swift; sourceTree = "<group>"; };
 		996DF4021D56462300693216 /* ViewHeaderVenueDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewHeaderVenueDetail.xib; sourceTree = "<group>"; };
@@ -390,6 +394,7 @@
 			children = (
 				2DC364F11D4B37E8006514EE /* Core */,
 				2DC364F21D4B37E8006514EE /* Modules */,
+				994B95551D5B0FF40013D9E3 /* Services.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -470,6 +475,7 @@
 			isa = PBXGroup;
 			children = (
 				2DC364F71D4B3CB5006514EE /* LoginService.swift */,
+				994B95531D5B07390013D9E3 /* VenueService.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -1140,6 +1146,7 @@
 				2DC364EA1D4B334F006514EE /* Strings.swift in Sources */,
 				99EB2A291D4F50B20024FEF9 /* HomeViewController.swift in Sources */,
 				992A1D701D596C0E0047B63B /* SearchVenueViewController.swift in Sources */,
+				994B95561D5B0FF40013D9E3 /* Services.swift in Sources */,
 				99C5810C1D54FE9C0095EE7F /* ArtsViewController.swift in Sources */,
 				99ED29121D5031960088FCAD /* CustomMenuItemsTableViewCell.swift in Sources */,
 				993AD65B1D518BEE00B945FA /* NotificationCenter.swift in Sources */,
@@ -1168,6 +1175,7 @@
 				996DF40A1D564B9700693216 /* TipsDetailVenueCell.swift in Sources */,
 				992A1D7C1D59C6DD0047B63B /* TableViewSearchViewController.swift in Sources */,
 				2DC364E41D4B1922006514EE /* User.swift in Sources */,
+				994B95541D5B07390013D9E3 /* VenueService.swift in Sources */,
 				996DF4061D56473C00693216 /* DefaultVenueDetailCell.swift in Sources */,
 				99A89EA21D5707FE00429962 /* MapDetailVenueViewController.swift in Sources */,
 				991121D51D535430001EDBD2 /* DetailVenueViewController.swift in Sources */,
