@@ -16,9 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    var homeViewController: HomeViewController?
-    var mapViewController: MapViewController?
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         setup()
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -28,15 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func rootViewController() -> UIViewController {
-        self.homeViewController = HomeViewController.vc()
-        self.mapViewController = MapViewController.vc()
-        guard let homeViewController = self.homeViewController else {
-            return UIViewController()
-        }
+        let homeViewController = HomeViewController.vc()
         let navigationHomeController = UINavigationController(rootViewController: homeViewController)
         navigationHomeController.navigationBar.hidden = true
         let backgroundViewController = BackgroundViewController.sharedInstance
         backgroundViewController.loadMenuView(navigationHomeController, style: .SlideAbove)
+        backgroundViewController.leftViewController.homeViewController = homeViewController
         return backgroundViewController
     }
 
@@ -58,6 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setupGoogleMapAPIKey() {
-        GMSServices.provideAPIKey(Keys.goolgeMapsApiKey)
+        GMSServices.provideAPIKey(GoogleMapsKeys.goolgeMapsApiKey)
     }
 }

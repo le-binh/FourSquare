@@ -131,12 +131,7 @@ class HomeViewController: BaseViewController {
 
     private func changeTableViewToMapView() {
         self.searchButton.hidden = true
-        guard let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate else {
-            return
-        }
-        if let mapViewController = appDelegate.mapViewController {
-            self.mapViewController = mapViewController
-        }
+        self.mapViewController = MapViewController.vc()
         let mapViewFrameX = self.viewOfPageMenu.frame.origin.x
         guard let menuHeight = self.pageMenu?.menuHeight else {
             return

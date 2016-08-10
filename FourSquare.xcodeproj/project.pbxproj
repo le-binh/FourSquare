@@ -41,6 +41,7 @@
 		992A1D801D59C7260047B63B /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992A1D7E1D59C7260047B63B /* MapSearchViewController.swift */; };
 		992A1D811D59C7260047B63B /* MapSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 992A1D7F1D59C7260047B63B /* MapSearchViewController.xib */; };
 		993AD65B1D518BEE00B945FA /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993AD65A1D518BEE00B945FA /* NotificationCenter.swift */; };
+		994B95521D5ACAF10013D9E3 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994B95511D5ACAF10013D9E3 /* Venue.swift */; };
 		9956F3E81D54906D00748882 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9956F3E71D54906D00748882 /* HomeViewController.xib */; };
 		996DF4011D56461100693216 /* ViewHeaderVenueDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996DF4001D56461100693216 /* ViewHeaderVenueDetail.swift */; };
 		996DF4031D56462300693216 /* ViewHeaderVenueDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 996DF4021D56462300693216 /* ViewHeaderVenueDetail.xib */; };
@@ -164,6 +165,7 @@
 		992A1D7E1D59C7260047B63B /* MapSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapSearchViewController.swift; sourceTree = "<group>"; };
 		992A1D7F1D59C7260047B63B /* MapSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapSearchViewController.xib; sourceTree = "<group>"; };
 		993AD65A1D518BEE00B945FA /* NotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
+		994B95511D5ACAF10013D9E3 /* Venue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		9956F3E71D54906D00748882 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeViewController.xib; path = Home/HomeViewController.xib; sourceTree = "<group>"; };
 		996DF4001D56461100693216 /* ViewHeaderVenueDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewHeaderVenueDetail.swift; sourceTree = "<group>"; };
 		996DF4021D56462300693216 /* ViewHeaderVenueDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewHeaderVenueDetail.xib; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				2DC364E31D4B1922006514EE /* User.swift */,
+				994B95511D5ACAF10013D9E3 /* Venue.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1150,6 +1153,7 @@
 				2DC364EE1D4B3367006514EE /* Constants.swift in Sources */,
 				2DC364E61D4B19C4006514EE /* ApiPath.swift in Sources */,
 				99C581181D5500B60095EE7F /* FoodViewController.swift in Sources */,
+				994B95521D5ACAF10013D9E3 /* Venue.swift in Sources */,
 				990395AF1D58BF8800CBE542 /* PageImageHeaderView.swift in Sources */,
 				99EB2A1F1D4F4CCB0024FEF9 /* BackgroundViewController.swift in Sources */,
 				2DC364FA1D4B3E59006514EE /* BaseService.swift in Sources */,

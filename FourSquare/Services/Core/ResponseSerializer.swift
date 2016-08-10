@@ -26,17 +26,20 @@ extension Request {
 
     private func validateResult(result: JSObject) -> Result<JSObject, NSError> {
         // TODO:- Edit this validation code depending on response structure
-
-        if let success = result["success"] as? Bool where success {
-            guard let data = result["data"] as? JSObject else {
+        if let response = result["response"] as? JSObject {
+            guard let data = response["groups"] as? JSObject else {
                 return Result.Failure(Error.JSON)
             }
             return Result.Success(data)
+
         } else {
-            guard let code = result["code"] as? Int, data = result["data"] as? JSObject, message = data["message"] as? String else {
+            guard let meta = result["meta"] as? JSObject else {
                 return Result.Failure(Error.JSON)
             }
-            let error = Error.errorWithCode(code, description: message)
+            guard let code = meta["code"] as? Int, errorType = meta["errorType"] as? String, errorDetail = meta["errorDetail"] as? String else {
+                return Result.Failure(Error.JSON)
+            }
+            let error = Error.errorWithCode(code, description: "\(errorType): \(errorDetail)")
             return Result.Failure(error)
         }
     }
