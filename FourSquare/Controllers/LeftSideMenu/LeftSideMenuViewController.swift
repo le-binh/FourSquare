@@ -142,11 +142,6 @@ class LeftSideMenuViewController: UIViewController {
     }
 
     private func setMainMenuViewController() {
-//        guard let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate else {
-//            return
-//        }
-        // self.homeViewController = appDelegate.homeViewController
-        self.homeViewController = HomeViewController.vc()
         self.favoriteViewController = FavoriteViewController.vc()
         self.historyViewController = HistoryViewController.vc()
     }

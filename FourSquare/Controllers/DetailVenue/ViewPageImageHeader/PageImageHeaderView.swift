@@ -19,9 +19,7 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
 
     var imageNames = ["detail_venue_image"] {
         didSet {
-            if self.imageNames.count == 1 {
-                self.afterPageButton.hidden = true
-            }
+            self.afterPageButton.hidden = self.imageNames.count == 1
             self.imagesPageControl.numberOfPages = self.imageNames.count
         }
     }
@@ -78,7 +76,7 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
     }
 
     private func getPageItemViewController(itemIndex: Int) -> ImagePageItemViewController? {
-        if itemIndex < imageNames.count {
+        if itemIndex < imageNames.count && itemIndex >= 0 {
             let imagePageItemViewController = ImagePageItemViewController.vc()
             imagePageItemViewController.itemIndex = itemIndex
             imagePageItemViewController.imageName = imageNames[itemIndex]
@@ -131,8 +129,8 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
 
     private func checkCurrentPageToHiddenButton() {
         let currentIndex = self.currentControllerIndex()
-        self.beforePageButton.hidden = (currentIndex == 0) ? true : false
-        self.afterPageButton.hidden = (currentIndex == self.imageNames.count - 1) ? true : false
+        self.beforePageButton.hidden = currentIndex == 0
+        self.afterPageButton.hidden = currentIndex == self.imageNames.count - 1
     }
 
     // MARK:- Public Functions
@@ -172,10 +170,8 @@ extension PageImageHeaderView: UIPageViewControllerDataSource {
         guard let pageItemViewController = viewController as? ImagePageItemViewController else {
             return nil
         }
-        if pageItemViewController.itemIndex > 0 {
-            return getPageItemViewController(pageItemViewController.itemIndex - 1)
-        }
-        return nil
+        let currentIndex = pageItemViewController.itemIndex
+        return getPageItemViewController(currentIndex - 1)
     }
 
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
@@ -183,9 +179,7 @@ extension PageImageHeaderView: UIPageViewControllerDataSource {
         guard let pageItemViewController = viewController as? ImagePageItemViewController else {
             return nil
         }
-        if pageItemViewController.itemIndex + 1 < imageNames.count {
-            return getPageItemViewController(pageItemViewController.itemIndex + 1)
-        }
-        return nil
+        let currentIndex = pageItemViewController.itemIndex
+        return getPageItemViewController(currentIndex + 1)
     }
 }

@@ -33,6 +33,7 @@
 		990395B11D58BFB200CBE542 /* PageImageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 990395B01D58BFB200CBE542 /* PageImageHeaderView.xib */; };
 		991121D51D535430001EDBD2 /* DetailVenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991121D31D535430001EDBD2 /* DetailVenueViewController.swift */; };
 		991121D61D535430001EDBD2 /* DetailVenueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 991121D41D535430001EDBD2 /* DetailVenueViewController.xib */; };
+		992A1D741D59817A0047B63B /* MarkerMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992A1D731D59817A0047B63B /* MarkerMap.swift */; };
 		992A1D701D596C0E0047B63B /* SearchVenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992A1D6E1D596C0E0047B63B /* SearchVenueViewController.swift */; };
 		992A1D711D596C0E0047B63B /* SearchVenueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 992A1D6F1D596C0E0047B63B /* SearchVenueViewController.xib */; };
 		992A1D761D59B9CE0047B63B /* NSLayoutContraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992A1D751D59B9CE0047B63B /* NSLayoutContraint.swift */; };
@@ -159,6 +160,7 @@
 		990395B01D58BFB200CBE542 /* PageImageHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageImageHeaderView.xib; sourceTree = "<group>"; };
 		991121D31D535430001EDBD2 /* DetailVenueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailVenueViewController.swift; sourceTree = "<group>"; };
 		991121D41D535430001EDBD2 /* DetailVenueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailVenueViewController.xib; sourceTree = "<group>"; };
+		992A1D731D59817A0047B63B /* MarkerMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerMap.swift; sourceTree = "<group>"; };
 		992A1D6E1D596C0E0047B63B /* SearchVenueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVenueViewController.swift; sourceTree = "<group>"; };
 		992A1D6F1D596C0E0047B63B /* SearchVenueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchVenueViewController.xib; sourceTree = "<group>"; };
 		992A1D751D59B9CE0047B63B /* NSLayoutContraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLayoutContraint.swift; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 		2DC364C11D4B0AC8006514EE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				992A1D721D5981580047B63B /* Marker */,
 				99ED292D1D5095530088FCAD /* NavigationBar */,
 				2DC364E01D4B18D6006514EE /* Button */,
 			);
@@ -513,6 +516,14 @@
 				991121D41D535430001EDBD2 /* DetailVenueViewController.xib */,
 			);
 			path = DetailVenue;
+			sourceTree = "<group>";
+		};
+		992A1D721D5981580047B63B /* Marker */ = {
+			isa = PBXGroup;
+			children = (
+				992A1D731D59817A0047B63B /* MarkerMap.swift */,
+			);
+			path = Marker;
 			sourceTree = "<group>";
 		};
 		992A1D6D1D596BA00047B63B /* Search */ = {
@@ -1183,6 +1194,7 @@
 				2DC364C61D4B0BD7006514EE /* AppDelegate.swift in Sources */,
 				99EB2A241D4F4FC60024FEF9 /* LeftSideMenuViewController.swift in Sources */,
 				9987AA0E1D52F83C00AB7E6D /* VenueItemTableViewCell.swift in Sources */,
+				992A1D741D59817A0047B63B /* MarkerMap.swift in Sources */,
 				99C581281D5501240095EE7F /* TrendingViewController.swift in Sources */,
 				99C581101D54FED30095EE7F /* CoffeeViewController.swift in Sources */,
 				99F661AA1D526887009A0E47 /* UIView.swift in Sources */,

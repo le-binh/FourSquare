@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUtils
 
 enum DetailVenueSection: Int {
     case PageImage
@@ -30,6 +31,14 @@ enum DetailVenueSection: Int {
             return 9
         case .Tips:
             return 5
+        }
+    }
+    var sectionHeight: CGFloat {
+        switch self {
+        case .PageImage:
+            return (2 / 3) * kScreenSize.width
+        default:
+            return 30
         }
     }
 }
@@ -74,8 +83,6 @@ class DetailVenueViewController: BaseViewController {
     // MARK:- Properties
 
     @IBOutlet weak var detailVenueTableView: UITableView!
-
-    let sectionTableViewHeight: CGFloat = 30
 
     let imageNames = ["detail_venue_image", "thumbnail_venue", "detail_venue_image"]
 
@@ -183,12 +190,7 @@ extension DetailVenueViewController: UITableViewDelegate {
         guard let detailVenueSection = DetailVenueSection(rawValue: section) else {
             return 0
         }
-        switch detailVenueSection {
-        case .PageImage:
-            return (2 / 3) * self.detailVenueTableView.frame.width
-        default:
-            return self.sectionTableViewHeight
-        }
+        return detailVenueSection.sectionHeight
     }
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let detailVenueSection = DetailVenueSection(rawValue: section) else {

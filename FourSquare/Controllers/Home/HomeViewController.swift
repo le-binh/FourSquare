@@ -139,7 +139,6 @@ class HomeViewController: BaseViewController {
         let mapViewFrameY = self.viewOfPageMenu.frame.origin.x + menuHeight
         let mapViewFrameWidth = self.viewOfPageMenu.frame.width
         let mapViewFrameHeight = self.viewOfPageMenu.frame.height - menuHeight
-
         mapViewController.view.frame = CGRect(x: mapViewFrameX, y: mapViewFrameY, width: mapViewFrameWidth, height: mapViewFrameHeight)
         self.addChildViewController(mapViewController)
         self.viewOfPageMenu.addSubview(mapViewController.view)
@@ -148,6 +147,7 @@ class HomeViewController: BaseViewController {
     private func changeMapViewToTableView() {
         self.searchButton.hidden = false
         self.mapViewController.view.removeFromSuperview()
+        self.mapViewController.removeFromParentViewController()
     }
 
     @objc private func updatePageMenuItem() {
@@ -157,9 +157,7 @@ class HomeViewController: BaseViewController {
                 self.changeMapViewToTableView()
                 self.didShowMapView = false
             }
-            if let pageMenu = self.pageMenu {
-                pageMenu.view.removeFromSuperview()
-            }
+            self.pageMenu?.view.removeFromSuperview()
             self.changeMenuItems(newActiveMenuItems)
         }
     }
