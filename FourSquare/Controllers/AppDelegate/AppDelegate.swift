@@ -16,9 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    var homeViewController: HomeViewController = HomeViewController.vc()
-    var mapViewController: MapViewController = MapViewController.vc()
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         setup()
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -28,10 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func rootViewController() -> UIViewController {
+        let homeViewController = HomeViewController.vc()
         let navigationHomeController = UINavigationController(rootViewController: homeViewController)
         navigationHomeController.navigationBar.hidden = true
         let backgroundViewController = BackgroundViewController.sharedInstance
         backgroundViewController.loadMenuView(navigationHomeController, style: .SlideAbove)
+        backgroundViewController.leftViewController.homeViewController = homeViewController
         return backgroundViewController
     }
 

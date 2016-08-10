@@ -120,12 +120,6 @@ class HomeViewController: BaseViewController {
     }
 
     @objc private func changeTableViewToMapView() {
-        guard let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate else {
-            return
-        }
-        let mapViewController = appDelegate.mapViewController
-        self.mapViewController = mapViewController
-
         let mapViewFrameX = self.viewOfPageMenu.frame.origin.x
         guard let menuHeight = self.pageMenu?.menuHeight else {
             return
@@ -133,7 +127,6 @@ class HomeViewController: BaseViewController {
         let mapViewFrameY = self.viewOfPageMenu.frame.origin.x + menuHeight
         let mapViewFrameWidth = self.viewOfPageMenu.frame.width
         let mapViewFrameHeight = self.viewOfPageMenu.frame.height - menuHeight
-
         mapViewController.view.frame = CGRect(x: mapViewFrameX, y: mapViewFrameY, width: mapViewFrameWidth, height: mapViewFrameHeight)
         self.addChildViewController(mapViewController)
         self.viewOfPageMenu.addSubview(mapViewController.view)

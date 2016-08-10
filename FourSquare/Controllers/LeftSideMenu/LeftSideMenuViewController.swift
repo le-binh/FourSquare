@@ -114,9 +114,9 @@ class LeftSideMenuViewController: UIViewController {
 
     @IBOutlet weak var menuTableView: UITableView!
     var homeViewController: HomeViewController?
-    var favoriteViewController: FavoriteViewController?
-    var historyViewController: HistoryViewController?
-    var currentMainMenuSide = MainMenuSlide(rawValue: 0)
+    private var favoriteViewController: FavoriteViewController?
+    private var historyViewController: HistoryViewController?
+    private var currentMainMenuSide: MainMenuSlide = .Home
 
     // MARK:- Life Cycle
 
@@ -142,10 +142,6 @@ class LeftSideMenuViewController: UIViewController {
     }
 
     private func setMainMenuViewController() {
-        guard let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate else {
-            return
-        }
-        self.homeViewController = appDelegate.homeViewController
         self.favoriteViewController = FavoriteViewController.vc()
         self.historyViewController = HistoryViewController.vc()
     }
