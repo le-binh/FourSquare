@@ -58,6 +58,7 @@
 		996DF40F1D56520B00693216 /* MapDetailVenueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 996DF40D1D56520B00693216 /* MapDetailVenueCell.xib */; };
 		997227FC1D5C0EEB0053E320 /* VenuePrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997227FB1D5C0EEB0053E320 /* VenuePrice.swift */; };
 		997227FE1D5C10B80053E320 /* VenuePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997227FD1D5C10B80053E320 /* VenuePhoto.swift */; };
+		997228001D5C20BB0053E320 /* VenueHours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997227FF1D5C20BB0053E320 /* VenueHours.swift */; };
 		9987AA0E1D52F83C00AB7E6D /* VenueItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9987AA0C1D52F83C00AB7E6D /* VenueItemTableViewCell.swift */; };
 		9987AA0F1D52F83C00AB7E6D /* VenueItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9987AA0D1D52F83C00AB7E6D /* VenueItemTableViewCell.xib */; };
 		9987AA121D52F84C00AB7E6D /* MenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9987AA101D52F84C00AB7E6D /* MenuItemViewController.swift */; };
@@ -189,6 +190,7 @@
 		996DF40D1D56520B00693216 /* MapDetailVenueCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapDetailVenueCell.xib; sourceTree = "<group>"; };
 		997227FB1D5C0EEB0053E320 /* VenuePrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenuePrice.swift; sourceTree = "<group>"; };
 		997227FD1D5C10B80053E320 /* VenuePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenuePhoto.swift; sourceTree = "<group>"; };
+		997227FF1D5C20BB0053E320 /* VenueHours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueHours.swift; sourceTree = "<group>"; };
 		9987AA0C1D52F83C00AB7E6D /* VenueItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VenueItemTableViewCell.swift; path = Base/PageBase/VenueItemTableViewCell/VenueItemTableViewCell.swift; sourceTree = "<group>"; };
 		9987AA0D1D52F83C00AB7E6D /* VenueItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VenueItemTableViewCell.xib; path = Base/PageBase/VenueItemTableViewCell/VenueItemTableViewCell.xib; sourceTree = "<group>"; };
 		9987AA101D52F84C00AB7E6D /* MenuItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemViewController.swift; path = Base/PageBase/MenuItemViewController.swift; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 				991DACE21D5B969D00A76A77 /* VenueCategory.swift */,
 				997227FB1D5C0EEB0053E320 /* VenuePrice.swift */,
 				997227FD1D5C10B80053E320 /* VenuePhoto.swift */,
+				997227FF1D5C20BB0053E320 /* VenueHours.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1202,6 +1205,7 @@
 				994B95541D5B07390013D9E3 /* VenueService.swift in Sources */,
 				996DF4061D56473C00693216 /* DefaultVenueDetailCell.swift in Sources */,
 				99A89EA21D5707FE00429962 /* MapDetailVenueViewController.swift in Sources */,
+				997228001D5C20BB0053E320 /* VenueHours.swift in Sources */,
 				991121D51D535430001EDBD2 /* DetailVenueViewController.swift in Sources */,
 				99FC6E991D58470900CC2B34 /* VenueCollectionViewCell.swift in Sources */,
 				2DC364C61D4B0BD7006514EE /* AppDelegate.swift in Sources */,
