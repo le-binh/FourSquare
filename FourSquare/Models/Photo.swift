@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class VenuePhoto: Mappable {
+class Photo: Mappable {
     var prefix: String = ""
     var suffix: String = ""
     var width: Int = 0

@@ -7,7 +7,14 @@
 //
 
 import UIKit
+import ObjectMapper
 
-class User: NSObject {
+class User: Mappable {
+    var avatar: Photo?
+    required init?(_ map: Map) {
 
+    }
+    func mapping(map: Map) {
+        avatar <- map["photo"]
+    }
 }
