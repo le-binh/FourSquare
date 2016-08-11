@@ -30,10 +30,10 @@ enum DefaultMenuItem: Int {
 
 class HomeViewController: BaseViewController {
 
-    @IBOutlet weak var viewOfPageMenu: UIView!
-
     // MARK:- Properties
 
+    @IBOutlet weak var viewOfPageMenu: UIView!
+    @IBOutlet weak var searchButton: UIButton!
     var pageMenu: CAPSPageMenu?
     var itemViewControllers: [UIViewController] = []
     var activeMenuItems: [ItemMenu] = []
@@ -54,27 +54,39 @@ class HomeViewController: BaseViewController {
         self.title = Strings.HomeTitle
         super.viewDidLoad()
         self.itemViewControllers = self.setDefaultMenuItems()
-        self.setUpMenuPage(isDefault: true)
+        self.configureMenuPage()
         self.updatePageMenuItem()
         self.setUpNotificationCenter()
     }
 
     deinit {
-        self.removeNotificationCenter()
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
+    override func showAndHideMapViewAction(sender: AnyObject) {
+        super.showAndHideMapViewAction(sender)
+        if didShowMapView {
+            self.changeMapViewToTableView()
+        } else {
+            self.changeTableViewToMapView()
+        }
+        didShowMapView = !didShowMapView
     }
 
     // MARK:- Action
 
     @IBAction func searchAction(sender: AnyObject) {
-        print("Push Search View Controller")
+        let searchVenueViewController = SearchVenueViewController.vc()
+        self.navigationController?.pushViewController(searchVenueViewController, animated: true)
     }
 
     // MARK:- Public Functions
 
     // MARK:- Private Function
 
-    private func removeNotificationCenter() {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+    private func configureMenuPage() {
+        self.setUpMenuPage(isDefault: true)
+        self.pageMenu?.delegate = self
     }
 
     private func setDefaultMenuItems() -> [UIViewController] {
@@ -115,11 +127,11 @@ class HomeViewController: BaseViewController {
 
     private func setUpNotificationCenter() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.updatePageMenuItem), name: kLGSideMenuControllerWillDismissLeftViewNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.changeTableViewToMapView), name: NotificationCenterKey.changeToMapView, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.changeMapViewToTableView), name: NotificationCenterKey.changeToTableView, object: nil)
     }
 
-    @objc private func changeTableViewToMapView() {
+    private func changeTableViewToMapView() {
+        self.searchButton.hidden = true
+        self.mapViewController = MapViewController.vc()
         let mapViewFrameX = self.viewOfPageMenu.frame.origin.x
         guard let menuHeight = self.pageMenu?.menuHeight else {
             return
@@ -132,7 +144,8 @@ class HomeViewController: BaseViewController {
         self.viewOfPageMenu.addSubview(mapViewController.view)
     }
 
-    @objc private func changeMapViewToTableView() {
+    private func changeMapViewToTableView() {
+        self.searchButton.hidden = false
         self.mapViewController.view.removeFromSuperview()
         self.mapViewController.removeFromParentViewController()
     }
@@ -144,9 +157,7 @@ class HomeViewController: BaseViewController {
                 self.changeMapViewToTableView()
                 self.didShowMapView = false
             }
-
             self.pageMenu?.view.removeFromSuperview()
-
             self.changeMenuItems(newActiveMenuItems)
         }
     }
@@ -202,5 +213,11 @@ class HomeViewController: BaseViewController {
             }
         }
         return true
+    }
+}
+
+extension HomeViewController: CAPSPageMenuDelegate {
+    func didMoveToPage(controller: UIViewController, index: Int) {
+
     }
 }

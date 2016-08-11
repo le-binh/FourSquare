@@ -44,14 +44,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func setupConsole() {
-        #if DEBUG
-            XCConsole.enabled = true
-        #else
-            XCConsole.enabled = false
-        #endif
+//        XCConsole.enabled = true
+//        #if DEBUG
+//            XCConsole.enabled = true
+//        #else
+//            XCConsole.enabled = false
+//        #endif
     }
 
     func setupGoogleMapAPIKey() {
-        GMSServices.provideAPIKey(Keys.goolgeMapsApiKey)
+        GMSServices.provideAPIKey(GoogleMapsKeys.goolgeMapsApiKey)
     }
 }

@@ -21,4 +21,18 @@ struct ApiPath {
         }
         var URLString: String { return User.path + "/\(id)" }
     }
+
+    struct Explore: URLStringConvertible {
+        static var path: String { return baseURL + "/explore" }
+        var URLString: String { return "" }
+    }
+
+    struct Venue: URLStringConvertible {
+        private let id: String
+        init(id: String) {
+            self.id = id
+        }
+        var photos: String { return baseURL + "/\(id)/photos" }
+        var URLString: String { return baseURL + "/\(id)" }
+    }
 }
