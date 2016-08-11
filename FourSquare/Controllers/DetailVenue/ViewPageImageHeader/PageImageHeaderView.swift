@@ -17,18 +17,14 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var imagesPageControl: UIPageControl!
     var imagePageViewController: UIPageViewController?
 
-    var imageNames = ["detail_venue_image"] {
+    var photos: [Photo] = [] {
         didSet {
-            self.afterPageButton.hidden = self.imageNames.count == 1
-            self.imagesPageControl.numberOfPages = self.imageNames.count
+            self.afterPageButton.hidden = self.photos.count == 1
+            self.imagesPageControl.numberOfPages = self.photos.count
+            self.configureImagePageViewController()
         }
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.configureImagePageViewController()
-
-    }
     @IBAction func didTabBackAction(sender: AnyObject) {
         self.scrollToBackViewController()
     }
@@ -49,7 +45,7 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
         imagePageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
         self.imagePageViewController?.dataSource = self
         self.imagePageViewController?.delegate = self
-        if imageNames.count > 0 {
+        if photos.count > 0 {
             guard let firstController = getPageItemViewController(0) else {
                 return
             }
@@ -64,7 +60,7 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
     }
 
     private func setUpImagesPageControler() {
-        self.imagesPageControl.numberOfPages = self.imageNames.count
+        self.imagesPageControl.numberOfPages = self.photos.count
         self.imagesPageControl.currentPage = 0
     }
 
@@ -76,10 +72,10 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
     }
 
     private func getPageItemViewController(itemIndex: Int) -> ImagePageItemViewController? {
-        if itemIndex < imageNames.count && itemIndex >= 0 {
+        if itemIndex < photos.count && itemIndex >= 0 {
             let imagePageItemViewController = ImagePageItemViewController.vc()
             imagePageItemViewController.itemIndex = itemIndex
-            imagePageItemViewController.imageName = imageNames[itemIndex]
+            imagePageItemViewController.photoPathString = photos[itemIndex].photoPathString
             return imagePageItemViewController
         }
         return nil
@@ -90,7 +86,7 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
     }
 
     private func scrollToNextViewController() {
-        if self.currentControllerIndex() == self.imageNames.count {
+        if self.currentControllerIndex() == self.photos.count {
             return
         }
         guard let imagePageViewController: UIPageViewController = self.imagePageViewController else {
@@ -130,7 +126,7 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
     private func checkCurrentPageToHiddenButton() {
         let currentIndex = self.currentControllerIndex()
         self.beforePageButton.hidden = currentIndex == 0
-        self.afterPageButton.hidden = currentIndex == self.imageNames.count - 1
+        self.afterPageButton.hidden = currentIndex == self.photos.count - 1
     }
 
     // MARK:- Public Functions

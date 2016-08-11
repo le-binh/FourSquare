@@ -19,6 +19,21 @@ class VenueHours: Mappable {
     }
 }
 
+extension VenueHours {
+    var timeToday: String {
+        guard let hoursToday = timeFrames.first else {
+            return "Not Available"
+        }
+        let openTime = formatTime(hoursToday.openTime)
+        let closeTime = formatTime(hoursToday.closeTime)
+        return openTime + "~" + closeTime
+    }
+
+    func formatTime(time: String) -> String {
+        return time.insert(2, ":")
+    }
+}
+
 class Hours: Mappable {
     var openTime: String = ""
     var closeTime: String = ""
@@ -26,7 +41,7 @@ class Hours: Mappable {
 
     }
     func mapping(map: Map) {
-        openTime <- map["open.0"]
-        closeTime <- map["open.1"]
+        openTime <- map["open.0.start"]
+        closeTime <- map["open.1.end"]
     }
 }

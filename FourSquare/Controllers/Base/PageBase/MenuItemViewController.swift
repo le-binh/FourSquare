@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUtils
+import SVProgressHUD
 
 enum SectionQuery: String {
     case TopPicks = "toppicks"
@@ -27,6 +28,9 @@ class MenuItemViewController: BaseViewController {
     var section: SectionQuery {
         return .TopPicks
     }
+    var isSearchingVenue: Bool {
+        return false
+    }
     @IBOutlet weak var venueTableView: UITableView?
     let rowHeight: CGFloat = 140
     var venues: [Venue] = []
@@ -41,7 +45,9 @@ class MenuItemViewController: BaseViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if isViewFirstAppear {
-            loadVenues()
+            if !isSearchingVenue {
+                loadVenues()
+            }
         }
     }
 
@@ -57,7 +63,9 @@ class MenuItemViewController: BaseViewController {
     }
 
     func loadVenues() {
+        SVProgressHUD.show()
         VenueService().loadVenues(16.0592007, longtitude: 108.1769168, section: section.rawValue, limit: 10, offset: 0) { (venues) in
+            SVProgressHUD.dismiss()
             self.venues = venues
             self.venueTableView?.reloadData()
         }
@@ -85,7 +93,11 @@ extension MenuItemViewController: UITableViewDataSource {
 extension MenuItemViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let detailVenueViewController = DetailVenueViewController.vc()
-        detailVenueViewController.title = "Phố xưa"
+        let venue = self.venues[indexPath.row]
+        detailVenueViewController.title = venue.name
+        detailVenueViewController.venue = venue
+        detailVenueViewController.loadVenueHours(venue.id)
+        detailVenueViewController.loadVenuePhotos(venue.id)
         UIApplication.sharedApplication().navigationController()?.pushViewController(detailVenueViewController, animated: true)
     }
 }

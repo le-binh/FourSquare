@@ -24,3 +24,13 @@ class Photo: Mappable {
         height <- map["height"]
     }
 }
+
+extension Photo {
+    var thumbnailPath: NSURL? {
+        let path = prefix + String(width / 2) + "x" + String(height / 2) + suffix
+        return NSURL(string: path)
+    }
+    var photoPathString: String {
+        return prefix + String(width) + "x" + String(height) + suffix
+    }
+}

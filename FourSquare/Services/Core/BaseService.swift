@@ -17,7 +17,6 @@ class BaseService {
         newParameter["client_id"] = APIKeys.ClientID
         newParameter["client_secret"] = APIKeys.ClientSecret
         newParameter["v"] = APIKeys.VersionAPI
-        newParameter["venuePhotos"] = APIKeys.Thumbnail
         if let parameters = parameters {
             for parameter in parameters {
                 let parameterKey = parameter.0

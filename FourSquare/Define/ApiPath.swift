@@ -33,6 +33,7 @@ struct ApiPath {
             self.id = id
         }
         var photos: String { return baseURL + "/\(id)/photos" }
+        var hours: String { return baseURL + "/\(id)/hours" }
         var URLString: String { return baseURL + "/\(id)" }
     }
 }

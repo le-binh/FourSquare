@@ -19,8 +19,11 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqY-17-GjG">
                         <rect key="frame" x="8" y="8" width="344" height="123.5"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumbnail_venue" translatesAutoresizingMaskIntoConstraints="NO" id="AEm-eV-oVs">
+                                <rect key="frame" x="172" y="0.0" width="172" height="123.5"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zaf-qf-OI2">
-                                <rect key="frame" x="0.0" y="0.0" width="172" height="123.5"/>
+                                <rect key="frame" x="0.0" y="0.5" width="172" height="123.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phố xưa xưa xưa xưa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQk-r3-iYe">
                                         <rect key="frame" x="10" y="10" width="132" height="24"/>
@@ -40,6 +43,9 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFM-0z-1Cy">
                                         <rect key="frame" x="10" y="37" width="152" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="iiE-Uq-nBf"/>
+                                        </constraints>
                                         <attributedString key="attributedText">
                                             <fragment content="17 Phan Đình Phùng, Hải Châu, Đà Nẵng">
                                                 <attributes>
@@ -59,6 +65,9 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$$$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXI-nS-tBN">
                                         <rect key="frame" x="10" y="89" width="18.5" height="11"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="11" id="lMM-7M-tAd"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -70,7 +79,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="AFM-0z-1Cy" secondAttribute="trailing" constant="10" id="1bX-F8-hec"/>
                                     <constraint firstItem="DXI-nS-tBN" firstAttribute="top" secondItem="U3U-Ol-1If" secondAttribute="bottom" constant="3" id="2uN-hQ-oL4"/>
@@ -88,9 +97,6 @@
                                     <constraint firstItem="NQk-r3-iYe" firstAttribute="top" secondItem="Zaf-qf-OI2" secondAttribute="top" constant="10" id="wUA-jz-E5A"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumbnail_venue" translatesAutoresizingMaskIntoConstraints="NO" id="AEm-eV-oVs">
-                                <rect key="frame" x="172" y="0.0" width="172" height="123.5"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

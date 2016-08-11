@@ -83,9 +83,7 @@ class DetailVenueViewController: BaseViewController {
     // MARK:- Properties
 
     @IBOutlet weak var detailVenueTableView: UITableView!
-
-    let imageNames = ["detail_venue_image", "thumbnail_venue", "detail_venue_image"]
-
+    var venue: Venue?
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
@@ -96,6 +94,25 @@ class DetailVenueViewController: BaseViewController {
         super.favoriteAction(sender)
         didAddFavorite = !didAddFavorite
     }
+
+    // MARK:- Public Functions
+
+    func loadVenueHours(id: String) {
+        VenueService().loadVenueHours(id) { (hours) in
+            self.venue?.hours = hours
+            if self.venue?.hours != nil {
+                self.detailVenueTableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
+            }
+        }
+    }
+
+    func loadVenuePhotos(id: String) {
+        VenueService().loadVenuePhotos(id) { (photos) in
+            self.venue?.photos = photos
+            self.detailVenueTableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+        }
+    }
+
     // MARK:- Private Functions
 
     private func configureTableView() {
@@ -126,11 +143,14 @@ extension DetailVenueViewController: UITableViewDataSource {
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         guard let detailVenueSection = DetailVenueSection(rawValue: indexPath.section) else {
-            return UITableViewCell()
+            return UITableViewCell(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        }
+        guard let venue = self.venue else {
+            return UITableViewCell(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         }
         switch detailVenueSection {
         case .PageImage:
-            return UITableViewCell()
+            return UITableViewCell(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         case .Information:
             guard let infomationSection = InfomationSection(rawValue: indexPath.row) else {
                 return UITableViewCell()
@@ -139,43 +159,44 @@ extension DetailVenueViewController: UITableViewDataSource {
             cell.titleLabel.text = infomationSection.title
             switch infomationSection {
             case .Name:
-                cell.textDetailLabel.text = "Phố xưa"
-                return cell
+                cell.textDetailLabel.text = venue.name
             case .Address:
                 let cellMap = tableView.dequeue(MapDetailVenueCell)
-                cellMap.addressLabel.text = "17 Phan Đình Phùng, Hải Châu, Đà Nẵng"
+                cellMap.addressLabel.text = venue.location?.fullAddress
                 cellMap.detailVenueViewController = self
                 return cellMap
             case .Contact:
-
                 cell.titleLabel.text = infomationSection.title
-                cell.textDetailLabel.text = "0935307484"
-                return cell
+                let contact = venue.contact?.contact
+                cell.textDetailLabel.text = contact == "" ? "Not Available" : contact
             case .Categories:
                 cell.titleLabel.text = infomationSection.title
-                cell.textDetailLabel.text = "Coffee Shop"
-                return cell
+                cell.textDetailLabel.text = venue.showCategories
             case .Hours:
                 cell.titleLabel.text = infomationSection.title
-                cell.textDetailLabel.text = "11:00~21:00"
-                return cell
+                guard let hours = venue.hours else {
+                    cell.textDetailLabel.text = "Not Available"
+                    break
+                }
+                cell.textDetailLabel.text = hours.timeToday
             case .Rating:
                 cell.titleLabel.text = infomationSection.title
-                cell.textDetailLabel.text = "8.2"
-                return cell
+                cell.textDetailLabel.text = String(venue.rating)
             case .PriceTier:
                 cell.titleLabel.text = infomationSection.title
-                cell.textDetailLabel.text = "2"
-                return cell
+                guard let tier = venue.price?.tier else {
+                    cell.textDetailLabel.text = "0"
+                    break
+                }
+                cell.textDetailLabel.text = String(tier)
             case .Verified:
                 cell.titleLabel.text = infomationSection.title
-                cell.textDetailLabel.text = "Yes"
-                return cell
+                cell.textDetailLabel.text = venue.verified ? "Yes" : "No"
             case .Website:
                 cell.titleLabel.text = infomationSection.title
-                cell.textDetailLabel.text = "thiendia.com"
-                return cell
+                cell.textDetailLabel.text = venue.website == "" ? "Not Available" : venue.website
             }
+            return cell
         case .Tips:
             let cell = tableView.dequeue(TipsDetailVenueCell)
             return cell
@@ -200,8 +221,9 @@ extension DetailVenueViewController: UITableViewDelegate {
         switch detailVenueSection {
         case .PageImage:
             let view = tableView.dequeue(PageImageHeaderView)
-            // self.addChildViewController(view.imagePageViewController!)
-            view.imageNames = self.imageNames
+            if let photos = self.venue?.photos {
+                view.photos = photos
+            }
             return view
         case .Information:
             view.titleHeader.text = Strings.DetailVenueTitleInformation

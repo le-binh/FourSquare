@@ -12,7 +12,7 @@ import ObjectMapper
 class Venue: Mappable {
     var id: String = ""
     var name: String = ""
-    var rating: Float = 0.0
+    var rating: Double = 0.0
     var ratingColorString: String = ""
     var verified: Bool = true
     var website: String = ""
@@ -45,14 +45,14 @@ class Venue: Mappable {
 }
 
 extension Venue {
-    var thumbnailPath: NSURL? {
-        guard let prefix = thumbnail?.prefix, width = thumbnail?.width, height = thumbnail?.height, suffix = thumbnail?.suffix else {
-            return nil
-        }
-        let path = prefix + String(width / 2) + "x" + String(height / 2) + suffix
-        return NSURL(string: path)
-    }
     var ratingColor: UIColor {
         return UIColor.hexToColor(self.ratingColorString)
+    }
+    var showCategories: String {
+        var result = ""
+        for (index, category) in categories.enumerate() {
+            result = (index == categories.count - 1) ? result + category.categoryName: result + "\(category.categoryName), "
+        }
+        return result
     }
 }

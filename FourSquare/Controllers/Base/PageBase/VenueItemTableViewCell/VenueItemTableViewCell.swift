@@ -61,7 +61,7 @@ class VenueItemTableViewCell: UITableViewCell {
         if let distance = venue.location?.distance {
             self.distanceLabel.text = "\(distance)m From Here"
         }
-        if let url = venue.thumbnailPath {
+        if let url = venue.thumbnail?.thumbnailPath {
             self.thumbnailImageView.hnk_setImageFromURL(url)
         }
     }

@@ -10,10 +10,14 @@ import Foundation
 import ObjectMapper
 
 typealias VenuesCompletion = (venues: [Venue]) -> Void
+typealias VenueHoursCompletion = (hours: VenueHours?) -> Void
+typealias VenuePhotosCompletion = (photos: [Photo]) -> Void
 class VenueService: BaseService {
+
     func loadVenues(latitude: Double, longtitude: Double, section: String, limit: Int, offset: Int, completion: VenuesCompletion?) {
         let path = ApiPath.Explore.path
         var parameters = JSObject()
+        parameters["venuePhotos"] = APIKeys.Thumbnail
         parameters["ll"] = "\(latitude),\(longtitude)"
         parameters["section"] = section
         parameters["limit"] = limit
@@ -38,6 +42,44 @@ class VenueService: BaseService {
             }
             dispatch_async(dispatch_get_main_queue(), {
                 completion?(venues: venues)
+            })
+        }
+    }
+
+    func loadVenueHours(id: String, completion: VenueHoursCompletion?) {
+        let path = ApiPath.Venue.init(id: id).hours
+        request(.GET, path: path) { (result) in
+            guard let json = result.value, popular = json["popular"] as? JSObject else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    completion?(hours: nil)
+                })
+                return
+            }
+            let venueHours = Mapper<VenueHours>().map(popular)
+            if venueHours?.timeFrames.count == 0 {
+                dispatch_async(dispatch_get_main_queue(), {
+                    completion?(hours: nil)
+                })
+                return
+            }
+            dispatch_async(dispatch_get_main_queue(), {
+                completion?(hours: venueHours)
+            })
+        }
+    }
+
+    func loadVenuePhotos(id: String, completion: VenuePhotosCompletion?) {
+        let path = ApiPath.Venue(id: id).photos
+        request(.GET, path: path) { (result) in
+            guard let json = result.value, photos = json["photos"] as? JSObject, items = photos["items"] as? JSArray else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    completion?(photos: [])
+                })
+                return
+            }
+            let venuePhotos = items.map({ Mapper<Photo>().map($0) })
+            dispatch_async(dispatch_get_main_queue(), {
+                completion?(photos: venuePhotos)
             })
         }
     }
