@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapSearchViewController" customModule="FourSquare" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VenueSearchingMapViewController" customModule="FourSquare" customModuleProvider="target">
             <connections>
                 <outlet property="backCollectionCellButton" destination="FOy-Cf-0cj" id="3aO-CA-1pv"/>
                 <outlet property="nextCollectionCellButton" destination="waY-Go-fPp" id="4xg-Dh-Pev"/>

@@ -14,6 +14,14 @@ class VenueLocation: Mappable {
     var longitude: Double = 0
     var distance: Int = 0
     var address: [String] = [""]
+    var fullAddress: String {
+        var result: String = ""
+        for element in address {
+            result = result + "\(element),"
+        }
+        result.removeAtIndex(result.endIndex)
+        return result
+    }
 
     required init?(_ map: Map) {
 
@@ -24,17 +32,5 @@ class VenueLocation: Mappable {
         longitude <- map["lng"]
         distance <- map["distance"]
         address <- map["formattedAddress"]
-    }
-
-    func showFullAddress() -> String {
-        var result: String = ""
-        for element in address {
-            if element == address.last {
-                result += "\(element)"
-            } else {
-                result += "\(element),"
-            }
-        }
-        return result
     }
 }
