@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewSearchViewController: MenuItemViewController {
+class VenueSearchingViewController: MenuItemViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

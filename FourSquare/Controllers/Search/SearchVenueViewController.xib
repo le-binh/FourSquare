@@ -8,14 +8,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchVenueViewController" customModule="FourSquare" customModuleProvider="target">
             <connections>
-                <outlet property="addressVenueSearchTextField" destination="dFu-25-yhL" id="tmJ-vA-88M"/>
                 <outlet property="containerView" destination="J1Y-L1-0af" id="nam-f9-ATz"/>
-                <outlet property="nameVenueSearchTextField" destination="oCR-zb-mdb" id="nZP-Kh-HdE"/>
                 <outlet property="navigationBar" destination="t9j-Qz-zQI" id="3Ir-yE-SAh"/>
-                <outlet property="searchAgainButton" destination="Nmg-qq-K09" id="Gu9-QC-Qgi"/>
+                <outlet property="researchButton" destination="Nmg-qq-K09" id="iKw-vb-YLO"/>
                 <outlet property="searchBoxHeightLayoutConstraint" destination="5Ik-6u-qXl" id="FTi-cS-0aJ"/>
                 <outlet property="searchBoxView" destination="h98-nU-zEq" id="fzG-ND-pn0"/>
-                <outlet property="searchVenueButton" destination="U9Q-Y1-dcY" id="b8O-Su-12T"/>
+                <outlet property="searchButton" destination="U9Q-Y1-dcY" id="cFQ-HI-leV"/>
+                <outlet property="venueAddressTextField" destination="dFu-25-yhL" id="TF6-K3-ryj"/>
+                <outlet property="venueNameTextField" destination="oCR-zb-mdb" id="Ri0-lo-eYf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

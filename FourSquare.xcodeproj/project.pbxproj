@@ -38,11 +38,10 @@
 		992A1D701D596C0E0047B63B /* SearchVenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992A1D6E1D596C0E0047B63B /* SearchVenueViewController.swift */; };
 		992A1D711D596C0E0047B63B /* SearchVenueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 992A1D6F1D596C0E0047B63B /* SearchVenueViewController.xib */; };
 		992A1D741D59817A0047B63B /* MarkerMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992A1D731D59817A0047B63B /* MarkerMap.swift */; };
-		992A1D761D59B9CE0047B63B /* NSLayoutContraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992A1D751D59B9CE0047B63B /* NSLayoutContraint.swift */; };
-		992A1D7C1D59C6DD0047B63B /* TableViewSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992A1D7A1D59C6DD0047B63B /* TableViewSearchViewController.swift */; };
-		992A1D7D1D59C6DD0047B63B /* TableViewSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 992A1D7B1D59C6DD0047B63B /* TableViewSearchViewController.xib */; };
-		992A1D801D59C7260047B63B /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992A1D7E1D59C7260047B63B /* MapSearchViewController.swift */; };
-		992A1D811D59C7260047B63B /* MapSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 992A1D7F1D59C7260047B63B /* MapSearchViewController.xib */; };
+		992A1D7C1D59C6DD0047B63B /* VenueSearchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992A1D7A1D59C6DD0047B63B /* VenueSearchingViewController.swift */; };
+		992A1D7D1D59C6DD0047B63B /* VenueSearchingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 992A1D7B1D59C6DD0047B63B /* VenueSearchingViewController.xib */; };
+		992A1D801D59C7260047B63B /* VenueSearchingMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992A1D7E1D59C7260047B63B /* VenueSearchingMapViewController.swift */; };
+		992A1D811D59C7260047B63B /* VenueSearchingMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 992A1D7F1D59C7260047B63B /* VenueSearchingMapViewController.xib */; };
 		993AD65B1D518BEE00B945FA /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993AD65A1D518BEE00B945FA /* NotificationCenter.swift */; };
 		994B95521D5ACAF10013D9E3 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994B95511D5ACAF10013D9E3 /* Venue.swift */; };
 		994B95541D5B07390013D9E3 /* VenueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994B95531D5B07390013D9E3 /* VenueService.swift */; };
@@ -169,11 +168,10 @@
 		992A1D6E1D596C0E0047B63B /* SearchVenueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVenueViewController.swift; sourceTree = "<group>"; };
 		992A1D6F1D596C0E0047B63B /* SearchVenueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchVenueViewController.xib; sourceTree = "<group>"; };
 		992A1D731D59817A0047B63B /* MarkerMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerMap.swift; sourceTree = "<group>"; };
-		992A1D751D59B9CE0047B63B /* NSLayoutContraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLayoutContraint.swift; sourceTree = "<group>"; };
-		992A1D7A1D59C6DD0047B63B /* TableViewSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewSearchViewController.swift; sourceTree = "<group>"; };
-		992A1D7B1D59C6DD0047B63B /* TableViewSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewSearchViewController.xib; sourceTree = "<group>"; };
-		992A1D7E1D59C7260047B63B /* MapSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapSearchViewController.swift; sourceTree = "<group>"; };
-		992A1D7F1D59C7260047B63B /* MapSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapSearchViewController.xib; sourceTree = "<group>"; };
+		992A1D7A1D59C6DD0047B63B /* VenueSearchingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueSearchingViewController.swift; sourceTree = "<group>"; };
+		992A1D7B1D59C6DD0047B63B /* VenueSearchingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VenueSearchingViewController.xib; sourceTree = "<group>"; };
+		992A1D7E1D59C7260047B63B /* VenueSearchingMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueSearchingMapViewController.swift; sourceTree = "<group>"; };
+		992A1D7F1D59C7260047B63B /* VenueSearchingMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VenueSearchingMapViewController.xib; sourceTree = "<group>"; };
 		993AD65A1D518BEE00B945FA /* NotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
 		994B95511D5ACAF10013D9E3 /* Venue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		994B95531D5B07390013D9E3 /* VenueService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueService.swift; sourceTree = "<group>"; };
@@ -463,7 +461,6 @@
 				999165DC1D52E92C00320877 /* UIApplication.swift */,
 				99F661A91D526887009A0E47 /* UIView.swift */,
 				99BE7C281D5798A300CCCBFB /* UIImage.swift */,
-				992A1D751D59B9CE0047B63B /* NSLayoutContraint.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -552,8 +549,8 @@
 		992A1D781D59C6970047B63B /* OnMap */ = {
 			isa = PBXGroup;
 			children = (
-				992A1D7E1D59C7260047B63B /* MapSearchViewController.swift */,
-				992A1D7F1D59C7260047B63B /* MapSearchViewController.xib */,
+				992A1D7E1D59C7260047B63B /* VenueSearchingMapViewController.swift */,
+				992A1D7F1D59C7260047B63B /* VenueSearchingMapViewController.xib */,
 			);
 			path = OnMap;
 			sourceTree = "<group>";
@@ -561,8 +558,8 @@
 		992A1D791D59C6970047B63B /* OnTableView */ = {
 			isa = PBXGroup;
 			children = (
-				992A1D7A1D59C6DD0047B63B /* TableViewSearchViewController.swift */,
-				992A1D7B1D59C6DD0047B63B /* TableViewSearchViewController.xib */,
+				992A1D7A1D59C6DD0047B63B /* VenueSearchingViewController.swift */,
+				992A1D7B1D59C6DD0047B63B /* VenueSearchingViewController.xib */,
 			);
 			path = OnTableView;
 			sourceTree = "<group>";
@@ -980,10 +977,10 @@
 				992A1D711D596C0E0047B63B /* SearchVenueViewController.xib in Resources */,
 				2DC364DA1D4B0FED006514EE /* LoginViewController.xib in Resources */,
 				99C581091D54FD180095EE7F /* TopPicksViewController.xib in Resources */,
-				992A1D7D1D59C6DD0047B63B /* TableViewSearchViewController.xib in Resources */,
+				992A1D7D1D59C6DD0047B63B /* VenueSearchingViewController.xib in Resources */,
 				99EB2A251D4F4FC60024FEF9 /* LeftSideMenuViewController.xib in Resources */,
 				99ED29131D5031960088FCAD /* CustomMenuItemsTableViewCell.xib in Resources */,
-				992A1D811D59C7260047B63B /* MapSearchViewController.xib in Resources */,
+				992A1D811D59C7260047B63B /* VenueSearchingMapViewController.xib in Resources */,
 				996DF4031D56462300693216 /* ViewHeaderVenueDetail.xib in Resources */,
 				99ED29271D507BB80088FCAD /* FavoriteViewController.xib in Resources */,
 				2DC364CC1D4B0CAE006514EE /* LaunchScreen.storyboard in Resources */,
@@ -1163,7 +1160,7 @@
 				99BE7C291D5798A300CCCBFB /* UIImage.swift in Sources */,
 				2DC364EC1D4B335C006514EE /* Colors.swift in Sources */,
 				2DC364E21D4B190E006514EE /* LoginButton.swift in Sources */,
-				992A1D801D59C7260047B63B /* MapSearchViewController.swift in Sources */,
+				992A1D801D59C7260047B63B /* VenueSearchingMapViewController.swift in Sources */,
 				2DC364F01D4B3383006514EE /* Errors.swift in Sources */,
 				99ED292F1D5097470088FCAD /* NavigationBar.swift in Sources */,
 				2DC364EA1D4B334F006514EE /* Strings.swift in Sources */,
@@ -1191,13 +1188,12 @@
 				99ED292B1D508B550088FCAD /* HistoryViewController.swift in Sources */,
 				2DC364F61D4B3830006514EE /* ApiManager.swift in Sources */,
 				2DC364F41D4B3812006514EE /* ResponseSerializer.swift in Sources */,
-				992A1D761D59B9CE0047B63B /* NSLayoutContraint.swift in Sources */,
 				9987AA121D52F84C00AB7E6D /* MenuItemViewController.swift in Sources */,
 				99C5811C1D5500D20095EE7F /* OutdoorsViewController.swift in Sources */,
 				99FC6E941D5831C600CC2B34 /* MapViewController.swift in Sources */,
 				2DC364E81D4B3344006514EE /* Keys.swift in Sources */,
 				996DF40A1D564B9700693216 /* TipsDetailVenueCell.swift in Sources */,
-				992A1D7C1D59C6DD0047B63B /* TableViewSearchViewController.swift in Sources */,
+				992A1D7C1D59C6DD0047B63B /* VenueSearchingViewController.swift in Sources */,
 				2DC364E41D4B1922006514EE /* User.swift in Sources */,
 				994B95541D5B07390013D9E3 /* VenueService.swift in Sources */,
 				996DF4061D56473C00693216 /* DefaultVenueDetailCell.swift in Sources */,

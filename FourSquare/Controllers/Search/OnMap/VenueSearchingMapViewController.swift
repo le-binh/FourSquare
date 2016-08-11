@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 
-class MapSearchViewController: MapViewController {
+class VenueSearchingMapViewController: MapViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

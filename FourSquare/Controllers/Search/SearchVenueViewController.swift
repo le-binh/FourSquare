@@ -13,13 +13,13 @@ class SearchVenueViewController: BaseViewController {
 
     // MARK:- Properties
 
-    @IBOutlet weak var searchAgainButton: UIButton!
+    @IBOutlet weak var researchButton: UIButton!
     @IBOutlet weak var searchBoxView: UIView!
-    @IBOutlet weak var nameVenueSearchTextField: UITextField!
-    @IBOutlet weak var addressVenueSearchTextField: UITextField!
+    @IBOutlet weak var venueNameTextField: UITextField!
+    @IBOutlet weak var venueAddressTextField: UITextField!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var searchBoxHeightLayoutConstraint: NSLayoutConstraint!
-    @IBOutlet weak var searchVenueButton: UIButton!
+    @IBOutlet weak var searchButton: UIButton!
     var currentViewController: UIViewController!
     var searchBoxHeight: CGFloat = 0
 
@@ -29,7 +29,7 @@ class SearchVenueViewController: BaseViewController {
         self.title = Strings.SearchTitle
         super.viewDidLoad()
         self.setupUI()
-        self.getDataFromUI()
+        self.getSearchBoxHeightFromUI()
         self.configureContainerView()
     }
 
@@ -48,10 +48,10 @@ class SearchVenueViewController: BaseViewController {
     @IBAction func showBoxSearch(sender: AnyObject) {
         UIView.animateWithDuration(0.3, animations: {
             self.searchBoxHeightLayoutConstraint.constant = 0
-            self.searchVenueButton.hidden = false
+            self.searchButton.hidden = false
             self.view.layoutIfNeeded()
             }, completion: { (complete) in
-            self.searchAgainButton.hidden = true
+            self.researchButton.hidden = true
         })
     }
 
@@ -60,8 +60,8 @@ class SearchVenueViewController: BaseViewController {
             self.searchBoxHeightLayoutConstraint.constant = -self.searchBoxHeight
             self.view.layoutIfNeeded()
             }, completion: { (complete) in
-            self.searchVenueButton.hidden = true
-            self.searchAgainButton.hidden = false
+            self.searchButton.hidden = true
+            self.researchButton.hidden = false
         })
     }
 
@@ -69,10 +69,10 @@ class SearchVenueViewController: BaseViewController {
 
     private func setupUI() {
         self.configureUINavigationBar()
-        self.searchAgainButton.hidden = true
+        self.researchButton.hidden = true
     }
 
-    private func getDataFromUI() {
+    private func getSearchBoxHeightFromUI() {
         self.searchBoxHeight = (self.searchBoxHeightLayoutConstraint.multiplier) * kScreenSize.height
     }
 
@@ -81,23 +81,23 @@ class SearchVenueViewController: BaseViewController {
     }
 
     private func configureContainerView() {
-        let tableViewSearchViewController = TableViewSearchViewController.vc()
-        tableViewSearchViewController.view.frame = self.containerView.bounds
-        self.addChildViewController(tableViewSearchViewController)
-        self.containerView.addSubview(tableViewSearchViewController.view)
-        self.currentViewController = tableViewSearchViewController
+        let venueSearchingViewController = VenueSearchingViewController.vc()
+        venueSearchingViewController.view.frame = self.containerView.bounds
+        self.addChildViewController(venueSearchingViewController)
+        self.containerView.addSubview(venueSearchingViewController.view)
+        self.currentViewController = venueSearchingViewController
     }
 
     private func changeTableViewToMapView() {
-        let mapSearchViewController = MapSearchViewController.vc()
-        self.cycleViewController(currentViewController, toViewController: mapSearchViewController)
-        self.currentViewController = mapSearchViewController
+        let venueSearchingMapViewController = VenueSearchingMapViewController.vc()
+        self.cycleViewController(currentViewController, toViewController: venueSearchingMapViewController)
+        self.currentViewController = venueSearchingMapViewController
     }
 
     private func changeMapViewToTableView() {
-        let tableViewSearchViewController = TableViewSearchViewController.vc()
-        self.cycleViewController(currentViewController, toViewController: tableViewSearchViewController)
-        self.currentViewController = tableViewSearchViewController
+        let venueSearchingViewController = VenueSearchingViewController.vc()
+        self.cycleViewController(currentViewController, toViewController: venueSearchingViewController)
+        self.currentViewController = venueSearchingViewController
     }
 
     private func cycleViewController(oldViewController: UIViewController, toViewController newViewController: UIViewController) {
