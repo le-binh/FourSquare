@@ -109,6 +109,7 @@ class HomeViewController: BaseViewController {
         let parameters: [CAPSPageMenuOption] = parametersOfPageMenu(isDefault)
         self.pageMenu = CAPSPageMenu(viewControllers: self.itemViewControllers, frame: self.viewOfPageMenu.bounds, pageMenuOptions: parameters)
         if let pageMenu = self.pageMenu {
+            self.addChildViewController(pageMenu)
             self.viewOfPageMenu.addSubview(pageMenu.view)
         }
     }

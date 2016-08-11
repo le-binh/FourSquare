@@ -88,7 +88,7 @@
                                     <constraint firstItem="NQk-r3-iYe" firstAttribute="top" secondItem="Zaf-qf-OI2" secondAttribute="top" constant="10" id="wUA-jz-E5A"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumbnail_venue" translatesAutoresizingMaskIntoConstraints="NO" id="AEm-eV-oVs">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumbnail_venue" translatesAutoresizingMaskIntoConstraints="NO" id="AEm-eV-oVs">
                                 <rect key="frame" x="172" y="0.0" width="172" height="123.5"/>
                             </imageView>
                         </subviews>

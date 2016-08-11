@@ -10,36 +10,46 @@ import Foundation
 import ObjectMapper
 
 class Venue: Mappable {
-    var venueId: String = ""
-    var venueName: String = ""
-    var venueRating: Float = 0.0
-    var venueRatingColor: String = ""
-    var venueVerified: Bool = true
-    var venueWebsite: String = ""
-    var venueThumbnail: Photo?
-    var venueLocation: VenueLocation?
-    var venueCategories: [VenueCategory] = []
-    var venuePrice: VenuePrice?
-    var venueContact: VenueContact?
-    var venueHours: VenueHours?
-    var venuePhotos: [Photo] = []
-    var venueTips: [VenueTip] = []
+    var id: String = ""
+    var name: String = ""
+    var rating: Float = 0.0
+    var ratingColor: String = ""
+    var verified: Bool = true
+    var website: String = ""
+    var thumbnail: Photo?
+    var location: VenueLocation?
+    var categories: [VenueCategory] = []
+    var price: VenuePrice?
+    var contact: VenueContact?
+    var hours: VenueHours?
+    var photos: [Photo] = []
+    var tips: [VenueTip] = []
 
     required init?(_ map: Map) {
 
     }
 
     func mapping(map: Map) {
-        venueId <- map["id"]
-        venueName <- map["name"]
-        venueRating <- map["rating"]
-        venueRatingColor <- map["ratingColor"]
-        venueVerified <- map["verified"]
-        venueWebsite <- map["url"]
-        venueThumbnail <- map["featuredPhotos.items.0"]
-        venueLocation <- map["location"]
-        venueCategories <- map["categories"]
-        venuePrice <- map["price"]
-        venueContact <- map["contact"]
+        id <- map["id"]
+        name <- map["name"]
+        rating <- map["rating"]
+        ratingColor <- map["ratingColor"]
+        verified <- map["verified"]
+        website <- map["url"]
+        thumbnail <- map["featuredPhotos.items.0"]
+        location <- map["location"]
+        categories <- map["categories"]
+        price <- map["price"]
+        contact <- map["contact"]
+    }
+}
+
+extension Venue {
+    var thumbnailPath: NSURL? {
+        guard let prefix = thumbnail?.prefix, width = thumbnail?.width, height = thumbnail?.height, suffix = thumbnail?.suffix else {
+            return nil
+        }
+        let path = prefix + String(width / 2) + "x" + String(height / 2) + suffix
+        return NSURL(string: path)
     }
 }

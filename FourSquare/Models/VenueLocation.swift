@@ -17,9 +17,8 @@ class VenueLocation: Mappable {
     var fullAddress: String {
         var result: String = ""
         for element in address {
-            result = result + "\(element),"
+            result = (element == address.last) ? result + element: result + "\(element),"
         }
-        result.removeAtIndex(result.endIndex)
         return result
     }
 

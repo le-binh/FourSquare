@@ -9,12 +9,27 @@
 import UIKit
 import SwiftUtils
 
+enum SectionQuery: String {
+    case TopPicks = "toppicks"
+    case Arts = "arts"
+    case Coffee = "coffee"
+    case Drinks = "drinks"
+    case Food = "food"
+    case OutDoors = "outdoors"
+    case Shops = "shops"
+    case Sights = "sights"
+    case Trending = "trending"
+}
+
 class MenuItemViewController: BaseViewController {
 
     // MARK:- Properties
-
+    var section: SectionQuery {
+        return .TopPicks
+    }
     @IBOutlet weak var venueTableView: UITableView?
     let rowHeight: CGFloat = 140
+    var venues: [Venue] = []
 
     // MARK:- Life Cycle
 
@@ -23,9 +38,11 @@ class MenuItemViewController: BaseViewController {
         self.setUpTableView()
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if isViewFirstAppear {
+            loadTopPicks()
+        }
     }
 
     // MARK:- Private Function
@@ -38,6 +55,13 @@ class MenuItemViewController: BaseViewController {
         self.venueTableView?.delegate = self
         self.venueTableView?.rowHeight = self.rowHeight
     }
+
+    func loadTopPicks() {
+        VenueService().loadVenues(16.0592007, longtitude: 108.1769168, section: section.rawValue, limit: 10, offset: 0) { (venues) in
+            self.venues = venues
+            self.venueTableView?.reloadData()
+        }
+    }
 }
 
 //MARK:- Table View Datasource
@@ -47,10 +71,11 @@ extension MenuItemViewController: UITableViewDataSource {
         return 1
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.venues.count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(VenueItemTableViewCell)
+        cell.setUpData(self.venues[indexPath.row])
         return cell
     }
 }
