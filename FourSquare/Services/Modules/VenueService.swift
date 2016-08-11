@@ -17,6 +17,7 @@ class VenueService: BaseService {
         parameters["limit"] = limit
         parameters["offset"] = offset
         request(.GET, path: path, parameters: parameters) { (result) in
+            print(result.value)
             dispatch_async(dispatch_get_main_queue(), {
                 completion?(result: result)
             })
