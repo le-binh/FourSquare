@@ -10,9 +10,7 @@ import UIKit
 
 class OutdoorsViewController: MenuItemViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("Outdoors")
+    override var section: SectionQuery {
+        return .OutDoors
     }
-
 }

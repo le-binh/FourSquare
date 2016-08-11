@@ -10,9 +10,7 @@ import UIKit
 
 class ArtsViewController: MenuItemViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("Arts")
+    override var section: SectionQuery {
+        return .Arts
     }
-
 }

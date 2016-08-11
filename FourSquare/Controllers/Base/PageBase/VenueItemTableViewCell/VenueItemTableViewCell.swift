@@ -46,10 +46,12 @@ class VenueItemTableViewCell: UITableViewCell {
     // MARK:- Public Functions
 
     func setUpData(venue: Venue) {
+        self.thumbnailImageView.image = UIImage(named: "thumbnail_venue")
         self.verifiedImageView.image = (venue.verified) ? UIImage(named: "verified_ic") : UIImage(named: "not_verified_ic")
         self.nameVenueLabel.text = venue.name
         self.addressVenueLabel.text = venue.location?.fullAddress
         self.ratingVenueLabel.text = String(venue.rating)
+        self.ratingVenueLabel.backgroundColor = venue.ratingColor
         var categoriesName = ""
         for category in venue.categories {
             categoriesName = categoriesName + category.categoryName

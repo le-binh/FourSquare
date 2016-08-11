@@ -13,7 +13,7 @@ class Venue: Mappable {
     var id: String = ""
     var name: String = ""
     var rating: Float = 0.0
-    var ratingColor: String = ""
+    var ratingColorString: String = ""
     var verified: Bool = true
     var website: String = ""
     var thumbnail: Photo?
@@ -33,7 +33,7 @@ class Venue: Mappable {
         id <- map["id"]
         name <- map["name"]
         rating <- map["rating"]
-        ratingColor <- map["ratingColor"]
+        ratingColorString <- map["ratingColor"]
         verified <- map["verified"]
         website <- map["url"]
         thumbnail <- map["featuredPhotos.items.0"]
@@ -51,5 +51,8 @@ extension Venue {
         }
         let path = prefix + String(width / 2) + "x" + String(height / 2) + suffix
         return NSURL(string: path)
+    }
+    var ratingColor: UIColor {
+        return UIColor.hexToColor(self.ratingColorString)
     }
 }

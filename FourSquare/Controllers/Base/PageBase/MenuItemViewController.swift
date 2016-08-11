@@ -41,7 +41,7 @@ class MenuItemViewController: BaseViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if isViewFirstAppear {
-            loadTopPicks()
+            loadVenues()
         }
     }
 
@@ -56,7 +56,7 @@ class MenuItemViewController: BaseViewController {
         self.venueTableView?.rowHeight = self.rowHeight
     }
 
-    func loadTopPicks() {
+    func loadVenues() {
         VenueService().loadVenues(16.0592007, longtitude: 108.1769168, section: section.rawValue, limit: 10, offset: 0) { (venues) in
             self.venues = venues
             self.venueTableView?.reloadData()
