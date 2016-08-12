@@ -44,10 +44,8 @@ class MenuItemViewController: BaseViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if isViewFirstAppear {
-            if !isSearchingVenue {
-                loadVenues()
-            }
+        if isViewFirstAppear && !isSearchingVenue {
+            loadVenues()
         }
     }
 
