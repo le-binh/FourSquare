@@ -12,6 +12,7 @@ import ObjectMapper
 typealias VenuesCompletion = (venues: [Venue]) -> Void
 typealias VenueHoursCompletion = (hours: VenueHours?) -> Void
 typealias VenuePhotosCompletion = (photos: [Photo]) -> Void
+typealias VenueTipsCompletion = (tips: [VenueTip]) -> Void
 class VenueService: BaseService {
 
     func loadVenues(latitude: Double, longtitude: Double, section: String, limit: Int, offset: Int, completion: VenuesCompletion?) {
@@ -80,6 +81,22 @@ class VenueService: BaseService {
             let venuePhotos = items.map({ Mapper<Photo>().map($0) })
             dispatch_async(dispatch_get_main_queue(), {
                 completion?(photos: venuePhotos)
+            })
+        }
+    }
+
+    func loadVenueTips(id: String, completion: VenueTipsCompletion?) {
+        let path = ApiPath.Venue(id: id).tips
+        request(.GET, path: path) { (result) in
+            guard let json = result.value, tips = json["tips"] as? JSObject, items = tips["items"] as? JSArray else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    completion?(tips: [])
+                })
+                return
+            }
+            let venueTips = items.map({ Mapper<VenueTip>().map($0) })
+            dispatch_async(dispatch_get_main_queue(), {
+                completion?(tips: venueTips)
             })
         }
     }

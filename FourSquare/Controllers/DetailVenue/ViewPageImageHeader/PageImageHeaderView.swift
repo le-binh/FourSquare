@@ -21,8 +21,13 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
         didSet {
             self.afterPageButton.hidden = self.photos.count == 1
             self.imagesPageControl.numberOfPages = self.photos.count
-            self.configureImagePageViewController()
+            self.setFirstControllerOfPageViewController()
         }
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.configureImagePageViewController()
     }
 
     @IBAction func didTabBackAction(sender: AnyObject) {
@@ -45,6 +50,17 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
         imagePageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
         self.imagePageViewController?.dataSource = self
         self.imagePageViewController?.delegate = self
+        let imagePageItemViewController = ImagePageItemViewController.vc()
+        let startingViewControllers = [imagePageItemViewController]
+        imagePageViewController?.setViewControllers(startingViewControllers, direction: .Forward, animated: false, completion: nil)
+        guard let pageViewController = self.imagePageViewController else {
+            return
+        }
+        self.imagesPageView.addSubview(pageViewController.view)
+        pageViewController.view.frame = self.imagesPageView.bounds
+    }
+
+    private func setFirstControllerOfPageViewController() {
         if photos.count > 0 {
             guard let firstController = getPageItemViewController(0) else {
                 return
@@ -52,11 +68,6 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
             let startingViewControllers = [firstController]
             imagePageViewController?.setViewControllers(startingViewControllers, direction: .Forward, animated: false, completion: nil)
         }
-        guard let pageViewController = self.imagePageViewController else {
-            return
-        }
-        self.imagesPageView.addSubview(pageViewController.view)
-        pageViewController.view.frame = self.imagesPageView.bounds
     }
 
     private func setUpImagesPageControler() {

@@ -47,10 +47,15 @@
                     <constraint firstItem="4mP-kQ-1ZG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="wOq-WY-JSv"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="dateCommentLabel" destination="Zuz-rg-ldq" id="ezi-wA-JkH"/>
+                <outlet property="tipCommentLabel" destination="36Q-A4-uma" id="eir-zt-WbC"/>
+                <outlet property="userAvatarImageView" destination="4mP-kQ-1ZG" id="btL-YC-PvP"/>
+            </connections>
             <point key="canvasLocation" x="234" y="344"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="thumbnail_venue" width="165" height="125"/>
+        <image name="thumbnail_venue" width="213" height="160"/>
     </resources>
 </document>

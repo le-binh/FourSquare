@@ -32,7 +32,7 @@
                                 <action selector="didTabNextAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Iyn-xl-xUS"/>
                             </connections>
                         </button>
-                        <pageControl opaque="NO" contentMode="scaleAspectFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Jif-Qu-tbO">
+                        <pageControl hidden="YES" opaque="NO" contentMode="scaleAspectFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Jif-Qu-tbO">
                             <rect key="frame" x="168" y="213" width="39" height="37"/>
                             <color key="pageIndicatorTintColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         </pageControl>

@@ -25,6 +25,8 @@ class MapDetailVenueViewController: BaseViewController {
     @IBOutlet weak var priceVenueLabel: UILabel!
     @IBOutlet weak var distanceVenueLabel: UILabel!
 
+    var venue: Venue?
+
     // MARK:- Life Cycle
 
     override func viewDidLoad() {

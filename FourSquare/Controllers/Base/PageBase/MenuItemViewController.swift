@@ -96,8 +96,6 @@ extension MenuItemViewController: UITableViewDelegate {
         let venue = self.venues[indexPath.row]
         detailVenueViewController.title = venue.name
         detailVenueViewController.venue = venue
-        detailVenueViewController.loadVenueHours(venue.id)
-        detailVenueViewController.loadVenuePhotos(venue.id)
         UIApplication.sharedApplication().navigationController()?.pushViewController(detailVenueViewController, animated: true)
     }
 }

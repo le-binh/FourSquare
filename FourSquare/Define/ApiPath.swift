@@ -34,6 +34,7 @@ struct ApiPath {
         }
         var photos: String { return baseURL + "/\(id)/photos" }
         var hours: String { return baseURL + "/\(id)/hours" }
+        var tips: String { return baseURL + "/\(id)/tips" }
         var URLString: String { return baseURL + "/\(id)" }
     }
 }

@@ -7,18 +7,26 @@
 //
 
 import UIKit
+import Haneke
 
 class TipsDetailVenueCell: UITableViewCell {
+
+    @IBOutlet weak var userAvatarImageView: UIImageView!
+    @IBOutlet weak var tipCommentLabel: UILabel!
+    @IBOutlet weak var dateCommentLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .None
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func setUpData(tip: VenueTip) {
+        self.tipCommentLabel.text = tip.comment
+        self.dateCommentLabel.text = "\(tip.timeStamp)"
+        guard let user = tip.user, avatar = user.avatar, url = avatar.avatarPath else {
+            return
+        }
+        self.userAvatarImageView.hnk_setImageFromURL(url)
     }
 
 }

@@ -26,6 +26,10 @@ class Photo: Mappable {
 }
 
 extension Photo {
+    var avatarPath: NSURL? {
+        let path = prefix + String(70) + "x" + String(70) + suffix
+        return NSURL(string: path)
+    }
     var thumbnailPath: NSURL? {
         let path = prefix + String(width / 2) + "x" + String(height / 2) + suffix
         return NSURL(string: path)
