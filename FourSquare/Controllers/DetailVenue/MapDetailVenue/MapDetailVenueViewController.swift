@@ -61,7 +61,7 @@ class MapDetailVenueViewController: BaseViewController {
             market.position = CLLocationCoordinate2DMake(CLLocationDegrees(latitude), CLLocationDegrees(longitude))
             market.icon = UIImage(named: "selected_marker_ic")
             market.map = self.googleMapView
-            self.googleMapView.camera = GMSCameraPosition(target: market.position, zoom: market.zoomLevel, bearing: 0, viewingAngle: 0)
+            self.googleMapView.camera = GMSCameraPosition(target: market.position, zoom: market.zoomLevelMarker, bearing: 0, viewingAngle: 0)
         }
     }
 

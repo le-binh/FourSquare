@@ -19,13 +19,13 @@ class MapViewController: ViewController {
     @IBOutlet weak var backCollectionCellButton: UIButton!
     @IBOutlet weak var nextCollectionCellButton: UIButton!
     let collectionCellPadding: CGFloat = 10
-    let numberOfItems: Int = 4
     var indexMarker: Int = 0
     var markers: [MarkerMap] = []
-    var locationDegrees: [(lat: Double, long: Double)] = [(16.071574, 108.234338), (16.077554, 108.231892), (16.075863, 108.238329), (16.072523, 108.230476)]
     var venues: [Venue] = [] {
         didSet {
-            print(venues.count)
+            self.clearOldData()
+            self.addMultiMarker()
+            self.venueCollectionView.reloadData()
         }
     }
 
@@ -35,8 +35,6 @@ class MapViewController: ViewController {
         super.viewDidLoad()
         self.configureCollectionView()
         self.configureGoogleMapsView()
-        // Example Marker
-        self.addMultiMarker()
     }
 
     // MARK:- Action
@@ -46,15 +44,15 @@ class MapViewController: ViewController {
         if indexRow < 0 {
             return
         }
-        self.scrollToCellAtIndex(indexRow)
+        self.scrollToCellAtIndex(indexRow, animated: true)
     }
 
     @IBAction func nextCollectionCellAction(sender: AnyObject) {
         let indexRow = self.visibleIndex() + 1
-        if indexRow == self.numberOfItems {
+        if indexRow == self.venues.count {
             return
         }
-        self.scrollToCellAtIndex(indexRow)
+        self.scrollToCellAtIndex(indexRow, animated: true)
     }
 
     // MARK:- Private Functions
@@ -76,15 +74,20 @@ class MapViewController: ViewController {
         self.venueCollectionView.collectionViewLayout = collectionViewFlowLayout
     }
 
+    private func clearOldData() {
+        self.venueMapView.clear()
+        self.markers = []
+    }
+
     private func sizeItemCellOfCollectionView() -> CGSize {
         let cellWidth = kScreenSize.width - 2 * self.collectionCellPadding
         let cellHeight = self.venueCollectionView.frame.height
         return CGSize(width: cellWidth, height: cellHeight)
     }
 
-    private func scrollToCellAtIndex(index: Int) {
+    private func scrollToCellAtIndex(index: Int, animated: Bool) {
         let indexPath: NSIndexPath = NSIndexPath(forRow: index, inSection: 0)
-        self.venueCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
+        self.venueCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: animated)
     }
 
     private func configureGoogleMapsView() {
@@ -97,7 +100,6 @@ class MapViewController: ViewController {
         marker.tag = self.indexMarker
         if marker.tag == 0 {
             marker.icon = UIImage(named: "selected_marker_ic")
-            marker.title = "abc"
             self.markers.append(marker)
             marker.map = self.venueMapView
             self.venueMapView.selectedMarker = marker
@@ -106,16 +108,19 @@ class MapViewController: ViewController {
             self.markers.append(marker)
             marker.map = self.venueMapView
         }
-
-        self.venueMapView.camera = GMSCameraPosition(target: marker.position, zoom: marker.zoomLevel, bearing: 0, viewingAngle: 0)
         self.indexMarker = self.indexMarker + 1
     }
 
     private func addMultiMarker() {
         self.indexMarker = 0
-        for element in self.locationDegrees {
-            addMarker(element.lat, element.long)
+        for venue in self.venues {
+            guard let latitude = venue.location?.latitude, longitude = venue.location?.longitude else {
+                continue
+            }
+            addMarker(latitude, longitude)
         }
+        let marker = self.markers[0]
+        self.venueMapView.camera = GMSCameraPosition(target: marker.position, zoom: marker.zoomLevelMarkers, bearing: 0, viewingAngle: 0)
     }
 
     private func resetMarkersIconWithout(selectedMarker: MarkerMap) {
@@ -129,6 +134,7 @@ class MapViewController: ViewController {
     private func setSelectedMarker(selectedMarker: MarkerMap) {
         selectedMarker.icon = UIImage(named: "selected_marker_ic")
         self.venueMapView.selectedMarker = selectedMarker
+        self.venueMapView.camera = GMSCameraPosition(target: selectedMarker.position, zoom: selectedMarker.zoomLevelMarkers, bearing: 0, viewingAngle: 0)
     }
 
     private func visibleIndex() -> Int {
@@ -146,7 +152,7 @@ extension MapViewController: UICollectionViewDataSource {
         return 1
     }
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.numberOfItems
+        return self.venues.count
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(VenueCollectionViewCell.self, forIndexPath: indexPath)
@@ -189,7 +195,7 @@ extension MapViewController: GMSMapViewDelegate {
         }
         self.setSelectedMarker(markerMap)
         resetMarkersIconWithout(markerMap)
-        self.scrollToCellAtIndex(markerMap.tag)
+        self.scrollToCellAtIndex(markerMap.tag, animated: false)
         return true
     }
 }
