@@ -28,6 +28,18 @@ enum DefaultMenuItem: Int {
     }
 }
 
+enum AllMenuItem: String {
+    case TopPicks = "Top Picks"
+    case Food = "Food"
+    case Shops = "Shops"
+    case Drinks = "Drinks"
+    case Coffee = "Coffee"
+    case Arts = "Arts"
+    case Outdoors = "Outdoors"
+    case Sights = "Sights"
+    case Trending = "Trending"
+}
+
 class HomeViewController: BaseViewController {
 
     // MARK:- Properties
@@ -35,7 +47,7 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var viewOfPageMenu: UIView!
     @IBOutlet weak var searchButton: UIButton!
     var pageMenu: CAPSPageMenu?
-    var itemViewControllers: [UIViewController] = []
+    var itemViewControllers: [MenuItemViewController] = []
     var activeMenuItems: [ItemMenu] = []
     var topPicksViewController: TopPicksViewController = TopPicksViewController.vc()
     var foodViewController: FoodViewController = FoodViewController.vc()
@@ -47,12 +59,20 @@ class HomeViewController: BaseViewController {
     lazy var sightsViewController: SightsViewController = SightsViewController.vc()
     lazy var trendingViewController: TrendingViewController = TrendingViewController.vc()
     lazy var mapViewController: MapViewController = MapViewController.vc()
+    var venues: [Venue] = [] {
+        didSet {
+            if didShowMapView {
+                self.mapViewController.venues = self.venues
+            }
+        }
+    }
 
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
         self.title = Strings.HomeTitle
         super.viewDidLoad()
+        self.configureMenuItemDelegate()
         self.itemViewControllers = self.setDefaultMenuItems()
         self.configureMenuPage()
         self.updatePageMenuItem()
@@ -69,6 +89,7 @@ class HomeViewController: BaseViewController {
             self.changeMapViewToTableView()
         } else {
             self.changeTableViewToMapView()
+            self.mapViewController.venues = self.venues
         }
         didShowMapView = !didShowMapView
     }
@@ -84,14 +105,26 @@ class HomeViewController: BaseViewController {
 
     // MARK:- Private Function
 
+    private func configureMenuItemDelegate() {
+        self.topPicksViewController.delegate = self
+        self.foodViewController.delegate = self
+        self.shopsViewController.delegate = self
+        self.drinksViewController.delegate = self
+        self.coffeeViewController.delegate = self
+        self.artsViewController.delegate = self
+        self.outdoorsViewController.delegate = self
+        self.sightsViewController.delegate = self
+        self.trendingViewController.delegate = self
+    }
+
     private func configureMenuPage() {
         self.setUpMenuPage(isDefault: true)
         self.pageMenu?.delegate = self
     }
 
-    private func setDefaultMenuItems() -> [UIViewController] {
+    private func setDefaultMenuItems() -> [MenuItemViewController] {
         // self.initMenuItemViewController()
-        var viewControllers: [UIViewController] = []
+        var viewControllers: [MenuItemViewController] = []
 
         self.topPicksViewController.title = Strings.MenuItemTopPicks
         viewControllers.append(topPicksViewController)
@@ -198,9 +231,10 @@ class HomeViewController: BaseViewController {
     private func setUpNewActiveMenuItems() {
         if self.activeMenuItems.count == 0 {
             self.setUpMenuPage(isDefault: true)
-            return
+        } else {
+            self.setUpMenuPage(isDefault: false)
         }
-        self.setUpMenuPage(isDefault: false)
+        self.pageMenu?.delegate = self
     }
 
     private func isChangeActiveMenuItems(newActiveMenuItems: [ItemMenu]) -> Bool {
@@ -219,6 +253,15 @@ class HomeViewController: BaseViewController {
 
 extension HomeViewController: CAPSPageMenuDelegate {
     func didMoveToPage(controller: UIViewController, index: Int) {
+        let itemViewController = self.itemViewControllers[index]
+        if itemViewController.venues.count > 0 {
+            self.venues = itemViewController.venues
+        }
+    }
+}
 
+extension HomeViewController: MenuItemDelegate {
+    func menuItemDidLoadData(venues: [Venue]) {
+        self.venues = venues
     }
 }

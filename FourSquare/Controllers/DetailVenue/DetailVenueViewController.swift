@@ -144,6 +144,48 @@ class DetailVenueViewController: BaseViewController {
             self.detailVenueTableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: .Automatic)
         }
     }
+
+    private func informationCell(venue: Venue, tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
+        guard let infomationSection = InfomationSection(rawValue: indexPath.row) else {
+            return UITableViewCell(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        }
+        let cell = tableView.dequeue(DefaultVenueDetailCell)
+        cell.titleLabel.text = infomationSection.title
+        switch infomationSection {
+        case .Name:
+            cell.textDetailLabel.text = venue.name
+        case .Address:
+            let cellMap = tableView.dequeue(MapDetailVenueCell)
+            cellMap.addressLabel.text = venue.location?.fullAddress
+            cellMap.venue = venue
+            cellMap.detailVenueViewController = self
+            return cellMap
+        case .Contact:
+            let contact = venue.contact?.contact
+            cell.textDetailLabel.text = contact == "" ? "Not Available" : contact
+        case .Categories:
+            cell.textDetailLabel.text = venue.showCategories
+        case .Hours:
+            guard let hours = venue.hours else {
+                cell.textDetailLabel.text = "Not Available"
+                break
+            }
+            cell.textDetailLabel.text = hours.timeToday
+        case .Rating:
+            cell.textDetailLabel.text = String(venue.rating)
+        case .PriceTier:
+            guard let tier = venue.price?.tier else {
+                cell.textDetailLabel.text = "0"
+                break
+            }
+            cell.textDetailLabel.text = String(tier)
+        case .Verified:
+            cell.textDetailLabel.text = venue.verified ? "Yes" : "No"
+        case .Website:
+            cell.textDetailLabel.text = venue.website == "" ? "Not Available" : venue.website
+        }
+        return cell
+    }
 }
 
 //MARK:- Table View Datasource
@@ -177,45 +219,7 @@ extension DetailVenueViewController: UITableViewDataSource {
         case .PageImage:
             return UITableViewCell(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         case .Information:
-            guard let infomationSection = InfomationSection(rawValue: indexPath.row) else {
-                return UITableViewCell()
-            }
-            let cell = tableView.dequeue(DefaultVenueDetailCell)
-            cell.titleLabel.text = infomationSection.title
-            switch infomationSection {
-            case .Name:
-                cell.textDetailLabel.text = venue.name
-            case .Address:
-                let cellMap = tableView.dequeue(MapDetailVenueCell)
-                cellMap.addressLabel.text = venue.location?.fullAddress
-                cellMap.venue = venue
-                cellMap.detailVenueViewController = self
-                return cellMap
-            case .Contact:
-                let contact = venue.contact?.contact
-                cell.textDetailLabel.text = contact == "" ? "Not Available" : contact
-            case .Categories:
-                cell.textDetailLabel.text = venue.showCategories
-            case .Hours:
-                guard let hours = venue.hours else {
-                    cell.textDetailLabel.text = "Not Available"
-                    break
-                }
-                cell.textDetailLabel.text = hours.timeToday
-            case .Rating:
-                cell.textDetailLabel.text = String(venue.rating)
-            case .PriceTier:
-                guard let tier = venue.price?.tier else {
-                    cell.textDetailLabel.text = "0"
-                    break
-                }
-                cell.textDetailLabel.text = String(tier)
-            case .Verified:
-                cell.textDetailLabel.text = venue.verified ? "Yes" : "No"
-            case .Website:
-                cell.textDetailLabel.text = venue.website == "" ? "Not Available" : venue.website
-            }
-            return cell
+            return informationCell(venue, tableView: tableView, indexPath: indexPath)
         case .Tips:
             let cell = tableView.dequeue(TipsDetailVenueCell)
             guard let venue = self.venue else {

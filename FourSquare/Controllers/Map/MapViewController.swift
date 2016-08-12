@@ -10,7 +10,7 @@ import UIKit
 import GoogleMaps
 import SwiftUtils
 
-class MapViewController: UIViewController {
+class MapViewController: ViewController {
 
     // MARK:- Properties
 
@@ -23,7 +23,12 @@ class MapViewController: UIViewController {
     var indexMarker: Int = 0
     var markers: [MarkerMap] = []
     var locationDegrees: [(lat: Double, long: Double)] = [(16.071574, 108.234338), (16.077554, 108.231892), (16.075863, 108.238329), (16.072523, 108.230476)]
-    var zoomLevel: Float = 14
+    var venues: [Venue] = [] {
+        didSet {
+            print(venues.count)
+        }
+    }
+
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
@@ -102,7 +107,7 @@ class MapViewController: UIViewController {
             marker.map = self.venueMapView
         }
 
-        self.venueMapView.camera = GMSCameraPosition(target: marker.position, zoom: self.zoomLevel, bearing: 0, viewingAngle: 0)
+        self.venueMapView.camera = GMSCameraPosition(target: marker.position, zoom: marker.zoomLevel, bearing: 0, viewingAngle: 0)
         self.indexMarker = self.indexMarker + 1
     }
 

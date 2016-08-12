@@ -9,5 +9,6 @@
 import GoogleMaps
 
 class MarkerMap: GMSMarker {
+    var zoomLevel: Float = 15
     var tag: Int = 0
 }

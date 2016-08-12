@@ -27,6 +27,7 @@ class MapDetailVenueCell: UITableViewCell {
     @IBAction func mapDetailVenueAction(sender: AnyObject) {
         let mapDetailVenueViewController = MapDetailVenueViewController.vc()
         mapDetailVenueViewController.venue = venue
+        mapDetailVenueViewController.title = venue?.name
         self.detailVenueViewController?.navigationController?.pushViewController(mapDetailVenueViewController, animated: true)
     }
 

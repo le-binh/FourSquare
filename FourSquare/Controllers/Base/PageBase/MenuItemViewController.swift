@@ -22,6 +22,10 @@ enum SectionQuery: String {
     case Trending = "trending"
 }
 
+protocol MenuItemDelegate {
+    func menuItemDidLoadData(venues: [Venue])
+}
+
 class MenuItemViewController: BaseViewController {
 
     // MARK:- Properties
@@ -34,6 +38,7 @@ class MenuItemViewController: BaseViewController {
     @IBOutlet weak var venueTableView: UITableView?
     let rowHeight: CGFloat = 140
     var venues: [Venue] = []
+    var delegate: MenuItemDelegate!
 
     // MARK:- Life Cycle
 
@@ -68,6 +73,9 @@ class MenuItemViewController: BaseViewController {
             SVProgressHUD.dismiss()
             self.venues = venues
             self.venueTableView?.reloadData()
+            if let delegate = self.delegate {
+                delegate.menuItemDidLoadData(self.venues)
+            }
         }
     }
 }

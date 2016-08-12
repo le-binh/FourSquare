@@ -8,6 +8,7 @@
 
 import UIKit
 import Haneke
+import SwiftUtils
 
 class TipsDetailVenueCell: UITableViewCell {
 
@@ -22,7 +23,8 @@ class TipsDetailVenueCell: UITableViewCell {
 
     func setUpData(tip: VenueTip) {
         self.tipCommentLabel.text = tip.comment
-        self.dateCommentLabel.text = "\(tip.timeStamp)"
+        let date = NSDate(timeIntervalSince1970: tip.timeStamp)
+        self.dateCommentLabel.text = date.toString(DateFormat.DateTime24NoSec, localized: true)
         guard let user = tip.user, avatar = user.avatar, url = avatar.avatarPath else {
             return
         }

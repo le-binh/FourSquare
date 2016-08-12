@@ -13,7 +13,7 @@ import ObjectMapper
 class VenueTip: Mappable {
     var user: User?
     var comment: String = ""
-    var timeStamp: Int = 0
+    var timeStamp: Double = 0
     required init?(_ map: Map) {
 
     }
