@@ -15,4 +15,8 @@ class HistoryViewController: MenuItemViewController {
         super.viewDidLoad()
         self.navigationBar?.rightBarButtonHidden = true
     }
+
+    override func viewDidAppear(animated: Bool) {
+
+    }
 }

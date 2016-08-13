@@ -17,4 +17,8 @@ class FavoriteViewController: MenuItemViewController {
         self.navigationBar?.rightBarButtonHidden = true
     }
 
+    override func viewDidAppear(animated: Bool) {
+
+    }
+
 }

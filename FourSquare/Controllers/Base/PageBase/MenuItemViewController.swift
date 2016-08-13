@@ -32,9 +32,6 @@ class MenuItemViewController: BaseViewController {
     var section: SectionQuery {
         return .TopPicks
     }
-    var isSearchingVenue: Bool {
-        return false
-    }
     @IBOutlet weak var venueTableView: UITableView?
     let rowHeight: CGFloat = 140
     var venues: [Venue] = []
@@ -50,9 +47,7 @@ class MenuItemViewController: BaseViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if isViewFirstAppear {
-            if !isSearchingVenue {
-                loadVenues()
-            }
+            loadVenues()
         }
     }
 
