@@ -134,7 +134,7 @@ class MapViewController: ViewController {
     private func setSelectedMarker(selectedMarker: MarkerMap) {
         selectedMarker.icon = UIImage(named: "selected_marker_ic")
         self.venueMapView.selectedMarker = selectedMarker
-        self.venueMapView.camera = GMSCameraPosition(target: selectedMarker.position, zoom: selectedMarker.zoomLevelMarkers, bearing: 0, viewingAngle: 0)
+        self.venueMapView.animateToLocation(selectedMarker.position)
     }
 
     private func visibleIndex() -> Int {
@@ -156,6 +156,8 @@ extension MapViewController: UICollectionViewDataSource {
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(VenueCollectionViewCell.self, forIndexPath: indexPath)
+        let venue = self.venues[indexPath.row]
+        cell.setUpData(venue)
         return cell
     }
 }
@@ -165,7 +167,9 @@ extension MapViewController: UICollectionViewDataSource {
 extension MapViewController: UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let detailVenueViewController = DetailVenueViewController.vc()
-        detailVenueViewController.title = "Phố xưa"
+        let venue = self.venues[indexPath.row]
+        detailVenueViewController.title = venue.name
+        detailVenueViewController.venue = venue
         self.navigationController?.pushViewController(detailVenueViewController, animated: true)
     }
 }
@@ -182,6 +186,7 @@ extension MapViewController: UIScrollViewDelegate {
     func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
         let marker = self.markers[self.visibleIndex()]
         self.setSelectedMarker(marker)
+        self.venueMapView.animateToLocation(marker.position)
         self.resetMarkersIconWithout(marker)
     }
 }
@@ -194,6 +199,7 @@ extension MapViewController: GMSMapViewDelegate {
             return false
         }
         self.setSelectedMarker(markerMap)
+        self.venueMapView.animateToLocation(markerMap.position)
         resetMarkersIconWithout(markerMap)
         self.scrollToCellAtIndex(markerMap.tag, animated: false)
         return true

@@ -16,6 +16,8 @@ class Venue: Mappable {
     var ratingColorString: String = ""
     var verified: Bool = true
     var website: String = ""
+    var isFavorite: Bool = false
+    var isHistory: Bool = false
     var thumbnail: Photo?
     var location: VenueLocation?
     var categories: [VenueCategory] = []
