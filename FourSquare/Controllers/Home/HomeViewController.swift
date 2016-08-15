@@ -51,8 +51,8 @@ class HomeViewController: BaseViewController {
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
-        self.title = Strings.HomeTitle
         super.viewDidLoad()
+        self.navigationBar?.title = Strings.HomeTitle
         self.itemViewControllers = self.setDefaultMenuItems()
         self.configureMenuPage()
         self.updatePageMenuItem()

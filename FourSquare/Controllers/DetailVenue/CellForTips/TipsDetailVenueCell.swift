@@ -21,6 +21,7 @@ class TipsDetailVenueCell: UITableViewCell {
     }
 
     func setUpData(tip: VenueTip) {
+        self.userAvatarImageView.image = UIImage(named: "thumbnail_venue")
         self.tipCommentLabel.text = tip.comment
         self.dateCommentLabel.text = "\(tip.timeStamp)"
         guard let user = tip.user, avatar = user.avatar, url = avatar.avatarPath else {

@@ -56,6 +56,8 @@ class VenueItemTableViewCell: UITableViewCell {
         self.priceVenueLabel.text = venue.price?.showCurrency()
         if let distance = venue.location?.distance {
             self.distanceLabel.text = "\(distance)m From Here"
+        } else {
+            self.distanceLabel.text = "???m From Here"
         }
         if let url = venue.thumbnail?.thumbnailPath {
             self.thumbnailImageView.hnk_setImageFromURL(url)

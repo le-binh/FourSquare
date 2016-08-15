@@ -30,10 +30,10 @@ class MapDetailVenueViewController: BaseViewController {
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
-        self.title = "Phố xưa"
         super.viewDidLoad()
         self.setUpUI()
         self.addMarker()
+        self.navigationBar?.title = venue?.name
     }
 
     override func favoriteAction(sender: AnyObject) {

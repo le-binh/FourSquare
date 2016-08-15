@@ -22,7 +22,7 @@ class VenueHours: Mappable {
 extension VenueHours {
     var timeToday: String {
         guard let hoursToday = timeFrames.first else {
-            return "Not Available"
+            return Strings.NotAvailable
         }
         let openTime = formatTime(hoursToday.openTime)
         let closeTime = formatTime(hoursToday.closeTime)

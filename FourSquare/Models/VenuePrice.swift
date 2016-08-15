@@ -22,7 +22,7 @@ class VenuePrice: Mappable {
     func showCurrency() -> String {
         var result = ""
         for _ in 0..<tier {
-            result = result + "$"
+            result = result + currency
         }
         return result
     }

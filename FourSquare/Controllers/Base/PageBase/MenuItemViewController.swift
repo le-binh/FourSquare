@@ -92,7 +92,6 @@ extension MenuItemViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let detailVenueViewController = DetailVenueViewController.vc()
         let venue = self.venues[indexPath.row]
-        detailVenueViewController.title = venue.name
         detailVenueViewController.venue = venue
         UIApplication.sharedApplication().navigationController()?.pushViewController(detailVenueViewController, animated: true)
     }
