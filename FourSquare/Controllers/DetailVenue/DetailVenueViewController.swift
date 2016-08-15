@@ -90,6 +90,7 @@ class DetailVenueViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureTableView()
+        navigationBar?.title = venue?.name
     }
 
     override func viewDidAppear(animated: Bool) {

@@ -40,29 +40,30 @@ class SearchVenueViewController: BaseViewController {
         } else {
             self.changeTableViewToMapView()
         }
+        self.showSearchBoxWithAnimation()
         didShowMapView = !didShowMapView
     }
 
     // MARK:- Action
 
-    @IBAction func showBoxSearch(sender: AnyObject) {
-        UIView.animateWithDuration(0.3, animations: {
-            self.searchBoxHeightLayoutConstraint.constant = 0
-            self.searchButton.hidden = false
-            self.view.layoutIfNeeded()
-            }, completion: { (complete) in
-            self.researchButton.hidden = true
-        })
+    @IBAction func showSearchBox(sender: AnyObject) {
+        self.setEmptyTextField()
+        self.showSearchBoxWithAnimation()
     }
 
     @IBAction func searchVenuesAction(sender: AnyObject) {
-        UIView.animateWithDuration(0.3, animations: {
-            self.searchBoxHeightLayoutConstraint.constant = -self.searchBoxHeight
-            self.view.layoutIfNeeded()
-            }, completion: { (complete) in
-            self.searchButton.hidden = true
-            self.researchButton.hidden = false
-        })
+        let venueName = self.venueNameTextField.text ?? ""
+        let venueAddress = self.venueAddressTextField.text ?? ""
+        if !venueName.isEmpty && !venueAddress.isEmpty {
+            self.hiddenSearchBoxWithAnimation()
+            if didShowMapView {
+                let venueSearchingMapViewController = self.currentViewController as? VenueSearchingMapViewController
+                venueSearchingMapViewController?.searchVenues(venueName, address: venueAddress)
+            } else {
+                let venueSearchingViewController = self.currentViewController as? VenueSearchingViewController
+                venueSearchingViewController?.searchVenues(venueName, address: venueAddress)
+            }
+        }
     }
 
     // MARK:- Private Functions
@@ -115,6 +116,31 @@ class SearchVenueViewController: BaseViewController {
             oldViewController.removeFromParentViewController()
             newViewController.didMoveToParentViewController(self)
         }
+    }
+
+    private func hiddenSearchBoxWithAnimation() {
+        UIView.animateWithDuration(0.3, animations: {
+            self.searchBoxHeightLayoutConstraint.constant = -self.searchBoxHeight
+            self.view.layoutIfNeeded()
+            }, completion: { (complete) in
+            self.searchButton.hidden = true
+            self.researchButton.hidden = false
+        })
+    }
+
+    private func showSearchBoxWithAnimation() {
+        UIView.animateWithDuration(0.3, animations: {
+            self.searchBoxHeightLayoutConstraint.constant = 0
+            self.searchButton.hidden = false
+            self.view.layoutIfNeeded()
+            }, completion: { (complete) in
+            self.researchButton.hidden = true
+        })
+    }
+
+    private func setEmptyTextField() {
+        self.venueNameTextField.text = ""
+        self.venueAddressTextField.text = ""
     }
 
 }

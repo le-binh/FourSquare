@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import SVProgressHUD
 
 class VenueSearchingMapViewController: MapViewController {
 
@@ -15,4 +16,11 @@ class VenueSearchingMapViewController: MapViewController {
         super.viewDidLoad()
     }
 
+    func searchVenues(name: String, address: String) {
+        SVProgressHUD.show()
+        VenueService().searchVeues(address, query: name, limit: 10, offset: 0) { (venues) in
+            SVProgressHUD.dismiss()
+            self.venues = venues
+        }
+    }
 }

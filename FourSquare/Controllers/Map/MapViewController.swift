@@ -23,7 +23,7 @@ class MapViewController: ViewController {
     var markers: [MarkerMap] = []
     var venues: [Venue] = [] {
         didSet {
-            self.clearOldData()
+            self.clearMapData()
             self.addMultiMarker()
             self.venueCollectionView.reloadData()
         }
@@ -74,7 +74,7 @@ class MapViewController: ViewController {
         self.venueCollectionView.collectionViewLayout = collectionViewFlowLayout
     }
 
-    private func clearOldData() {
+    private func clearMapData() {
         self.venueMapView.clear()
         self.markers = []
     }
@@ -119,7 +119,8 @@ class MapViewController: ViewController {
             }
             addMarker(latitude, longitude)
         }
-        let marker = self.markers[0]
+        let positionDefault = CLLocationCoordinate2DMake(CLLocationDegrees(16.0592007), CLLocationDegrees(108.1769168))
+        let marker = (self.markers.count > 0) ? self.markers[0]: MarkerMap(position: positionDefault)
         self.venueMapView.camera = GMSCameraPosition(target: marker.position, zoom: marker.zoomLevelMarkers, bearing: 0, viewingAngle: 0)
     }
 

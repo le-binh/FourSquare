@@ -44,7 +44,7 @@
                             <rect key="frame" x="278" y="6" width="27" height="27"/>
                             <state key="normal" image="search_again_ic"/>
                             <connections>
-                                <action selector="showBoxSearch:" destination="-1" eventType="touchUpInside" id="gd6-cG-aBZ"/>
+                                <action selector="showSearchBox:" destination="-1" eventType="touchUpInside" id="tUC-IM-Z7o"/>
                             </connections>
                         </button>
                     </subviews>

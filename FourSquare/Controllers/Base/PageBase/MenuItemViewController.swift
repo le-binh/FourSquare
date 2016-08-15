@@ -73,6 +73,15 @@ class MenuItemViewController: BaseViewController {
             }
         }
     }
+
+    func searchVenues(name: String, address: String) {
+        SVProgressHUD.show()
+        VenueService().searchVeues(address, query: name, limit: 10, offset: 0) { (venues) in
+            SVProgressHUD.dismiss()
+            self.venues = venues
+            self.venueTableView?.reloadData()
+        }
+    }
 }
 
 //MARK:- Table View Datasource
@@ -97,7 +106,7 @@ extension MenuItemViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let detailVenueViewController = DetailVenueViewController.vc()
         let venue = self.venues[indexPath.row]
-        detailVenueViewController.title = venue.name
+        // detailVenueViewController.title = venue.name
         detailVenueViewController.venue = venue
         UIApplication.sharedApplication().navigationController()?.pushViewController(detailVenueViewController, animated: true)
     }
