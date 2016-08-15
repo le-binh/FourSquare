@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUtils
+import SVProgressHUD
 
 enum DetailVenueSection: Int {
     case PageImage
@@ -121,34 +122,47 @@ class DetailVenueViewController: BaseViewController {
     }
 
     private func loadVenueDetail() {
-        self.loadVenueHours()
-        self.loadVenuePhotos()
-        self.loadVenueTips()
+        SVProgressHUD.show()
+        let group = dispatch_group_create()
+        dispatch_group_enter(group)
+        self.loadVenueHours {
+            dispatch_group_leave(group)
+        }
+        dispatch_group_enter(group)
+        self.loadVenuePhotos {
+            dispatch_group_leave(group)
+        }
+        dispatch_group_enter(group)
+        self.loadVenueTips {
+            dispatch_group_leave(group)
+        }
+        dispatch_group_notify(group, dispatch_get_main_queue()) {
+            SVProgressHUD.dismiss()
+            self.detailVenueTableView.reloadData()
+        }
     }
 
-    private func loadVenueHours() {
+    private func loadVenueHours(completion: () -> Void) {
         guard let venueId = self.venue?.id else { return }
         VenueService().loadVenueHours(venueId) { (hours) in
             self.venue?.hours = hours
-            if self.venue?.hours != nil {
-                self.detailVenueTableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
-            }
+            completion()
         }
     }
 
-    private func loadVenuePhotos() {
+    private func loadVenuePhotos(completion: () -> Void) {
         guard let venueId = self.venue?.id else { return }
         VenueService().loadVenuePhotos(venueId) { (photos) in
             self.venue?.photos = photos
-            self.detailVenueTableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+            completion()
         }
     }
 
-    private func loadVenueTips() {
+    private func loadVenueTips(completion: () -> Void) {
         guard let venueId = self.venue?.id else { return }
         VenueService().loadVenueTips(venueId) { (tips) in
             self.venue?.tips = tips
-            self.detailVenueTableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: .Automatic)
+            completion()
         }
     }
 
@@ -213,7 +227,7 @@ extension DetailVenueViewController: UITableViewDataSource {
             case .PriceTier:
                 cell.textDetailLabel.text = "\(venue.price?.tier ?? 0)"
             case .Verified:
-                cell.textDetailLabel.text = venue.verified ? Strings.Yes : Strings.No
+                cell.textDetailLabel.text = venue.verified ? Strings.Verified : Strings.NotVerified
             case .Website:
                 cell.textDetailLabel.text = venue.website.isEmpty ? Strings.NotAvailable : venue.website
             }

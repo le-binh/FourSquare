@@ -14,8 +14,7 @@ class MapDetailVenueCell: UITableViewCell {
     var detailVenueViewController: DetailVenueViewController?
     var venue: Venue? {
         didSet {
-            guard let venue = self.venue else { return }
-            self.addressLabel.text = venue.location?.fullAddress
+            self.addressLabel.text = venue?.location?.fullAddress
         }
     }
 
