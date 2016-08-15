@@ -36,12 +36,14 @@ class MenuItemViewController: BaseViewController {
     let rowHeight: CGFloat = 140
     var venues: [Venue] = []
     var delegate: MenuItemDelegate!
+    var refreshControl: UIRefreshControl!
 
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpTableView()
+        self.setUpRefreshControl()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -62,8 +64,21 @@ class MenuItemViewController: BaseViewController {
         self.venueTableView?.rowHeight = self.rowHeight
     }
 
+    private func setUpRefreshControl() {
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.addTarget(self, action: #selector(self.refreshData), forControlEvents: .ValueChanged)
+        self.venueTableView?.addSubview(refreshControl)
+    }
+
+    @objc private func refreshData() {
+        self.loadVenues()
+    }
+
+    // MARK:- Public Functions
+
     func loadVenues() {
         SVProgressHUD.show()
+        self.refreshControl.endRefreshing()
         VenueService().loadVenues(16.0592007, longtitude: 108.1769168, section: section.rawValue, limit: 10, offset: 0) { (venues) in
             SVProgressHUD.dismiss()
             self.venues = venues
