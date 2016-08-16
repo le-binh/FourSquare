@@ -8,12 +8,16 @@
 
 import Foundation
 import ObjectMapper
+import RealmSwift
 
-class VenuePrice: Mappable {
-    var tier: Int = 0
-    var currency: String = "$"
-    required init?(_ map: Map) {
+class VenuePrice: Object, Mappable {
+    dynamic var tier: Int = 0
+    dynamic var currency: String = "$"
 
+    var venues = LinkingObjects(fromType: Venue.self, property: "price")
+
+    required convenience init?(_ map: Map) {
+        self.init()
     }
     func mapping(map: Map) {
         tier <- map["tier"]

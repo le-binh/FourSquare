@@ -8,11 +8,15 @@
 
 import Foundation
 import ObjectMapper
+import RealmSwift
 
-class VenueHours: Mappable {
-    var timeFrames: [Hours] = []
-    required init?(_ map: Map) {
+class VenueHours: Object, Mappable {
+    var timeFrames = RealmSwift.List<Hours>()
 
+    var venues = LinkingObjects(fromType: Venue.self, property: "hours")
+
+    required convenience init?(_ map: Map) {
+        self.init()
     }
     func mapping(map: Map) {
         timeFrames <- map["timeframes"]
@@ -34,11 +38,14 @@ extension VenueHours {
     }
 }
 
-class Hours: Mappable {
-    var openTime: String = ""
-    var closeTime: String = ""
-    required init?(_ map: Map) {
+class Hours: Object, Mappable {
+    dynamic var openTime: String = ""
+    dynamic var closeTime: String = ""
 
+    var venueHours = LinkingObjects(fromType: VenueHours.self, property: "timeFrames")
+
+    required convenience init?(_ map: Map) {
+        self.init()
     }
     func mapping(map: Map) {
         openTime <- map["open.0.start"]

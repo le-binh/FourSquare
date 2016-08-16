@@ -37,6 +37,9 @@ class MenuItemViewController: BaseViewController {
     var venues: [Venue] = []
     var delegate: MenuItemDelegate!
     var refreshControl: UIRefreshControl!
+    let limit: Int = 10
+    var offset: Int = 0
+    var willLoadMore: Bool = true
 
     // MARK:- Life Cycle
 
@@ -71,6 +74,7 @@ class MenuItemViewController: BaseViewController {
     }
 
     @objc private func refreshData() {
+        self.offset = 0
         self.loadVenues()
     }
 
@@ -79,7 +83,7 @@ class MenuItemViewController: BaseViewController {
     func loadVenues() {
         SVProgressHUD.show()
         self.refreshControl.endRefreshing()
-        VenueService().loadVenues(16.0592007, longtitude: 108.1769168, section: section.rawValue, limit: 10, offset: 0) { (venues) in
+        VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (venues) in
             SVProgressHUD.dismiss()
             self.venues = venues
             self.venueTableView?.reloadData()
@@ -91,10 +95,18 @@ class MenuItemViewController: BaseViewController {
 
     func searchVenues(name: String, address: String) {
         SVProgressHUD.show()
-        VenueService().searchVeues(address, query: name, limit: 10, offset: 0) { (venues) in
+        VenueService().searchVeues(address, query: name, limit: self.limit, offset: self.offset) { (venues) in
             SVProgressHUD.dismiss()
             self.venues = venues
             self.venueTableView?.reloadData()
+        }
+    }
+
+    func loadMoreVenues() {
+        VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (venues) in
+            self.venues.appendContentsOf(venues)
+            self.venueTableView?.reloadData()
+            self.willLoadMore = true
         }
     }
 }
@@ -131,12 +143,13 @@ extension MenuItemViewController: UITableViewDelegate {
 
 extension MenuItemViewController {
 
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-
-    }
-
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
+        if maximumOffset - currentOffset < 2 * self.rowHeight && willLoadMore {
+            willLoadMore = false
+            self.offset = self.offset + self.limit
+            self.loadMoreVenues()
+        }
     }
-
 }

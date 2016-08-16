@@ -59,6 +59,7 @@ class HomeViewController: BaseViewController {
     lazy var sightsViewController: SightsViewController = SightsViewController.vc()
     lazy var trendingViewController: TrendingViewController = TrendingViewController.vc()
     lazy var mapViewController: MapViewController = MapViewController.vc()
+    
     var venues: [Venue] = [] {
         didSet {
             if didShowMapView {

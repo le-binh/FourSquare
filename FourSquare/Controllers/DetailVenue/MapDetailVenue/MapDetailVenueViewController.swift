@@ -26,6 +26,7 @@ class MapDetailVenueViewController: BaseViewController {
     @IBOutlet weak var distanceVenueLabel: UILabel!
 
     var venue: Venue?
+    var routePolyline: GMSPolyline!
 
     // MARK:- Life Cycle
 
@@ -34,6 +35,8 @@ class MapDetailVenueViewController: BaseViewController {
         self.setUpUI()
         self.addMarker()
         self.setUpData()
+        self.setUpMyLocationManager()
+        // self.drawRouteGoogleMaps()
     }
 
     override func favoriteAction(sender: AnyObject) {
@@ -87,4 +90,21 @@ class MapDetailVenueViewController: BaseViewController {
         }
     }
 
+    private func setUpMyLocationManager() {
+        self.googleMapView.myLocationEnabled = true
+    }
+
+    private func drawRouteGoogleMaps() {
+        guard let currentLocation = MyLocationManager.sharedInstanced.currentLocation else { return }
+        guard let venueLatitude = self.venue?.location?.latitude else { return }
+        guard let venueLongitude = self.venue?.location?.longitude else { return }
+        let path: GMSMutablePath = GMSMutablePath()
+        path.addCoordinate(currentLocation.coordinate)
+        path.addLatitude(venueLatitude, longitude: venueLongitude)
+
+        let polyLine: GMSPolyline = GMSPolyline(path: path)
+        polyLine.strokeWidth = 2
+        polyLine.strokeColor = Color.Orange253
+        polyLine.map = self.googleMapView
+    }
 }

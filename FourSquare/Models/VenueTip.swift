@@ -9,13 +9,17 @@
 import Foundation
 import UIKit
 import ObjectMapper
+import RealmSwift
 
-class VenueTip: Mappable {
-    var user: User?
-    var comment: String = ""
-    var timeStamp: Double = 0
-    required init?(_ map: Map) {
+class VenueTip: Object, Mappable {
+    dynamic var user: User?
+    dynamic var comment: String = ""
+    dynamic var timeStamp: Double = 0
 
+    var venues = LinkingObjects(fromType: Venue.self, property: "tips")
+
+    required convenience init?(_ map: Map) {
+        self.init()
     }
 
     func mapping(map: Map) {

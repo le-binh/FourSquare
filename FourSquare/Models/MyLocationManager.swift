@@ -18,7 +18,12 @@ class MyLocationManager: NSObject {
     override init() {
         super.init()
         self.locationManager.delegate = self
-        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
+    }
+
+    func startLocation() {
+        self.locationManager.startUpdatingLocation()
+        self.currentLocation = self.locationManager.location
     }
 
 }
@@ -26,5 +31,12 @@ class MyLocationManager: NSObject {
 extension MyLocationManager: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         self.currentLocation = newLocation
+    }
+
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+
+    }
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.currentLocation = locations.first
     }
 }

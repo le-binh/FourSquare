@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupThirdParties() {
         setupConsole()
         setupGoogleMapAPIKey()
+        setupLocationManager()
     }
 
     private func setupConsole() {
@@ -54,5 +55,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func setupGoogleMapAPIKey() {
         GMSServices.provideAPIKey(GoogleMapsKeys.goolgeMapsApiKey)
+    }
+
+    func setupLocationManager() {
+        MyLocationManager.sharedInstanced.startLocation()
     }
 }

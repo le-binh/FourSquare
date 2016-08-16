@@ -118,6 +118,9 @@ class MapViewController: ViewController {
                 continue
             }
             addMarker(latitude, longitude)
+            if self.indexMarker >= 10 {
+                break
+            }
         }
         let positionDefault = CLLocationCoordinate2DMake(CLLocationDegrees(16.0592007), CLLocationDegrees(108.1769168))
         let marker = (self.markers.count > 0) ? self.markers[0]: MarkerMap(position: positionDefault)

@@ -8,11 +8,15 @@
 
 import Foundation
 import ObjectMapper
+import RealmSwift
 
-class VenueCategory: Mappable {
-    var categoryName: String = ""
-    required init?(_ map: Map) {
+class VenueCategory: Object, Mappable {
+    dynamic var categoryName: String = ""
 
+    var venues = LinkingObjects(fromType: Venue.self, property: "categories")
+
+    required convenience init?(_ map: Map) {
+        self.init()
     }
     func mapping(map: Map) {
         categoryName <- map["name"]

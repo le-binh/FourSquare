@@ -8,12 +8,16 @@
 
 import Foundation
 import ObjectMapper
+import RealmSwift
 
-class VenueLocation: Mappable {
-    var latitude: Double = 0
-    var longitude: Double = 0
-    var distance: Int = 0
-    var address: [String] = [""]
+class VenueLocation: Object, Mappable {
+    dynamic var latitude: Double = 0
+    dynamic var longitude: Double = 0
+    dynamic var distance: Int = 0
+    dynamic var address: [String] = [""]
+
+    var venues = LinkingObjects(fromType: Venue.self, property: "location")
+
     var fullAddress: String {
         var result: String = ""
         for element in address {
@@ -22,8 +26,8 @@ class VenueLocation: Mappable {
         return result
     }
 
-    required init?(_ map: Map) {
-
+    required convenience init?(_ map: Map) {
+        self.init()
     }
 
     func mapping(map: Map) {

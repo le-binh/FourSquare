@@ -15,11 +15,17 @@ typealias VenuePhotosCompletion = (photos: [Photo]) -> Void
 typealias VenueTipsCompletion = (tips: [VenueTip]) -> Void
 class VenueService: BaseService {
 
-    func loadVenues(latitude: Double, longtitude: Double, section: String, limit: Int, offset: Int, completion: VenuesCompletion?) {
+    func loadVenues(section: String, limit: Int, offset: Int, completion: VenuesCompletion?) {
         let path = ApiPath.Explore.path
+        guard let currentLocation = MyLocationManager.sharedInstanced.currentLocation else {
+            dispatch_async(dispatch_get_main_queue(), {
+                completion?(venues: [])
+            })
+            return
+        }
         var parameters = JSObject()
         parameters["venuePhotos"] = APIKeys.Thumbnail
-        parameters["ll"] = "\(latitude),\(longtitude)"
+        parameters["ll"] = "\(currentLocation.coordinate.latitude),\(currentLocation.coordinate.longitude)"
         parameters["section"] = section
         parameters["limit"] = limit
         parameters["offset"] = offset

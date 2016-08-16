@@ -8,16 +8,20 @@
 
 import Foundation
 import ObjectMapper
+import RealmSwift
 
-class VenueContact: Mappable {
-    var phone: String = ""
-    var twitter: String = ""
+class VenueContact: Object, Mappable {
+    dynamic var phone: String = ""
+    dynamic var twitter: String = ""
+
+    var venues = LinkingObjects(fromType: Venue.self, property: "contact")
+
     var contact: String {
         return phone.isEmpty ? twitter : phone
     }
 
-    required init?(_ map: Map) {
-
+    required convenience init?(_ map: Map) {
+        self.init()
     }
     func mapping(map: Map) {
         phone <- map["phone"]
