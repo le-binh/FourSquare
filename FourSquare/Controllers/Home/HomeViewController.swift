@@ -10,6 +10,7 @@ import UIKit
 import PageMenu
 import SwiftUtils
 import LGSideMenuController
+import RealmSwift
 
 enum DefaultMenuItem: Int {
     case TopPicks
@@ -59,8 +60,8 @@ class HomeViewController: BaseViewController {
     lazy var sightsViewController: SightsViewController = SightsViewController.vc()
     lazy var trendingViewController: TrendingViewController = TrendingViewController.vc()
     lazy var mapViewController: MapViewController = MapViewController.vc()
-    
-    var venues: [Venue] = [] {
+
+    var venues: Results<Venue>! {
         didSet {
             if didShowMapView {
                 self.mapViewController.venues = self.venues

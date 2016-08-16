@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import SwiftUtils
+import RealmSwift
 
 class MapViewController: ViewController {
 
@@ -21,7 +22,7 @@ class MapViewController: ViewController {
     let collectionCellPadding: CGFloat = 10
     var indexMarker: Int = 0
     var markers: [MarkerMap] = []
-    var venues: [Venue] = [] {
+    var venues: Results<Venue>! {
         didSet {
             self.clearMapData()
             self.addMultiMarker()

@@ -9,6 +9,7 @@
 import UIKit
 import SwiftUtils
 import SVProgressHUD
+import RealmSwift
 
 enum SectionQuery: String {
     case TopPicks = "toppicks"
@@ -34,7 +35,7 @@ class MenuItemViewController: BaseViewController {
     }
     @IBOutlet weak var venueTableView: UITableView?
     let rowHeight: CGFloat = 140
-    var venues: [Venue] = []
+    var venues: Results<Venue>!
     var delegate: MenuItemDelegate!
     var refreshControl: UIRefreshControl!
     let limit: Int = 10
