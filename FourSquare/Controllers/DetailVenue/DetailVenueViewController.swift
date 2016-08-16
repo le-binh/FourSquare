@@ -145,7 +145,7 @@ class DetailVenueViewController: BaseViewController {
     private func loadVenueHours(completion: () -> Void) {
         guard let venueId = self.venue?.id else { return }
         VenueService().loadVenueHours(venueId) { (hours) in
-            self.venue?.hours = hours
+            // self.venue?.hours = hours
             completion()
         }
     }

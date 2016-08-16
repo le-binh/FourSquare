@@ -77,21 +77,21 @@ class MenuItemViewController: BaseViewController {
 
     @objc private func refreshData() {
         self.offset = 0
+        self.deleteVenues()
         self.loadVenues()
     }
 
     private func loadVenuesFromRealm() {
         do {
             let realm = try Realm()
+//            print(Realm.Configuration.defaultConfiguration.fileURL)
             self.venues = realm.objects(Venue).filter("section = '\(self.section.rawValue)'")
         } catch {
             print("Realm Have Error!!")
         }
     }
 
-    // MARK:- Public Functions
-
-    func loadVenues() {
+    private func loadVenues() {
         SVProgressHUD.show()
         self.refreshControl.endRefreshing()
         VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (venues) in
@@ -103,18 +103,25 @@ class MenuItemViewController: BaseViewController {
         }
     }
 
+    private func deleteVenues() {
+        RealmManager.sharedInstance.deleteSection(self.section.rawValue)
+        self.venueTableView?.reloadData()
+    }
+
+    private func loadMoreVenues() {
+        VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (venues) in
+            self.venueTableView?.reloadData()
+            self.willLoadMore = true
+        }
+    }
+
+    // MARK:- Public Functions
+
     func searchVenues(name: String, address: String) {
         SVProgressHUD.show()
         VenueService().searchVeues(address, query: name, limit: self.limit, offset: self.offset) { (venues) in
             SVProgressHUD.dismiss()
             self.venueTableView?.reloadData()
-        }
-    }
-
-    func loadMoreVenues() {
-        VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (venues) in
-            self.venueTableView?.reloadData()
-            self.willLoadMore = true
         }
     }
 }
@@ -141,7 +148,6 @@ extension MenuItemViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let detailVenueViewController = DetailVenueViewController.vc()
         let venue = self.venues[indexPath.row]
-        // detailVenueViewController.title = venue.name
         detailVenueViewController.venue = venue
         UIApplication.sharedApplication().navigationController()?.pushViewController(detailVenueViewController, animated: true)
     }

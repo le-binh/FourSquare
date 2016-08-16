@@ -43,7 +43,7 @@ class Venue: Object, Mappable {
         website <- map["url"]
         thumbnail <- map["featuredPhotos.items.0"]
         location <- map["location"]
-        categories <- map["categories"]
+        categories <- (map["categories"], CategoriesTransform())
         price <- map["price"]
         contact <- map["contact"]
     }

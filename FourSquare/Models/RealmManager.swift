@@ -23,4 +23,27 @@ class RealmManager {
             print(error.localizedDescription)
         }
     }
+
+    func deleteAll() {
+        do {
+            let realm = try Realm()
+            try realm.write({
+                realm.deleteAll()
+            })
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+
+    func deleteSection(section: String) {
+        do {
+            let realm = try Realm()
+            try realm.write({
+                let venues = realm.objects(Venue).filter("section = '\(section)'")
+                realm.delete(venues)
+            })
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
 }
