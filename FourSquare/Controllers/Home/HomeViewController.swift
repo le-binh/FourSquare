@@ -263,7 +263,7 @@ extension HomeViewController: CAPSPageMenuDelegate {
 }
 
 extension HomeViewController: MenuItemDelegate {
-    func menuItemDidLoadData(venues: [Venue]) {
+    func menuItemDidLoadData(venues: Results<Venue>) {
         self.venues = venues
     }
 }

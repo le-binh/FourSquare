@@ -36,7 +36,6 @@ class VenueService: BaseService {
                 })
                 return
             }
-            var venues: [Venue] = []
             for group in groups {
                 guard let items = group["items"] as? JSArray else {
                     dispatch_async(dispatch_get_main_queue(), {
@@ -44,11 +43,15 @@ class VenueService: BaseService {
                     })
                     return
                 }
-                let venuesInGroup = items.map({ Mapper<Venue>().map($0["venue"]) })
-                venues.appendContentsOf(venuesInGroup)
+                for item in items {
+                    if let venue = Mapper<Venue>().map(item["venue"]) {
+                        venue.section = section
+                        RealmManager.sharedInstance.addObject(venue)
+                    }
+                }
             }
             dispatch_async(dispatch_get_main_queue(), {
-                completion?(venues: venues)
+                completion?(venues: [])
             })
         }
     }

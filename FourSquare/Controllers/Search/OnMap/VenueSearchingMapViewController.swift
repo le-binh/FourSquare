@@ -20,7 +20,7 @@ class VenueSearchingMapViewController: MapViewController {
         SVProgressHUD.show()
         VenueService().searchVeues(address, query: name, limit: 10, offset: 0) { (venues) in
             SVProgressHUD.dismiss()
-            self.venues = venues
+            // self.venues = venues
         }
     }
 }

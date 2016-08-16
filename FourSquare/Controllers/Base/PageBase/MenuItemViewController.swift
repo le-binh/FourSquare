@@ -24,7 +24,7 @@ enum SectionQuery: String {
 }
 
 protocol MenuItemDelegate {
-    func menuItemDidLoadData(venues: [Venue])
+    func menuItemDidLoadData(venues: Results<Venue>)
 }
 
 class MenuItemViewController: BaseViewController {
@@ -48,6 +48,7 @@ class MenuItemViewController: BaseViewController {
         super.viewDidLoad()
         self.setUpTableView()
         self.setUpRefreshControl()
+        self.loadVenuesFromRealm()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -79,6 +80,15 @@ class MenuItemViewController: BaseViewController {
         self.loadVenues()
     }
 
+    private func loadVenuesFromRealm() {
+        do {
+            let realm = try Realm()
+            self.venues = realm.objects(Venue).filter("section = '\(self.section.rawValue)'")
+        } catch {
+            print("Realm Have Error!!")
+        }
+    }
+
     // MARK:- Public Functions
 
     func loadVenues() {
@@ -86,7 +96,6 @@ class MenuItemViewController: BaseViewController {
         self.refreshControl.endRefreshing()
         VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (venues) in
             SVProgressHUD.dismiss()
-            self.venues = venues
             self.venueTableView?.reloadData()
             if let delegate = self.delegate {
                 delegate.menuItemDidLoadData(self.venues)
@@ -98,14 +107,12 @@ class MenuItemViewController: BaseViewController {
         SVProgressHUD.show()
         VenueService().searchVeues(address, query: name, limit: self.limit, offset: self.offset) { (venues) in
             SVProgressHUD.dismiss()
-            self.venues = venues
             self.venueTableView?.reloadData()
         }
     }
 
     func loadMoreVenues() {
         VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (venues) in
-            self.venues.appendContentsOf(venues)
             self.venueTableView?.reloadData()
             self.willLoadMore = true
         }

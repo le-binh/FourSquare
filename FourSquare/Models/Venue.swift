@@ -19,6 +19,7 @@ class Venue: Object, Mappable {
     dynamic var website: String = ""
     dynamic var isFavorite: Bool = false
     dynamic var isHistory: Bool = false
+    dynamic var section: String = ""
     dynamic var thumbnail: Photo?
     dynamic var location: VenueLocation?
     dynamic var price: VenuePrice?

@@ -134,14 +134,14 @@ class DetailVenueViewController: BaseViewController {
 
     private func loadVenuePhotos(id: String) {
         VenueService().loadVenuePhotos(id) { (photos) in
-            self.venue?.photos = photos
+            //self.venue?.photos = photos
             self.detailVenueTableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
         }
     }
 
     private func loadVenueTips(id: String) {
         VenueService().loadVenueTips(id) { (tips) in
-            self.venue?.tips = tips
+            //self.venue?.tips = tips
             self.detailVenueTableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: .Automatic)
         }
     }
@@ -255,7 +255,7 @@ extension DetailVenueViewController: UITableViewDelegate {
                 return view
             }
             if venue.photos.count > 0 {
-                view.photos = venue.photos
+                //view.photos = venue.photos
             }
             return view
         case .Information:
