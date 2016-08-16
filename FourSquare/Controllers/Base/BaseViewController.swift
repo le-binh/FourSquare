@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUtils
+import SVProgressHUD
 
 class BaseViewController: ViewController {
 
@@ -48,6 +49,7 @@ class BaseViewController: ViewController {
     }
 
     func showMenuAction(sender: AnyObject) {
+        SVProgressHUD.dismiss()
         UIApplication.sharedApplication().backgroundViewController()?.showHideLeftViewAnimated(true, completionHandler: nil)
     }
 

@@ -10,9 +10,7 @@ import UIKit
 
 class ShopsViewController: MenuItemViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("Shops")
+    override var section: SectionQuery {
+        return .Shops
     }
-
 }

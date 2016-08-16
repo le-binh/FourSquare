@@ -92,7 +92,6 @@ class MapViewController: UIViewController {
         marker.tag = self.indexMarker
         if marker.tag == 0 {
             marker.icon = UIImage(named: "selected_marker_ic")
-            marker.title = "abc"
             self.markers.append(marker)
             marker.map = self.venueMapView
             self.venueMapView.selectedMarker = marker
@@ -154,7 +153,6 @@ extension MapViewController: UICollectionViewDataSource {
 extension MapViewController: UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let detailVenueViewController = DetailVenueViewController.vc()
-        detailVenueViewController.title = "Phố xưa"
         self.navigationController?.pushViewController(detailVenueViewController, animated: true)
     }
 }

@@ -12,6 +12,11 @@ class MapDetailVenueCell: UITableViewCell {
 
     @IBOutlet weak var addressLabel: UILabel!
     var detailVenueViewController: DetailVenueViewController?
+    var venue: Venue? {
+        didSet {
+            self.addressLabel.text = venue?.location?.fullAddress
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +30,7 @@ class MapDetailVenueCell: UITableViewCell {
     }
     @IBAction func mapDetailVenueAction(sender: AnyObject) {
         let mapDetailVenueViewController = MapDetailVenueViewController.vc()
+        mapDetailVenueViewController.venue = venue
         self.detailVenueViewController?.navigationController?.pushViewController(mapDetailVenueViewController, animated: true)
     }
 

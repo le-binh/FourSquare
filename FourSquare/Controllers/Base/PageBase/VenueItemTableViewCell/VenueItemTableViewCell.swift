@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Haneke
 
 class VenueItemTableViewCell: UITableViewCell {
 
@@ -40,6 +41,27 @@ class VenueItemTableViewCell: UITableViewCell {
         self.ratingVenueLabel.backgroundColor = Color.Green125
         let radiusOfRatingLabel: CGFloat = self.ratingVenueLabel.frame.width / 2
         self.ratingVenueLabel.cornerRadiusWith(radiusOfRatingLabel)
+    }
+
+    // MARK:- Public Functions
+
+    func setUpData(venue: Venue) {
+        self.thumbnailImageView.image = UIImage(named: "thumbnail_venue")
+        self.verifiedImageView.image = (venue.verified) ? UIImage(named: "verified_ic") : UIImage(named: "not_verified_ic")
+        self.nameVenueLabel.text = venue.name
+        self.addressVenueLabel.text = venue.location?.fullAddress
+        self.ratingVenueLabel.text = "\(venue.rating)"
+        self.ratingVenueLabel.backgroundColor = venue.ratingColor
+        self.categoryVenueLabel.text = venue.showCategories
+        self.priceVenueLabel.text = venue.price?.showCurrency()
+        if let distance = venue.location?.distance {
+            self.distanceLabel.text = "\(distance)m From Here"
+        } else {
+            self.distanceLabel.text = "???m From Here"
+        }
+        if let url = venue.thumbnail?.thumbnailPath {
+            self.thumbnailImageView.hnk_setImageFromURL(url)
+        }
     }
 
 }

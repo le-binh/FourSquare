@@ -10,9 +10,7 @@ import UIKit
 
 class TrendingViewController: MenuItemViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("Trending")
+    override var section: SectionQuery {
+        return .Trending
     }
-
 }

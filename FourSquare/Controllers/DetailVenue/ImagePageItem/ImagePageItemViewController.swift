@@ -14,20 +14,13 @@ class ImagePageItemViewController: UIViewController {
 
     @IBOutlet weak var venueImageView: UIImageView!
     var itemIndex: Int = 0
-    var imageName: String = "" {
-        didSet {
-            if let imageView = venueImageView {
-                imageView.image = UIImage(named: imageName)
-                self.venueImageView.image = imageView.image
-            }
-        }
-    }
-
+    var photoPathString: String = ""
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.venueImageView.image = UIImage(named: self.imageName)
+        if let url = NSURL(string: photoPathString) {
+            self.venueImageView?.hnk_setImageFromURL(url)
+        }
     }
-
 }

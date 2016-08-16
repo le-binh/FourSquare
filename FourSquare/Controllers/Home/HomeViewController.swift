@@ -51,8 +51,8 @@ class HomeViewController: BaseViewController {
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
-        self.title = Strings.HomeTitle
         super.viewDidLoad()
+        self.navigationBar?.title = Strings.HomeTitle
         self.itemViewControllers = self.setDefaultMenuItems()
         self.configureMenuPage()
         self.updatePageMenuItem()
@@ -109,6 +109,7 @@ class HomeViewController: BaseViewController {
         let parameters: [CAPSPageMenuOption] = parametersOfPageMenu(isDefault)
         self.pageMenu = CAPSPageMenu(viewControllers: self.itemViewControllers, frame: self.viewOfPageMenu.bounds, pageMenuOptions: parameters)
         if let pageMenu = self.pageMenu {
+            self.addChildViewController(pageMenu)
             self.viewOfPageMenu.addSubview(pageMenu.view)
         }
     }

@@ -25,13 +25,15 @@ class MapDetailVenueViewController: BaseViewController {
     @IBOutlet weak var priceVenueLabel: UILabel!
     @IBOutlet weak var distanceVenueLabel: UILabel!
 
+    var venue: Venue?
+
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
-        self.title = "Phố xưa"
         super.viewDidLoad()
         self.setUpUI()
         self.addMarker()
+        self.navigationBar?.title = venue?.name
     }
 
     override func favoriteAction(sender: AnyObject) {

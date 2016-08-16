@@ -9,8 +9,7 @@
 import UIKit
 
 class VenueSearchingViewController: MenuItemViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override var isSearchingVenue: Bool {
+        return true
     }
 }
