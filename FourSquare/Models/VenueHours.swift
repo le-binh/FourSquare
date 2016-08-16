@@ -19,7 +19,7 @@ class VenueHours: Object, Mappable {
         self.init()
     }
     func mapping(map: Map) {
-        timeFrames <- map["timeframes"]
+        timeFrames <- (map["timeframes"], ListTransform<Hours>())
     }
 }
 

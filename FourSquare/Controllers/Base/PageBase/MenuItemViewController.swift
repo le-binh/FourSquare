@@ -21,6 +21,7 @@ enum SectionQuery: String {
     case Shops = "shops"
     case Sights = "sights"
     case Trending = "trending"
+    case Search = "search"
 }
 
 protocol MenuItemDelegate {
@@ -31,7 +32,7 @@ class MenuItemViewController: BaseViewController {
 
     // MARK:- Properties
     var section: SectionQuery {
-        return .TopPicks
+        return .Search
     }
     @IBOutlet weak var venueTableView: UITableView?
     let rowHeight: CGFloat = 140
@@ -78,7 +79,11 @@ class MenuItemViewController: BaseViewController {
     @objc private func refreshData() {
         self.offset = 0
         self.deleteVenues()
-        self.loadVenues()
+        if self.section == .Search {
+            self.refreshControl.endRefreshing()
+        } else {
+            self.loadVenues()
+        }
     }
 
     private func loadVenuesFromRealm() {
@@ -163,7 +168,11 @@ extension MenuItemViewController {
         if maximumOffset - currentOffset < 2 * self.rowHeight && willLoadMore {
             willLoadMore = false
             self.offset = self.offset + self.limit
-            self.loadMoreVenues()
+            if self.section == .Search {
+
+            } else {
+                self.loadMoreVenues()
+            }
         }
     }
 }

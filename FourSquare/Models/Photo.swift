@@ -33,8 +33,8 @@ class Photo: Object, Mappable {
 
 extension Photo {
     var avatarPath: NSURL? {
-        width = 70
-        height = 70
+        let width = 70
+        let height = 70
         let path = prefix + "\(width)" + "x" + "\(height)" + suffix
         return NSURL(string: path)
     }

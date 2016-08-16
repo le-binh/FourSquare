@@ -27,8 +27,8 @@ class Venue: Object, Mappable {
     dynamic var hours: VenueHours?
 
     var categories = RealmSwift.List<VenueCategory>()
-    var photos = RealmSwift.List<Photo>()
-    var tips = RealmSwift.List<VenueTip>()
+    let photos = RealmSwift.List<Photo>()
+    let tips = RealmSwift.List<VenueTip>()
 
     required convenience init?(_ map: Map) {
         self.init()
@@ -43,7 +43,7 @@ class Venue: Object, Mappable {
         website <- map["url"]
         thumbnail <- map["featuredPhotos.items.0"]
         location <- map["location"]
-        categories <- (map["categories"], CategoriesTransform())
+        categories <- (map["categories"], ListTransform<VenueCategory>())
         price <- map["price"]
         contact <- map["contact"]
     }

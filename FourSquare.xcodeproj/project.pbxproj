@@ -61,7 +61,7 @@
 		997228041D5C38F50053E320 /* VenueContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997228031D5C38F50053E320 /* VenueContact.swift */; };
 		997228081D5C74130053E320 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997228071D5C74130053E320 /* UIColor.swift */; };
 		997EA6F11D62CF0900006AD8 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997EA6F01D62CF0900006AD8 /* RealmManager.swift */; };
-		997EA6F41D62F14C00006AD8 /* CategoriesTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997EA6F31D62F14C00006AD8 /* CategoriesTransform.swift */; };
+		997EA6F41D62F14C00006AD8 /* ListTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997EA6F31D62F14C00006AD8 /* ListTransform.swift */; };
 		9987AA0E1D52F83C00AB7E6D /* VenueItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9987AA0C1D52F83C00AB7E6D /* VenueItemTableViewCell.swift */; };
 		9987AA0F1D52F83C00AB7E6D /* VenueItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9987AA0D1D52F83C00AB7E6D /* VenueItemTableViewCell.xib */; };
 		9987AA121D52F84C00AB7E6D /* MenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9987AA101D52F84C00AB7E6D /* MenuItemViewController.swift */; };
@@ -197,7 +197,7 @@
 		997228031D5C38F50053E320 /* VenueContact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueContact.swift; sourceTree = "<group>"; };
 		997228071D5C74130053E320 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		997EA6F01D62CF0900006AD8 /* RealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
-		997EA6F31D62F14C00006AD8 /* CategoriesTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesTransform.swift; sourceTree = "<group>"; };
+		997EA6F31D62F14C00006AD8 /* ListTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTransform.swift; sourceTree = "<group>"; };
 		9987AA0C1D52F83C00AB7E6D /* VenueItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VenueItemTableViewCell.swift; path = Base/PageBase/VenueItemTableViewCell/VenueItemTableViewCell.swift; sourceTree = "<group>"; };
 		9987AA0D1D52F83C00AB7E6D /* VenueItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VenueItemTableViewCell.xib; path = Base/PageBase/VenueItemTableViewCell/VenueItemTableViewCell.xib; sourceTree = "<group>"; };
 		9987AA101D52F84C00AB7E6D /* MenuItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemViewController.swift; path = Base/PageBase/MenuItemViewController.swift; sourceTree = "<group>"; };
@@ -630,7 +630,7 @@
 		997EA6F21D62F12B00006AD8 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				997EA6F31D62F14C00006AD8 /* CategoriesTransform.swift */,
+				997EA6F31D62F14C00006AD8 /* ListTransform.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -1236,7 +1236,7 @@
 				9987AA0E1D52F83C00AB7E6D /* VenueItemTableViewCell.swift in Sources */,
 				992A1D741D59817A0047B63B /* MarkerMap.swift in Sources */,
 				997227FC1D5C0EEB0053E320 /* VenuePrice.swift in Sources */,
-				997EA6F41D62F14C00006AD8 /* CategoriesTransform.swift in Sources */,
+				997EA6F41D62F14C00006AD8 /* ListTransform.swift in Sources */,
 				99C581281D5501240095EE7F /* TrendingViewController.swift in Sources */,
 				99C581101D54FED30095EE7F /* CoffeeViewController.swift in Sources */,
 				99F661AA1D526887009A0E47 /* UIView.swift in Sources */,

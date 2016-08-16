@@ -40,6 +40,7 @@ class SearchVenueViewController: BaseViewController {
         } else {
             self.changeTableViewToMapView()
         }
+        self.setEmptyTextField()
         self.showSearchBoxWithAnimation()
         didShowMapView = !didShowMapView
     }
@@ -56,6 +57,7 @@ class SearchVenueViewController: BaseViewController {
         let venueAddress = self.venueAddressTextField.text ?? ""
         if !venueName.isEmpty && !venueAddress.isEmpty {
             self.hiddenSearchBoxWithAnimation()
+            self.deleteVenuesOfRealm()
             if didShowMapView {
                 let venueSearchingMapViewController = self.currentViewController as? VenueSearchingMapViewController
                 venueSearchingMapViewController?.searchVenues(venueName, address: venueAddress)
@@ -141,6 +143,10 @@ class SearchVenueViewController: BaseViewController {
     private func setEmptyTextField() {
         self.venueNameTextField.text = ""
         self.venueAddressTextField.text = ""
+    }
+
+    private func deleteVenuesOfRealm() {
+        RealmManager.sharedInstance.deleteSection("search")
     }
 
 }

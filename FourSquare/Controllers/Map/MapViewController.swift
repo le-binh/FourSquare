@@ -157,7 +157,10 @@ extension MapViewController: UICollectionViewDataSource {
         return 1
     }
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.venues.count
+        guard let venues = self.venues else {
+            return 0
+        }
+        return venues.count
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(VenueCollectionViewCell.self, forIndexPath: indexPath)
@@ -173,7 +176,6 @@ extension MapViewController: UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let detailVenueViewController = DetailVenueViewController.vc()
         let venue = self.venues[indexPath.row]
-        detailVenueViewController.title = venue.name
         detailVenueViewController.venue = venue
         self.navigationController?.pushViewController(detailVenueViewController, animated: true)
     }

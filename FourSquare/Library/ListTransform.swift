@@ -10,8 +10,8 @@ import Foundation
 import ObjectMapper
 import RealmSwift
 
-class CategoriesTransform: TransformType {
-    typealias Object = RealmSwift.List<VenueCategory>
+class ListTransform<T: Object where T: Mappable>: TransformType {
+    typealias Object = RealmSwift.List<T>
     typealias JSON = String
 
     func transformToJSON(value: Object?) -> JSON? {
@@ -19,13 +19,13 @@ class CategoriesTransform: TransformType {
     }
 
     func transformFromJSON(value: AnyObject?) -> Object? {
-        guard let categories = value as? JSArray else {
+        guard let items = value as? JSArray else {
             return nil
         }
-        let result = RealmSwift.List<VenueCategory>()
-        for category in categories {
-            if let venueCategory = Mapper<VenueCategory>().map(category) {
-                result.append(venueCategory)
+        let result = RealmSwift.List<T>()
+        for item in items {
+            if let venueItem = Mapper<T>().map(item) {
+                result.append(venueItem)
             }
         }
         return result

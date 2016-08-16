@@ -143,25 +143,31 @@ class DetailVenueViewController: BaseViewController {
     }
 
     private func loadVenueHours(completion: () -> Void) {
-        guard let venueId = self.venue?.id else { return }
-        VenueService().loadVenueHours(venueId) { (hours) in
-            // self.venue?.hours = hours
+        guard let venue = self.venue else {
+            completion()
+            return
+        }
+        VenueService().loadVenueHours(venue.id, section: venue.section) { (hours) in
             completion()
         }
     }
 
     private func loadVenuePhotos(completion: () -> Void) {
-        guard let venueId = self.venue?.id else { return }
-        VenueService().loadVenuePhotos(venueId) { (photos) in
-            // self.venue?.photos = photos
+        guard let venue = self.venue else {
+            completion()
+            return
+        }
+        VenueService().loadVenuePhotos(venue.id, section: venue.section) { (photos) in
             completion()
         }
     }
 
     private func loadVenueTips(completion: () -> Void) {
-        guard let venueId = self.venue?.id else { return }
-        VenueService().loadVenueTips(venueId) { (tips) in
-            // self.venue?.tips = tips
+        guard let venue = self.venue else {
+            completion()
+            return
+        }
+        VenueService().loadVenueTips(venue.id, section: venue.section) { (tips) in
             completion()
         }
     }
@@ -262,10 +268,10 @@ extension DetailVenueViewController: UITableViewDelegate {
         switch detailVenueSection {
         case .PageImage:
             let view = tableView.dequeue(PageImageHeaderView)
-//            guard let venue = self.venue else {
-//                return view
-//            }
-//            view.photos = venue.photos
+            guard let venue = self.venue else {
+                return view
+            }
+            view.photos = venue.photos
             return view
         case .Information:
             view.titleHeader.text = Strings.DetailVenueTitleInformation

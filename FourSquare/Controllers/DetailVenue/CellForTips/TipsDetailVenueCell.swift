@@ -30,6 +30,7 @@ class TipsDetailVenueCell: UITableViewCell {
             return
         }
         self.userAvatarImageView.hnk_setImageFromURL(url)
+
     }
 
 }
