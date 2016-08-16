@@ -32,6 +32,7 @@ class MapDetailVenueViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationBar?.title = venue?.name
         self.setUpUI()
         self.addMarker()
         self.setUpData()

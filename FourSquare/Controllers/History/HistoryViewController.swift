@@ -11,9 +11,9 @@ import SwiftUtils
 
 class HistoryViewController: MenuItemViewController {
     override func viewDidLoad() {
-        self.title = Strings.HistoryTitle
         super.viewDidLoad()
         self.navigationBar?.rightBarButtonHidden = true
+        self.navigationBar?.title = Strings.HistoryTitle
     }
 
     override func viewDidAppear(animated: Bool) {

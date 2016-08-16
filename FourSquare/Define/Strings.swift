@@ -40,4 +40,7 @@ struct Strings {
     static let InfomationTitleVerified = "Verified"
     static let InfomationTitleWebsite = "Website"
     static let SearchTitle = "Search"
+    static let NotAvailable = "Not Available"
+    static let Verified = "Yes"
+    static let NotVerified = "No"
 }

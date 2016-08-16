@@ -50,16 +50,14 @@ class VenueItemTableViewCell: UITableViewCell {
         self.verifiedImageView.image = (venue.verified) ? UIImage(named: "verified_ic") : UIImage(named: "not_verified_ic")
         self.nameVenueLabel.text = venue.name
         self.addressVenueLabel.text = venue.location?.fullAddress
-        self.ratingVenueLabel.text = String(venue.rating)
+        self.ratingVenueLabel.text = "\(venue.rating)"
         self.ratingVenueLabel.backgroundColor = venue.ratingColor
-        var categoriesName = ""
-        for category in venue.categories {
-            categoriesName = categoriesName + category.categoryName
-        }
-        self.categoryVenueLabel.text = categoriesName
+        self.categoryVenueLabel.text = venue.showCategories
         self.priceVenueLabel.text = venue.price?.showCurrency()
         if let distance = venue.location?.distance {
             self.distanceLabel.text = "\(distance)m From Here"
+        } else {
+            self.distanceLabel.text = "???m From Here"
         }
         if let url = venue.thumbnail?.thumbnailPath {
             self.thumbnailImageView.hnk_setImageFromURL(url)

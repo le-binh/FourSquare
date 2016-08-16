@@ -19,7 +19,7 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
 
     var photos: [Photo] = [] {
         didSet {
-            self.afterPageButton.hidden = self.photos.count == 1
+            self.afterPageButton.hidden = self.photos.count <= 1
             self.imagesPageControl.numberOfPages = self.photos.count
             self.setFirstControllerOfPageViewController()
         }
@@ -61,7 +61,7 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
     }
 
     private func setFirstControllerOfPageViewController() {
-        if photos.count > 0 {
+        if !photos.isEmpty {
             guard let firstController = getPageItemViewController(0) else {
                 return
             }
@@ -83,13 +83,11 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
     }
 
     private func getPageItemViewController(itemIndex: Int) -> ImagePageItemViewController? {
-        if itemIndex < photos.count && itemIndex >= 0 {
-            let imagePageItemViewController = ImagePageItemViewController.vc()
-            imagePageItemViewController.itemIndex = itemIndex
-            imagePageItemViewController.photoPathString = photos[itemIndex].photoPathString
-            return imagePageItemViewController
-        }
-        return nil
+        if itemIndex < 0 || itemIndex >= photos.count { return nil }
+        let imagePageItemViewController = ImagePageItemViewController.vc()
+        imagePageItemViewController.itemIndex = itemIndex
+        imagePageItemViewController.photoPathString = photos[itemIndex].photoPathString
+        return imagePageItemViewController
     }
 
     private func setCurrentPage() {

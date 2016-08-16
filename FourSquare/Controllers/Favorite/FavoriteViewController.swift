@@ -12,9 +12,9 @@ import SwiftUtils
 class FavoriteViewController: MenuItemViewController {
 
     override func viewDidLoad() {
-        self.title = Strings.FavoriteTitle
         super.viewDidLoad()
         self.navigationBar?.rightBarButtonHidden = true
+        self.navigationBar?.title = Strings.FavoriteTitle
     }
 
     override func viewDidAppear(animated: Bool) {

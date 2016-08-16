@@ -12,7 +12,11 @@ class MapDetailVenueCell: UITableViewCell {
 
     @IBOutlet weak var addressLabel: UILabel!
     var detailVenueViewController: DetailVenueViewController?
-    var venue: Venue?
+    var venue: Venue? {
+        didSet {
+            self.addressLabel.text = venue?.location?.fullAddress
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
