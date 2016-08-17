@@ -94,6 +94,7 @@ class DetailVenueViewController: BaseViewController {
         self.configureTableView()
         self.navigationBar?.title = venue?.name
         self.clearPhotos()
+        self.addHistory()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -131,6 +132,12 @@ class DetailVenueViewController: BaseViewController {
     private func configureFavoriteButton() {
         if let venue = self.venue {
             self.didAddFavorite = venue.didFavorite
+        }
+    }
+
+    private func addHistory() {
+        if let venue = self.venue {
+            RealmManager.sharedInstance.addHistory(venue.id)
         }
     }
 

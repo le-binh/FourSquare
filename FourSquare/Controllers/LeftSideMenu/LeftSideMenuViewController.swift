@@ -123,7 +123,6 @@ class LeftSideMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpMenuTableView()
-        self.setMainMenuViewController()
     }
 
     override func didReceiveMemoryWarning() {
@@ -139,11 +138,6 @@ class LeftSideMenuViewController: UIViewController {
         self.menuTableView.registerNib(ViewForHeaderMenuItems)
         self.menuTableView.delegate = self
         self.menuTableView.dataSource = self
-    }
-
-    private func setMainMenuViewController() {
-        self.favoriteViewController = FavoriteViewController.vc()
-        self.historyViewController = HistoryViewController.vc()
     }
 
     private func changeRootViewController(viewController: UIViewController) {
@@ -253,10 +247,12 @@ extension LeftSideMenuViewController: UITableViewDelegate {
                     self.changeRootViewController(homeViewController)
                 }
             case .Favorite:
+                self.favoriteViewController = FavoriteViewController.vc()
                 if let favoriteViewController = self.favoriteViewController {
                     self.changeRootViewController(favoriteViewController)
                 }
             case .History:
+                self.historyViewController = HistoryViewController.vc()
                 if let historyViewController = self.historyViewController {
                     self.changeRootViewController(historyViewController)
                 }

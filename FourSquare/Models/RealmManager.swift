@@ -132,4 +132,21 @@ class RealmManager {
         }
     }
 
+    func addHistory(id: String) {
+        do {
+            let realm = try Realm()
+            try realm.write({
+                if let venue = realm.objects(Venue).filter("id = '\(id)' AND isHistory = true").first {
+                    venue.historyTimestamp = NSDate()
+                    return
+                }
+                if let venue = realm.objects(Venue).filter("id = '\(id)'").first {
+                    venue.isHistory = true
+                    venue.historyTimestamp = NSDate()
+                }
+            })
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
 }
