@@ -95,4 +95,41 @@ class RealmManager {
             print(error.localizedDescription)
         }
     }
+
+    func addFavorite(id: String) {
+        do {
+            let realm = try Realm()
+            try realm.write({
+                let venues = realm.objects(Venue).filter("id = '\(id)'")
+                for element in venues {
+                    element.didFavorite = true
+                }
+                if realm.objects(Venue).filter("id = '\(id)' AND isFavorite = true").first != nil {
+                    return
+                }
+                if let venue = realm.objects(Venue).filter("id = '\(id)'").first {
+                    venue.isFavorite = true
+                    venue.favoriteTimestamp = NSDate()
+                }
+            })
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+
+    func deleteFavorite(id: String) {
+        do {
+            let realm = try Realm()
+            try realm.write({
+                let venues = realm.objects(Venue).filter("id = '\(id)'")
+                for venue in venues {
+                    venue.isFavorite = false
+                    venue.didFavorite = false
+                }
+            })
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+
 }

@@ -90,6 +90,7 @@ class DetailVenueViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureFavoriteButton()
         self.configureTableView()
         self.navigationBar?.title = venue?.name
         self.clearPhotos()
@@ -104,6 +105,12 @@ class DetailVenueViewController: BaseViewController {
 
     override func favoriteAction(sender: AnyObject) {
         super.favoriteAction(sender)
+        guard let venue = self.venue else { return }
+        if didAddFavorite {
+            RealmManager.sharedInstance.deleteFavorite(venue.id)
+        } else {
+            RealmManager.sharedInstance.addFavorite(venue.id)
+        }
         didAddFavorite = !didAddFavorite
     }
 
@@ -119,6 +126,12 @@ class DetailVenueViewController: BaseViewController {
         self.detailVenueTableView.dataSource = self
         self.detailVenueTableView.rowHeight = UITableViewAutomaticDimension
         self.detailVenueTableView.estimatedRowHeight = 51
+    }
+
+    private func configureFavoriteButton() {
+        if let venue = self.venue {
+            self.didAddFavorite = venue.didFavorite
+        }
     }
 
     private func loadVenueDetail() {

@@ -18,7 +18,10 @@ class Venue: Object, Mappable {
     dynamic var verified: Bool = true
     dynamic var website: String = ""
     dynamic var isFavorite: Bool = false
+    dynamic var didFavorite: Bool = false
     dynamic var isHistory: Bool = false
+    dynamic var favoriteTimestamp = NSDate()
+    dynamic var historyTimstamp = NSDate()
     dynamic var section: String = ""
     dynamic var thumbnail: Photo?
     dynamic var location: VenueLocation?

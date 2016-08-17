@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUtils
+import RealmSwift
 
 class HistoryViewController: MenuItemViewController {
     override func viewDidLoad() {
@@ -18,5 +19,14 @@ class HistoryViewController: MenuItemViewController {
 
     override func viewDidAppear(animated: Bool) {
 
+    }
+
+    override func loadVenuesFromRealm() {
+        do {
+            let realm = try Realm()
+            self.venues = realm.objects(Venue).filter("section = '\(self.section.rawValue)'")
+        } catch {
+            print("Realm Have Error!!")
+        }
     }
 }

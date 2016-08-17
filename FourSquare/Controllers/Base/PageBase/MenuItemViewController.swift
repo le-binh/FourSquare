@@ -76,7 +76,7 @@ class MenuItemViewController: BaseViewController {
         self.venueTableView?.addSubview(refreshControl)
     }
 
-    @objc private func refreshData() {
+    func refreshData() {
         self.offset = 0
         self.deleteVenues()
         if self.section == .Search {
@@ -86,7 +86,7 @@ class MenuItemViewController: BaseViewController {
         }
     }
 
-    private func loadVenuesFromRealm() {
+    func loadVenuesFromRealm() {
         do {
             let realm = try Realm()
 //            print(Realm.Configuration.defaultConfiguration.fileURL)
@@ -168,9 +168,7 @@ extension MenuItemViewController {
         if maximumOffset - currentOffset < 2 * self.rowHeight && willLoadMore {
             willLoadMore = false
             self.offset = self.offset + self.limit
-            if self.section == .Search {
-
-            } else {
+            if self.section != .Search {
                 self.loadMoreVenues()
             }
         }
