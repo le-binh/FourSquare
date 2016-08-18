@@ -39,7 +39,7 @@ class MapDetailVenueViewController: BaseViewController {
         self.addMarker()
         self.setUpData()
         self.setUpMyLocationManager()
-        // self.drawRouteGoogleMaps()
+        self.drawRouteGoogleMaps()
     }
 
     override func favoriteAction(sender: AnyObject) {
@@ -91,8 +91,6 @@ class MapDetailVenueViewController: BaseViewController {
                 return
             }
             self.googleMapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withPadding: paddingMap))
-            print(currentLoction.coordinate)
-            print(marker.position)
         }
     }
 
@@ -124,14 +122,19 @@ class MapDetailVenueViewController: BaseViewController {
 
     private func drawRouteGoogleMaps() {
         guard let currentLocation = MyLocationManager.sharedInstanced.currentLocation else { return }
-        guard let venueLatitude = self.venue?.location?.latitude else { return }
-        guard let venueLongitude = self.venue?.location?.longitude else { return }
-        let path: GMSMutablePath = GMSMutablePath()
-        path.addCoordinate(currentLocation.coordinate)
-        path.addLatitude(venueLatitude, longitude: venueLongitude)
+        let currentLocationCoord = currentLocation.coordinate
+        guard let venue = self.venue else { return }
+        guard let venueLocation = venue.location else { return }
+        let venueLocationCoord = CLLocationCoordinate2D(latitude: CLLocationDegrees(venueLocation.latitude), longitude: CLLocationDegrees(venueLocation.longitude))
+        GoogleDirectionService().addOverlayToMapView(currentLocationCoord, venueLocationCoord: venueLocationCoord) { (encodedString) in
+            self.addPolyLineWithEncodedString(encodedString)
+        }
+    }
 
-        let polyLine: GMSPolyline = GMSPolyline(path: path)
-        polyLine.strokeWidth = 2
+    private func addPolyLineWithEncodedString(encodedString: String) {
+        let path = GMSMutablePath(fromEncodedPath: encodedString)
+        let polyLine = GMSPolyline(path: path)
+        polyLine.strokeWidth = 3
         polyLine.strokeColor = Color.Orange253
         polyLine.map = self.googleMapView
     }
