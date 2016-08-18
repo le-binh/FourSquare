@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func cleanDatabase() {
-        RealmManager.sharedInstance.deleteAll()
+        RealmManager.sharedInstance.deleteWithoutFavoriteAndHistory()
     }
 
 }

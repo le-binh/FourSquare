@@ -48,7 +48,7 @@ class MapDetailVenueViewController: BaseViewController {
         if didAddFavorite {
             RealmManager.sharedInstance.deleteFavorite(venue.id)
         } else {
-            RealmManager.sharedInstance.addFavorite(venue.id)
+            RealmManager.sharedInstance.addFavorite(venue)
         }
         didAddFavorite = !didAddFavorite }
 
@@ -90,7 +90,8 @@ class MapDetailVenueViewController: BaseViewController {
             if path.count() == 1 {
                 return
             }
-            self.googleMapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withPadding: paddingMap))
+            let edgeInsets: UIEdgeInsets = UIEdgeInsets(top: paddingMap, left: paddingMap, bottom: 5 * paddingMap, right: paddingMap)
+            self.googleMapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withEdgeInsets: edgeInsets))
         }
     }
 
@@ -132,10 +133,14 @@ class MapDetailVenueViewController: BaseViewController {
     }
 
     private func addPolyLineWithEncodedString(encodedString: String) {
-        let path = GMSMutablePath(fromEncodedPath: encodedString)
+        guard let path = GMSMutablePath(fromEncodedPath: encodedString) else {
+            return
+        }
         let polyLine = GMSPolyline(path: path)
         polyLine.strokeWidth = 3
         polyLine.strokeColor = Color.Orange253
         polyLine.map = self.googleMapView
+        let bounds = GMSCoordinateBounds(path: path)
+        self.googleMapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withPadding: paddingMap))
     }
 }

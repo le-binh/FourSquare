@@ -20,6 +20,7 @@ class MapViewController: ViewController {
     @IBOutlet weak var backCollectionCellButton: UIButton!
     @IBOutlet weak var nextCollectionCellButton: UIButton!
     let collectionCellPadding: CGFloat = 10
+    let mapPadding: CGFloat = 30
     var indexMarker: Int = 0
     var markers: [MarkerMap] = []
     var venues: Results<Venue>! {
@@ -27,6 +28,7 @@ class MapViewController: ViewController {
             self.clearMapData()
             self.addMultiMarker()
             self.venueCollectionView.reloadData()
+            self.scrollToCellAtIndex(0, animated: false)
             self.configureChangeCellButton()
         }
     }
@@ -131,9 +133,6 @@ class MapViewController: ViewController {
             addMarker(latitude, longitude)
             let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
             path.addCoordinate(coordinate)
-            if self.indexMarker >= 10 {
-                break
-            }
         }
         guard let currentLoction = MyLocationManager.sharedInstanced.currentLocation else {
             return
@@ -146,7 +145,8 @@ class MapViewController: ViewController {
         if path.count() == 1 {
             return
         }
-        self.venueMapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withPadding: 100))
+        let edgeInsets: UIEdgeInsets = UIEdgeInsets(top: mapPadding, left: mapPadding, bottom: 5 * mapPadding, right: mapPadding)
+        self.venueMapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withEdgeInsets: edgeInsets))
     }
 
     private func resetMarkersIconWithout(selectedMarker: MarkerMap) {
@@ -206,12 +206,20 @@ extension MapViewController: UICollectionViewDelegate {
 
 extension MapViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        let index = self.visibleIndex()
+        if index >= self.markers.count {
+            return
+        }
         let marker = self.markers[self.visibleIndex()]
         self.setSelectedMarker(marker)
         self.resetMarkersIconWithout(marker)
     }
 
     func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+        let index = self.visibleIndex()
+        if index >= self.markers.count {
+            return
+        }
         let marker = self.markers[self.visibleIndex()]
         self.setSelectedMarker(marker)
         self.venueMapView.animateToLocation(marker.position)

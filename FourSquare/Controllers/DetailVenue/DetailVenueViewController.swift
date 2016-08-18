@@ -114,7 +114,7 @@ class DetailVenueViewController: BaseViewController {
         if didAddFavorite {
             RealmManager.sharedInstance.deleteFavorite(venue.id)
         } else {
-            RealmManager.sharedInstance.addFavorite(venue.id)
+            RealmManager.sharedInstance.addFavorite(venue)
         }
         didAddFavorite = !didAddFavorite
     }
@@ -141,7 +141,7 @@ class DetailVenueViewController: BaseViewController {
 
     private func addHistory() {
         if let venue = self.venue {
-            RealmManager.sharedInstance.addHistory(venue.id)
+            RealmManager.sharedInstance.addHistory(venue)
         }
     }
 

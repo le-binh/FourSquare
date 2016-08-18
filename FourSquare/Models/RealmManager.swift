@@ -24,11 +24,12 @@ class RealmManager {
         }
     }
 
-    func deleteAll() {
+    func deleteWithoutFavoriteAndHistory() {
         do {
             let realm = try Realm()
             try realm.write({
-                realm.deleteAll()
+                let venues = realm.objects(Venue).filter("isFavorite = false AND isHistory = false")
+                realm.delete(venues)
             })
         } catch let error as NSError {
             print(error.localizedDescription)
@@ -96,22 +97,24 @@ class RealmManager {
         }
     }
 
-    func addFavorite(id: String) {
+    func addFavorite(venue: Venue) {
         do {
             let realm = try Realm()
             try realm.write({
-                let venues = realm.objects(Venue).filter("id = '\(id)'")
-                for element in venues {
+                let venuesWillFavorite = realm.objects(Venue).filter("id = '\(venue.id)'")
+                for element in venuesWillFavorite {
                     element.didFavorite = true
                 }
-                if realm.objects(Venue).filter("id = '\(id)' AND isFavorite = true").first != nil {
+                if let venueDidFavorite = realm.objects(Venue).filter("id = '\(venue.id)' AND isFavorite = true").first {
+                    venueDidFavorite.historyTimestamp = NSDate()
                     return
                 }
-                if let venue = realm.objects(Venue).filter("id = '\(id)'").first {
-                    venue.isFavorite = true
-                    venue.favoriteTimestamp = NSDate()
-                }
-            })
+                realm.create(Venue.self, value: venue, update: false)
+                if let newVenue = realm.objects(Venue).filter("id = '\(venue.id)'").last {
+                    newVenue.isFavorite = true
+                    newVenue.section = ""
+                    newVenue.historyTimestamp = NSDate()
+                } })
         } catch let error as NSError {
             print(error.localizedDescription)
         }
@@ -122,9 +125,11 @@ class RealmManager {
             let realm = try Realm()
             try realm.write({
                 let venues = realm.objects(Venue).filter("id = '\(id)'")
-                for venue in venues {
-                    venue.isFavorite = false
-                    venue.didFavorite = false
+                for element in venues {
+                    element.didFavorite = false
+                }
+                if let venue = realm.objects(Venue).filter("id = '\(id)' AND isFavorite = true").first {
+                    realm.delete(venue)
                 }
             })
         } catch let error as NSError {
@@ -132,19 +137,26 @@ class RealmManager {
         }
     }
 
-    func addHistory(id: String) {
+    func addHistory(venue: Venue) {
         do {
             let realm = try Realm()
             try realm.write({
-                if let venue = realm.objects(Venue).filter("id = '\(id)' AND isHistory = true").first {
-                    venue.historyTimestamp = NSDate()
+                if let venueHistory = realm.objects(Venue).filter("id = '\(venue.id)' AND isHistory = true").first {
+                    venueHistory.historyTimestamp = NSDate()
                     return
                 }
-                if let venue = realm.objects(Venue).filter("id = '\(id)'").first {
-                    venue.isHistory = true
-                    venue.historyTimestamp = NSDate()
+                let venues = realm.objects(Venue).filter("isHistory = true").sorted("historyTimestamp", ascending: false)
+                if venues.count == 20 {
+                    realm.delete(venues.last!)
+                }
+                realm.create(Venue.self, value: venue, update: false)
+                if let newVenue = realm.objects(Venue).filter("id = '\(venue.id)'").last {
+                    newVenue.isHistory = true
+                    newVenue.section = ""
+                    newVenue.historyTimestamp = NSDate()
                 }
             })
+
         } catch let error as NSError {
             print(error.localizedDescription)
         }

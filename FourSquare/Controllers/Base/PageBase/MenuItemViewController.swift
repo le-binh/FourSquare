@@ -89,7 +89,7 @@ class MenuItemViewController: BaseViewController {
     func loadVenuesFromRealm() {
         do {
             let realm = try Realm()
-//            print(Realm.Configuration.defaultConfiguration.fileURL)
+            // print(Realm.Configuration.defaultConfiguration.fileURL)
             self.venues = realm.objects(Venue).filter("section = '\(self.section.rawValue)'")
         } catch {
             print("Realm Have Error!!")
