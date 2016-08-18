@@ -23,7 +23,6 @@ class MyLocationManager: NSObject {
 
     func startLocation() {
         self.locationManager.startUpdatingLocation()
-        self.currentLocation = self.locationManager.location
     }
 
 }
@@ -34,7 +33,7 @@ extension MyLocationManager: CLLocationManagerDelegate {
     }
 
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-
+        self.currentLocation = self.locationManager.location
     }
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.currentLocation = locations.first

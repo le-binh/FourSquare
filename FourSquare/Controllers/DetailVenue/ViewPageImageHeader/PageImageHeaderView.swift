@@ -17,12 +17,18 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var afterPageButton: UIButton!
     @IBOutlet weak var imagesPageControl: UIPageControl!
     var imagePageViewController: UIPageViewController?
+    var isReuseView: Bool {
+        return photos.count > 0
+    }
 
     var photos = RealmSwift.List<Photo>() {
         didSet {
             self.afterPageButton.hidden = self.photos.count <= 1
-            self.imagesPageControl.numberOfPages = self.photos.count
-            self.setFirstControllerOfPageViewController()
+            if isReuseView {
+                self.imagesPageControl.numberOfPages = self.photos.count
+                self.setFirstControllerOfPageViewController()
+            }
+
         }
     }
 
@@ -114,10 +120,12 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
             }
             imagePageViewController.setViewControllers([viewController],
                 direction: direction,
-                animated: true,
+                animated: false,
                 completion: { (finished) -> Void in
-                    self.checkCurrentPageToHiddenButton()
-                    self.setCurrentPage()
+                    if finished {
+                        self.checkCurrentPageToHiddenButton()
+                        self.setCurrentPage()
+                    }
             })
     }
 
@@ -161,7 +169,7 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
 
 extension PageImageHeaderView: UIPageViewControllerDelegate {
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if completed {
+        if completed && finished {
             self.checkCurrentPageToHiddenButton()
             self.setCurrentPage()
         }
