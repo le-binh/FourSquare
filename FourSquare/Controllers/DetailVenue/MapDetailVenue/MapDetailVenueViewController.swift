@@ -27,6 +27,7 @@ class MapDetailVenueViewController: BaseViewController {
 
     var venue: Venue?
     var routePolyline: GMSPolyline!
+    var paddingMap: CGFloat = 30
 
     // MARK:- Life Cycle
 
@@ -70,14 +71,28 @@ class MapDetailVenueViewController: BaseViewController {
     }
 
     private func addMarker() {
+        let path = GMSMutablePath()
         if let venue = self.venue {
-            let market = MarkerMap()
+            let marker = MarkerMap()
             let latitude = venue.location?.latitude ?? 0
             let longitude = venue.location?.longitude ?? 0
-            market.position = CLLocationCoordinate2DMake(CLLocationDegrees(latitude), CLLocationDegrees(longitude))
-            market.icon = UIImage(named: "selected_marker_ic")
-            market.map = self.googleMapView
-            self.googleMapView.camera = GMSCameraPosition(target: market.position, zoom: market.zoomLevelMarker, bearing: 0, viewingAngle: 0)
+            marker.position = CLLocationCoordinate2DMake(CLLocationDegrees(latitude), CLLocationDegrees(longitude))
+            marker.icon = UIImage(named: "selected_marker_ic")
+            marker.map = self.googleMapView
+            path.addCoordinate(marker.position)
+            self.googleMapView.camera = GMSCameraPosition(target: marker.position, zoom: marker.zoomLevelMarker, bearing: 0, viewingAngle: 0)
+            guard let currentLoction = MyLocationManager.sharedInstanced.currentLocation else {
+                return
+            }
+            let positionDefault = currentLoction.coordinate
+            path.addCoordinate(positionDefault)
+            let bounds: GMSCoordinateBounds = GMSCoordinateBounds(path: path)
+            if path.count() == 1 {
+                return
+            }
+            self.googleMapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withPadding: paddingMap))
+            print(currentLoction.coordinate)
+            print(marker.position)
         }
     }
 

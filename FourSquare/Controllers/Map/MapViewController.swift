@@ -123,18 +123,30 @@ class MapViewController: ViewController {
 
     private func addMultiMarker() {
         self.indexMarker = 0
+        let path = GMSMutablePath()
         for venue in self.venues {
             guard let latitude = venue.location?.latitude, longitude = venue.location?.longitude else {
                 continue
             }
             addMarker(latitude, longitude)
+            let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+            path.addCoordinate(coordinate)
             if self.indexMarker >= 10 {
                 break
             }
         }
-        let positionDefault = CLLocationCoordinate2DMake(CLLocationDegrees(16.0592007), CLLocationDegrees(108.1769168))
+        guard let currentLoction = MyLocationManager.sharedInstanced.currentLocation else {
+            return
+        }
+        let positionDefault = currentLoction.coordinate
         let marker = (self.markers.count > 0) ? self.markers[0]: MarkerMap(position: positionDefault)
         self.venueMapView.camera = GMSCameraPosition(target: marker.position, zoom: marker.zoomLevelMarkers, bearing: 0, viewingAngle: 0)
+        path.addCoordinate(positionDefault)
+        let bounds: GMSCoordinateBounds = GMSCoordinateBounds(path: path)
+        if path.count() == 1 {
+            return
+        }
+        self.venueMapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withPadding: 100))
     }
 
     private func resetMarkersIconWithout(selectedMarker: MarkerMap) {
