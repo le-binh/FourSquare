@@ -90,7 +90,6 @@ class DetailVenueViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureFavoriteButton()
         self.configureTableView()
         self.navigationBar?.title = venue?.name
         self.clearPhotos()
@@ -102,6 +101,11 @@ class DetailVenueViewController: BaseViewController {
         if isViewFirstAppear {
             self.loadVenueDetail()
         }
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.configureFavoriteButton()
     }
 
     override func favoriteAction(sender: AnyObject) {

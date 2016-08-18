@@ -28,7 +28,6 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
                 self.imagesPageControl.numberOfPages = self.photos.count
                 self.setFirstControllerOfPageViewController()
             }
-
         }
     }
 

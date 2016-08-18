@@ -33,6 +33,7 @@ class MapDetailVenueViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationBar?.title = venue?.name
+        self.configureFavoriteButton()
         self.setUpUI()
         self.addMarker()
         self.setUpData()
@@ -42,8 +43,13 @@ class MapDetailVenueViewController: BaseViewController {
 
     override func favoriteAction(sender: AnyObject) {
         super.favoriteAction(sender)
-        didAddFavorite = !didAddFavorite
-    }
+        guard let venue = self.venue else { return }
+        if didAddFavorite {
+            RealmManager.sharedInstance.deleteFavorite(venue.id)
+        } else {
+            RealmManager.sharedInstance.addFavorite(venue.id)
+        }
+        didAddFavorite = !didAddFavorite }
 
     // MARK:- Private Functions
 
@@ -55,6 +61,12 @@ class MapDetailVenueViewController: BaseViewController {
         self.ratingVenueLabel.backgroundColor = self.venue?.ratingColor
         let radiusOfRatingLabel: CGFloat = self.ratingVenueLabel.frame.width / 2
         self.ratingVenueLabel.cornerRadiusWith(radiusOfRatingLabel)
+    }
+
+    private func configureFavoriteButton() {
+        if let venue = self.venue {
+            self.didAddFavorite = venue.didFavorite
+        }
     }
 
     private func addMarker() {
