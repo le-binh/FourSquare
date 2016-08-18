@@ -42,6 +42,10 @@ class MenuItemViewController: BaseViewController {
     let limit: Int = 10
     var offset: Int = 0
     var willLoadMore: Bool = true
+    var shouldLoadMore: Bool {
+        offset = offset + limit
+        return offset == venues.count
+    }
 
     // MARK:- Life Cycle
 
@@ -79,11 +83,7 @@ class MenuItemViewController: BaseViewController {
     func refreshData() {
         self.offset = 0
         self.deleteVenues()
-        if self.section == .Search {
-            self.refreshControl.endRefreshing()
-        } else {
-            self.loadVenues()
-        }
+        self.loadVenues()
     }
 
     func loadVenuesFromRealm() {
@@ -102,22 +102,13 @@ class MenuItemViewController: BaseViewController {
         VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (venues) in
             SVProgressHUD.dismiss()
             self.venueTableView?.reloadData()
-            if let delegate = self.delegate {
-                delegate.menuItemDidLoadData(self.venues)
-            }
+            self.delegate?.menuItemDidLoadData(self.venues)
         }
     }
 
     private func deleteVenues() {
         RealmManager.sharedInstance.deleteSection(self.section.rawValue)
         self.venueTableView?.reloadData()
-    }
-
-    private func loadMoreVenues() {
-        VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (venues) in
-            self.venueTableView?.reloadData()
-            self.willLoadMore = true
-        }
     }
 
     // MARK:- Public Functions
@@ -129,6 +120,14 @@ class MenuItemViewController: BaseViewController {
             self.venueTableView?.reloadData()
         }
     }
+
+    func loadMoreVenues() {
+        VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (venues) in
+            self.venueTableView?.reloadData()
+            self.willLoadMore = true
+        }
+    }
+
 }
 
 //MARK:- Table View Datasource
@@ -163,12 +162,14 @@ extension MenuItemViewController: UITableViewDelegate {
 extension MenuItemViewController {
 
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        if !willLoadMore {
+            return
+        }
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
-        if maximumOffset - currentOffset < 2 * self.rowHeight && willLoadMore {
+        if maximumOffset - currentOffset < 2 * self.rowHeight {
             willLoadMore = false
-            self.offset = self.offset + self.limit
-            if self.section != .Search {
+            if self.shouldLoadMore {
                 self.loadMoreVenues()
             }
         }

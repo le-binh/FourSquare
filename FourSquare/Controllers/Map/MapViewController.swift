@@ -27,6 +27,7 @@ class MapViewController: ViewController {
             self.clearMapData()
             self.addMultiMarker()
             self.venueCollectionView.reloadData()
+            self.configureChangeCellButton()
         }
     }
 
@@ -64,6 +65,7 @@ class MapViewController: ViewController {
         self.venueCollectionView.dataSource = self
         self.venueCollectionView.registerNib(VenueCollectionViewCell)
         self.configureCollectionViewFlowLayout()
+        self.configureChangeCellButton()
     }
 
     private func configureCollectionViewFlowLayout() {
@@ -73,6 +75,13 @@ class MapViewController: ViewController {
         collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 0, left: self.collectionCellPadding, bottom: 0, right: self.collectionCellPadding)
         collectionViewFlowLayout.itemSize = self.sizeItemCellOfCollectionView()
         self.venueCollectionView.collectionViewLayout = collectionViewFlowLayout
+    }
+
+    private func configureChangeCellButton() {
+        if let venues = self.venues {
+            self.backCollectionCellButton.hidden = venues.isEmpty
+            self.nextCollectionCellButton.hidden = venues.isEmpty
+        }
     }
 
     private func clearMapData() {
