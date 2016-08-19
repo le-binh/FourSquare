@@ -146,6 +146,9 @@ class DetailVenueViewController: BaseViewController {
     }
 
     private func loadVenueDetail() {
+        if self.venue?.photos.count > 0 && self.venue?.tips.count > 0 {
+            return
+        }
         SVProgressHUD.show()
         let group = dispatch_group_create()
         dispatch_group_enter(group)

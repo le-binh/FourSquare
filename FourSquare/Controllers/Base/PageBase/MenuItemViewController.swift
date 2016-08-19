@@ -51,9 +51,11 @@ class MenuItemViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupLocationManager()
         self.setUpTableView()
         self.setUpRefreshControl()
         self.loadVenuesFromRealm()
+        self.configureNotificationCenter()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -74,10 +76,21 @@ class MenuItemViewController: BaseViewController {
         self.venueTableView?.rowHeight = self.rowHeight
     }
 
+    private func configureNotificationCenter() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(loadVenues), name: NotificationCenterKey.loadVenue, object: nil)
+    }
+
     private func setUpRefreshControl() {
         self.refreshControl = UIRefreshControl()
         self.refreshControl.addTarget(self, action: #selector(self.refreshData), forControlEvents: .ValueChanged)
         self.venueTableView?.addSubview(refreshControl)
+    }
+
+    private func setupLocationManager() {
+        if MyLocationManager.sharedInstanced.currentLocation == nil {
+            MyLocationManager.sharedInstanced.startLocation()
+            return
+        }
     }
 
     func refreshData() {
@@ -96,7 +109,7 @@ class MenuItemViewController: BaseViewController {
         }
     }
 
-    private func loadVenues() {
+    @objc private func loadVenues() {
         SVProgressHUD.show()
         self.refreshControl.endRefreshing()
         VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (venues) in
