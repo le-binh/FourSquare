@@ -92,6 +92,10 @@
 		99C581251D5501070095EE7F /* SightsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C581231D5501070095EE7F /* SightsViewController.xib */; };
 		99C581281D5501240095EE7F /* TrendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C581261D5501240095EE7F /* TrendingViewController.swift */; };
 		99C581291D5501240095EE7F /* TrendingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C581271D5501240095EE7F /* TrendingViewController.xib */; };
+		99C58DC21D6A24810003D23C /* ImagesCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C58DC11D6A24810003D23C /* ImagesCollectionViewHeader.swift */; };
+		99C58DC41D6A248A0003D23C /* ImagesCollectionViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C58DC31D6A248A0003D23C /* ImagesCollectionViewHeader.xib */; };
+		99C58DC81D6A280B0003D23C /* ImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C58DC61D6A280B0003D23C /* ImagesCollectionViewCell.swift */; };
+		99C58DC91D6A280B0003D23C /* ImagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C58DC71D6A280B0003D23C /* ImagesCollectionViewCell.xib */; };
 		99EB2A1F1D4F4CCB0024FEF9 /* BackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EB2A1D1D4F4CCB0024FEF9 /* BackgroundViewController.swift */; };
 		99EB2A201D4F4CCB0024FEF9 /* BackgroundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99EB2A1E1D4F4CCB0024FEF9 /* BackgroundViewController.xib */; };
 		99EB2A241D4F4FC60024FEF9 /* LeftSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EB2A221D4F4FC60024FEF9 /* LeftSideMenuViewController.swift */; };
@@ -229,6 +233,10 @@
 		99C581231D5501070095EE7F /* SightsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SightsViewController.xib; sourceTree = "<group>"; };
 		99C581261D5501240095EE7F /* TrendingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingViewController.swift; sourceTree = "<group>"; };
 		99C581271D5501240095EE7F /* TrendingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrendingViewController.xib; sourceTree = "<group>"; };
+		99C58DC11D6A24810003D23C /* ImagesCollectionViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewHeader.swift; sourceTree = "<group>"; };
+		99C58DC31D6A248A0003D23C /* ImagesCollectionViewHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImagesCollectionViewHeader.xib; sourceTree = "<group>"; };
+		99C58DC61D6A280B0003D23C /* ImagesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewCell.swift; sourceTree = "<group>"; };
+		99C58DC71D6A280B0003D23C /* ImagesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImagesCollectionViewCell.xib; sourceTree = "<group>"; };
 		99EB2A1D1D4F4CCB0024FEF9 /* BackgroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundViewController.swift; path = Background/BackgroundViewController.swift; sourceTree = "<group>"; };
 		99EB2A1E1D4F4CCB0024FEF9 /* BackgroundViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BackgroundViewController.xib; path = Background/BackgroundViewController.xib; sourceTree = "<group>"; };
 		99EB2A221D4F4FC60024FEF9 /* LeftSideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeftSideMenuViewController.swift; path = LeftSideMenu/LeftSideMenuViewController.swift; sourceTree = "<group>"; };
@@ -535,6 +543,7 @@
 		991121D21D5353C1001EDBD2 /* DetailVenue */ = {
 			isa = PBXGroup;
 			children = (
+				99C58DC01D6A244C0003D23C /* ImagesCollectionViewHeader */,
 				990395AD1D58BDE100CBE542 /* ViewPageImageHeader */,
 				996DF3FC1D56430C00693216 /* CellDefault */,
 				996DF3FD1D56430C00693216 /* CellForTips */,
@@ -760,6 +769,25 @@
 				99C581271D5501240095EE7F /* TrendingViewController.xib */,
 			);
 			path = Trending;
+			sourceTree = "<group>";
+		};
+		99C58DC01D6A244C0003D23C /* ImagesCollectionViewHeader */ = {
+			isa = PBXGroup;
+			children = (
+				99C58DC51D6A27F30003D23C /* ImagesCollectionViewCell */,
+				99C58DC11D6A24810003D23C /* ImagesCollectionViewHeader.swift */,
+				99C58DC31D6A248A0003D23C /* ImagesCollectionViewHeader.xib */,
+			);
+			path = ImagesCollectionViewHeader;
+			sourceTree = "<group>";
+		};
+		99C58DC51D6A27F30003D23C /* ImagesCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				99C58DC61D6A280B0003D23C /* ImagesCollectionViewCell.swift */,
+				99C58DC71D6A280B0003D23C /* ImagesCollectionViewCell.xib */,
+			);
+			path = ImagesCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		99EB2A1C1D4F4C980024FEF9 /* Background */ = {
@@ -1008,10 +1036,12 @@
 				2DC364DA1D4B0FED006514EE /* LoginViewController.xib in Resources */,
 				99C581091D54FD180095EE7F /* TopPicksViewController.xib in Resources */,
 				992A1D7D1D59C6DD0047B63B /* VenueSearchingViewController.xib in Resources */,
+				99C58DC91D6A280B0003D23C /* ImagesCollectionViewCell.xib in Resources */,
 				99EB2A251D4F4FC60024FEF9 /* LeftSideMenuViewController.xib in Resources */,
 				99ED29131D5031960088FCAD /* CustomMenuItemsTableViewCell.xib in Resources */,
 				992A1D811D59C7260047B63B /* VenueSearchingMapViewController.xib in Resources */,
 				996DF4031D56462300693216 /* ViewHeaderVenueDetail.xib in Resources */,
+				99C58DC41D6A248A0003D23C /* ImagesCollectionViewHeader.xib in Resources */,
 				99ED29271D507BB80088FCAD /* FavoriteViewController.xib in Resources */,
 				2DC364CC1D4B0CAE006514EE /* LaunchScreen.storyboard in Resources */,
 				99C581211D5500ED0095EE7F /* ShopsViewController.xib in Resources */,
@@ -1242,6 +1272,7 @@
 				992A1D741D59817A0047B63B /* MarkerMap.swift in Sources */,
 				997227FC1D5C0EEB0053E320 /* VenuePrice.swift in Sources */,
 				997EA6F41D62F14C00006AD8 /* ListTransform.swift in Sources */,
+				99C58DC21D6A24810003D23C /* ImagesCollectionViewHeader.swift in Sources */,
 				99C581281D5501240095EE7F /* TrendingViewController.swift in Sources */,
 				99C581101D54FED30095EE7F /* CoffeeViewController.swift in Sources */,
 				99F661AA1D526887009A0E47 /* UIView.swift in Sources */,
@@ -1250,6 +1281,7 @@
 				2DC364F81D4B3CB5006514EE /* LoginService.swift in Sources */,
 				99AA465F1D542A8F004EFCB2 /* ImagePageItemViewController.swift in Sources */,
 				996DF4011D56461100693216 /* ViewHeaderVenueDetail.swift in Sources */,
+				99C58DC81D6A280B0003D23C /* ImagesCollectionViewCell.swift in Sources */,
 				999165DA1D52D7AF00320877 /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1379,7 +1411,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FourSquare/Info/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = asiantech.vn.dev.FourSquare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1396,7 +1428,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FourSquare/Info/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = asiantech.vn.dev.FourSquare;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -81,17 +81,6 @@ class MapDetailVenueViewController: BaseViewController {
             marker.map = self.googleMapView
             path.addCoordinate(marker.position)
             self.googleMapView.camera = GMSCameraPosition(target: marker.position, zoom: marker.zoomLevelMarker, bearing: 0, viewingAngle: 0)
-            guard let currentLoction = MyLocationManager.sharedInstanced.currentLocation else {
-                return
-            }
-            let positionDefault = currentLoction.coordinate
-            path.addCoordinate(positionDefault)
-            let bounds: GMSCoordinateBounds = GMSCoordinateBounds(path: path)
-            if path.count() == 1 {
-                return
-            }
-            let edgeInsets: UIEdgeInsets = UIEdgeInsets(top: paddingMap, left: paddingMap, bottom: 5 * paddingMap, right: paddingMap)
-            self.googleMapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withEdgeInsets: edgeInsets))
         }
     }
 
@@ -141,6 +130,7 @@ class MapDetailVenueViewController: BaseViewController {
         polyLine.strokeColor = Color.Orange253
         polyLine.map = self.googleMapView
         let bounds = GMSCoordinateBounds(path: path)
-        self.googleMapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withPadding: paddingMap))
+        let edgeInsets: UIEdgeInsets = UIEdgeInsets(top: paddingMap, left: paddingMap, bottom: 5 * paddingMap, right: paddingMap)
+        self.googleMapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withEdgeInsets: edgeInsets))
     }
 }

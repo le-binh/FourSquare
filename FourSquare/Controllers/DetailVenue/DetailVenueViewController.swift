@@ -126,7 +126,8 @@ class DetailVenueViewController: BaseViewController {
         self.detailVenueTableView.registerNib(DefaultVenueDetailCell)
         self.detailVenueTableView.registerNib(MapDetailVenueCell)
         self.detailVenueTableView.registerNib(TipsDetailVenueCell)
-        self.detailVenueTableView.registerNib(PageImageHeaderView)
+//        self.detailVenueTableView.registerNib(PageImageHeaderView)
+        self.detailVenueTableView.registerNib(ImagesCollectionViewHeader)
         self.detailVenueTableView.delegate = self
         self.detailVenueTableView.dataSource = self
         self.detailVenueTableView.rowHeight = UITableViewAutomaticDimension
@@ -294,7 +295,13 @@ extension DetailVenueViewController: UITableViewDelegate {
         let view = tableView.dequeue(ViewHeaderVenueDetail)
         switch detailVenueSection {
         case .PageImage:
-            let view = tableView.dequeue(PageImageHeaderView)
+//            let view = tableView.dequeue(PageImageHeaderView)
+//            guard let venue = self.venue else {
+//                return view
+//            }
+//            view.photos = venue.photos
+//            return view
+            let view = tableView.dequeue(ImagesCollectionViewHeader)
             guard let venue = self.venue else {
                 return view
             }
