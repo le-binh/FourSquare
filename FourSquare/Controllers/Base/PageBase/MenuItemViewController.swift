@@ -60,7 +60,8 @@ class MenuItemViewController: BaseViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if isViewFirstAppear {
+        let currentLocation = MyLocationManager.sharedInstanced.currentLocation
+        if isViewFirstAppear && currentLocation != nil {
             loadVenues()
         }
     }
@@ -181,8 +182,8 @@ extension MenuItemViewController {
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
         if maximumOffset - currentOffset < 2 * self.rowHeight {
-            willLoadMore = false
             if self.shouldLoadMore {
+                willLoadMore = false
                 self.loadMoreVenues()
             }
         }

@@ -19,6 +19,7 @@ class MyLocationManager: NSObject {
         super.init()
         self.locationManager.delegate = self
         self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.distanceFilter = 100
     }
 
     func startLocation() {

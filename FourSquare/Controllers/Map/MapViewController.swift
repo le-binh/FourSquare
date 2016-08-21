@@ -19,6 +19,7 @@ class MapViewController: ViewController {
     @IBOutlet weak var venueCollectionView: UICollectionView!
     @IBOutlet weak var backCollectionCellButton: UIButton!
     @IBOutlet weak var nextCollectionCellButton: UIButton!
+    @IBOutlet weak var currentLocationButton: UIButton!
     let collectionCellPadding: CGFloat = 10
     let mapPadding: CGFloat = 30
     var indexMarker: Int = 0
@@ -57,6 +58,13 @@ class MapViewController: ViewController {
             return
         }
         self.scrollToCellAtIndex(indexRow, animated: true)
+    }
+
+    @IBAction func currentLocationAction(sender: AnyObject) {
+        self.venueMapView.myLocationEnabled = true
+        if let currentLocation = MyLocationManager.sharedInstanced.currentLocation {
+            self.venueMapView.animateToLocation(currentLocation.coordinate)
+        }
     }
 
     // MARK:- Private Functions

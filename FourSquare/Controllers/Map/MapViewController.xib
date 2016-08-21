@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="FourSquare" customModuleProvider="target">
             <connections>
                 <outlet property="backCollectionCellButton" destination="ctP-Qg-4Dy" id="aZZ-9Q-pRa"/>
+                <outlet property="currentLocationButton" destination="K5y-CG-ek0" id="OX6-rN-P10"/>
                 <outlet property="nextCollectionCellButton" destination="v57-hX-xyi" id="ZCS-GP-bdz"/>
                 <outlet property="venueCollectionView" destination="Kuc-ug-cT4" id="AeS-pD-IBv"/>
                 <outlet property="venueMapView" destination="RUc-9q-e4Y" id="yab-As-2Qg"/>
@@ -49,6 +50,13 @@
                         <action selector="nextCollectionCellAction:" destination="-1" eventType="touchUpInside" id="T5o-sV-oBx"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K5y-CG-ek0">
+                    <rect key="frame" x="250" y="334" width="60" height="60"/>
+                    <state key="normal" image="location_button_ic"/>
+                    <connections>
+                        <action selector="currentLocationAction:" destination="-1" eventType="touchUpInside" id="Qbc-eP-fAS"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -58,9 +66,11 @@
                 <constraint firstItem="ctP-Qg-4Dy" firstAttribute="centerY" secondItem="Kuc-ug-cT4" secondAttribute="centerY" id="LsT-L6-czX"/>
                 <constraint firstItem="ctP-Qg-4Dy" firstAttribute="leading" secondItem="Kuc-ug-cT4" secondAttribute="leading" constant="2" id="O9S-m8-FbV"/>
                 <constraint firstItem="RUc-9q-e4Y" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SQi-7M-y3v"/>
+                <constraint firstAttribute="trailing" secondItem="K5y-CG-ek0" secondAttribute="trailing" constant="10" id="T8i-O7-uPD"/>
                 <constraint firstItem="v57-hX-xyi" firstAttribute="centerY" secondItem="Kuc-ug-cT4" secondAttribute="centerY" id="bpW-em-slH"/>
                 <constraint firstAttribute="trailing" secondItem="RUc-9q-e4Y" secondAttribute="trailing" id="cDe-cf-yqV"/>
                 <constraint firstItem="Kuc-ug-cT4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cLd-Ff-5jw"/>
+                <constraint firstItem="Kuc-ug-cT4" firstAttribute="top" secondItem="K5y-CG-ek0" secondAttribute="bottom" constant="40" id="omg-NA-8zN"/>
                 <constraint firstAttribute="bottom" secondItem="Kuc-ug-cT4" secondAttribute="bottom" constant="10" id="xzx-yY-jd1"/>
                 <constraint firstItem="v57-hX-xyi" firstAttribute="trailing" secondItem="Kuc-ug-cT4" secondAttribute="trailing" constant="-2" id="zXA-oV-NHH"/>
             </constraints>
@@ -70,6 +80,7 @@
     </objects>
     <resources>
         <image name="back_collection_ic" width="18" height="18"/>
+        <image name="location_button_ic" width="60" height="60"/>
         <image name="next_collection_ic" width="18" height="18"/>
     </resources>
 </document>
