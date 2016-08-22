@@ -12,6 +12,8 @@ import RealmSwift
 class ImagesCollectionViewHeader: UITableViewHeaderFooterView {
 
     @IBOutlet weak var imagesCollectionView: UICollectionView!
+    @IBOutlet weak var backImageButton: UIButton!
+    @IBOutlet weak var nextImageButton: UIButton!
     var photos = RealmSwift.List<Photo>() {
         didSet {
             self.imagesCollectionView.reloadData()
@@ -20,6 +22,12 @@ class ImagesCollectionViewHeader: UITableViewHeaderFooterView {
 
     override func awakeFromNib() {
         self.configureCollectionView()
+    }
+    @IBAction func backImageAction(sender: AnyObject) {
+
+    }
+    @IBAction func nextImageAction(sender: AnyObject) {
+
     }
 
     func configureCollectionView() {
