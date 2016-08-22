@@ -42,7 +42,7 @@ class ZoomCollectionViewCell: UICollectionViewCell {
 
     func configureScrollViewToZoom() {
         self.imageScrollView.minimumZoomScale = 1.0
-        self.imageScrollView.maximumZoomScale = 2.0
+        self.imageScrollView.maximumZoomScale = 3.0
         self.imageScrollView.zoomScale = 1.0
         self.imageScrollView.delegate = self
     }

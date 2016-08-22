@@ -46,6 +46,7 @@ class MenuItemViewController: BaseViewController {
         offset = offset + limit
         return offset == venues.count
     }
+    var isFavoriteMenu = false
 
     // MARK:- Life Cycle
 
@@ -166,6 +167,7 @@ extension MenuItemViewController: UITableViewDataSource {
 extension MenuItemViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let detailVenueViewController = DetailVenueViewController.vc()
+        detailVenueViewController.isFavoriteMenu = self.isFavoriteMenu
         let venue = self.venues[indexPath.row]
         detailVenueViewController.venue = venue
         UIApplication.sharedApplication().navigationController()?.pushViewController(detailVenueViewController, animated: true)

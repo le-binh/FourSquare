@@ -56,6 +56,8 @@ class SearchVenueViewController: BaseViewController {
         let venueName = self.venueNameTextField.text ?? ""
         let venueAddress = self.venueAddressTextField.text ?? ""
         if !venueName.isEmpty && !venueAddress.isEmpty {
+            self.venueAddressTextField.endEditing(true)
+            self.venueAddressTextField.endEditing(true)
             self.hiddenSearchBoxWithAnimation()
             if didShowMapView {
                 let venueSearchingMapViewController = self.currentViewController as? VenueSearchingMapViewController
