@@ -15,6 +15,8 @@ class ImagesCollectionViewHeader: UITableViewHeaderFooterView {
     @IBOutlet weak var backImageButton: UIButton!
     @IBOutlet weak var nextImageButton: UIButton!
 
+    var detailVenueViewController = DetailVenueViewController()
+
     var photos = RealmSwift.List<Photo>() {
         didSet {
             self.nextImageButton.hidden = self.photos.count <= 1
@@ -102,8 +104,9 @@ extension ImagesCollectionViewHeader: UICollectionViewDelegate, UICollectionView
     }
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let photo = self.photos[indexPath.row]
-        print(photo.photoPathString)
+        let zoomCollectionView = ZoomImagesViewController.vc()
+        zoomCollectionView.photos = self.photos
+        self.detailVenueViewController.presentViewController(zoomCollectionView, animated: true, completion: nil)
     }
 
 }

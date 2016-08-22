@@ -305,6 +305,7 @@ extension DetailVenueViewController: UITableViewDelegate {
             guard let venue = self.venue else {
                 return view
             }
+            view.detailVenueViewController = self
             view.photos = venue.photos
             return view
         case .Information:

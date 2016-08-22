@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZoomImagesViewController" customModule="FourSquare" customModuleProvider="target">
+            <connections>
+                <outlet property="imagesCollectionView" destination="fhK-6j-tIO" id="ZRj-sX-iZc"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="fhK-6j-tIO">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="0pk-Yn-vzH">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LML-uo-Tqi">
+                    <rect key="frame" x="244" y="508" width="46" height="30"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="closeZoomViewController:" destination="-1" eventType="touchUpInside" id="O9r-JT-5QD"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="fhK-6j-tIO" secondAttribute="trailing" id="1Ve-hg-n0w"/>
+                <constraint firstItem="fhK-6j-tIO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5Nd-wI-tiK"/>
+                <constraint firstAttribute="trailing" secondItem="LML-uo-Tqi" secondAttribute="trailing" constant="30" id="E7L-Yr-cuM"/>
+                <constraint firstItem="fhK-6j-tIO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="JFA-oI-eCZ"/>
+                <constraint firstAttribute="bottom" secondItem="LML-uo-Tqi" secondAttribute="bottom" constant="30" id="PuX-CB-qL5"/>
+                <constraint firstAttribute="bottom" secondItem="fhK-6j-tIO" secondAttribute="bottom" id="hlW-0O-yy1"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="87" y="358"/>
+        </view>
+    </objects>
+</document>
