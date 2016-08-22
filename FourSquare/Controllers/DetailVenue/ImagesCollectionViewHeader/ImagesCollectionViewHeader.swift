@@ -14,8 +14,10 @@ class ImagesCollectionViewHeader: UITableViewHeaderFooterView {
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     @IBOutlet weak var backImageButton: UIButton!
     @IBOutlet weak var nextImageButton: UIButton!
+
     var photos = RealmSwift.List<Photo>() {
         didSet {
+            self.nextImageButton.hidden = self.photos.count <= 1
             self.imagesCollectionView.reloadData()
         }
     }
@@ -44,6 +46,7 @@ class ImagesCollectionViewHeader: UITableViewHeaderFooterView {
         self.imagesCollectionView.registerNib(ImagesCollectionViewCell)
         self.imagesCollectionView.delegate = self
         self.imagesCollectionView.dataSource = self
+        self.backImageButton.hidden = true
     }
 
     private func visibleIndex() -> Int {
@@ -56,6 +59,21 @@ class ImagesCollectionViewHeader: UITableViewHeaderFooterView {
     private func scrollToCellAtIndex(index: Int, animated: Bool) {
         let indexPath: NSIndexPath = NSIndexPath(forRow: index, inSection: 0)
         self.imagesCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: animated)
+        self.checkCurrentIndexToHiddenButton(index)
+    }
+
+    private func checkCurrentIndexToHiddenButton(index: Int) {
+        self.backImageButton.hidden = index == 0
+        self.nextImageButton.hidden = index == self.photos.count - 1
+    }
+}
+
+extension ImagesCollectionViewHeader: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        let contentOffsetX = self.imagesCollectionView.contentOffset.x
+        let collectionWidth = self.imagesCollectionView.bounds.width
+        let index = Int(contentOffsetX / collectionWidth)
+        self.checkCurrentIndexToHiddenButton(index)
     }
 }
 
