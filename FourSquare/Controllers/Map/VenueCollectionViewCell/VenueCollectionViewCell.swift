@@ -36,4 +36,25 @@ class VenueCollectionViewCell: UICollectionViewCell {
         let radiusOfRatingLabel: CGFloat = self.ratingVenueLabel.frame.width / 2
         self.ratingVenueLabel.cornerRadiusWith(radiusOfRatingLabel)
     }
+
+    // MARK:- Public Functions
+
+    func setUpData(venue: Venue) {
+        self.thumbnailVenueImageView.image = UIImage(named: "thumbnail_venue")
+        self.verifiedVenueImageView.image = (venue.verified) ? UIImage(named: "verified_ic") : UIImage(named: "not_verified_ic")
+        self.nameVenueLabel.text = venue.name
+        self.addressVenueLabel.text = venue.location?.fullAddress
+        self.ratingVenueLabel.text = String(venue.rating)
+        self.ratingVenueLabel.backgroundColor = venue.ratingColor
+        self.categoryVenueLabel.text = venue.showCategories
+        self.priceVenueLabel.text = venue.price?.showCurrency()
+        if let distance = venue.location?.distance {
+            self.distanceVenueLabel.text = "\(distance)m From Here"
+        } else {
+            self.distanceVenueLabel.text = "???m From Here"
+        }
+        if let url = venue.thumbnail?.thumbnailPath {
+            self.thumbnailVenueImageView.hnk_setImageFromURL(url)
+        }
+    }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class PageImageHeaderView: UITableViewHeaderFooterView {
 
@@ -17,7 +18,7 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var imagesPageControl: UIPageControl!
     var imagePageViewController: UIPageViewController?
 
-    var photos: [Photo] = [] {
+    var photos = RealmSwift.List<Photo>() {
         didSet {
             self.afterPageButton.hidden = self.photos.count <= 1
             self.imagesPageControl.numberOfPages = self.photos.count

@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUtils
+import RealmSwift
 
 class FavoriteViewController: MenuItemViewController {
 
@@ -17,4 +18,21 @@ class FavoriteViewController: MenuItemViewController {
         self.navigationBar?.title = Strings.FavoriteTitle
     }
 
+    override func viewDidAppear(animated: Bool) {
+
+    }
+
+    override func loadVenuesFromRealm() {
+        do {
+            let realm = try Realm()
+            self.venues = realm.objects(Venue).filter("isFavorite = true").sorted("favoriteTimestamp", ascending: false)
+        } catch {
+            print("Realm Have Error!!")
+        }
+    }
+
+    override func refreshData() {
+        self.venueTableView?.reloadData()
+        self.refreshControl.endRefreshing()
+    }
 }

@@ -60,11 +60,14 @@
 		997228021D5C31E50053E320 /* VenueTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997228011D5C31E50053E320 /* VenueTip.swift */; };
 		997228041D5C38F50053E320 /* VenueContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997228031D5C38F50053E320 /* VenueContact.swift */; };
 		997228081D5C74130053E320 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997228071D5C74130053E320 /* UIColor.swift */; };
+		997EA6F11D62CF0900006AD8 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997EA6F01D62CF0900006AD8 /* RealmManager.swift */; };
+		997EA6F41D62F14C00006AD8 /* ListTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997EA6F31D62F14C00006AD8 /* ListTransform.swift */; };
 		9987AA0E1D52F83C00AB7E6D /* VenueItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9987AA0C1D52F83C00AB7E6D /* VenueItemTableViewCell.swift */; };
 		9987AA0F1D52F83C00AB7E6D /* VenueItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9987AA0D1D52F83C00AB7E6D /* VenueItemTableViewCell.xib */; };
 		9987AA121D52F84C00AB7E6D /* MenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9987AA101D52F84C00AB7E6D /* MenuItemViewController.swift */; };
 		999165DA1D52D7AF00320877 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999165D91D52D7AF00320877 /* BaseViewController.swift */; };
 		999165DD1D52E92C00320877 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999165DC1D52E92C00320877 /* UIApplication.swift */; };
+		9997EDE91D615DED00E6404D /* MyLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9997EDE81D615DEC00E6404D /* MyLocationManager.swift */; };
 		99A89EA21D5707FE00429962 /* MapDetailVenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A89EA01D5707FE00429962 /* MapDetailVenueViewController.swift */; };
 		99A89EA31D5707FE00429962 /* MapDetailVenueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99A89EA11D5707FE00429962 /* MapDetailVenueViewController.xib */; };
 		99AA465F1D542A8F004EFCB2 /* ImagePageItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AA465D1D542A8F004EFCB2 /* ImagePageItemViewController.swift */; };
@@ -193,11 +196,14 @@
 		997228011D5C31E50053E320 /* VenueTip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueTip.swift; sourceTree = "<group>"; };
 		997228031D5C38F50053E320 /* VenueContact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueContact.swift; sourceTree = "<group>"; };
 		997228071D5C74130053E320 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		997EA6F01D62CF0900006AD8 /* RealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		997EA6F31D62F14C00006AD8 /* ListTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTransform.swift; sourceTree = "<group>"; };
 		9987AA0C1D52F83C00AB7E6D /* VenueItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VenueItemTableViewCell.swift; path = Base/PageBase/VenueItemTableViewCell/VenueItemTableViewCell.swift; sourceTree = "<group>"; };
 		9987AA0D1D52F83C00AB7E6D /* VenueItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VenueItemTableViewCell.xib; path = Base/PageBase/VenueItemTableViewCell/VenueItemTableViewCell.xib; sourceTree = "<group>"; };
 		9987AA101D52F84C00AB7E6D /* MenuItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuItemViewController.swift; path = Base/PageBase/MenuItemViewController.swift; sourceTree = "<group>"; };
 		999165D91D52D7AF00320877 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = Base/BaseViewController.swift; sourceTree = "<group>"; };
 		999165DC1D52E92C00320877 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		9997EDE81D615DEC00E6404D /* MyLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLocationManager.swift; sourceTree = "<group>"; };
 		99A89EA01D5707FE00429962 /* MapDetailVenueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapDetailVenueViewController.swift; sourceTree = "<group>"; };
 		99A89EA11D5707FE00429962 /* MapDetailVenueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapDetailVenueViewController.xib; sourceTree = "<group>"; };
 		99AA465D1D542A8F004EFCB2 /* ImagePageItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePageItemViewController.swift; sourceTree = "<group>"; };
@@ -314,6 +320,7 @@
 		2DC3648B1D4B0941006514EE /* FourSquare */ = {
 			isa = PBXGroup;
 			children = (
+				997EA6F21D62F12B00006AD8 /* Library */,
 				2DC364BB1D4B0AC8006514EE /* Define */,
 				2DC364BD1D4B0AC8006514EE /* Models */,
 				2DC364C11D4B0AC8006514EE /* Views */,
@@ -398,6 +405,8 @@
 				997227FF1D5C20BB0053E320 /* VenueHours.swift */,
 				997228011D5C31E50053E320 /* VenueTip.swift */,
 				997228031D5C38F50053E320 /* VenueContact.swift */,
+				9997EDE81D615DEC00E6404D /* MyLocationManager.swift */,
+				997EA6F01D62CF0900006AD8 /* RealmManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -616,6 +625,14 @@
 				996DF4021D56462300693216 /* ViewHeaderVenueDetail.xib */,
 			);
 			path = ViewForHeader;
+			sourceTree = "<group>";
+		};
+		997EA6F21D62F12B00006AD8 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				997EA6F31D62F14C00006AD8 /* ListTransform.swift */,
+			);
+			path = Library;
 			sourceTree = "<group>";
 		};
 		999165D81D52D79C00320877 /* Base */ = {
@@ -1197,12 +1214,14 @@
 				99EB2A1F1D4F4CCB0024FEF9 /* BackgroundViewController.swift in Sources */,
 				2DC364FA1D4B3E59006514EE /* BaseService.swift in Sources */,
 				99ED292B1D508B550088FCAD /* HistoryViewController.swift in Sources */,
+				997EA6F11D62CF0900006AD8 /* RealmManager.swift in Sources */,
 				2DC364F61D4B3830006514EE /* ApiManager.swift in Sources */,
 				2DC364F41D4B3812006514EE /* ResponseSerializer.swift in Sources */,
 				9987AA121D52F84C00AB7E6D /* MenuItemViewController.swift in Sources */,
 				99C5811C1D5500D20095EE7F /* OutdoorsViewController.swift in Sources */,
 				99FC6E941D5831C600CC2B34 /* MapViewController.swift in Sources */,
 				2DC364E81D4B3344006514EE /* Keys.swift in Sources */,
+				9997EDE91D615DED00E6404D /* MyLocationManager.swift in Sources */,
 				996DF40A1D564B9700693216 /* TipsDetailVenueCell.swift in Sources */,
 				992A1D7C1D59C6DD0047B63B /* VenueSearchingViewController.swift in Sources */,
 				2DC364E41D4B1922006514EE /* User.swift in Sources */,
@@ -1217,6 +1236,7 @@
 				9987AA0E1D52F83C00AB7E6D /* VenueItemTableViewCell.swift in Sources */,
 				992A1D741D59817A0047B63B /* MarkerMap.swift in Sources */,
 				997227FC1D5C0EEB0053E320 /* VenuePrice.swift in Sources */,
+				997EA6F41D62F14C00006AD8 /* ListTransform.swift in Sources */,
 				99C581281D5501240095EE7F /* TrendingViewController.swift in Sources */,
 				99C581101D54FED30095EE7F /* CoffeeViewController.swift in Sources */,
 				99F661AA1D526887009A0E47 /* UIView.swift in Sources */,

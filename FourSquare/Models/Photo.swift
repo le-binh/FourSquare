@@ -8,14 +8,20 @@
 
 import Foundation
 import ObjectMapper
+import RealmSwift
 
-class Photo: Mappable {
-    var prefix: String = ""
-    var suffix: String = ""
-    var width: Int = 0
-    var height: Int = 0
-    required init?(_ map: Map) {
+class Photo: Object, Mappable {
+    dynamic var prefix: String = ""
+    dynamic var suffix: String = ""
+    dynamic var width: Int = 0
+    dynamic var height: Int = 0
 
+    var users = LinkingObjects(fromType: User.self, property: "avatar")
+    var venues = LinkingObjects(fromType: Venue.self, property: "thumbnail")
+    var venuesDetail = LinkingObjects(fromType: Venue.self, property: "photos")
+
+    required convenience init?(_ map: Map) {
+        self.init()
     }
     func mapping(map: Map) {
         prefix <- map["prefix"]
@@ -27,8 +33,8 @@ class Photo: Mappable {
 
 extension Photo {
     var avatarPath: NSURL? {
-        width = 70
-        height = 70
+        let width = 70
+        let height = 70
         let path = prefix + "\(width)" + "x" + "\(height)" + suffix
         return NSURL(string: path)
     }

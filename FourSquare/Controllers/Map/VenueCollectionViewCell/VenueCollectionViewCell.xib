@@ -17,6 +17,9 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="08B-n9-tuk">
                         <rect key="frame" x="0.0" y="0.0" width="361" height="124"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumbnail_venue" translatesAutoresizingMaskIntoConstraints="NO" id="vYs-G2-Sci">
+                                <rect key="frame" x="180" y="0.0" width="180.5" height="124"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Uw-wI-VFf">
                                 <rect key="frame" x="0.0" y="0.0" width="180.5" height="124"/>
                                 <subviews>
@@ -68,7 +71,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="gNC-Ql-jpF" firstAttribute="top" secondItem="yzl-Iq-rXt" secondAttribute="bottom" constant="3" id="5GV-i3-U9l"/>
                                     <constraint firstItem="gNC-Ql-jpF" firstAttribute="leading" secondItem="yzl-Iq-rXt" secondAttribute="leading" id="9Js-GD-bpA"/>
@@ -86,9 +89,6 @@
                                     <constraint firstItem="8Xy-IW-Yzz" firstAttribute="centerY" secondItem="m1v-Uf-XpW" secondAttribute="centerY" id="xxE-7M-Z1i"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumbnail_venue" translatesAutoresizingMaskIntoConstraints="NO" id="vYs-G2-Sci">
-                                <rect key="frame" x="180" y="0.0" width="180.5" height="124"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -130,7 +130,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="thumbnail_venue" width="165" height="125"/>
+        <image name="thumbnail_venue" width="213" height="160"/>
         <image name="verified_ic" width="64" height="53"/>
     </resources>
 </document>

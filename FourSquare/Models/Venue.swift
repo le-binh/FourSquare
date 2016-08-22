@@ -8,25 +8,33 @@
 
 import Foundation
 import ObjectMapper
+import RealmSwift
 
-class Venue: Mappable {
-    var id: String = ""
-    var name: String = ""
-    var rating: Double = 0.0
-    var ratingColorString: String = ""
-    var verified: Bool = true
-    var website: String = ""
-    var thumbnail: Photo?
-    var location: VenueLocation?
-    var categories: [VenueCategory] = []
-    var price: VenuePrice?
-    var contact: VenueContact?
-    var hours: VenueHours?
-    var photos: [Photo] = []
-    var tips: [VenueTip] = []
+class Venue: Object, Mappable {
+    dynamic var id: String = ""
+    dynamic var name: String = ""
+    dynamic var rating: Double = 0.0
+    dynamic var ratingColorString: String = ""
+    dynamic var verified: Bool = true
+    dynamic var website: String = ""
+    dynamic var isFavorite: Bool = false
+    dynamic var didFavorite: Bool = false
+    dynamic var isHistory: Bool = false
+    dynamic var favoriteTimestamp = NSDate()
+    dynamic var historyTimestamp = NSDate()
+    dynamic var section: String = ""
+    dynamic var thumbnail: Photo?
+    dynamic var location: VenueLocation?
+    dynamic var price: VenuePrice?
+    dynamic var contact: VenueContact?
+    dynamic var hours: VenueHours?
 
-    required init?(_ map: Map) {
+    var categories = RealmSwift.List<VenueCategory>()
+    let photos = RealmSwift.List<Photo>()
+    let tips = RealmSwift.List<VenueTip>()
 
+    required convenience init?(_ map: Map) {
+        self.init()
     }
 
     func mapping(map: Map) {
@@ -38,7 +46,7 @@ class Venue: Mappable {
         website <- map["url"]
         thumbnail <- map["featuredPhotos.items.0"]
         location <- map["location"]
-        categories <- map["categories"]
+        categories <- (map["categories"], ListTransform<VenueCategory>())
         price <- map["price"]
         contact <- map["contact"]
     }

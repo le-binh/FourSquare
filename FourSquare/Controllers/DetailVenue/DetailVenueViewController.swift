@@ -90,9 +90,11 @@ class DetailVenueViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureFavoriteButton()
         self.configureTableView()
         self.navigationBar?.title = venue?.name
         self.clearPhotos()
+        self.addHistory()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -104,6 +106,12 @@ class DetailVenueViewController: BaseViewController {
 
     override func favoriteAction(sender: AnyObject) {
         super.favoriteAction(sender)
+        guard let venue = self.venue else { return }
+        if didAddFavorite {
+            RealmManager.sharedInstance.deleteFavorite(venue.id)
+        } else {
+            RealmManager.sharedInstance.addFavorite(venue.id)
+        }
         didAddFavorite = !didAddFavorite
     }
 
@@ -119,6 +127,18 @@ class DetailVenueViewController: BaseViewController {
         self.detailVenueTableView.dataSource = self
         self.detailVenueTableView.rowHeight = UITableViewAutomaticDimension
         self.detailVenueTableView.estimatedRowHeight = 51
+    }
+
+    private func configureFavoriteButton() {
+        if let venue = self.venue {
+            self.didAddFavorite = venue.didFavorite
+        }
+    }
+
+    private func addHistory() {
+        if let venue = self.venue {
+            RealmManager.sharedInstance.addHistory(venue.id)
+        }
     }
 
     private func loadVenueDetail() {
@@ -143,31 +163,69 @@ class DetailVenueViewController: BaseViewController {
     }
 
     private func loadVenueHours(completion: () -> Void) {
-        guard let venueId = self.venue?.id else { return }
-        VenueService().loadVenueHours(venueId) { (hours) in
-            self.venue?.hours = hours
+        guard let venue = self.venue else {
+            completion()
+            return
+        }
+        VenueService().loadVenueHours(venue.id, section: venue.section) { (hours) in
             completion()
         }
     }
 
     private func loadVenuePhotos(completion: () -> Void) {
-        guard let venueId = self.venue?.id else { return }
-        VenueService().loadVenuePhotos(venueId) { (photos) in
-            self.venue?.photos = photos
+        guard let venue = self.venue else {
+            completion()
+            return
+        }
+        VenueService().loadVenuePhotos(venue.id, section: venue.section) { (photos) in
             completion()
         }
     }
 
     private func loadVenueTips(completion: () -> Void) {
-        guard let venueId = self.venue?.id else { return }
-        VenueService().loadVenueTips(venueId) { (tips) in
-            self.venue?.tips = tips
+        guard let venue = self.venue else {
+            completion()
+            return
+        }
+        VenueService().loadVenueTips(venue.id, section: venue.section) { (tips) in
             completion()
         }
     }
 
+    private func informationCell(venue: Venue, tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
+        guard let infomationSection = InfomationSection(rawValue: indexPath.row) else {
+            return UITableViewCell()
+        }
+        let cell = tableView.dequeue(DefaultVenueDetailCell)
+        cell.titleLabel.text = infomationSection.title
+        switch infomationSection {
+        case .Name:
+            cell.textDetailLabel.text = venue.name
+        case .Address:
+            let cellMap = tableView.dequeue(MapDetailVenueCell)
+            cellMap.venue = venue
+            cellMap.detailVenueViewController = self
+            return cellMap
+        case .Contact:
+            guard let contact = venue.contact?.contact else { break }
+            cell.textDetailLabel.text = contact.isEmpty ? Strings.NotAvailable : contact
+        case .Categories:
+            cell.textDetailLabel.text = venue.showCategories
+        case .Hours:
+            cell.textDetailLabel.text = venue.hours?.timeToday ?? Strings.NotAvailable
+        case .Rating:
+            cell.textDetailLabel.text = "\(venue.rating)"
+        case .PriceTier:
+            cell.textDetailLabel.text = "\(venue.price?.tier ?? 0)"
+        case .Verified:
+            cell.textDetailLabel.text = venue.verified ? Strings.Verified : Strings.NotVerified
+        case .Website:
+            cell.textDetailLabel.text = venue.website.isEmpty ? Strings.NotAvailable : venue.website
+        }
+        return cell
+    }
+
     private func clearPhotos() {
-        self.venue?.photos = []
     }
 }
 
@@ -193,45 +251,16 @@ extension DetailVenueViewController: UITableViewDataSource {
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         guard let detailVenueSection = DetailVenueSection(rawValue: indexPath.section) else {
-            return UITableViewCell(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+            return UITableViewCell()
         }
         guard let venue = self.venue else {
-            return UITableViewCell(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+            return UITableViewCell()
         }
         switch detailVenueSection {
         case .PageImage:
-            return UITableViewCell(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+            return UITableViewCell()
         case .Information:
-            guard let infomationSection = InfomationSection(rawValue: indexPath.row) else {
-                return UITableViewCell()
-            }
-            let cell = tableView.dequeue(DefaultVenueDetailCell)
-            cell.titleLabel.text = infomationSection.title
-            switch infomationSection {
-            case .Name:
-                cell.textDetailLabel.text = venue.name
-            case .Address:
-                let cellMap = tableView.dequeue(MapDetailVenueCell)
-                cellMap.venue = venue
-                cellMap.detailVenueViewController = self
-                return cellMap
-            case .Contact:
-                guard let contact = venue.contact?.contact else { break }
-                cell.textDetailLabel.text = contact.isEmpty ? Strings.NotAvailable : contact
-            case .Categories:
-                cell.textDetailLabel.text = venue.showCategories
-            case .Hours:
-                cell.textDetailLabel.text = venue.hours?.timeToday ?? Strings.NotAvailable
-            case .Rating:
-                cell.textDetailLabel.text = "\(venue.rating)"
-            case .PriceTier:
-                cell.textDetailLabel.text = "\(venue.price?.tier ?? 0)"
-            case .Verified:
-                cell.textDetailLabel.text = venue.verified ? Strings.Verified : Strings.NotVerified
-            case .Website:
-                cell.textDetailLabel.text = venue.website.isEmpty ? Strings.NotAvailable : venue.website
-            }
-            return cell
+            return informationCell(venue, tableView: tableView, indexPath: indexPath)
         case .Tips:
             let cell = tableView.dequeue(TipsDetailVenueCell)
             if !venue.tips.isEmpty {

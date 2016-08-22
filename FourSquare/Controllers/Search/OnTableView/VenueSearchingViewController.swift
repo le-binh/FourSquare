@@ -9,7 +9,7 @@
 import UIKit
 
 class VenueSearchingViewController: MenuItemViewController {
-    override var isSearchingVenue: Bool {
-        return true
+    override func viewDidAppear(animated: Bool) {
+        // self.loadVenues()
     }
 }

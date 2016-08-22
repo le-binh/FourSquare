@@ -9,6 +9,7 @@
 import UIKit
 import SwiftUtils
 import SVProgressHUD
+import RealmSwift
 
 enum SectionQuery: String {
     case TopPicks = "toppicks"
@@ -20,31 +21,40 @@ enum SectionQuery: String {
     case Shops = "shops"
     case Sights = "sights"
     case Trending = "trending"
+    case Search = "search"
+}
+
+protocol MenuItemDelegate {
+    func menuItemDidLoadData(venues: Results<Venue>)
 }
 
 class MenuItemViewController: BaseViewController {
 
     // MARK:- Properties
     var section: SectionQuery {
-        return .TopPicks
-    }
-    var isSearchingVenue: Bool {
-        return false
+        return .Search
     }
     @IBOutlet weak var venueTableView: UITableView?
     let rowHeight: CGFloat = 140
-    var venues: [Venue] = []
+    var venues: Results<Venue>!
+    var delegate: MenuItemDelegate!
+    var refreshControl: UIRefreshControl!
+    let limit: Int = 10
+    var offset: Int = 0
+    var willLoadMore: Bool = true
 
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpTableView()
+        self.setUpRefreshControl()
+        self.loadVenuesFromRealm()
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if isViewFirstAppear && !isSearchingVenue {
+        if isViewFirstAppear {
             loadVenues()
         }
     }
@@ -60,11 +70,62 @@ class MenuItemViewController: BaseViewController {
         self.venueTableView?.rowHeight = self.rowHeight
     }
 
-    func loadVenues() {
+    private func setUpRefreshControl() {
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.addTarget(self, action: #selector(self.refreshData), forControlEvents: .ValueChanged)
+        self.venueTableView?.addSubview(refreshControl)
+    }
+
+    func refreshData() {
+        self.offset = 0
+        self.deleteVenues()
+        if self.section == .Search {
+            self.refreshControl.endRefreshing()
+        } else {
+            self.loadVenues()
+        }
+    }
+
+    func loadVenuesFromRealm() {
+        do {
+            let realm = try Realm()
+//            print(Realm.Configuration.defaultConfiguration.fileURL)
+            self.venues = realm.objects(Venue).filter("section = '\(self.section.rawValue)'")
+        } catch {
+            print("Realm Have Error!!")
+        }
+    }
+
+    private func loadVenues() {
         SVProgressHUD.show()
-        VenueService().loadVenues(16.0592007, longtitude: 108.1769168, section: section.rawValue, limit: 10, offset: 0) { (venues) in
+        self.refreshControl.endRefreshing()
+        VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (venues) in
             SVProgressHUD.dismiss()
-            self.venues = venues
+            self.venueTableView?.reloadData()
+            if let delegate = self.delegate {
+                delegate.menuItemDidLoadData(self.venues)
+            }
+        }
+    }
+
+    private func deleteVenues() {
+        RealmManager.sharedInstance.deleteSection(self.section.rawValue)
+        self.venueTableView?.reloadData()
+    }
+
+    private func loadMoreVenues() {
+        VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (venues) in
+            self.venueTableView?.reloadData()
+            self.willLoadMore = true
+        }
+    }
+
+    // MARK:- Public Functions
+
+    func searchVenues(name: String, address: String) {
+        SVProgressHUD.show()
+        VenueService().searchVeues(address, query: name, limit: self.limit, offset: self.offset) { (venues) in
+            SVProgressHUD.dismiss()
             self.venueTableView?.reloadData()
         }
     }
@@ -101,12 +162,15 @@ extension MenuItemViewController: UITableViewDelegate {
 
 extension MenuItemViewController {
 
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-
-    }
-
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
+        if maximumOffset - currentOffset < 2 * self.rowHeight && willLoadMore {
+            willLoadMore = false
+            self.offset = self.offset + self.limit
+            if self.section != .Search {
+                self.loadMoreVenues()
+            }
+        }
     }
-
 }

@@ -8,11 +8,15 @@
 
 import UIKit
 import ObjectMapper
+import RealmSwift
 
-class User: Mappable {
-    var avatar: Photo?
-    required init?(_ map: Map) {
+class User: Object, Mappable {
+    dynamic var avatar: Photo?
 
+    var venueTips = LinkingObjects(fromType: VenueTip.self, property: "user")
+
+    required convenience init?(_ map: Map) {
+        self.init()
     }
     func mapping(map: Map) {
         avatar <- map["photo"]

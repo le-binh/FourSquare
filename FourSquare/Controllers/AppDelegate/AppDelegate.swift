@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         setup()
+        cleanDatabase()
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window?.rootViewController = self.rootViewController()
         window?.makeKeyAndVisible()
@@ -41,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupThirdParties() {
         setupConsole()
         setupGoogleMapAPIKey()
+        setupLocationManager()
     }
 
     private func setupConsole() {
@@ -52,7 +54,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        #endif
     }
 
-    func setupGoogleMapAPIKey() {
+    private func setupGoogleMapAPIKey() {
         GMSServices.provideAPIKey(GoogleMapsKeys.goolgeMapsApiKey)
     }
+
+    private func setupLocationManager() {
+        MyLocationManager.sharedInstanced.startLocation()
+    }
+
+    private func cleanDatabase() {
+        RealmManager.sharedInstance.deleteAll()
+    }
+
 }
