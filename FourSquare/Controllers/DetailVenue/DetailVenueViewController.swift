@@ -90,7 +90,6 @@ class DetailVenueViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureFavoriteButton()
         self.configureTableView()
         self.navigationBar?.title = venue?.name
         self.clearPhotos()
@@ -104,13 +103,18 @@ class DetailVenueViewController: BaseViewController {
         }
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.configureFavoriteButton()
+    }
+
     override func favoriteAction(sender: AnyObject) {
         super.favoriteAction(sender)
         guard let venue = self.venue else { return }
         if didAddFavorite {
             RealmManager.sharedInstance.deleteFavorite(venue.id)
         } else {
-            RealmManager.sharedInstance.addFavorite(venue.id)
+            RealmManager.sharedInstance.addFavorite(venue)
         }
         didAddFavorite = !didAddFavorite
     }
@@ -122,7 +126,8 @@ class DetailVenueViewController: BaseViewController {
         self.detailVenueTableView.registerNib(DefaultVenueDetailCell)
         self.detailVenueTableView.registerNib(MapDetailVenueCell)
         self.detailVenueTableView.registerNib(TipsDetailVenueCell)
-        self.detailVenueTableView.registerNib(PageImageHeaderView)
+//        self.detailVenueTableView.registerNib(PageImageHeaderView)
+        self.detailVenueTableView.registerNib(ImagesCollectionViewHeader)
         self.detailVenueTableView.delegate = self
         self.detailVenueTableView.dataSource = self
         self.detailVenueTableView.rowHeight = UITableViewAutomaticDimension
@@ -137,11 +142,14 @@ class DetailVenueViewController: BaseViewController {
 
     private func addHistory() {
         if let venue = self.venue {
-            RealmManager.sharedInstance.addHistory(venue.id)
+            RealmManager.sharedInstance.addHistory(venue)
         }
     }
 
     private func loadVenueDetail() {
+        if self.venue?.photos.count > 0 && self.venue?.tips.count > 0 {
+            return
+        }
         SVProgressHUD.show()
         let group = dispatch_group_create()
         dispatch_group_enter(group)
@@ -287,7 +295,13 @@ extension DetailVenueViewController: UITableViewDelegate {
         let view = tableView.dequeue(ViewHeaderVenueDetail)
         switch detailVenueSection {
         case .PageImage:
-            let view = tableView.dequeue(PageImageHeaderView)
+//            let view = tableView.dequeue(PageImageHeaderView)
+//            guard let venue = self.venue else {
+//                return view
+//            }
+//            view.photos = venue.photos
+//            return view
+            let view = tableView.dequeue(ImagesCollectionViewHeader)
             guard let venue = self.venue else {
                 return view
             }

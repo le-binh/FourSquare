@@ -42,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupThirdParties() {
         setupConsole()
         setupGoogleMapAPIKey()
-        setupLocationManager()
     }
 
     private func setupConsole() {
@@ -58,12 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey(GoogleMapsKeys.goolgeMapsApiKey)
     }
 
-    private func setupLocationManager() {
-        MyLocationManager.sharedInstanced.startLocation()
-    }
-
     private func cleanDatabase() {
-        RealmManager.sharedInstance.deleteAll()
+        RealmManager.sharedInstance.deleteWithoutFavoriteAndHistory()
     }
 
 }

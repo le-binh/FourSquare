@@ -42,19 +42,26 @@ class MenuItemViewController: BaseViewController {
     let limit: Int = 10
     var offset: Int = 0
     var willLoadMore: Bool = true
+    var shouldLoadMore: Bool {
+        offset = offset + limit
+        return offset == venues.count
+    }
 
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupLocationManager()
         self.setUpTableView()
         self.setUpRefreshControl()
         self.loadVenuesFromRealm()
+        self.configureNotificationCenter()
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if isViewFirstAppear {
+        let currentLocation = MyLocationManager.sharedInstanced.currentLocation
+        if isViewFirstAppear && currentLocation != nil {
             loadVenues()
         }
     }
@@ -70,54 +77,52 @@ class MenuItemViewController: BaseViewController {
         self.venueTableView?.rowHeight = self.rowHeight
     }
 
+    private func configureNotificationCenter() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(loadVenues), name: NotificationCenterKey.loadVenue, object: nil)
+    }
+
     private func setUpRefreshControl() {
         self.refreshControl = UIRefreshControl()
         self.refreshControl.addTarget(self, action: #selector(self.refreshData), forControlEvents: .ValueChanged)
         self.venueTableView?.addSubview(refreshControl)
     }
 
+    private func setupLocationManager() {
+        if MyLocationManager.sharedInstanced.currentLocation == nil {
+            MyLocationManager.sharedInstanced.startLocation()
+            return
+        }
+    }
+
     func refreshData() {
         self.offset = 0
         self.deleteVenues()
-        if self.section == .Search {
-            self.refreshControl.endRefreshing()
-        } else {
-            self.loadVenues()
-        }
+        self.loadVenues()
     }
 
     func loadVenuesFromRealm() {
         do {
             let realm = try Realm()
-//            print(Realm.Configuration.defaultConfiguration.fileURL)
+            // print(Realm.Configuration.defaultConfiguration.fileURL)
             self.venues = realm.objects(Venue).filter("section = '\(self.section.rawValue)'")
         } catch {
             print("Realm Have Error!!")
         }
     }
 
-    private func loadVenues() {
+    @objc private func loadVenues() {
         SVProgressHUD.show()
         self.refreshControl.endRefreshing()
         VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (venues) in
             SVProgressHUD.dismiss()
             self.venueTableView?.reloadData()
-            if let delegate = self.delegate {
-                delegate.menuItemDidLoadData(self.venues)
-            }
+            self.delegate?.menuItemDidLoadData(self.venues)
         }
     }
 
     private func deleteVenues() {
         RealmManager.sharedInstance.deleteSection(self.section.rawValue)
         self.venueTableView?.reloadData()
-    }
-
-    private func loadMoreVenues() {
-        VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (venues) in
-            self.venueTableView?.reloadData()
-            self.willLoadMore = true
-        }
     }
 
     // MARK:- Public Functions
@@ -129,6 +134,14 @@ class MenuItemViewController: BaseViewController {
             self.venueTableView?.reloadData()
         }
     }
+
+    func loadMoreVenues() {
+        VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (venues) in
+            self.venueTableView?.reloadData()
+            self.willLoadMore = true
+        }
+    }
+
 }
 
 //MARK:- Table View Datasource
@@ -163,12 +176,14 @@ extension MenuItemViewController: UITableViewDelegate {
 extension MenuItemViewController {
 
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        if !willLoadMore {
+            return
+        }
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
-        if maximumOffset - currentOffset < 2 * self.rowHeight && willLoadMore {
-            willLoadMore = false
-            self.offset = self.offset + self.limit
-            if self.section != .Search {
+        if maximumOffset - currentOffset < 2 * self.rowHeight {
+            if self.shouldLoadMore {
+                willLoadMore = false
                 self.loadMoreVenues()
             }
         }

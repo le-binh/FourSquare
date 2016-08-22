@@ -19,14 +19,22 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jyy-ot-ae7">
-                            <rect key="frame" x="10" y="114" width="13" height="22"/>
+                            <rect key="frame" x="10" y="105" width="20" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="QPY-8d-UtK"/>
+                                <constraint firstAttribute="width" constant="20" id="lNd-kK-eGL"/>
+                            </constraints>
                             <state key="normal" image="back_page_ic"/>
                             <connections>
                                 <action selector="didTabBackAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="ELL-A6-uDS"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BfA-8j-Gks">
-                            <rect key="frame" x="352" y="114" width="13" height="22"/>
+                            <rect key="frame" x="345" y="105" width="20" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="XJ6-kL-Blv"/>
+                                <constraint firstAttribute="width" constant="20" id="akK-AN-Iue"/>
+                            </constraints>
                             <state key="normal" image="next_page_ic"/>
                             <connections>
                                 <action selector="didTabNextAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Iyn-xl-xUS"/>

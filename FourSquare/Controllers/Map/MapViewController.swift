@@ -19,7 +19,9 @@ class MapViewController: ViewController {
     @IBOutlet weak var venueCollectionView: UICollectionView!
     @IBOutlet weak var backCollectionCellButton: UIButton!
     @IBOutlet weak var nextCollectionCellButton: UIButton!
+    @IBOutlet weak var currentLocationButton: UIButton!
     let collectionCellPadding: CGFloat = 10
+    let mapPadding: CGFloat = 30
     var indexMarker: Int = 0
     var markers: [MarkerMap] = []
     var venues: Results<Venue>! {
@@ -27,6 +29,8 @@ class MapViewController: ViewController {
             self.clearMapData()
             self.addMultiMarker()
             self.venueCollectionView.reloadData()
+            self.scrollToCellAtIndex(0, animated: false)
+            self.configureChangeCellButton()
         }
     }
 
@@ -56,6 +60,13 @@ class MapViewController: ViewController {
         self.scrollToCellAtIndex(indexRow, animated: true)
     }
 
+    @IBAction func currentLocationAction(sender: AnyObject) {
+        self.venueMapView.myLocationEnabled = true
+        if let currentLocation = MyLocationManager.sharedInstanced.currentLocation {
+            self.venueMapView.animateToLocation(currentLocation.coordinate)
+        }
+    }
+
     // MARK:- Private Functions
 
     private func configureCollectionView() {
@@ -64,6 +75,7 @@ class MapViewController: ViewController {
         self.venueCollectionView.dataSource = self
         self.venueCollectionView.registerNib(VenueCollectionViewCell)
         self.configureCollectionViewFlowLayout()
+        self.configureChangeCellButton()
     }
 
     private func configureCollectionViewFlowLayout() {
@@ -73,6 +85,13 @@ class MapViewController: ViewController {
         collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 0, left: self.collectionCellPadding, bottom: 0, right: self.collectionCellPadding)
         collectionViewFlowLayout.itemSize = self.sizeItemCellOfCollectionView()
         self.venueCollectionView.collectionViewLayout = collectionViewFlowLayout
+    }
+
+    private func configureChangeCellButton() {
+        if let venues = self.venues {
+            self.backCollectionCellButton.hidden = venues.isEmpty
+            self.nextCollectionCellButton.hidden = venues.isEmpty
+        }
     }
 
     private func clearMapData() {
@@ -114,18 +133,28 @@ class MapViewController: ViewController {
 
     private func addMultiMarker() {
         self.indexMarker = 0
+        let path = GMSMutablePath()
         for venue in self.venues {
             guard let latitude = venue.location?.latitude, longitude = venue.location?.longitude else {
                 continue
             }
             addMarker(latitude, longitude)
-            if self.indexMarker >= 10 {
-                break
-            }
+            let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+            path.addCoordinate(coordinate)
         }
-        let positionDefault = CLLocationCoordinate2DMake(CLLocationDegrees(16.0592007), CLLocationDegrees(108.1769168))
+        guard let currentLoction = MyLocationManager.sharedInstanced.currentLocation else {
+            return
+        }
+        let positionDefault = currentLoction.coordinate
         let marker = (self.markers.count > 0) ? self.markers[0]: MarkerMap(position: positionDefault)
         self.venueMapView.camera = GMSCameraPosition(target: marker.position, zoom: marker.zoomLevelMarkers, bearing: 0, viewingAngle: 0)
+        path.addCoordinate(positionDefault)
+        let bounds: GMSCoordinateBounds = GMSCoordinateBounds(path: path)
+        if path.count() == 1 {
+            return
+        }
+        let edgeInsets: UIEdgeInsets = UIEdgeInsets(top: mapPadding, left: mapPadding, bottom: 5 * mapPadding, right: mapPadding)
+        self.venueMapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withEdgeInsets: edgeInsets))
     }
 
     private func resetMarkersIconWithout(selectedMarker: MarkerMap) {
@@ -185,12 +214,20 @@ extension MapViewController: UICollectionViewDelegate {
 
 extension MapViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        let index = self.visibleIndex()
+        if index >= self.markers.count {
+            return
+        }
         let marker = self.markers[self.visibleIndex()]
         self.setSelectedMarker(marker)
         self.resetMarkersIconWithout(marker)
     }
 
     func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+        let index = self.visibleIndex()
+        if index >= self.markers.count {
+            return
+        }
         let marker = self.markers[self.visibleIndex()]
         self.setSelectedMarker(marker)
         self.venueMapView.animateToLocation(marker.position)

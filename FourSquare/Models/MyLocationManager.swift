@@ -19,24 +19,28 @@ class MyLocationManager: NSObject {
         super.init()
         self.locationManager.delegate = self
         self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.distanceFilter = 100
     }
 
     func startLocation() {
         self.locationManager.startUpdatingLocation()
-        self.currentLocation = self.locationManager.location
     }
 
 }
 
 extension MyLocationManager: CLLocationManagerDelegate {
-    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
-        self.currentLocation = newLocation
-    }
 
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-
+        if status == .AuthorizedWhenInUse {
+            self.currentLocation = self.locationManager.location
+        }
     }
+
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.currentLocation = locations.first
+        self.currentLocation = locations.last
+        if self.currentLocation != nil {
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.loadVenue, object: nil)
+        }
+        self.locationManager.stopUpdatingLocation()
     }
 }

@@ -27,23 +27,30 @@ class MapDetailVenueViewController: BaseViewController {
 
     var venue: Venue?
     var routePolyline: GMSPolyline!
+    var paddingMap: CGFloat = 30
 
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationBar?.title = venue?.name
+        self.configureFavoriteButton()
         self.setUpUI()
         self.addMarker()
         self.setUpData()
         self.setUpMyLocationManager()
-        // self.drawRouteGoogleMaps()
+        self.drawRouteGoogleMaps()
     }
 
     override func favoriteAction(sender: AnyObject) {
         super.favoriteAction(sender)
-        didAddFavorite = !didAddFavorite
-    }
+        guard let venue = self.venue else { return }
+        if didAddFavorite {
+            RealmManager.sharedInstance.deleteFavorite(venue.id)
+        } else {
+            RealmManager.sharedInstance.addFavorite(venue)
+        }
+        didAddFavorite = !didAddFavorite }
 
     // MARK:- Private Functions
 
@@ -57,15 +64,23 @@ class MapDetailVenueViewController: BaseViewController {
         self.ratingVenueLabel.cornerRadiusWith(radiusOfRatingLabel)
     }
 
-    private func addMarker() {
+    private func configureFavoriteButton() {
         if let venue = self.venue {
-            let market = MarkerMap()
+            self.didAddFavorite = venue.didFavorite
+        }
+    }
+
+    private func addMarker() {
+        let path = GMSMutablePath()
+        if let venue = self.venue {
+            let marker = MarkerMap()
             let latitude = venue.location?.latitude ?? 0
             let longitude = venue.location?.longitude ?? 0
-            market.position = CLLocationCoordinate2DMake(CLLocationDegrees(latitude), CLLocationDegrees(longitude))
-            market.icon = UIImage(named: "selected_marker_ic")
-            market.map = self.googleMapView
-            self.googleMapView.camera = GMSCameraPosition(target: market.position, zoom: market.zoomLevelMarker, bearing: 0, viewingAngle: 0)
+            marker.position = CLLocationCoordinate2DMake(CLLocationDegrees(latitude), CLLocationDegrees(longitude))
+            marker.icon = UIImage(named: "selected_marker_ic")
+            marker.map = self.googleMapView
+            path.addCoordinate(marker.position)
+            self.googleMapView.camera = GMSCameraPosition(target: marker.position, zoom: marker.zoomLevelMarker, bearing: 0, viewingAngle: 0)
         }
     }
 
@@ -97,15 +112,25 @@ class MapDetailVenueViewController: BaseViewController {
 
     private func drawRouteGoogleMaps() {
         guard let currentLocation = MyLocationManager.sharedInstanced.currentLocation else { return }
-        guard let venueLatitude = self.venue?.location?.latitude else { return }
-        guard let venueLongitude = self.venue?.location?.longitude else { return }
-        let path: GMSMutablePath = GMSMutablePath()
-        path.addCoordinate(currentLocation.coordinate)
-        path.addLatitude(venueLatitude, longitude: venueLongitude)
+        let currentLocationCoord = currentLocation.coordinate
+        guard let venue = self.venue else { return }
+        guard let venueLocation = venue.location else { return }
+        let venueLocationCoord = CLLocationCoordinate2D(latitude: CLLocationDegrees(venueLocation.latitude), longitude: CLLocationDegrees(venueLocation.longitude))
+        GoogleDirectionService().addOverlayToMapView(currentLocationCoord, venueLocationCoord: venueLocationCoord) { (encodedString) in
+            self.addPolyLineWithEncodedString(encodedString)
+        }
+    }
 
-        let polyLine: GMSPolyline = GMSPolyline(path: path)
-        polyLine.strokeWidth = 2
+    private func addPolyLineWithEncodedString(encodedString: String) {
+        guard let path = GMSMutablePath(fromEncodedPath: encodedString) else {
+            return
+        }
+        let polyLine = GMSPolyline(path: path)
+        polyLine.strokeWidth = 3
         polyLine.strokeColor = Color.Orange253
         polyLine.map = self.googleMapView
+        let bounds = GMSCoordinateBounds(path: path)
+        let edgeInsets: UIEdgeInsets = UIEdgeInsets(top: paddingMap, left: paddingMap, bottom: 5 * paddingMap, right: paddingMap)
+        self.googleMapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withEdgeInsets: edgeInsets))
     }
 }
