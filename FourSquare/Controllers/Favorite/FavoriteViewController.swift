@@ -22,6 +22,11 @@ class FavoriteViewController: MenuItemViewController {
 
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.venueTableView?.reloadData()
+    }
+
     override func loadVenuesFromRealm() {
         do {
             let realm = try Realm()

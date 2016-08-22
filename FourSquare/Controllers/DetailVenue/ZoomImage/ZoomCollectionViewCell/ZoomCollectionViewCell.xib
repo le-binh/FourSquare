@@ -34,13 +34,15 @@
                 <constraint firstAttribute="bottom" secondItem="cKc-9e-Z2n" secondAttribute="bottom" id="KLr-Qr-cci"/>
                 <constraint firstItem="cKc-9e-Z2n" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="XTG-ZF-aKU"/>
                 <constraint firstAttribute="trailing" secondItem="cKc-9e-Z2n" secondAttribute="trailing" id="b4e-4c-mar"/>
-                <constraint firstItem="NUq-nO-wpE" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="fMv-Er-V1b"/>
-                <constraint firstItem="NUq-nO-wpE" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" id="g2t-1P-YyL"/>
+                <constraint firstItem="NUq-nO-wpE" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" placeholder="YES" id="fMv-Er-V1b"/>
+                <constraint firstItem="NUq-nO-wpE" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" placeholder="YES" id="g2t-1P-YyL"/>
                 <constraint firstItem="cKc-9e-Z2n" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="l2v-KW-ip2"/>
             </constraints>
             <size key="customSize" width="291" height="342"/>
             <connections>
                 <outlet property="imageScrollView" destination="cKc-9e-Z2n" id="ggZ-re-H0E"/>
+                <outlet property="imageViewLeadingConstraint" destination="FAH-SZ-Fyw" id="WTz-Ap-0Hd"/>
+                <outlet property="imageViewTopConstraint" destination="fQx-eX-kYR" id="clq-TJ-AYW"/>
                 <outlet property="venueImageView" destination="NUq-nO-wpE" id="kjk-qP-IaI"/>
             </connections>
             <point key="canvasLocation" x="207.5" y="353"/>

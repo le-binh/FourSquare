@@ -26,10 +26,12 @@ class MapViewController: ViewController {
     var markers: [MarkerMap] = []
     var venues: Results<Venue>! {
         didSet {
-            self.clearMapData()
-            self.addMultiMarker()
-            self.venueCollectionView.reloadData()
-            self.scrollToCellAtIndex(0, animated: false)
+            if self.venues != nil && self.venues.count > 0 {
+                self.clearMapData()
+                self.addMultiMarker()
+                self.venueCollectionView.reloadData()
+                self.scrollToCellAtIndex(0, animated: false)
+            }
             self.configureChangeCellButton()
         }
     }

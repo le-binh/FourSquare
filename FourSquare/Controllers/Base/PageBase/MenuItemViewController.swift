@@ -128,6 +128,7 @@ class MenuItemViewController: BaseViewController {
     // MARK:- Public Functions
 
     func searchVenues(name: String, address: String) {
+        self.deleteVenues()
         SVProgressHUD.show()
         VenueService().searchVeues(address, query: name, limit: self.limit, offset: self.offset) { (venues) in
             SVProgressHUD.dismiss()

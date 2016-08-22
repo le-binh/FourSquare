@@ -106,6 +106,7 @@ extension ImagesCollectionViewHeader: UICollectionViewDelegate, UICollectionView
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let zoomCollectionView = ZoomImagesViewController.vc()
         zoomCollectionView.photos = self.photos
+        zoomCollectionView.indexPath = indexPath
         self.detailVenueViewController.presentViewController(zoomCollectionView, animated: true, completion: nil)
     }
 

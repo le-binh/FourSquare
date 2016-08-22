@@ -20,6 +20,7 @@ class VenueSearchingMapViewController: MapViewController {
 
     func searchVenues(name: String, address: String) {
         SVProgressHUD.show()
+        self.deleteVenues()
         VenueService().searchVeues(address, query: name, limit: 10, offset: 0) { (venues) in
             SVProgressHUD.dismiss()
             self.loadVenuesFromRealm()
@@ -33,5 +34,10 @@ class VenueSearchingMapViewController: MapViewController {
         } catch {
             print("Realm Have Error!!")
         }
+    }
+
+    private func deleteVenues() {
+        RealmManager.sharedInstance.deleteSection("search")
+        self.venueMapView.clear()
     }
 }

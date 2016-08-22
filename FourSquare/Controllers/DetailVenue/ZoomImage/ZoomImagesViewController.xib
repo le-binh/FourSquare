@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="fhK-6j-tIO">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="fhK-6j-tIO">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="0pk-Yn-vzH">
                         <size key="itemSize" width="50" height="50"/>
@@ -25,9 +25,9 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LML-uo-Tqi">
-                    <rect key="frame" x="244" y="508" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LML-uo-Tqi">
+                    <rect key="frame" x="263" y="511" width="27" height="27"/>
+                    <state key="normal" image="close_button_ic"/>
                     <connections>
                         <action selector="closeZoomViewController:" destination="-1" eventType="touchUpInside" id="O9r-JT-5QD"/>
                     </connections>
@@ -46,4 +46,7 @@
             <point key="canvasLocation" x="87" y="358"/>
         </view>
     </objects>
+    <resources>
+        <image name="close_button_ic" width="27" height="27"/>
+    </resources>
 </document>

@@ -14,6 +14,7 @@ class ZoomImagesViewController: UIViewController {
 
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     var photos = RealmSwift.List<Photo>()
+    var indexPath: NSIndexPath = NSIndexPath()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,12 @@ class ZoomImagesViewController: UIViewController {
         self.imagesCollectionView.registerNib(ZoomCollectionViewCell)
         self.imagesCollectionView.delegate = self
         self.imagesCollectionView.dataSource = self
+        self.imagesCollectionView.scrollToItemAtIndexPath(self.indexPath, atScrollPosition: .CenteredHorizontally, animated: false)
     }
+}
+
+extension ZoomImagesViewController: UIScrollViewDelegate {
+
 }
 
 extension ZoomImagesViewController: UICollectionViewDataSource {
@@ -46,7 +52,12 @@ extension ZoomImagesViewController: UICollectionViewDataSource {
     }
 }
 
-extension ZoomImagesViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension ZoomImagesViewController: UICollectionViewDelegate {
+
+}
+
+extension ZoomImagesViewController: UICollectionViewDelegateFlowLayout {
+
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return kScreenSize
     }
