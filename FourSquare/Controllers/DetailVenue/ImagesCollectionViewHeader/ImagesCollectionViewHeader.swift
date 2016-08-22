@@ -23,17 +23,39 @@ class ImagesCollectionViewHeader: UITableViewHeaderFooterView {
     override func awakeFromNib() {
         self.configureCollectionView()
     }
+
     @IBAction func backImageAction(sender: AnyObject) {
-
+        let indexRow = self.visibleIndex() - 1
+        if indexRow < 0 {
+            return
+        }
+        self.scrollToCellAtIndex(indexRow, animated: true)
     }
-    @IBAction func nextImageAction(sender: AnyObject) {
 
+    @IBAction func nextImageAction(sender: AnyObject) {
+        let indexRow = self.visibleIndex() + 1
+        if indexRow == self.photos.count {
+            return
+        }
+        self.scrollToCellAtIndex(indexRow, animated: true)
     }
 
     func configureCollectionView() {
         self.imagesCollectionView.registerNib(ImagesCollectionViewCell)
         self.imagesCollectionView.delegate = self
         self.imagesCollectionView.dataSource = self
+    }
+
+    private func visibleIndex() -> Int {
+        guard let indexPathVisible = self.imagesCollectionView.indexPathsForVisibleItems().first else {
+            return -1
+        }
+        return indexPathVisible.row
+    }
+
+    private func scrollToCellAtIndex(index: Int, animated: Bool) {
+        let indexPath: NSIndexPath = NSIndexPath(forRow: index, inSection: 0)
+        self.imagesCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: animated)
     }
 }
 

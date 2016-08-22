@@ -48,7 +48,7 @@ class RealmManager {
         }
     }
 
-    func getObject(id: String, section: String) -> Venue? {
+    func getVenue(id: String, section: String) -> Venue? {
         var result: Venue?
         do {
             let realm = try Realm()
