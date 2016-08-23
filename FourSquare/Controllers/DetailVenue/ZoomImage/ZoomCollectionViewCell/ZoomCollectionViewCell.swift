@@ -14,11 +14,13 @@ class ZoomCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var venueImageView: UIImageView!
     @IBOutlet weak var imageViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageViewTopConstraint: NSLayoutConstraint!
+    var activityIndicator: UIActivityIndicatorView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         self.configureScrollViewToZoom()
         self.configureTapGesture()
+        self.configureActivityIndicator()
     }
 
     func configureImageView() {
@@ -29,6 +31,7 @@ class ZoomCollectionViewCell: UICollectionViewCell {
 
     func setPhoto(photo: Photo) {
         self.venueImageView.image = nil
+        self.activityIndicator.startAnimating()
         let widthPhoto: CGFloat = CGFloat(photo.width)
         let heightPhoto: CGFloat = CGFloat(photo.height)
         let minRatio = min(kScreenSize.width / widthPhoto, kScreenSize.height / heightPhoto)
@@ -36,7 +39,10 @@ class ZoomCollectionViewCell: UICollectionViewCell {
         self.configureImageView()
         let path = photo.photoPathString
         if let url = NSURL(string: path) {
-            self.venueImageView.hnk_setImageFromURL(url)
+            self.venueImageView.hnk_setImageFromURL(url, success: { (image) in
+                self.venueImageView.image = image
+                self.activityIndicator.stopAnimating()
+            })
         }
     }
 
@@ -45,6 +51,16 @@ class ZoomCollectionViewCell: UICollectionViewCell {
         self.imageScrollView.maximumZoomScale = 2.0
         self.imageScrollView.zoomScale = 1.0
         self.imageScrollView.delegate = self
+    }
+
+    func configureActivityIndicator() {
+        let indicatorSize: CGFloat = 50
+        let originX = (kScreenSize.width - indicatorSize) / 2
+        let originY = (kScreenSize.height - indicatorSize) / 2
+        let frame = CGRect(x: originX, y: originY, width: indicatorSize, height: indicatorSize)
+        activityIndicator = UIActivityIndicatorView(frame: frame)
+        self.activityIndicator.hidesWhenStopped = true
+        self.contentView.addSubview(activityIndicator)
     }
 
     func configureTapGesture() {

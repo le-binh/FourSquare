@@ -15,7 +15,9 @@ struct NotificationCenterKey {
     static let changeToMapViewSearch = "ChangeToMapViewSearch"
     static let changeToTableViewSearch = "ChangeToTableViewSearch"
     static let loadVenue = "LoadVenue"
+    static let scrollCollectionView = "ScrollCollectionView"
 }
 struct NotificationCenterUserInfo {
     static let menuItem = "item"
+    static let indexCell = "index"
 }

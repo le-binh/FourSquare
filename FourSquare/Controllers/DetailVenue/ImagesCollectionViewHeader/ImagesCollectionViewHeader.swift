@@ -26,6 +26,11 @@ class ImagesCollectionViewHeader: UITableViewHeaderFooterView {
 
     override func awakeFromNib() {
         self.configureCollectionView()
+        self.configureNotificationCenter()
+    }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     @IBAction func backImageAction(sender: AnyObject) {
@@ -44,11 +49,15 @@ class ImagesCollectionViewHeader: UITableViewHeaderFooterView {
         self.scrollToCellAtIndex(indexRow, animated: true)
     }
 
-    func configureCollectionView() {
+    private func configureCollectionView() {
         self.imagesCollectionView.registerNib(ImagesCollectionViewCell)
         self.imagesCollectionView.delegate = self
         self.imagesCollectionView.dataSource = self
         self.backImageButton.hidden = true
+    }
+
+    private func configureNotificationCenter() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.scrollCollectionView), name: NotificationCenterKey.scrollCollectionView, object: nil)
     }
 
     private func visibleIndex() -> Int {
@@ -67,6 +76,14 @@ class ImagesCollectionViewHeader: UITableViewHeaderFooterView {
     private func checkCurrentIndexToHiddenButton(index: Int) {
         self.backImageButton.hidden = index == 0
         self.nextImageButton.hidden = index == self.photos.count - 1
+    }
+
+    func scrollCollectionView(notification: NSNotification) {
+        if let infoUser = notification.userInfo {
+            if let index = infoUser[NotificationCenterUserInfo.indexCell] as? Int {
+                self.scrollToCellAtIndex(index, animated: false)
+            }
+        }
     }
 }
 

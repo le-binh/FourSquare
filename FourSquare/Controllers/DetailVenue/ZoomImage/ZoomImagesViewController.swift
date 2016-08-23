@@ -34,6 +34,7 @@ class ZoomImagesViewController: UIViewController {
         self.imagesCollectionView.registerNib(ZoomCollectionViewCell)
         self.imagesCollectionView.delegate = self
         self.imagesCollectionView.dataSource = self
+        self.imagesCollectionView.scrollEnabled = true
     }
 }
 
@@ -57,7 +58,12 @@ extension ZoomImagesViewController: UICollectionViewDataSource {
 }
 
 extension ZoomImagesViewController: UICollectionViewDelegate {
-
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        let contentOffsetX = self.imagesCollectionView.contentOffset.x
+        let collectionWidth = self.imagesCollectionView.bounds.width
+        let index = Int(contentOffsetX / collectionWidth)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.scrollCollectionView, object: nil, userInfo: [NotificationCenterUserInfo.indexCell: index])
+    }
 }
 
 extension ZoomImagesViewController: UICollectionViewDelegateFlowLayout {

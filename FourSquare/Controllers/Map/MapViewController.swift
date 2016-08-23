@@ -148,7 +148,7 @@ class MapViewController: ViewController {
         if path.count() == 1 {
             return
         }
-        let edgeInsets: UIEdgeInsets = UIEdgeInsets(top: mapPadding, left: mapPadding, bottom: 5 * mapPadding, right: mapPadding)
+        let edgeInsets: UIEdgeInsets = UIEdgeInsets(top: 2 * mapPadding, left: mapPadding, bottom: 5 * mapPadding, right: mapPadding)
         self.venueMapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withEdgeInsets: edgeInsets))
     }
 
@@ -163,7 +163,6 @@ class MapViewController: ViewController {
     private func setSelectedMarker(selectedMarker: MarkerMap) {
         selectedMarker.icon = UIImage(named: "selected_marker_ic")
         self.venueMapView.selectedMarker = selectedMarker
-        self.venueMapView.animateToLocation(selectedMarker.position)
     }
 
     private func visibleIndex() -> Int {
@@ -225,7 +224,6 @@ extension MapViewController: UIScrollViewDelegate {
         }
         let marker = self.markers[self.visibleIndex()]
         self.setSelectedMarker(marker)
-        self.venueMapView.animateToLocation(marker.position)
         self.resetMarkersIconWithout(marker)
     }
 }
@@ -238,9 +236,12 @@ extension MapViewController: GMSMapViewDelegate {
             return false
         }
         self.setSelectedMarker(markerMap)
-        self.venueMapView.animateToLocation(markerMap.position)
         resetMarkersIconWithout(markerMap)
         self.scrollToCellAtIndex(markerMap.tag, animated: false)
         return true
+    }
+
+    func mapView(mapView: GMSMapView, idleAtCameraPosition position: GMSCameraPosition) {
+
     }
 }
