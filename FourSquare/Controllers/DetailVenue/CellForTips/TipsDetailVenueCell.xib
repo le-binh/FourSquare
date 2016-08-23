@@ -21,7 +21,7 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumbnail_venue" translatesAutoresizingMaskIntoConstraints="NO" id="4mP-kQ-1ZG">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_loading" translatesAutoresizingMaskIntoConstraints="NO" id="4mP-kQ-1ZG">
                         <rect key="frame" x="8" y="8" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="BXn-VO-tan"/>
@@ -56,6 +56,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="thumbnail_venue" width="213" height="160"/>
+        <image name="image_loading" width="213" height="160"/>
     </resources>
 </document>

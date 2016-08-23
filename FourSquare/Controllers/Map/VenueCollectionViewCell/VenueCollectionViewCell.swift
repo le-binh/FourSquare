@@ -40,7 +40,7 @@ class VenueCollectionViewCell: UICollectionViewCell {
     // MARK:- Public Functions
 
     func setUpData(venue: Venue) {
-        self.thumbnailVenueImageView.image = UIImage(named: "thumbnail_venue")
+        self.thumbnailVenueImageView.image = UIImage(named: "image_loading")
         self.verifiedVenueImageView.image = (venue.verified) ? UIImage(named: "verified_ic") : UIImage(named: "not_verified_ic")
         self.nameVenueLabel.text = venue.name
         self.addressVenueLabel.text = venue.location?.fullAddress

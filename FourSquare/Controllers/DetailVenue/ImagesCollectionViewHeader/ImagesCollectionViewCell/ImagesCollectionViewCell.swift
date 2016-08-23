@@ -16,7 +16,7 @@ class ImagesCollectionViewCell: UICollectionViewCell {
     }
 
     func setPhoto(photo: Photo) {
-        self.venueImageView.image = UIImage(named: "thumbnail_venue")
+        self.venueImageView.image = nil
         let path = photo.photoPathString
         if let url = NSURL(string: path) {
             self.venueImageView.hnk_setImageFromURL(url)

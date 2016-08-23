@@ -144,13 +144,6 @@ class MapViewController: ViewController {
             let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
             path.addCoordinate(coordinate)
         }
-        guard let currentLoction = MyLocationManager.sharedInstanced.currentLocation else {
-            return
-        }
-        let positionDefault = currentLoction.coordinate
-        let marker = (self.markers.count > 0) ? self.markers[0]: MarkerMap(position: positionDefault)
-        self.venueMapView.camera = GMSCameraPosition(target: marker.position, zoom: marker.zoomLevelMarkers, bearing: 0, viewingAngle: 0)
-        path.addCoordinate(positionDefault)
         let bounds: GMSCoordinateBounds = GMSCoordinateBounds(path: path)
         if path.count() == 1 {
             return

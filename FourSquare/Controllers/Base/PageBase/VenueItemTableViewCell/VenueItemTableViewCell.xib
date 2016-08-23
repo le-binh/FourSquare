@@ -19,7 +19,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqY-17-GjG">
                         <rect key="frame" x="8" y="8" width="344" height="123.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumbnail_venue" translatesAutoresizingMaskIntoConstraints="NO" id="AEm-eV-oVs">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_loading" translatesAutoresizingMaskIntoConstraints="NO" id="AEm-eV-oVs">
                                 <rect key="frame" x="172" y="0.0" width="172" height="123.5"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zaf-qf-OI2">
@@ -140,7 +140,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="thumbnail_venue" width="213" height="160"/>
+        <image name="image_loading" width="213" height="160"/>
         <image name="verified_ic" width="64" height="53"/>
     </resources>
 </document>

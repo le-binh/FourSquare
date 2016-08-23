@@ -17,7 +17,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="08B-n9-tuk">
                         <rect key="frame" x="0.0" y="0.0" width="361" height="124"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumbnail_venue" translatesAutoresizingMaskIntoConstraints="NO" id="vYs-G2-Sci">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_loading" translatesAutoresizingMaskIntoConstraints="NO" id="vYs-G2-Sci">
                                 <rect key="frame" x="180" y="0.0" width="180.5" height="124"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Uw-wI-VFf">
@@ -130,7 +130,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="thumbnail_venue" width="213" height="160"/>
+        <image name="image_loading" width="213" height="160"/>
         <image name="verified_ic" width="64" height="53"/>
     </resources>
 </document>

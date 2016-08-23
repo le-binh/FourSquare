@@ -46,7 +46,7 @@ class VenueItemTableViewCell: UITableViewCell {
     // MARK:- Public Functions
 
     func setUpData(venue: Venue) {
-        self.thumbnailImageView.image = UIImage(named: "thumbnail_venue")
+        self.thumbnailImageView.image = UIImage(named: "image_loading")
         self.verifiedImageView.image = (venue.verified) ? UIImage(named: "verified_ic") : UIImage(named: "not_verified_ic")
         self.nameVenueLabel.text = venue.name
         self.addressVenueLabel.text = venue.location?.fullAddress

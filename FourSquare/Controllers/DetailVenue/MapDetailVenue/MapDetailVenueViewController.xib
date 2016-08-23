@@ -46,7 +46,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oeF-fF-JCl">
                             <rect key="frame" x="8" y="8.5" width="304" height="123.5"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumbnail_venue" translatesAutoresizingMaskIntoConstraints="NO" id="z1Z-Oh-Axv">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_loading" translatesAutoresizingMaskIntoConstraints="NO" id="z1Z-Oh-Axv">
                                     <rect key="frame" x="152" y="0.0" width="152" height="123.5"/>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7hJ-qr-9I1">
@@ -164,7 +164,7 @@
         </view>
     </objects>
     <resources>
-        <image name="thumbnail_venue" width="213" height="160"/>
+        <image name="image_loading" width="213" height="160"/>
         <image name="verified_ic" width="64" height="53"/>
     </resources>
 </document>
