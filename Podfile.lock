@@ -7,6 +7,7 @@ PODS:
     - GoogleMaps/Base (= 2.0.1)
   - HanekeSwift (0.10.1)
   - LGSideMenuController (1.0.10)
+  - MBProgressHUD (1.0.0)
   - ObjectMapper (1.3.0)
   - PageMenu (1.2.9)
   - PureLayout (3.0.2)
@@ -23,9 +24,10 @@ DEPENDENCIES:
   - Alamofire (= 3.4.0)
   - GoogleMaps (= 2.0.1)
   - HanekeSwift (= 0.10.1)
-  - LGSideMenuController (~> 1.0)
+  - LGSideMenuController (= 1.0.10)
+  - MBProgressHUD (= 1.0.0)
   - ObjectMapper (= 1.3.0)
-  - PageMenu (~> 1.2)
+  - PageMenu (= 1.2.9)
   - PureLayout (= 3.0.2)
   - RealmSwift (= 1.0.2)
   - SVProgressHUD (= 2.0.3)
@@ -37,6 +39,7 @@ SPEC CHECKSUMS:
   GoogleMaps: f09da64fc987c1aa29394567c3cab5a3df83c402
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   LGSideMenuController: 8682bdbd0008c1acfbce95eaf96cc3657bca5f95
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
   PageMenu: ba19ff267f7a19e444e93c20a7847b78954a7011
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
@@ -46,6 +49,6 @@ SPEC CHECKSUMS:
   SwiftUtils: 5d71b821e96817d2b28eb7d624f2461846bb085e
   XCConsole: 5ade671a8784626320f9e3d9b49b79f074efd8d5
 
-PODFILE CHECKSUM: 80b4dc7b43401c66f7c0b0f0996ff11491fc973c
+PODFILE CHECKSUM: b73fa566a7dbce8302e40c49005131f192203c9b
 
 COCOAPODS: 1.0.1
