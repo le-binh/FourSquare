@@ -21,6 +21,11 @@ class ZoomImagesViewController: UIViewController {
         self.configureCollectionView()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.imagesCollectionView.scrollToItemAtIndexPath(self.indexPath, atScrollPosition: .CenteredHorizontally, animated: false)
+    }
+
     @IBAction func closeZoomViewController(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -29,7 +34,6 @@ class ZoomImagesViewController: UIViewController {
         self.imagesCollectionView.registerNib(ZoomCollectionViewCell)
         self.imagesCollectionView.delegate = self
         self.imagesCollectionView.dataSource = self
-        self.imagesCollectionView.scrollToItemAtIndexPath(self.indexPath, atScrollPosition: .CenteredHorizontally, animated: false)
     }
 }
 

@@ -42,7 +42,7 @@ class ZoomCollectionViewCell: UICollectionViewCell {
 
     func configureScrollViewToZoom() {
         self.imageScrollView.minimumZoomScale = 1.0
-        self.imageScrollView.maximumZoomScale = 3.0
+        self.imageScrollView.maximumZoomScale = 2.0
         self.imageScrollView.zoomScale = 1.0
         self.imageScrollView.delegate = self
     }
@@ -59,7 +59,7 @@ class ZoomCollectionViewCell: UICollectionViewCell {
         } else {
             let point = recognizer.locationInView(recognizer.view)
             if checkPointOnImage(point) {
-                zoomToPoint(point, scale: 2.5, animated: true)
+                zoomToPoint(point, scale: 2.0, animated: true)
             }
         }
     }
@@ -96,7 +96,7 @@ extension ZoomCollectionViewCell: UIScrollViewDelegate {
     }
     func scrollViewDidZoom(scrollView: UIScrollView) {
         let imageHeight = self.venueImageView.frame.height
-        UIView.animateWithDuration(0.5, animations: {
+        UIView.animateWithDuration(0.2, animations: {
             self.imageViewTopConstraint.constant = (kScreenSize.height - imageHeight) / 2
             self.layoutIfNeeded()
         }) { (completion) in

@@ -43,7 +43,9 @@ class MenuItemViewController: BaseViewController {
     var offset: Int = 0
     var willLoadMore: Bool = true
     var shouldLoadMore: Bool {
-        offset = offset + limit
+        if willLoadMore {
+            offset = offset + limit
+        }
         return offset == venues.count
     }
     var isFavoriteMenu = false
@@ -62,9 +64,13 @@ class MenuItemViewController: BaseViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         let currentLocation = MyLocationManager.sharedInstanced.currentLocation
-        if isViewFirstAppear && currentLocation != nil {
+        if isViewFirstAppear && currentLocation != nil && self.venues.count == 0 {
             loadVenues()
         }
+    }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     // MARK:- Private Function
@@ -97,6 +103,7 @@ class MenuItemViewController: BaseViewController {
 
     func refreshData() {
         self.offset = 0
+        self.willLoadMore = true
         self.deleteVenues()
         self.loadVenues()
     }

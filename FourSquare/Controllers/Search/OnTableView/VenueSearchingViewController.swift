@@ -9,9 +9,13 @@
 import UIKit
 
 class VenueSearchingViewController: MenuItemViewController {
+
     override func viewDidAppear(animated: Bool) {
+        self.willLoadMore = false
     }
+
     override func loadMoreVenues() {
+
     }
     override func refreshData() {
         self.refreshControl.endRefreshing()
