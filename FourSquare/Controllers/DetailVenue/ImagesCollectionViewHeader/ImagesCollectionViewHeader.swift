@@ -68,6 +68,9 @@ class ImagesCollectionViewHeader: UITableViewHeaderFooterView {
     }
 
     private func scrollToCellAtIndex(index: Int, animated: Bool) {
+        if index > self.photos.count - 1 {
+            return
+        }
         let indexPath: NSIndexPath = NSIndexPath(forRow: index, inSection: 0)
         self.imagesCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: animated)
         self.checkCurrentIndexToHiddenButton(index)

@@ -30,14 +30,14 @@ class VenueSearchingMapViewController: MapViewController {
     private func loadVenuesFromRealm() {
         do {
             let realm = try Realm()
-            self.venues = realm.objects(Venue).filter("section = 'search'")
+            self.venues = realm.objects(Venue).filter("section = 'search' AND isClear = false")
         } catch {
             print("Realm Have Error!!")
         }
     }
 
     private func deleteVenues() {
-        RealmManager.sharedInstance.deleteSection("search")
+        RealmManager.sharedInstance.clearSection("search")
         self.venueMapView.clear()
     }
 }

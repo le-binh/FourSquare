@@ -20,6 +20,8 @@ class Venue: Object, Mappable {
     dynamic var isFavorite: Bool = false
     dynamic var didFavorite: Bool = false
     dynamic var isHistory: Bool = false
+    dynamic var isClear: Bool = false
+    dynamic var availableTimestamp = NSDate()
     dynamic var favoriteTimestamp = NSDate()
     dynamic var historyTimestamp = NSDate()
     dynamic var section: String = ""

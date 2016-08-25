@@ -42,13 +42,16 @@ class MenuItemViewController: BaseViewController {
     let limit: Int = 10
     var offset: Int = 0
     var willLoadMore: Bool = true
+    var isRefresh: Bool = false
     var shouldLoadMore: Bool {
-        if willLoadMore {
+        if self.isRefresh {
+            self.offset = 0
+        }
+        if self.willLoadMore && offset < venues.count {
             offset = offset + limit
         }
         return offset == venues.count
     }
-    var isFavoriteMenu = false
 
     // MARK:- Life Cycle
 
@@ -64,7 +67,7 @@ class MenuItemViewController: BaseViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         let currentLocation = MyLocationManager.sharedInstanced.currentLocation
-        if isViewFirstAppear && currentLocation != nil && self.venues.count == 0 {
+        if isViewFirstAppear && currentLocation != nil && self.venues.isEmpty {
             loadVenues()
         }
     }
@@ -103,8 +106,9 @@ class MenuItemViewController: BaseViewController {
 
     func refreshData() {
         self.offset = 0
+        self.isRefresh = true
         self.willLoadMore = true
-        self.deleteVenues()
+        self.clearVenues()
         self.loadVenues()
     }
 
@@ -112,7 +116,7 @@ class MenuItemViewController: BaseViewController {
         do {
             let realm = try Realm()
             // print(Realm.Configuration.defaultConfiguration.fileURL)
-            self.venues = realm.objects(Venue).filter("section = '\(self.section.rawValue)'")
+            self.venues = realm.objects(Venue).filter("section = '\(self.section.rawValue)' AND isClear = false").sorted("availableTimestamp", ascending: true)
         } catch {
             print("Realm Have Error!!")
         }
@@ -128,15 +132,15 @@ class MenuItemViewController: BaseViewController {
         }
     }
 
-    private func deleteVenues() {
-        RealmManager.sharedInstance.deleteSection(self.section.rawValue)
+    private func clearVenues() {
+        RealmManager.sharedInstance.clearSection(self.section.rawValue)
         self.venueTableView?.reloadData()
     }
 
     // MARK:- Public Functions
 
     func searchVenues(name: String, address: String) {
-        self.deleteVenues()
+        self.clearVenues()
         SVProgressHUD.show()
         VenueService().searchVeues(address, query: name, limit: self.limit, offset: self.offset) { (venues) in
             SVProgressHUD.dismiss()
@@ -174,7 +178,6 @@ extension MenuItemViewController: UITableViewDataSource {
 extension MenuItemViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let detailVenueViewController = DetailVenueViewController.vc()
-        detailVenueViewController.isFavoriteMenu = self.isFavoriteMenu
         let venue = self.venues[indexPath.row]
         detailVenueViewController.venue = venue
         UIApplication.sharedApplication().navigationController()?.pushViewController(detailVenueViewController, animated: true)
@@ -194,6 +197,7 @@ extension MenuItemViewController {
         if maximumOffset - currentOffset < 2 * self.rowHeight {
             if self.shouldLoadMore {
                 willLoadMore = false
+                self.isRefresh = false
                 self.loadMoreVenues()
             }
         }

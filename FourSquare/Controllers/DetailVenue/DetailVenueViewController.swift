@@ -85,7 +85,6 @@ class DetailVenueViewController: BaseViewController {
 
     @IBOutlet weak var detailVenueTableView: UITableView!
     var venue: Venue?
-    var isFavoriteMenu = false
 
     // MARK:- Life Cycle
 
@@ -114,9 +113,6 @@ class DetailVenueViewController: BaseViewController {
         guard let venue = self.venue else { return }
         if didAddFavorite {
             RealmManager.sharedInstance.deleteFavorite(venue.id)
-            if isFavoriteMenu {
-                self.navigationController?.popViewControllerAnimated(true)
-            }
         } else {
             RealmManager.sharedInstance.addFavorite(venue)
         }

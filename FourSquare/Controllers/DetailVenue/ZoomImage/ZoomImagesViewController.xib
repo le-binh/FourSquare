@@ -26,7 +26,7 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LML-uo-Tqi">
-                    <rect key="frame" x="357" y="679" width="27" height="27"/>
+                    <rect key="frame" x="20" y="20" width="27" height="27"/>
                     <state key="normal" image="close_button_ic"/>
                     <connections>
                         <action selector="closeZoomViewController:" destination="-1" eventType="touchUpInside" id="O9r-JT-5QD"/>
@@ -37,9 +37,9 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="fhK-6j-tIO" secondAttribute="trailing" id="1Ve-hg-n0w"/>
                 <constraint firstItem="fhK-6j-tIO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5Nd-wI-tiK"/>
-                <constraint firstAttribute="trailing" secondItem="LML-uo-Tqi" secondAttribute="trailing" constant="30" id="E7L-Yr-cuM"/>
+                <constraint firstItem="LML-uo-Tqi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="5ia-nH-WDb"/>
                 <constraint firstItem="fhK-6j-tIO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="JFA-oI-eCZ"/>
-                <constraint firstAttribute="bottom" secondItem="LML-uo-Tqi" secondAttribute="bottom" constant="30" id="PuX-CB-qL5"/>
+                <constraint firstItem="LML-uo-Tqi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="bA7-kg-TUj"/>
                 <constraint firstAttribute="bottom" secondItem="fhK-6j-tIO" secondAttribute="bottom" id="hlW-0O-yy1"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>

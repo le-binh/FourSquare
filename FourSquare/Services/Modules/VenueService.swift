@@ -47,7 +47,8 @@ class VenueService: BaseService {
                 for item in items {
                     if let venue = Mapper<Venue>().map(item["venue"]) {
                         venue.section = section
-                        RealmManager.sharedInstance.addObject(venue)
+                        venue.availableTimestamp = NSDate()
+                        RealmManager.sharedInstance.addVenue(venue)
                     }
                 }
             }
@@ -155,7 +156,7 @@ class VenueService: BaseService {
                 for item in items {
                     if let venue = Mapper<Venue>().map(item["venue"]) {
                         venue.section = "search"
-                        RealmManager.sharedInstance.addObject(venue)
+                        RealmManager.sharedInstance.addVenue(venue)
                     }
                 }
             }

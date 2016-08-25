@@ -13,11 +13,16 @@ class RealmManager {
 
     static let sharedInstance = RealmManager()
 
-    func addObject(object: Object) {
+    func addVenue(venue: Venue) {
         do {
             let realm = try Realm()
             try realm.write({
-                realm.add(object)
+                if let oldVenue = realm.objects(Venue).filter("id = '\(venue.id)' AND section = '\(venue.section)'").first {
+                    oldVenue.isClear = false
+                    oldVenue.availableTimestamp = NSDate()
+                    return
+                }
+                realm.add(venue)
             })
         } catch let error as NSError {
             print(error.localizedDescription)
@@ -28,6 +33,10 @@ class RealmManager {
         do {
             let realm = try Realm()
             try realm.write({
+                let venuesWithFavoriteOrHistory = realm.objects(Venue).filter("isFavorite = true OR isHistory = true")
+                for venue in venuesWithFavoriteOrHistory {
+                    venue.isClear = true
+                }
                 let venues = realm.objects(Venue).filter("isFavorite = false AND isHistory = false")
                 realm.delete(venues)
             })
@@ -36,12 +45,14 @@ class RealmManager {
         }
     }
 
-    func deleteSection(section: String) {
+    func clearSection(section: String) {
         do {
             let realm = try Realm()
             try realm.write({
                 let venues = realm.objects(Venue).filter("section = '\(section)'")
-                realm.delete(venues)
+                for venue in venues {
+                    venue.isClear = true
+                }
             })
         } catch let error as NSError {
             print(error.localizedDescription)
@@ -106,15 +117,14 @@ class RealmManager {
                     element.didFavorite = true
                 }
                 if let venueDidFavorite = realm.objects(Venue).filter("id = '\(venue.id)' AND isFavorite = true").first {
-                    venueDidFavorite.historyTimestamp = NSDate()
+                    venueDidFavorite.favoriteTimestamp = NSDate()
                     return
                 }
-                realm.create(Venue.self, value: venue, update: false)
-                if let newVenue = realm.objects(Venue).filter("id = '\(venue.id)'").last {
-                    newVenue.isFavorite = true
-                    newVenue.section = ""
-                    newVenue.historyTimestamp = NSDate()
-                } })
+                if let venue = realm.objects(Venue).filter("id = '\(venue.id)' AND section = '\(venue.section)'").first {
+                    venue.isFavorite = true
+                    venue.favoriteTimestamp = NSDate()
+                }
+            })
         } catch let error as NSError {
             print(error.localizedDescription)
         }
@@ -129,7 +139,7 @@ class RealmManager {
                     element.didFavorite = false
                 }
                 if let venue = realm.objects(Venue).filter("id = '\(id)' AND isFavorite = true").first {
-                    realm.delete(venue)
+                    venue.isFavorite = false
                 }
             })
         } catch let error as NSError {
@@ -147,13 +157,13 @@ class RealmManager {
                 }
                 let venues = realm.objects(Venue).filter("isHistory = true").sorted("historyTimestamp", ascending: false)
                 if venues.count == 20 {
-                    realm.delete(venues.last!)
+                    if let venue = venues.last {
+                        realm.delete(venue)
+                    }
                 }
-                realm.create(Venue.self, value: venue, update: false)
-                if let newVenue = realm.objects(Venue).filter("id = '\(venue.id)'").last {
-                    newVenue.isHistory = true
-                    newVenue.section = ""
-                    newVenue.historyTimestamp = NSDate()
+                if let venue = realm.objects(Venue).filter("id = '\(venue.id)' AND section = '\(venue.section)'").first {
+                    venue.isHistory = true
+                    venue.historyTimestamp = NSDate()
                 }
             })
 
