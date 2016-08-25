@@ -69,6 +69,39 @@ class MapViewController: ViewController {
         }
     }
 
+    // MARK:- Public Functions
+
+    func configureChangeCellButton() {
+        if let venues = self.venues {
+            self.backCollectionCellButton.hidden = venues.isEmpty
+            self.nextCollectionCellButton.hidden = venues.isEmpty
+        }
+    }
+
+    func clearMapData() {
+        self.venueMapView.clear()
+        self.markers = []
+    }
+
+    func addMultiMarker() {
+        self.indexMarker = 0
+        let path = GMSMutablePath()
+        for venue in self.venues {
+            guard let latitude = venue.location?.latitude, longitude = venue.location?.longitude else {
+                continue
+            }
+            addMarker(latitude, longitude)
+            let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+            path.addCoordinate(coordinate)
+        }
+        let bounds: GMSCoordinateBounds = GMSCoordinateBounds(path: path)
+        if path.count() == 1 {
+            return
+        }
+        let edgeInsets: UIEdgeInsets = UIEdgeInsets(top: 2 * mapPadding, left: mapPadding, bottom: 5 * mapPadding, right: mapPadding)
+        self.venueMapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withEdgeInsets: edgeInsets))
+    }
+
     // MARK:- Private Functions
 
     private func configureCollectionView() {
@@ -87,18 +120,6 @@ class MapViewController: ViewController {
         collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 0, left: self.collectionCellPadding, bottom: 0, right: self.collectionCellPadding)
         collectionViewFlowLayout.itemSize = self.sizeItemCellOfCollectionView()
         self.venueCollectionView.collectionViewLayout = collectionViewFlowLayout
-    }
-
-    private func configureChangeCellButton() {
-        if let venues = self.venues {
-            self.backCollectionCellButton.hidden = venues.isEmpty
-            self.nextCollectionCellButton.hidden = venues.isEmpty
-        }
-    }
-
-    private func clearMapData() {
-        self.venueMapView.clear()
-        self.markers = []
     }
 
     private func sizeItemCellOfCollectionView() -> CGSize {
@@ -131,25 +152,6 @@ class MapViewController: ViewController {
             marker.map = self.venueMapView
         }
         self.indexMarker = self.indexMarker + 1
-    }
-
-    private func addMultiMarker() {
-        self.indexMarker = 0
-        let path = GMSMutablePath()
-        for venue in self.venues {
-            guard let latitude = venue.location?.latitude, longitude = venue.location?.longitude else {
-                continue
-            }
-            addMarker(latitude, longitude)
-            let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
-            path.addCoordinate(coordinate)
-        }
-        let bounds: GMSCoordinateBounds = GMSCoordinateBounds(path: path)
-        if path.count() == 1 {
-            return
-        }
-        let edgeInsets: UIEdgeInsets = UIEdgeInsets(top: 2 * mapPadding, left: mapPadding, bottom: 5 * mapPadding, right: mapPadding)
-        self.venueMapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withEdgeInsets: edgeInsets))
     }
 
     private func resetMarkersIconWithout(selectedMarker: MarkerMap) {

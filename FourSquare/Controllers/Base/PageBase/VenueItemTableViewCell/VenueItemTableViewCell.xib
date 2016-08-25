@@ -23,7 +23,7 @@
                                 <rect key="frame" x="172" y="0.0" width="172" height="123.5"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zaf-qf-OI2">
-                                <rect key="frame" x="0.0" y="0.5" width="172" height="123.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="172" height="123.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phố xưa xưa xưa xưa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQk-r3-iYe">
                                         <rect key="frame" x="10" y="10" width="132" height="24"/>
@@ -61,7 +61,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coffee Shop" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U3U-Ol-1If">
-                                        <rect key="frame" x="10" y="72" width="74.5" height="14.5"/>
+                                        <rect key="frame" x="10" y="72" width="152" height="14.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -98,6 +98,7 @@
                                     <constraint firstItem="nWs-6H-uAm" firstAttribute="centerY" secondItem="NQk-r3-iYe" secondAttribute="centerY" id="cBy-YT-QAg"/>
                                     <constraint firstItem="AFM-0z-1Cy" firstAttribute="leading" secondItem="NQk-r3-iYe" secondAttribute="leading" id="dFJ-Mm-P8E"/>
                                     <constraint firstItem="Xhs-7s-DMV" firstAttribute="top" secondItem="DXI-nS-tBN" secondAttribute="bottom" constant="3" id="dty-Yj-7SO"/>
+                                    <constraint firstAttribute="trailing" secondItem="U3U-Ol-1If" secondAttribute="trailing" constant="10" id="fsy-SD-NUi"/>
                                     <constraint firstItem="Xhs-7s-DMV" firstAttribute="leading" secondItem="DXI-nS-tBN" secondAttribute="leading" id="qId-Rr-NRi"/>
                                     <constraint firstItem="U3U-Ol-1If" firstAttribute="top" secondItem="AFM-0z-1Cy" secondAttribute="bottom" constant="3" id="rvz-us-Gl0"/>
                                     <constraint firstItem="NQk-r3-iYe" firstAttribute="top" secondItem="Zaf-qf-OI2" secondAttribute="top" constant="10" id="wUA-jz-E5A"/>

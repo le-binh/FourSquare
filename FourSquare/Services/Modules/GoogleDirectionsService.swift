@@ -22,7 +22,15 @@ class GoogleDirectionService {
         Alamofire.request(.GET, path, parameters: parameters).responseJSON { (response) in
             switch response.result {
             case .Success(let data):
-                guard let json = data as? JSObject, routes = json["routes"] as? JSArray, overViewPolyline = routes[0]["overview_polyline"] as? JSObject, points = overViewPolyline["points"] as? String else {
+                guard let json = data as? JSObject, routes = json["routes"] as? JSArray else {
+                    completion(encodedString: "")
+                    return
+                }
+                if routes.isEmpty {
+                    completion(encodedString: "")
+                    return
+                }
+                guard let overViewPolyline = routes.first?["overview_polyline"] as? JSObject, points = overViewPolyline["points"] as? String else {
                     completion(encodedString: "")
                     return
                 }
