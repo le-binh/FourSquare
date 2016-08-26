@@ -15,7 +15,7 @@ class ImagesCollectionViewHeader: UITableViewHeaderFooterView {
     @IBOutlet weak var backImageButton: UIButton!
     @IBOutlet weak var nextImageButton: UIButton!
 
-    var detailVenueViewController = DetailVenueViewController()
+    var detailVenueViewController = DetailVenueViewController.vc()
 
     var photos = RealmSwift.List<Photo>() {
         didSet {
@@ -26,11 +26,6 @@ class ImagesCollectionViewHeader: UITableViewHeaderFooterView {
 
     override func awakeFromNib() {
         self.configureCollectionView()
-        self.configureNotificationCenter()
-    }
-
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     @IBAction func backImageAction(sender: AnyObject) {
@@ -56,10 +51,6 @@ class ImagesCollectionViewHeader: UITableViewHeaderFooterView {
         self.backImageButton.hidden = true
     }
 
-    private func configureNotificationCenter() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.scrollCollectionView), name: NotificationCenterKey.scrollCollectionView, object: nil)
-    }
-
     private func visibleIndex() -> Int {
         guard let indexPathVisible = self.imagesCollectionView.indexPathsForVisibleItems().first else {
             return -1
@@ -67,7 +58,7 @@ class ImagesCollectionViewHeader: UITableViewHeaderFooterView {
         return indexPathVisible.row
     }
 
-    private func scrollToCellAtIndex(index: Int, animated: Bool) {
+    func scrollToCellAtIndex(index: Int, animated: Bool) {
         if index > self.photos.count - 1 {
             return
         }
@@ -79,14 +70,6 @@ class ImagesCollectionViewHeader: UITableViewHeaderFooterView {
     private func checkCurrentIndexToHiddenButton(index: Int) {
         self.backImageButton.hidden = index == 0
         self.nextImageButton.hidden = index == self.photos.count - 1
-    }
-
-    func scrollCollectionView(notification: NSNotification) {
-        if let infoUser = notification.userInfo {
-            if let index = infoUser[NotificationCenterUserInfo.indexCell] as? Int {
-                self.scrollToCellAtIndex(index, animated: false)
-            }
-        }
     }
 }
 
@@ -127,6 +110,7 @@ extension ImagesCollectionViewHeader: UICollectionViewDelegate, UICollectionView
         let zoomCollectionView = ZoomImagesViewController.vc()
         zoomCollectionView.photos = self.photos
         zoomCollectionView.indexPath = indexPath
+        zoomCollectionView.delegate = self.detailVenueViewController
         self.detailVenueViewController.presentViewController(zoomCollectionView, animated: true, completion: nil)
     }
 

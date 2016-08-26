@@ -10,11 +10,16 @@ import UIKit
 import RealmSwift
 import SwiftUtils
 
+protocol ZoomImagesViewControllerDelegate {
+    func scrollCollectionView(index: Int)
+}
+
 class ZoomImagesViewController: UIViewController {
 
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     var photos = RealmSwift.List<Photo>()
     var indexPath: NSIndexPath = NSIndexPath()
+    var delegate: ZoomImagesViewControllerDelegate!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +67,7 @@ extension ZoomImagesViewController: UICollectionViewDelegate {
         let contentOffsetX = self.imagesCollectionView.contentOffset.x
         let collectionWidth = self.imagesCollectionView.bounds.width
         let index = Int(contentOffsetX / collectionWidth)
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.scrollCollectionView, object: nil, userInfo: [NotificationCenterUserInfo.indexCell: index])
+        self.delegate?.scrollCollectionView(index)
     }
 }
 

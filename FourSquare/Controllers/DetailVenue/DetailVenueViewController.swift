@@ -92,7 +92,6 @@ class DetailVenueViewController: BaseViewController {
         super.viewDidLoad()
         self.configureTableView()
         self.navigationBar?.title = venue?.name
-        self.clearPhotos()
         self.addHistory()
     }
 
@@ -232,9 +231,6 @@ class DetailVenueViewController: BaseViewController {
         }
         return cell
     }
-
-    private func clearPhotos() {
-    }
 }
 
 //MARK:- Table View Datasource
@@ -295,12 +291,6 @@ extension DetailVenueViewController: UITableViewDelegate {
         let view = tableView.dequeue(ViewHeaderVenueDetail)
         switch detailVenueSection {
         case .PageImage:
-//            let view = tableView.dequeue(PageImageHeaderView)
-//            guard let venue = self.venue else {
-//                return view
-//            }
-//            view.photos = venue.photos
-//            return view
             let view = tableView.dequeue(ImagesCollectionViewHeader)
             guard let venue = self.venue else {
                 return view
@@ -314,5 +304,14 @@ extension DetailVenueViewController: UITableViewDelegate {
             view.titleHeader.text = Strings.DetailVenueTitleTips
         }
         return view
+    }
+}
+
+//MARK:- Zoom Collection View Delegate
+
+extension DetailVenueViewController: ZoomImagesViewControllerDelegate {
+    func scrollCollectionView(index: Int) {
+        let imagesCollectionViewHeader = self.detailVenueTableView.headerViewForSection(0) as? ImagesCollectionViewHeader
+        imagesCollectionViewHeader?.scrollToCellAtIndex(index, animated: false)
     }
 }

@@ -32,7 +32,7 @@ class MapViewController: ViewController {
                 self.venueCollectionView.reloadData()
                 self.scrollToCellAtIndex(0, animated: false)
             }
-            self.configureChangeCellButton()
+            self.configureChangeCellButton(0)
         }
     }
 
@@ -71,11 +71,12 @@ class MapViewController: ViewController {
 
     // MARK:- Public Functions
 
-    func configureChangeCellButton() {
-        if let venues = self.venues {
-            self.backCollectionCellButton.hidden = venues.isEmpty
-            self.nextCollectionCellButton.hidden = venues.isEmpty
+    func configureChangeCellButton(index: Int) {
+        guard let venues = self.venues else {
+            return
         }
+        self.backCollectionCellButton.hidden = venues.isEmpty || index == 0
+        self.nextCollectionCellButton.hidden = venues.isEmpty || index == venues.count - 1
     }
 
     func clearMapData() {
@@ -110,7 +111,7 @@ class MapViewController: ViewController {
         self.venueCollectionView.dataSource = self
         self.venueCollectionView.registerNib(VenueCollectionViewCell)
         self.configureCollectionViewFlowLayout()
-        self.configureChangeCellButton()
+        self.configureChangeCellButton(0)
     }
 
     private func configureCollectionViewFlowLayout() {
@@ -131,6 +132,7 @@ class MapViewController: ViewController {
     private func scrollToCellAtIndex(index: Int, animated: Bool) {
         let indexPath: NSIndexPath = NSIndexPath(forRow: index, inSection: 0)
         self.venueCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: animated)
+        self.configureChangeCellButton(index)
     }
 
     private func configureGoogleMapsView() {
@@ -215,6 +217,7 @@ extension MapViewController: UIScrollViewDelegate {
             return
         }
         let marker = self.markers[self.visibleIndex()]
+        self.configureChangeCellButton(marker.tag)
         self.setSelectedMarker(marker)
         self.resetMarkersIconWithout(marker)
     }
@@ -225,6 +228,7 @@ extension MapViewController: UIScrollViewDelegate {
             return
         }
         let marker = self.markers[self.visibleIndex()]
+        self.configureChangeCellButton(marker.tag)
         self.setSelectedMarker(marker)
         self.resetMarkersIconWithout(marker)
     }

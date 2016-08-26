@@ -21,9 +21,15 @@ class SearchVenueViewController: BaseViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var searchBoxHeightLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchButton: UIButton!
+    private let collapseArrowImage = UIImage(named: "collapse_arrow")
+    private let expandArrowImage = UIImage(named: "expand_arrow")
     var currentViewController: UIViewController!
     var searchBoxHeight: CGFloat = 0
-    var isShowSearchBox: Bool = true
+    var isShowSearchBox: Bool = true {
+        didSet {
+            self.setIconShowOrHideArrowButton()
+        }
+    }
 
     // MARK:- Life Cycle
 
@@ -31,6 +37,7 @@ class SearchVenueViewController: BaseViewController {
         self.title = Strings.SearchTitle
         super.viewDidLoad()
         self.setupUI()
+        self.cleanDatabase()
         self.getSearchBoxHeightFromUI()
         self.configureContainerView()
     }
@@ -42,7 +49,6 @@ class SearchVenueViewController: BaseViewController {
         } else {
             self.changeTableViewToMapView()
         }
-        self.showSearchBoxWithAnimation()
         didShowMapView = !didShowMapView
     }
 
@@ -127,24 +133,24 @@ class SearchVenueViewController: BaseViewController {
     }
 
     private func hiddenSearchBoxWithAnimation() {
+        self.searchBoxHeightLayoutConstraint.constant = -self.searchBoxHeight
         UIView.animateWithDuration(0.3, animations: {
-            self.searchBoxHeightLayoutConstraint.constant = -self.searchBoxHeight
             self.view.layoutIfNeeded()
             }, completion: { (complete) in
-            self.searchButton.hidden = true
-            self.isShowSearchBox = false
-            self.setIconShowOrHideArrowButton()
+            if complete {
+                self.searchButton.hidden = true
+                self.isShowSearchBox = false
+            }
         })
     }
 
     private func showSearchBoxWithAnimation() {
+        self.searchBoxHeightLayoutConstraint.constant = 0
         UIView.animateWithDuration(0.3, animations: {
-            self.searchBoxHeightLayoutConstraint.constant = 0
             self.searchButton.hidden = false
             self.view.layoutIfNeeded()
             }, completion: { (complete) in
             self.isShowSearchBox = true
-            self.setIconShowOrHideArrowButton()
         })
     }
 
@@ -157,9 +163,11 @@ class SearchVenueViewController: BaseViewController {
     }
 
     private func setIconShowOrHideArrowButton() {
-        let collapseArrowImage = UIImage(named: "collapse_arrow")
-        let expandArrowImage = UIImage(named: "expand_arrow")
-        self.showOrHideSearchBoxButton.imageView?.image = self.isShowSearchBox ? collapseArrowImage : expandArrowImage
+        self.showOrHideSearchBoxButton.setImage(isShowSearchBox ? collapseArrowImage : expandArrowImage, forState: .Normal)
+    }
+
+    private func cleanDatabase() {
+        RealmManager.sharedInstance.deleteVenuesWithSectionSearch()
     }
 
 }

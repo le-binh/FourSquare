@@ -21,12 +21,12 @@ class VenueSearchingMapViewController: MapViewController {
     func searchVenues(name: String, address: String) {
         SVProgressHUD.show()
         self.deleteVenues()
-        VenueService().searchVeues(address, query: name, limit: 10, offset: 0) { (venues) in
+        VenueService().searchVeues(address, query: name) { (venues) in
             SVProgressHUD.dismiss()
             self.clearMapData()
             self.addMultiMarker()
             self.venueCollectionView.reloadData()
-            self.configureChangeCellButton()
+            self.configureChangeCellButton(0)
         }
     }
 

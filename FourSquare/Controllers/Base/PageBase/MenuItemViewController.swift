@@ -142,7 +142,7 @@ class MenuItemViewController: BaseViewController {
     func searchVenues(name: String, address: String) {
         self.clearVenues()
         SVProgressHUD.show()
-        VenueService().searchVeues(address, query: name, limit: self.limit, offset: self.offset) { (venues) in
+        VenueService().searchVeues(address, query: name) { (venues) in
             SVProgressHUD.dismiss()
             self.venueTableView?.reloadData()
         }

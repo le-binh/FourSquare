@@ -29,6 +29,18 @@ class RealmManager {
         }
     }
 
+    func deleteVenuesWithSectionSearch() {
+        do {
+            let realm = try Realm()
+            try realm.write({
+                let venues = realm.objects(Venue).filter("section = 'search'")
+                realm.delete(venues)
+            })
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+
     func deleteWithoutFavoriteAndHistory() {
         do {
             let realm = try Realm()
