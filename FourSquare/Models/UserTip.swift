@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  UserTip.swift
 //  FourSquare
 //
 //  Created by Le Van Binh on 7/29/16.
@@ -10,10 +10,10 @@ import UIKit
 import ObjectMapper
 import RealmSwift
 
-class User: Object, Mappable {
+class UserTip: Object, Mappable {
     dynamic var avatar: Photo?
 
-    var venueTips = LinkingObjects(fromType: VenueTip.self, property: "user")
+    var venueTips = LinkingObjects(fromType: VenueTip.self, property: "userTip")
 
     required convenience init?(_ map: Map) {
         self.init()

@@ -34,7 +34,7 @@ class CustomMenuItemsTableViewCell: UITableViewCell {
     }
 
     func setHeightForSwitch() {
-        self.menuItemsActiveSwitch.transform = CGAffineTransformMakeScale(0.7, 0.7)
+        self.menuItemsActiveSwitch.transform = CGAffineTransformMakeScale(0.6, 0.6)
     }
 
     func configureCell(item: MenuItemsSlide) {

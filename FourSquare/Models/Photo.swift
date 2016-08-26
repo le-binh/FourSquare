@@ -16,7 +16,7 @@ class Photo: Object, Mappable {
     dynamic var width: Int = 0
     dynamic var height: Int = 0
 
-    var users = LinkingObjects(fromType: User.self, property: "avatar")
+    var userTips = LinkingObjects(fromType: UserTip.self, property: "avatar")
     var venues = LinkingObjects(fromType: Venue.self, property: "thumbnail")
     var venuesDetail = LinkingObjects(fromType: Venue.self, property: "photos")
 

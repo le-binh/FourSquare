@@ -13,15 +13,17 @@ class SearchVenueViewController: BaseViewController {
 
     // MARK:- Properties
 
-    @IBOutlet weak var researchButton: UIButton!
+    @IBOutlet weak var showOrHideSearchBoxButton: UIButton!
     @IBOutlet weak var searchBoxView: UIView!
     @IBOutlet weak var venueNameTextField: UITextField!
     @IBOutlet weak var venueAddressTextField: UITextField!
+    @IBOutlet weak var searchBoxTitleLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var searchBoxHeightLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchButton: UIButton!
     var currentViewController: UIViewController!
     var searchBoxHeight: CGFloat = 0
+    var isShowSearchBox: Bool = true
 
     // MARK:- Life Cycle
 
@@ -40,16 +42,19 @@ class SearchVenueViewController: BaseViewController {
         } else {
             self.changeTableViewToMapView()
         }
-        self.setEmptyTextField()
         self.showSearchBoxWithAnimation()
         didShowMapView = !didShowMapView
     }
 
     // MARK:- Action
 
-    @IBAction func showSearchBox(sender: AnyObject) {
-        self.setEmptyTextField()
-        self.showSearchBoxWithAnimation()
+    @IBAction func showOrHideSearchBox(sender: AnyObject) {
+        if isShowSearchBox {
+            self.hiddenSearchBoxWithAnimation()
+        } else {
+            self.resetSearchBoxTitle()
+            self.showSearchBoxWithAnimation()
+        }
     }
 
     @IBAction func searchVenuesAction(sender: AnyObject) {
@@ -58,6 +63,7 @@ class SearchVenueViewController: BaseViewController {
         if !venueName.isEmpty && !venueAddress.isEmpty {
             self.venueAddressTextField.endEditing(true)
             self.venueAddressTextField.endEditing(true)
+            self.changeSearchBoxTitle(venueName, address: venueAddress)
             self.hiddenSearchBoxWithAnimation()
             if didShowMapView {
                 let venueSearchingMapViewController = self.currentViewController as? VenueSearchingMapViewController
@@ -73,7 +79,6 @@ class SearchVenueViewController: BaseViewController {
 
     private func setupUI() {
         self.configureUINavigationBar()
-        self.researchButton.hidden = true
     }
 
     private func getSearchBoxHeightFromUI() {
@@ -127,7 +132,8 @@ class SearchVenueViewController: BaseViewController {
             self.view.layoutIfNeeded()
             }, completion: { (complete) in
             self.searchButton.hidden = true
-            self.researchButton.hidden = false
+            self.isShowSearchBox = false
+            self.setIconShowOrHideArrowButton()
         })
     }
 
@@ -137,13 +143,23 @@ class SearchVenueViewController: BaseViewController {
             self.searchButton.hidden = false
             self.view.layoutIfNeeded()
             }, completion: { (complete) in
-            self.researchButton.hidden = true
+            self.isShowSearchBox = true
+            self.setIconShowOrHideArrowButton()
         })
     }
 
-    private func setEmptyTextField() {
-        self.venueNameTextField.text = ""
-        self.venueAddressTextField.text = ""
+    private func changeSearchBoxTitle(name: String, address: String) {
+        self.searchBoxTitleLabel.text = "\(name) - \(address)"
+    }
+
+    private func resetSearchBoxTitle() {
+        self.searchBoxTitleLabel.text = Strings.WhatAreYouLookingFor
+    }
+
+    private func setIconShowOrHideArrowButton() {
+        let collapseArrowImage = UIImage(named: "collapse_arrow")
+        let expandArrowImage = UIImage(named: "expand_arrow")
+        self.showOrHideSearchBoxButton.imageView?.image = self.isShowSearchBox ? collapseArrowImage : expandArrowImage
     }
 
 }

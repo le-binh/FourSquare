@@ -15,16 +15,21 @@
                     <rect key="frame" x="0.0" y="0.0" width="376" height="83"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kI-j1-iC7">
-                            <rect key="frame" x="10" y="33" width="80" height="18"/>
+                            <rect key="frame" x="58" y="33" width="80" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.24313725489999999" green="0.1529411765" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu_items_ic" translatesAutoresizingMaskIntoConstraints="NO" id="fd6-m9-dMF">
+                            <rect key="frame" x="28" y="31" width="20" height="20"/>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.96078431369999995" green="0.94901960780000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="3kI-j1-iC7" firstAttribute="leading" secondItem="fd6-m9-dMF" secondAttribute="trailing" constant="10" id="5OU-Nd-Kmz"/>
+                        <constraint firstItem="fd6-m9-dMF" firstAttribute="centerY" secondItem="7rl-th-FS9" secondAttribute="centerY" id="F2n-rR-wr4"/>
                         <constraint firstItem="3kI-j1-iC7" firstAttribute="centerY" secondItem="7rl-th-FS9" secondAttribute="centerY" id="b08-Vl-D5k"/>
-                        <constraint firstItem="3kI-j1-iC7" firstAttribute="leading" secondItem="7rl-th-FS9" secondAttribute="leading" constant="10" id="muo-k7-4jU"/>
+                        <constraint firstItem="fd6-m9-dMF" firstAttribute="leading" secondItem="7rl-th-FS9" secondAttribute="leading" constant="28" id="vfI-vq-tQv"/>
                     </constraints>
                 </view>
             </subviews>
@@ -41,4 +46,7 @@
             <point key="canvasLocation" x="422" y="250.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="menu_items_ic" width="20" height="20"/>
+    </resources>
 </document>

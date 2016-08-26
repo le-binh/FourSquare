@@ -12,7 +12,7 @@ import ObjectMapper
 import RealmSwift
 
 class VenueTip: Object, Mappable {
-    dynamic var user: User?
+    dynamic var userTip: UserTip?
     dynamic var comment: String = ""
     dynamic var timeStamp: Double = 0
 
@@ -23,7 +23,7 @@ class VenueTip: Object, Mappable {
     }
 
     func mapping(map: Map) {
-        user <- map["user"]
+        userTip <- map["user"]
         comment <- map["text"]
         timeStamp <- map["createdAt"]
     }

@@ -26,7 +26,7 @@ class TipsDetailVenueCell: UITableViewCell {
         self.tipCommentLabel.text = tip.comment
         let date = NSDate(timeIntervalSince1970: tip.timeStamp)
         self.dateCommentLabel.text = date.toString(DateFormat.DateTime24NoSec, localized: true)
-        guard let user = tip.user, avatar = user.avatar, url = avatar.avatarPath else {
+        guard let user = tip.userTip, avatar = user.avatar, url = avatar.avatarPath else {
             return
         }
         self.userAvatarImageView.hnk_setImageFromURL(url)

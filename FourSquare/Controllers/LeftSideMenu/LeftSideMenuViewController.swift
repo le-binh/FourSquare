@@ -38,7 +38,7 @@ enum SlideMenuSection: Int {
         case .MainMenu:
             return 60
         case .MenuItems:
-            return 40
+            return 35
         }
     }
 

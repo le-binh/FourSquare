@@ -10,10 +10,11 @@
             <connections>
                 <outlet property="containerView" destination="J1Y-L1-0af" id="nam-f9-ATz"/>
                 <outlet property="navigationBar" destination="t9j-Qz-zQI" id="3Ir-yE-SAh"/>
-                <outlet property="researchButton" destination="Nmg-qq-K09" id="iKw-vb-YLO"/>
                 <outlet property="searchBoxHeightLayoutConstraint" destination="5Ik-6u-qXl" id="FTi-cS-0aJ"/>
+                <outlet property="searchBoxTitleLabel" destination="qMi-jW-M8x" id="KSm-2e-uCd"/>
                 <outlet property="searchBoxView" destination="h98-nU-zEq" id="fzG-ND-pn0"/>
                 <outlet property="searchButton" destination="U9Q-Y1-dcY" id="cFQ-HI-leV"/>
+                <outlet property="showOrHideSearchBoxButton" destination="Nmg-qq-K09" id="FFw-w1-OdE"/>
                 <outlet property="venueAddressTextField" destination="dFu-25-yhL" id="TF6-K3-ryj"/>
                 <outlet property="venueNameTextField" destination="oCR-zb-mdb" id="Ri0-lo-eYf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -42,9 +43,9 @@
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nmg-qq-K09">
                             <rect key="frame" x="278" y="6" width="27" height="27"/>
-                            <state key="normal" image="search_again_ic"/>
+                            <state key="normal" image="collapse_arrow"/>
                             <connections>
-                                <action selector="showSearchBox:" destination="-1" eventType="touchUpInside" id="tUC-IM-Z7o"/>
+                                <action selector="showOrHideSearchBox:" destination="-1" eventType="touchUpInside" id="xg4-6d-omQ"/>
                             </connections>
                         </button>
                     </subviews>
@@ -172,6 +173,6 @@
         </view>
     </objects>
     <resources>
-        <image name="search_again_ic" width="27" height="27"/>
+        <image name="collapse_arrow" width="27" height="27"/>
     </resources>
 </document>

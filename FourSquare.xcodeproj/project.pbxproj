@@ -17,7 +17,7 @@
 		2DC364DB1D4B1741006514EE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2DC364AE1D4B0941006514EE /* Info.plist */; };
 		2DC364DF1D4B1892006514EE /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC364DE1D4B1892006514EE /* UIScrollView.swift */; };
 		2DC364E21D4B190E006514EE /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC364E11D4B190E006514EE /* LoginButton.swift */; };
-		2DC364E41D4B1922006514EE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC364E31D4B1922006514EE /* User.swift */; };
+		2DC364E41D4B1922006514EE /* UserTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC364E31D4B1922006514EE /* UserTip.swift */; };
 		2DC364E61D4B19C4006514EE /* ApiPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC364E51D4B19C4006514EE /* ApiPath.swift */; };
 		2DC364E81D4B3344006514EE /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC364E71D4B3344006514EE /* Keys.swift */; };
 		2DC364EA1D4B334F006514EE /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC364E91D4B334F006514EE /* Strings.swift */; };
@@ -158,7 +158,7 @@
 		2DC364D81D4B0FED006514EE /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		2DC364DE1D4B1892006514EE /* UIScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollView.swift; sourceTree = "<group>"; };
 		2DC364E11D4B190E006514EE /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
-		2DC364E31D4B1922006514EE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2DC364E31D4B1922006514EE /* UserTip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTip.swift; sourceTree = "<group>"; };
 		2DC364E51D4B19C4006514EE /* ApiPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiPath.swift; sourceTree = "<group>"; };
 		2DC364E71D4B3344006514EE /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		2DC364E91D4B334F006514EE /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
@@ -414,7 +414,7 @@
 		2DC364BD1D4B0AC8006514EE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2DC364E31D4B1922006514EE /* User.swift */,
+				2DC364E31D4B1922006514EE /* UserTip.swift */,
 				994B95511D5ACAF10013D9E3 /* Venue.swift */,
 				991DACE01D5B93DE00A76A77 /* VenueLocation.swift */,
 				991DACE21D5B969D00A76A77 /* VenueCategory.swift */,
@@ -1290,7 +1290,7 @@
 				9997EDE91D615DED00E6404D /* MyLocationManager.swift in Sources */,
 				996DF40A1D564B9700693216 /* TipsDetailVenueCell.swift in Sources */,
 				992A1D7C1D59C6DD0047B63B /* VenueSearchingViewController.swift in Sources */,
-				2DC364E41D4B1922006514EE /* User.swift in Sources */,
+				2DC364E41D4B1922006514EE /* UserTip.swift in Sources */,
 				991C6E631D65979E00865E4C /* GoogleDirectionsService.swift in Sources */,
 				994B95541D5B07390013D9E3 /* VenueService.swift in Sources */,
 				996DF4061D56473C00693216 /* DefaultVenueDetailCell.swift in Sources */,
@@ -1443,7 +1443,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FourSquare/Info/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = asiantech.vn.dev.FourSquare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1460,7 +1460,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FourSquare/Info/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = asiantech.vn.dev.FourSquare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
