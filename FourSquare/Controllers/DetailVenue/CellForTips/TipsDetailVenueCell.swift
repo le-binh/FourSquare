@@ -19,6 +19,12 @@ class TipsDetailVenueCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .None
+        self.configureUserAvatar()
+    }
+
+    private func configureUserAvatar() {
+        let valueCorner = self.userAvatarImageView.frame.height / 2
+        self.userAvatarImageView.cornerRadiusWith(valueCorner)
     }
 
     func setUpData(tip: VenueTip) {

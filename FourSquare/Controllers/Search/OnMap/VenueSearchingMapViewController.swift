@@ -21,7 +21,7 @@ class VenueSearchingMapViewController: MapViewController {
     func searchVenues(name: String, address: String) {
         SVProgressHUD.show()
         self.deleteVenues()
-        VenueService().searchVeues(address, query: name) { (venues) in
+        VenueService().searchVeues(address, query: name) { (error) in
             SVProgressHUD.dismiss()
             self.clearMapData()
             self.addMultiMarker()

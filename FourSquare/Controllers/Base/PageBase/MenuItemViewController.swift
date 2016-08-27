@@ -143,7 +143,7 @@ class MenuItemViewController: BaseViewController {
             SVProgressHUD.show()
         }
         self.refreshControl.endRefreshing()
-        VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (venues) in
+        VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (error) in
             SVProgressHUD.dismiss()
             self.isRefresh = false
             self.venueTableView?.reloadData()
@@ -161,14 +161,14 @@ class MenuItemViewController: BaseViewController {
     func searchVenues(name: String, address: String) {
         self.clearVenues()
         SVProgressHUD.show()
-        VenueService().searchVeues(address, query: name) { (venues) in
+        VenueService().searchVeues(address, query: name) { (error) in
             SVProgressHUD.dismiss()
             self.venueTableView?.reloadData()
         }
     }
 
     func loadMoreVenues() {
-        VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (venues) in
+        VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (error) in
             self.venueTableView?.reloadData()
             self.willLoadMore = true
         }

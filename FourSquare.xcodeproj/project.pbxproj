@@ -77,6 +77,10 @@
 		99A89EA31D5707FE00429962 /* MapDetailVenueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99A89EA11D5707FE00429962 /* MapDetailVenueViewController.xib */; };
 		99AA465F1D542A8F004EFCB2 /* ImagePageItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AA465D1D542A8F004EFCB2 /* ImagePageItemViewController.swift */; };
 		99AA46601D542A8F004EFCB2 /* ImagePageItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99AA465E1D542A8F004EFCB2 /* ImagePageItemViewController.xib */; };
+		99AB79491D71ED8700AB9029 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AB79481D71ED8700AB9029 /* User.swift */; };
+		99AB794B1D71F07800AB9029 /* UserOauthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AB794A1D71F07800AB9029 /* UserOauthToken.swift */; };
+		99AB794E1D71F1A900AB9029 /* LoginAndLogoutFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AB794D1D71F1A900AB9029 /* LoginAndLogoutFooterView.swift */; };
+		99AB79501D71F1D200AB9029 /* LoginAndLogoutFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99AB794F1D71F1D200AB9029 /* LoginAndLogoutFooterView.xib */; };
 		99BE7C291D5798A300CCCBFB /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BE7C281D5798A300CCCBFB /* UIImage.swift */; };
 		99C581081D54FD180095EE7F /* TopPicksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C581061D54FD180095EE7F /* TopPicksViewController.swift */; };
 		99C581091D54FD180095EE7F /* TopPicksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C581071D54FD180095EE7F /* TopPicksViewController.xib */; };
@@ -222,6 +226,10 @@
 		99A89EA11D5707FE00429962 /* MapDetailVenueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapDetailVenueViewController.xib; sourceTree = "<group>"; };
 		99AA465D1D542A8F004EFCB2 /* ImagePageItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePageItemViewController.swift; sourceTree = "<group>"; };
 		99AA465E1D542A8F004EFCB2 /* ImagePageItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImagePageItemViewController.xib; sourceTree = "<group>"; };
+		99AB79481D71ED8700AB9029 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		99AB794A1D71F07800AB9029 /* UserOauthToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserOauthToken.swift; sourceTree = "<group>"; };
+		99AB794D1D71F1A900AB9029 /* LoginAndLogoutFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAndLogoutFooterView.swift; sourceTree = "<group>"; };
+		99AB794F1D71F1D200AB9029 /* LoginAndLogoutFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginAndLogoutFooterView.xib; sourceTree = "<group>"; };
 		99BE7C281D5798A300CCCBFB /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		99C581061D54FD180095EE7F /* TopPicksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopPicksViewController.swift; sourceTree = "<group>"; };
 		99C581071D54FD180095EE7F /* TopPicksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopPicksViewController.xib; sourceTree = "<group>"; };
@@ -425,6 +433,8 @@
 				997228031D5C38F50053E320 /* VenueContact.swift */,
 				9997EDE81D615DEC00E6404D /* MyLocationManager.swift */,
 				997EA6F01D62CF0900006AD8 /* RealmManager.swift */,
+				99AB79481D71ED8700AB9029 /* User.swift */,
+				99AB794A1D71F07800AB9029 /* UserOauthToken.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -718,6 +728,16 @@
 			path = MenuItem;
 			sourceTree = "<group>";
 		};
+		99AB794C1D71F18000AB9029 /* TableFooterView */ = {
+			isa = PBXGroup;
+			children = (
+				99AB794D1D71F1A900AB9029 /* LoginAndLogoutFooterView.swift */,
+				99AB794F1D71F1D200AB9029 /* LoginAndLogoutFooterView.xib */,
+			);
+			name = TableFooterView;
+			path = LeftSideMenu/TableFooterView;
+			sourceTree = "<group>";
+		};
 		99C580EB1D54F2F30095EE7F /* Arts */ = {
 			isa = PBXGroup;
 			children = (
@@ -833,6 +853,7 @@
 				99ED29181D5055B50088FCAD /* ViewForHeaderMenuItems */,
 				99ED290F1D5031600088FCAD /* CustomCellSectionMenuItems */,
 				99ED29061D502C180088FCAD /* CustomCellSectionMainMenu */,
+				99AB794C1D71F18000AB9029 /* TableFooterView */,
 				99EB2A221D4F4FC60024FEF9 /* LeftSideMenuViewController.swift */,
 				99EB2A231D4F4FC60024FEF9 /* LeftSideMenuViewController.xib */,
 			);
@@ -1064,6 +1085,7 @@
 				992A1D711D596C0E0047B63B /* SearchVenueViewController.xib in Resources */,
 				2DC364DA1D4B0FED006514EE /* LoginViewController.xib in Resources */,
 				99C581091D54FD180095EE7F /* TopPicksViewController.xib in Resources */,
+				99AB79501D71F1D200AB9029 /* LoginAndLogoutFooterView.xib in Resources */,
 				992A1D7D1D59C6DD0047B63B /* VenueSearchingViewController.xib in Resources */,
 				99C58DC91D6A280B0003D23C /* ImagesCollectionViewCell.xib in Resources */,
 				99EB2A251D4F4FC60024FEF9 /* LeftSideMenuViewController.xib in Resources */,
@@ -1264,6 +1286,7 @@
 				99C581241D5501070095EE7F /* SightsViewController.swift in Sources */,
 				99ED291E1D5058980088FCAD /* ViewForHeaderMenuItems.swift in Sources */,
 				2DC364D91D4B0FED006514EE /* LoginViewController.swift in Sources */,
+				99AB794E1D71F1A900AB9029 /* LoginAndLogoutFooterView.swift in Sources */,
 				99C581141D54FF2E0095EE7F /* DrinksViewController.swift in Sources */,
 				996DF40E1D56520B00693216 /* MapDetailVenueCell.swift in Sources */,
 				991DACE31D5B969D00A76A77 /* VenueCategory.swift in Sources */,
@@ -1304,8 +1327,10 @@
 				992A1D741D59817A0047B63B /* MarkerMap.swift in Sources */,
 				997227FC1D5C0EEB0053E320 /* VenuePrice.swift in Sources */,
 				997EA6F41D62F14C00006AD8 /* ListTransform.swift in Sources */,
+				99AB79491D71ED8700AB9029 /* User.swift in Sources */,
 				99C58DC21D6A24810003D23C /* ImagesCollectionViewHeader.swift in Sources */,
 				99C581281D5501240095EE7F /* TrendingViewController.swift in Sources */,
+				99AB794B1D71F07800AB9029 /* UserOauthToken.swift in Sources */,
 				99C581101D54FED30095EE7F /* CoffeeViewController.swift in Sources */,
 				99F661AA1D526887009A0E47 /* UIView.swift in Sources */,
 				997227FE1D5C10B80053E320 /* Photo.swift in Sources */,

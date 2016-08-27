@@ -174,7 +174,7 @@ class DetailVenueViewController: BaseViewController {
             completion()
             return
         }
-        VenueService().loadVenueHours(venue.id, section: venue.section) { (hours) in
+        VenueService().loadVenueHours(venue.id, section: venue.section) { (error) in
             completion()
         }
     }
@@ -184,7 +184,7 @@ class DetailVenueViewController: BaseViewController {
             completion()
             return
         }
-        VenueService().loadVenuePhotos(venue.id, section: venue.section) { (photos) in
+        VenueService().loadVenuePhotos(venue.id, section: venue.section) { (error) in
             completion()
         }
     }
@@ -194,7 +194,7 @@ class DetailVenueViewController: BaseViewController {
             completion()
             return
         }
-        VenueService().loadVenueTips(venue.id, section: venue.section) { (tips) in
+        VenueService().loadVenueTips(venue.id, section: venue.section) { (error) in
             completion()
         }
     }

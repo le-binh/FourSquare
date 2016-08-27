@@ -10,17 +10,17 @@ import Foundation
 import ObjectMapper
 import RealmSwift
 
-typealias VenuesCompletion = (venues: [Venue]) -> Void
-typealias VenueHoursCompletion = (hours: VenueHours?) -> Void
-typealias VenuePhotosCompletion = (photos: [Photo]) -> Void
-typealias VenueTipsCompletion = (tips: [VenueTip]) -> Void
+typealias VenuesCompletion = (error: Bool) -> Void
+typealias VenueHoursCompletion = (error: Bool) -> Void
+typealias VenuePhotosCompletion = (error: Bool) -> Void
+typealias VenueTipsCompletion = (error: Bool) -> Void
 class VenueService: BaseService {
 
     func loadVenues(section: String, limit: Int, offset: Int, completion: VenuesCompletion?) {
         let path = ApiPath.Explore.path
         guard let currentLocation = MyLocationManager.sharedInstanced.currentLocation else {
             dispatch_async(dispatch_get_main_queue(), {
-                completion?(venues: [])
+                completion?(error: true)
             })
             return
         }
@@ -33,14 +33,14 @@ class VenueService: BaseService {
         request(.GET, path: path, parameters: parameters) { (result) in
             guard let json = result.value, groups = json["groups"] as? JSArray else {
                 dispatch_async(dispatch_get_main_queue(), {
-                    completion?(venues: [])
+                    completion?(error: true)
                 })
                 return
             }
             for group in groups {
                 guard let items = group["items"] as? JSArray else {
                     dispatch_async(dispatch_get_main_queue(), {
-                        completion?(venues: [])
+                        completion?(error: true)
                     })
                     return
                 }
@@ -53,7 +53,7 @@ class VenueService: BaseService {
                 }
             }
             dispatch_async(dispatch_get_main_queue(), {
-                completion?(venues: [])
+                completion?(error: false)
             })
         }
     }
@@ -63,26 +63,26 @@ class VenueService: BaseService {
         request(.GET, path: path) { (result) in
             guard let json = result.value, popular = json["popular"] as? JSObject else {
                 dispatch_async(dispatch_get_main_queue(), {
-                    completion?(hours: nil)
+                    completion?(error: true)
                 })
                 return
             }
             let venueHours = Mapper<VenueHours>().map(popular)
             guard let hours = venueHours else {
                 dispatch_async(dispatch_get_main_queue(), {
-                    completion?(hours: nil)
+                    completion?(error: true)
                 })
                 return
             }
             if hours.timeFrames.count == 0 {
                 dispatch_async(dispatch_get_main_queue(), {
-                    completion?(hours: nil)
+                    completion?(error: true)
                 })
                 return
             }
             RealmManager.sharedInstance.updateVenueWithHours(id, section: section, hours: hours)
             dispatch_async(dispatch_get_main_queue(), {
-                completion?(hours: nil)
+                completion?(error: false)
             })
         }
     }
@@ -92,7 +92,7 @@ class VenueService: BaseService {
         request(.GET, path: path) { (result) in
             guard let json = result.value, photos = json["photos"] as? JSObject, items = photos["items"] as? JSArray else {
                 dispatch_async(dispatch_get_main_queue(), {
-                    completion?(photos: [])
+                    completion?(error: true)
                 })
                 return
             }
@@ -104,7 +104,7 @@ class VenueService: BaseService {
             }
             RealmManager.sharedInstance.updateVenueWithPhotos(id, section: section, photos: venuePhotos)
             dispatch_async(dispatch_get_main_queue(), {
-                completion?(photos: [])
+                completion?(error: false)
             })
         }
     }
@@ -114,7 +114,7 @@ class VenueService: BaseService {
         request(.GET, path: path) { (result) in
             guard let json = result.value, tips = json["tips"] as? JSObject, items = tips["items"] as? JSArray else {
                 dispatch_async(dispatch_get_main_queue(), {
-                    completion?(tips: [])
+                    completion?(error: true)
                 })
                 return
             }
@@ -126,7 +126,7 @@ class VenueService: BaseService {
             }
             RealmManager.sharedInstance.updateVenueWithTips(id, section: section, tips: venueTips)
             dispatch_async(dispatch_get_main_queue(), {
-                completion?(tips: [])
+                completion?(error: false)
             })
         }
     }
@@ -140,14 +140,14 @@ class VenueService: BaseService {
         request(.GET, path: path, parameters: parameters) { (result) in
             guard let json = result.value, groups = json["groups"] as? JSArray else {
                 dispatch_async(dispatch_get_main_queue(), {
-                    completion?(venues: [])
+                    completion?(error: true)
                 })
                 return
             }
             for group in groups {
                 guard let items = group["items"] as? JSArray else {
                     dispatch_async(dispatch_get_main_queue(), {
-                        completion?(venues: [])
+                        completion?(error: true)
                     })
                     return
                 }
@@ -159,7 +159,7 @@ class VenueService: BaseService {
                 }
             }
             dispatch_async(dispatch_get_main_queue(), {
-                completion?(venues: [])
+                completion?(error: false)
             })
         }
     }
