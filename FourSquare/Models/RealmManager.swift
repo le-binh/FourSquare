@@ -13,6 +13,51 @@ class RealmManager {
 
     static let sharedInstance = RealmManager()
 
+    func getVenuesBySection(section: SectionQuery) -> Results<Venue> {
+        var result: Results<Venue>!
+        do {
+            let realm = try Realm()
+            // print(Realm.Configuration.defaultConfiguration.fileURL)
+            result = realm.objects(Venue).filter("section = '\(section.rawValue)' AND isClear = false").sorted("availableTimestamp", ascending: true)
+        } catch {
+            print("Realm Have Error!!")
+        }
+        return result
+    }
+
+    func getFavoriteVenues() -> Results<Venue> {
+        var result: Results<Venue>!
+        do {
+            let realm = try Realm()
+            result = realm.objects(Venue).filter("isFavorite = true").sorted("favoriteTimestamp", ascending: false)
+        } catch {
+            print("Realm Have Error!!")
+        }
+        return result
+    }
+
+    func getHistoryVenues() -> Results<Venue> {
+        var result: Results<Venue>!
+        do {
+            let realm = try Realm()
+            result = realm.objects(Venue).filter("isHistory = true").sorted("historyTimestamp", ascending: false)
+        } catch {
+            print("Realm Have Error!!")
+        }
+        return result
+    }
+
+    func getSearchVenues() -> Results<Venue> {
+        var result: Results<Venue>!
+        do {
+            let realm = try Realm()
+            result = realm.objects(Venue).filter("section = 'search' AND isClear = false")
+        } catch {
+            print("Realm Have Error!!")
+        }
+        return result
+    }
+
     func addVenue(venue: Venue) {
         do {
             let realm = try Realm()

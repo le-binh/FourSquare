@@ -28,12 +28,7 @@ class FavoriteViewController: MenuItemViewController {
     }
 
     override func loadVenuesFromRealm() {
-        do {
-            let realm = try Realm()
-            self.venues = realm.objects(Venue).filter("isFavorite = true").sorted("favoriteTimestamp", ascending: false)
-        } catch {
-            print("Realm Have Error!!")
-        }
+        self.venues = RealmManager.sharedInstance.getFavoriteVenues()
     }
 
     override func refreshData() {

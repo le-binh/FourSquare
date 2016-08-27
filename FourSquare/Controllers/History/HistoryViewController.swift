@@ -22,12 +22,7 @@ class HistoryViewController: MenuItemViewController {
     }
 
     override func loadVenuesFromRealm() {
-        do {
-            let realm = try Realm()
-            self.venues = realm.objects(Venue).filter("isHistory = true").sorted("historyTimestamp", ascending: false)
-        } catch {
-            print("Realm Have Error!!")
-        }
+        self.venues = RealmManager.sharedInstance.getHistoryVenues()
     }
 
     override func refreshData() {

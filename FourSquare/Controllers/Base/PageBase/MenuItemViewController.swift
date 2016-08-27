@@ -36,13 +36,20 @@ class MenuItemViewController: BaseViewController {
     }
     @IBOutlet weak var venueTableView: UITableView?
     let rowHeight: CGFloat = 140
+    let loadMoreIndicatorHeight: CGFloat = 40
     var venues: Results<Venue>!
     var delegate: MenuItemDelegate!
     var refreshControl: UIRefreshControl!
     let limit: Int = 10
     var offset: Int = 0
     var willLoadMore: Bool = true
-    var isRefresh: Bool = false
+    var isRefresh: Bool = false {
+        didSet {
+            if isRefresh {
+                self.clearLoadMoreIndicator()
+            }
+        }
+    }
     var shouldLoadMore: Bool {
         if self.isRefresh {
             self.offset = 0
@@ -97,6 +104,21 @@ class MenuItemViewController: BaseViewController {
         self.venueTableView?.addSubview(refreshControl)
     }
 
+    private func addLoadMoreIndicator() {
+        let spinner: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        spinner.hidesWhenStopped = true
+        spinner.startAnimating()
+        spinner.frame = CGRect(x: 0, y: 0, width: kScreenSize.width, height: self.loadMoreIndicatorHeight)
+        self.venueTableView?.tableFooterView = spinner
+    }
+
+    private func clearLoadMoreIndicator() {
+        let footerView = self.venueTableView?.tableFooterView as? UIActivityIndicatorView
+        footerView?.stopAnimating()
+        self.venueTableView?.tableFooterView = nil
+        self.venueTableView?.reloadData()
+    }
+
     private func setupLocationManager() {
         if MyLocationManager.sharedInstanced.currentLocation == nil {
             MyLocationManager.sharedInstanced.startLocation()
@@ -113,20 +135,17 @@ class MenuItemViewController: BaseViewController {
     }
 
     func loadVenuesFromRealm() {
-        do {
-            let realm = try Realm()
-            // print(Realm.Configuration.defaultConfiguration.fileURL)
-            self.venues = realm.objects(Venue).filter("section = '\(self.section.rawValue)' AND isClear = false").sorted("availableTimestamp", ascending: true)
-        } catch {
-            print("Realm Have Error!!")
-        }
+        self.venues = RealmManager.sharedInstance.getVenuesBySection(self.section)
     }
 
     @objc private func loadVenues() {
-        SVProgressHUD.show()
+        if !isRefresh && willLoadMore {
+            SVProgressHUD.show()
+        }
         self.refreshControl.endRefreshing()
         VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (venues) in
             SVProgressHUD.dismiss()
+            self.isRefresh = false
             self.venueTableView?.reloadData()
             self.delegate?.menuItemDidLoadData(self.venues)
         }
@@ -176,6 +195,7 @@ extension MenuItemViewController: UITableViewDataSource {
 //MARK:- Table View Delegate
 
 extension MenuItemViewController: UITableViewDelegate {
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let detailVenueViewController = DetailVenueViewController.vc()
         let venue = self.venues[indexPath.row]
@@ -195,10 +215,15 @@ extension MenuItemViewController {
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
         if maximumOffset - currentOffset < 2 * self.rowHeight {
-            if self.shouldLoadMore {
+            if self.shouldLoadMore && !isRefresh {
+                self.addLoadMoreIndicator()
                 willLoadMore = false
                 self.isRefresh = false
                 self.loadMoreVenues()
+            } else {
+                UIView.animateWithDuration(0.2, animations: {
+                    self.clearLoadMoreIndicator()
+                })
             }
         }
     }
