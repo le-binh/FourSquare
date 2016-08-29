@@ -84,13 +84,18 @@ class DetailVenueViewController: BaseViewController {
     // MARK:- Properties
 
     @IBOutlet weak var detailVenueTableView: UITableView!
+    @IBOutlet weak var commentView: UIView!
+    @IBOutlet weak var textCommentTextField: UITextField!
     var venue: Venue?
+    @IBOutlet weak var bottomCommentViewLayoutConstraint: NSLayoutConstraint!
 
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureTableView()
+        self.configureTapGesture()
+        self.configureCommentView()
         self.navigationBar?.title = venue?.name
         self.addHistory()
     }
@@ -118,6 +123,20 @@ class DetailVenueViewController: BaseViewController {
         didAddFavorite = !didAddFavorite
     }
 
+    // MARK:- Actions
+
+    @IBAction func commentAction(sender: AnyObject) {
+        self.textCommentTextField.endEditing(true)
+        self.resetCommentView()
+        let user = UserRealmManager.sharedInstance.getUser()
+        if user == nil {
+            LoginService().login()
+        } else {
+            print("\(user?.getFullName()): \(self.textCommentTextField.text)")
+            self.textCommentTextField.text = ""
+        }
+    }
+
     // MARK:- Private Functions
 
     private func configureTableView() {
@@ -131,6 +150,17 @@ class DetailVenueViewController: BaseViewController {
         self.detailVenueTableView.dataSource = self
         self.detailVenueTableView.rowHeight = UITableViewAutomaticDimension
         self.detailVenueTableView.estimatedRowHeight = 51
+    }
+
+    private func configureTapGesture() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(actionWhenTapOnTable))
+        tap.numberOfTapsRequired = 1
+        self.detailVenueTableView.addGestureRecognizer(tap)
+    }
+
+    private func configureCommentView() {
+        self.commentView.hidden = true
+        self.textCommentTextField.delegate = self
     }
 
     private func configureFavoriteButton() {
@@ -231,6 +261,24 @@ class DetailVenueViewController: BaseViewController {
         }
         return cell
     }
+
+    private func moveCommentView() {
+        self.bottomCommentViewLayoutConstraint.constant = 216
+        UIView.animateWithDuration(0.25) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    private func resetCommentView() {
+        self.bottomCommentViewLayoutConstraint.constant = 0
+        UIView.animateWithDuration(0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    @objc private func actionWhenTapOnTable() {
+        self.textCommentTextField.endEditing(true)
+        self.resetCommentView()
+    }
 }
 
 //MARK:- Table View Datasource
@@ -305,6 +353,16 @@ extension DetailVenueViewController: UITableViewDelegate {
         }
         return view
     }
+
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > 100 {
+            self.commentView.hidden = false
+        } else {
+            self.commentView.hidden = true
+            self.textCommentTextField.endEditing(true)
+            self.resetCommentView()
+        }
+    }
 }
 
 //MARK:- Zoom Collection View Delegate
@@ -313,5 +371,17 @@ extension DetailVenueViewController: ZoomImagesViewControllerDelegate {
     func scrollCollectionView(index: Int) {
         let imagesCollectionViewHeader = self.detailVenueTableView.headerViewForSection(0) as? ImagesCollectionViewHeader
         imagesCollectionViewHeader?.scrollToCellAtIndex(index, animated: false)
+    }
+}
+
+extension DetailVenueViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        self.moveCommentView()
+        return true
+    }
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.commentAction(textField)
+        return true
     }
 }
