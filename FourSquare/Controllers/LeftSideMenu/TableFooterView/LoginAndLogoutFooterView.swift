@@ -8,8 +8,20 @@
 
 import UIKit
 
+protocol LoginAndLogoutDelegate {
+    func loginOrLogoutAction(title: String)
+}
+
 class LoginAndLogoutFooterView: UITableViewHeaderFooterView {
+
     @IBOutlet weak var footerTitleLabel: UILabel!
+    var delegate: LoginAndLogoutDelegate!
+
+    @IBAction func loginOrLogoutAction(sender: AnyObject) {
+        if let title = self.footerTitleLabel.text {
+            delegate?.loginOrLogoutAction(title)
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

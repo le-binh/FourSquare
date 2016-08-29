@@ -104,6 +104,7 @@
 		99C58DC41D6A248A0003D23C /* ImagesCollectionViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C58DC31D6A248A0003D23C /* ImagesCollectionViewHeader.xib */; };
 		99C58DC81D6A280B0003D23C /* ImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C58DC61D6A280B0003D23C /* ImagesCollectionViewCell.swift */; };
 		99C58DC91D6A280B0003D23C /* ImagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C58DC71D6A280B0003D23C /* ImagesCollectionViewCell.xib */; };
+		99DB75241D73EB8F00CB8CBE /* UserRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DB75231D73EB8F00CB8CBE /* UserRealmManager.swift */; };
 		99EB2A1F1D4F4CCB0024FEF9 /* BackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EB2A1D1D4F4CCB0024FEF9 /* BackgroundViewController.swift */; };
 		99EB2A201D4F4CCB0024FEF9 /* BackgroundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99EB2A1E1D4F4CCB0024FEF9 /* BackgroundViewController.xib */; };
 		99EB2A241D4F4FC60024FEF9 /* LeftSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EB2A221D4F4FC60024FEF9 /* LeftSideMenuViewController.swift */; };
@@ -253,6 +254,7 @@
 		99C58DC31D6A248A0003D23C /* ImagesCollectionViewHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImagesCollectionViewHeader.xib; sourceTree = "<group>"; };
 		99C58DC61D6A280B0003D23C /* ImagesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		99C58DC71D6A280B0003D23C /* ImagesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImagesCollectionViewCell.xib; sourceTree = "<group>"; };
+		99DB75231D73EB8F00CB8CBE /* UserRealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRealmManager.swift; sourceTree = "<group>"; };
 		99EB2A1D1D4F4CCB0024FEF9 /* BackgroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundViewController.swift; path = Background/BackgroundViewController.swift; sourceTree = "<group>"; };
 		99EB2A1E1D4F4CCB0024FEF9 /* BackgroundViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BackgroundViewController.xib; path = Background/BackgroundViewController.xib; sourceTree = "<group>"; };
 		99EB2A221D4F4FC60024FEF9 /* LeftSideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeftSideMenuViewController.swift; path = LeftSideMenu/LeftSideMenuViewController.swift; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 				997EA6F01D62CF0900006AD8 /* RealmManager.swift */,
 				99AB79481D71ED8700AB9029 /* User.swift */,
 				99AB794A1D71F07800AB9029 /* UserOauthToken.swift */,
+				99DB75231D73EB8F00CB8CBE /* UserRealmManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1317,6 +1320,7 @@
 				991C6E631D65979E00865E4C /* GoogleDirectionsService.swift in Sources */,
 				994B95541D5B07390013D9E3 /* VenueService.swift in Sources */,
 				996DF4061D56473C00693216 /* DefaultVenueDetailCell.swift in Sources */,
+				99DB75241D73EB8F00CB8CBE /* UserRealmManager.swift in Sources */,
 				99A89EA21D5707FE00429962 /* MapDetailVenueViewController.swift in Sources */,
 				997228001D5C20BB0053E320 /* VenueHours.swift in Sources */,
 				991121D51D535430001EDBD2 /* DetailVenueViewController.swift in Sources */,

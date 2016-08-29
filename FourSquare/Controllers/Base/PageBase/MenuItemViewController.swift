@@ -142,11 +142,11 @@ class MenuItemViewController: BaseViewController {
         if !isRefresh && willLoadMore {
             SVProgressHUD.show()
         }
-        self.refreshControl.endRefreshing()
         VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (error) in
             SVProgressHUD.dismiss()
             self.isRefresh = false
             self.venueTableView?.reloadData()
+            self.refreshControl.endRefreshing()
             self.delegate?.menuItemDidLoadData(self.venues)
         }
     }

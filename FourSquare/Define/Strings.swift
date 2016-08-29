@@ -44,4 +44,6 @@ struct Strings {
     static let Verified = "Yes"
     static let NotVerified = "No"
     static let WhatAreYouLookingFor = "What are you looking for?"
+    static let Login = "Login"
+    static let Logout = "Logout"
 }

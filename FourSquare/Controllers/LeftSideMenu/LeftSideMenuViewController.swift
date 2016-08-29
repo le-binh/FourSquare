@@ -9,11 +9,13 @@
 import UIKit
 import SwiftUtils
 import LGSideMenuController
+import RealmSwift
 
 enum SlideMenuSection: Int {
 
     case MainMenu
     case MenuItems
+    case Login
 
     var title: String {
         switch self {
@@ -21,6 +23,9 @@ enum SlideMenuSection: Int {
             return Strings.MainMenuSectionTitle
         case .MenuItems:
             return Strings.MenuItemsSectionTitle
+        case .Login:
+            let token = UserRealmManager.sharedInstance.getOauthToken()
+            return token != nil ? Strings.Logout : Strings.Login
         }
     }
 
@@ -30,6 +35,8 @@ enum SlideMenuSection: Int {
             return 3
         case .MenuItems:
             return 6
+        case .Login():
+            return 0
         }
     }
 
@@ -39,14 +46,19 @@ enum SlideMenuSection: Int {
             return 60
         case .MenuItems:
             return 35
+        case .Login:
+            return 0
         }
     }
 
     var sectionHeight: CGFloat {
         switch self {
         case .MainMenu:
-            return 0.000001
+            let token = UserRealmManager.sharedInstance.getOauthToken()
+            return token != nil ? 80 : 0.000001
         case .MenuItems:
+            return 45
+        case .Login:
             return 45
         }
     }
@@ -136,6 +148,10 @@ class LeftSideMenuViewController: UIViewController {
         self.menuTableView.registerNib(CustomMainMenuTableViewCell)
         self.menuTableView.registerNib(CustomMenuItemsTableViewCell)
         self.menuTableView.registerNib(ViewForHeaderMenuItems)
+        self.menuTableView.registerNib(LoginAndLogoutFooterView)
+        if isPhone4 {
+            self.menuTableView.scrollEnabled = true
+        }
         self.menuTableView.delegate = self
         self.menuTableView.dataSource = self
     }
@@ -151,7 +167,7 @@ class LeftSideMenuViewController: UIViewController {
 extension LeftSideMenuViewController: UITableViewDataSource {
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -189,6 +205,8 @@ extension LeftSideMenuViewController: UITableViewDataSource {
             cell.configureCell(menuItemsSlide)
 
             return cell
+        case .Login:
+            return UITableViewCell()
         }
     }
 }
@@ -221,9 +239,14 @@ extension LeftSideMenuViewController: UITableViewDelegate {
         switch slideMenuSection {
         case .MainMenu:
             return nil
-        default:
+        case .MenuItems:
             let view = tableView.dequeue(ViewForHeaderMenuItems)
-            view.titleMenu.text = "Menu Items"
+            view.titleMenu.text = Strings.MenuItemsSectionTitle
+            return view
+        case .Login:
+            let view = tableView.dequeue(LoginAndLogoutFooterView)
+            view.footerTitleLabel.text = slideMenuSection.title
+            view.delegate = self
             return view
         }
     }
@@ -261,6 +284,20 @@ extension LeftSideMenuViewController: UITableViewDelegate {
             UIApplication.sharedApplication().backgroundViewController()?.hideLeftViewAnimated(true, completionHandler: nil)
         default:
             return
+        }
+    }
+}
+
+extension LeftSideMenuViewController: LoginAndLogoutDelegate {
+    func loginOrLogoutAction(title: String) {
+        if title == Strings.Login {
+            let userToken = UserOauthToken()
+            userToken.oauthToken = "ABC"
+            UserRealmManager.sharedInstance.saveOauthToken(userToken)
+            self.menuTableView.reloadData()
+        } else {
+            UserRealmManager.sharedInstance.deleteOauthToken()
+            self.menuTableView.reloadData()
         }
     }
 }
