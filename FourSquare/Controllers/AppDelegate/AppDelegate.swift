@@ -10,6 +10,7 @@ import UIKit
 import SwiftUtils
 import XCConsole
 import GoogleMaps
+import FSOAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +24,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = self.rootViewController()
         window?.makeKeyAndVisible()
         return true
+    }
+
+    func application(app: UIApplication, openURL url: NSURL, options: [String: AnyObject]) -> Bool {
+        self.handleUrl(url)
+        return true
+    }
+
+    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+        var didHandle = false
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
+            if let url = userActivity.webpageURL {
+                self.handleUrl(url)
+                didHandle = true
+            }
+        }
+        return didHandle
     }
 
     func rootViewController() -> UIViewController {
@@ -59,6 +76,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func cleanDatabase() {
         RealmManager.sharedInstance.deleteWithoutFavoriteAndHistory()
+    }
+
+    private func handleUrl(url: NSURL) {
+        if url.scheme == APIKeys.urlScheme {
+            var errorCode: FSOAuthErrorCode = .None
+            let accessCode = FSOAuth.accessCodeForFSOAuthURL(url, error: &errorCode)
+            if errorCode == .None {
+                self.getAndSaveToken(accessCode)
+            }
+        }
+    }
+
+    private func getAndSaveToken(accessCode: String) {
+        LoginService().getAndSaveToken(accessCode) { (completion) in
+            if completion {
+                let backgroundViewController = self.window?.rootViewController as? BackgroundViewController
+                backgroundViewController?.reloadSideMenu()
+            }
+        }
     }
 
 }

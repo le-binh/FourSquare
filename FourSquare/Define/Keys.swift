@@ -17,4 +17,6 @@ struct APIKeys {
     static let ClientSecret = "SBHN014V21FKCKN3YZFXFHNEXTTIRP12BTVOPVSRZQNS2TDJ"
     static let VersionAPI = "20160809"
     static let Thumbnail = "1"
+    static let urlScheme = "loginfoursquare"
+    static let uriCallBack = "loginFoursquare://authorized"
 }

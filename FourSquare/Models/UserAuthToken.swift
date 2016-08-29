@@ -9,6 +9,6 @@
 import UIKit
 import RealmSwift
 
-class UserOauthToken: Object {
-    dynamic var oauthToken: String = ""
+class UserAuthToken: Object {
+    dynamic var authToken: String = ""
 }

@@ -18,8 +18,6 @@ class LoginViewController: UIViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        LoginService().login("", password: "") { (result) in
-        }
     }
 
     override func didReceiveMemoryWarning() {

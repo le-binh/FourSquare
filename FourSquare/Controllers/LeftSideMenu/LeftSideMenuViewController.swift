@@ -24,8 +24,8 @@ enum SlideMenuSection: Int {
         case .MenuItems:
             return Strings.MenuItemsSectionTitle
         case .Login:
-            let token = UserRealmManager.sharedInstance.getOauthToken()
-            return token != nil ? Strings.Logout : Strings.Login
+            let user = UserRealmManager.sharedInstance.getUser()
+            return user != nil ? Strings.Logout : Strings.Login
         }
     }
 
@@ -36,8 +36,8 @@ enum SlideMenuSection: Int {
         case .MenuItems:
             return 6
         case .Login:
-            let token = UserRealmManager.sharedInstance.getOauthToken()
-            return token != nil ? 1 : 0
+            let user = UserRealmManager.sharedInstance.getUser()
+            return user != nil ? 1 : 0
         }
     }
 
@@ -161,6 +161,10 @@ class LeftSideMenuViewController: UIViewController {
         let navi = UINavigationController(rootViewController: viewController)
         navi.navigationBar.hidden = true
         UIApplication.sharedApplication().backgroundViewController()?.rootViewController = navi
+    }
+
+    private func conectToFourSquare() {
+        LoginService().login()
     }
 
 }
@@ -293,9 +297,9 @@ extension LeftSideMenuViewController: UITableViewDelegate {
 extension LeftSideMenuViewController: LoginAndLogoutDelegate {
     func loginOrLogoutAction(title: String) {
         if title == Strings.Login {
-            NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.login, object: nil)
+            self.conectToFourSquare()
         } else {
-            UserRealmManager.sharedInstance.deleteOauthToken()
+            UserRealmManager.sharedInstance.deleteUser()
             self.menuTableView.reloadData()
         }
     }
