@@ -19,10 +19,10 @@
                         <rect key="frame" x="8" y="8" width="304" height="76.5"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu_home_ic" translatesAutoresizingMaskIntoConstraints="NO" id="15d-zv-Zbb">
-                                <rect key="frame" x="20" y="29" width="19" height="19"/>
+                                <rect key="frame" x="7" y="29" width="19" height="19"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xf9-L0-Eqc">
-                                <rect key="frame" x="49" y="28" width="46" height="21"/>
+                                <rect key="frame" x="36" y="28" width="46" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -33,7 +33,7 @@
                             <constraint firstItem="15d-zv-Zbb" firstAttribute="centerY" secondItem="IyA-Tx-0HE" secondAttribute="centerY" id="mgc-2D-VWU"/>
                             <constraint firstItem="Xf9-L0-Eqc" firstAttribute="leading" secondItem="15d-zv-Zbb" secondAttribute="trailing" constant="10" id="mio-Bd-9Ci"/>
                             <constraint firstItem="Xf9-L0-Eqc" firstAttribute="centerY" secondItem="15d-zv-Zbb" secondAttribute="centerY" id="o5t-e9-f7c"/>
-                            <constraint firstItem="15d-zv-Zbb" firstAttribute="leading" secondItem="IyA-Tx-0HE" secondAttribute="leading" constant="20" id="pP0-EM-nqd"/>
+                            <constraint firstItem="15d-zv-Zbb" firstAttribute="leading" secondItem="IyA-Tx-0HE" secondAttribute="leading" constant="7" id="pP0-EM-nqd"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kQm-mB-dt6">

@@ -19,7 +19,7 @@
                         <rect key="frame" x="8" y="8" width="304" height="110.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drinks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lr2-8w-cA8">
-                                <rect key="frame" x="50" y="46" width="41.5" height="19.5"/>
+                                <rect key="frame" x="37" y="46" width="41.5" height="19.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="GWI-Fi-4dj"/>
                                 </constraints>
@@ -39,7 +39,7 @@
                         <constraints>
                             <constraint firstItem="1Q1-4J-HcG" firstAttribute="centerY" secondItem="g5e-rh-rjY" secondAttribute="centerY" id="0Wd-o3-tMf"/>
                             <constraint firstAttribute="trailing" secondItem="1Q1-4J-HcG" secondAttribute="trailing" constant="20" id="Vbm-ul-DOW"/>
-                            <constraint firstItem="Lr2-8w-cA8" firstAttribute="leading" secondItem="g5e-rh-rjY" secondAttribute="leading" constant="50" id="cGe-yw-mLd"/>
+                            <constraint firstItem="Lr2-8w-cA8" firstAttribute="leading" secondItem="g5e-rh-rjY" secondAttribute="leading" constant="37" id="cGe-yw-mLd"/>
                             <constraint firstItem="Lr2-8w-cA8" firstAttribute="centerY" secondItem="g5e-rh-rjY" secondAttribute="centerY" id="qWy-GU-X4V"/>
                         </constraints>
                     </view>

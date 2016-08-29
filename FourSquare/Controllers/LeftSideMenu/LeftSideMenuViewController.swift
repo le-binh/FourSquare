@@ -12,12 +12,14 @@ import LGSideMenuController
 import RealmSwift
 
 enum SlideMenuSection: Int {
-
+    case Login
     case MainMenu
     case MenuItems
 
     var title: String {
         switch self {
+        case .Login:
+            return Strings.Login
         case .MainMenu:
             return Strings.MainMenuSectionTitle
         case .MenuItems:
@@ -27,6 +29,9 @@ enum SlideMenuSection: Int {
 
     var numberOfRow: Int {
         switch self {
+        case .Login:
+            let user = UserRealmManager.sharedInstance.getUser()
+            return user != nil ? 1 : 0
         case .MainMenu:
             return 3
         case .MenuItems:
@@ -36,6 +41,8 @@ enum SlideMenuSection: Int {
 
     var rowHeight: CGFloat {
         switch self {
+        case .Login:
+            return 99 * kScreenSize.width / 375
         case .MainMenu:
             return 60 * kScreenSize.width / 375
         case .MenuItems:
@@ -45,9 +52,10 @@ enum SlideMenuSection: Int {
 
     var sectionHeight: CGFloat {
         switch self {
+        case .Login:
+            return .min
         case .MainMenu:
-            let user = UserRealmManager.sharedInstance.getUser()
-            return user != nil ? (5 / 6 * kScreenSize.width) : .min
+            return .min
         case .MenuItems:
             return 45
         }
@@ -138,13 +146,9 @@ class LeftSideMenuViewController: UIViewController {
         self.menuTableView.registerNib(CustomMainMenuTableViewCell)
         self.menuTableView.registerNib(CustomMenuItemsTableViewCell)
         self.menuTableView.registerNib(ViewForHeaderMenuItems)
-        self.menuTableView.registerNib(LoginTableViewCell)
-        if isPhone4 {
-            self.menuTableView.scrollEnabled = true
-        }
+        self.menuTableView.registerNib(LogoutTableViewCell)
         self.menuTableView.delegate = self
         self.menuTableView.dataSource = self
-        menuTableView.setSeparatorInsets(UIEdgeInsetsZero)
     }
 
     private func changeRootViewController(viewController: UIViewController) {
@@ -153,16 +157,17 @@ class LeftSideMenuViewController: UIViewController {
         UIApplication.sharedApplication().backgroundViewController()?.rootViewController = navi
     }
 
-    private func conectToFourSquare() {
-        LoginService().login()
+    private func logoutUserAction() {
+        UserRealmManager.sharedInstance.deleteUser()
+        let indexSet = NSIndexSet(indexesInRange: NSRange(location: 0, length: 1))
+        self.menuTableView.reloadSections(indexSet, withRowAnimation: .Fade)
     }
-
 }
 
 extension LeftSideMenuViewController: UITableViewDataSource {
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -179,6 +184,10 @@ extension LeftSideMenuViewController: UITableViewDataSource {
         }
 
         switch slideMenuSection {
+        case .Login:
+            let cell = tableView.dequeue(LogoutTableViewCell)
+            cell.delegate = self
+            return cell
         case .MainMenu:
             let cell = tableView.dequeue(CustomMainMenuTableViewCell)
 
@@ -192,13 +201,10 @@ extension LeftSideMenuViewController: UITableViewDataSource {
 
         case .MenuItems:
             let cell = tableView.dequeue(CustomMenuItemsTableViewCell)
-
             guard let menuItemsSlide = MenuItemsSlide(rawValue: indexPath.row) else {
                 return cell
             }
-
             cell.configureCell(menuItemsSlide)
-
             return cell
         }
     }
@@ -230,13 +236,12 @@ extension LeftSideMenuViewController: UITableViewDelegate {
             return nil
         }
         switch slideMenuSection {
-        case .MainMenu:
-            let view = tableView.dequeue(LoginTableViewCell)
-            return view
         case .MenuItems:
             let view = tableView.dequeue(ViewForHeaderMenuItems)
             view.titleMenu.text = Strings.MenuItemsSectionTitle
             return view
+        default:
+            return nil
         }
     }
 
@@ -273,5 +278,11 @@ extension LeftSideMenuViewController: UITableViewDelegate {
         default:
             LoginService().login()
         }
+    }
+}
+
+extension LeftSideMenuViewController: LogoutCellDelegate {
+    func logoutAction() {
+        self.logoutUserAction()
     }
 }
