@@ -26,3 +26,9 @@ class User: Object, Mappable {
         avatar <- map["photo"]
     }
 }
+
+extension User {
+    func getFullName() -> String {
+        return "\(firstName), \(lastName)"
+    }
+}

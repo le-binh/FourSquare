@@ -38,6 +38,14 @@ extension Photo {
         let path = prefix + "\(width)" + "x" + "\(height)" + suffix
         return NSURL(string: path)
     }
+
+    var userAvatarPath: NSURL? {
+        let width = 500
+        let height = 500
+        let path = prefix + "\(width)" + "x" + "\(height)" + suffix
+        return NSURL(string: path)
+    }
+
     var thumbnailPath: NSURL? {
         let path = prefix + "\(width / 2)" + "x" + "\(height / 2)" + suffix
         return NSURL(string: path)

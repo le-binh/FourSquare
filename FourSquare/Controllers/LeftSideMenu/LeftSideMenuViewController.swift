@@ -15,7 +15,6 @@ enum SlideMenuSection: Int {
 
     case MainMenu
     case MenuItems
-    case Login
 
     var title: String {
         switch self {
@@ -23,9 +22,6 @@ enum SlideMenuSection: Int {
             return Strings.MainMenuSectionTitle
         case .MenuItems:
             return Strings.MenuItemsSectionTitle
-        case .Login:
-            let user = UserRealmManager.sharedInstance.getUser()
-            return user != nil ? Strings.Logout : Strings.Login
         }
     }
 
@@ -35,30 +31,24 @@ enum SlideMenuSection: Int {
             return 3
         case .MenuItems:
             return 6
-        case .Login:
-            let user = UserRealmManager.sharedInstance.getUser()
-            return user != nil ? 1 : 0
         }
     }
 
     var rowHeight: CGFloat {
         switch self {
         case .MainMenu:
-            return 60
+            return 60 * kScreenSize.width / 375
         case .MenuItems:
-            return 35
-        case .Login:
-            return 80
+            return 35 * kScreenSize.width / 375
         }
     }
 
     var sectionHeight: CGFloat {
         switch self {
         case .MainMenu:
-            return 0.000001
+            let user = UserRealmManager.sharedInstance.getUser()
+            return user != nil ? (5 / 6 * kScreenSize.width) : .min
         case .MenuItems:
-            return 45
-        case .Login:
             return 45
         }
     }
@@ -148,13 +138,13 @@ class LeftSideMenuViewController: UIViewController {
         self.menuTableView.registerNib(CustomMainMenuTableViewCell)
         self.menuTableView.registerNib(CustomMenuItemsTableViewCell)
         self.menuTableView.registerNib(ViewForHeaderMenuItems)
-        self.menuTableView.registerNib(LoginAndLogoutFooterView)
         self.menuTableView.registerNib(LoginTableViewCell)
         if isPhone4 {
             self.menuTableView.scrollEnabled = true
         }
         self.menuTableView.delegate = self
         self.menuTableView.dataSource = self
+        menuTableView.setSeparatorInsets(UIEdgeInsetsZero)
     }
 
     private func changeRootViewController(viewController: UIViewController) {
@@ -172,7 +162,7 @@ class LeftSideMenuViewController: UIViewController {
 extension LeftSideMenuViewController: UITableViewDataSource {
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 2
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -210,9 +200,6 @@ extension LeftSideMenuViewController: UITableViewDataSource {
             cell.configureCell(menuItemsSlide)
 
             return cell
-        case .Login:
-            let cell = tableView.dequeue(LoginTableViewCell)
-            return cell
         }
     }
 }
@@ -235,7 +222,7 @@ extension LeftSideMenuViewController: UITableViewDelegate {
     }
 
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.000001
+        return .min
     }
 
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -244,15 +231,11 @@ extension LeftSideMenuViewController: UITableViewDelegate {
         }
         switch slideMenuSection {
         case .MainMenu:
-            return nil
+            let view = tableView.dequeue(LoginTableViewCell)
+            return view
         case .MenuItems:
             let view = tableView.dequeue(ViewForHeaderMenuItems)
             view.titleMenu.text = Strings.MenuItemsSectionTitle
-            return view
-        case .Login:
-            let view = tableView.dequeue(LoginAndLogoutFooterView)
-            view.footerTitleLabel.text = slideMenuSection.title
-            view.delegate = self
             return view
         }
     }
@@ -268,7 +251,6 @@ extension LeftSideMenuViewController: UITableViewDelegate {
             }
             if currentMainMenuSide == mainMenuSlide {
                 UIApplication.sharedApplication().backgroundViewController()?.hideLeftViewAnimated(true, completionHandler: nil)
-                break
             }
             switch mainMenuSlide {
             case .Home:
@@ -289,18 +271,7 @@ extension LeftSideMenuViewController: UITableViewDelegate {
             self.currentMainMenuSide = mainMenuSlide
             UIApplication.sharedApplication().backgroundViewController()?.hideLeftViewAnimated(true, completionHandler: nil)
         default:
-            return
-        }
-    }
-}
-
-extension LeftSideMenuViewController: LoginAndLogoutDelegate {
-    func loginOrLogoutAction(title: String) {
-        if title == Strings.Login {
-            self.conectToFourSquare()
-        } else {
-            UserRealmManager.sharedInstance.deleteUser()
-            self.menuTableView.reloadData()
+            LoginService().login()
         }
     }
 }
