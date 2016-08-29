@@ -105,6 +105,8 @@
 		99C58DC81D6A280B0003D23C /* ImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C58DC61D6A280B0003D23C /* ImagesCollectionViewCell.swift */; };
 		99C58DC91D6A280B0003D23C /* ImagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C58DC71D6A280B0003D23C /* ImagesCollectionViewCell.xib */; };
 		99DB75241D73EB8F00CB8CBE /* UserRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DB75231D73EB8F00CB8CBE /* UserRealmManager.swift */; };
+		99DB75281D7421E800CB8CBE /* LoginTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DB75261D7421E800CB8CBE /* LoginTableViewCell.swift */; };
+		99DB75291D7421E800CB8CBE /* LoginTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99DB75271D7421E800CB8CBE /* LoginTableViewCell.xib */; };
 		99EB2A1F1D4F4CCB0024FEF9 /* BackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EB2A1D1D4F4CCB0024FEF9 /* BackgroundViewController.swift */; };
 		99EB2A201D4F4CCB0024FEF9 /* BackgroundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99EB2A1E1D4F4CCB0024FEF9 /* BackgroundViewController.xib */; };
 		99EB2A241D4F4FC60024FEF9 /* LeftSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EB2A221D4F4FC60024FEF9 /* LeftSideMenuViewController.swift */; };
@@ -255,6 +257,8 @@
 		99C58DC61D6A280B0003D23C /* ImagesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		99C58DC71D6A280B0003D23C /* ImagesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImagesCollectionViewCell.xib; sourceTree = "<group>"; };
 		99DB75231D73EB8F00CB8CBE /* UserRealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRealmManager.swift; sourceTree = "<group>"; };
+		99DB75261D7421E800CB8CBE /* LoginTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTableViewCell.swift; sourceTree = "<group>"; };
+		99DB75271D7421E800CB8CBE /* LoginTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginTableViewCell.xib; sourceTree = "<group>"; };
 		99EB2A1D1D4F4CCB0024FEF9 /* BackgroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundViewController.swift; path = Background/BackgroundViewController.swift; sourceTree = "<group>"; };
 		99EB2A1E1D4F4CCB0024FEF9 /* BackgroundViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BackgroundViewController.xib; path = Background/BackgroundViewController.xib; sourceTree = "<group>"; };
 		99EB2A221D4F4FC60024FEF9 /* LeftSideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeftSideMenuViewController.swift; path = LeftSideMenu/LeftSideMenuViewController.swift; sourceTree = "<group>"; };
@@ -841,6 +845,16 @@
 			path = ImagesCollectionViewCell;
 			sourceTree = "<group>";
 		};
+		99DB75251D74215E00CB8CBE /* UserCell */ = {
+			isa = PBXGroup;
+			children = (
+				99DB75261D7421E800CB8CBE /* LoginTableViewCell.swift */,
+				99DB75271D7421E800CB8CBE /* LoginTableViewCell.xib */,
+			);
+			name = UserCell;
+			path = LeftSideMenu/UserCell;
+			sourceTree = "<group>";
+		};
 		99EB2A1C1D4F4C980024FEF9 /* Background */ = {
 			isa = PBXGroup;
 			children = (
@@ -857,6 +871,7 @@
 				99ED290F1D5031600088FCAD /* CustomCellSectionMenuItems */,
 				99ED29061D502C180088FCAD /* CustomCellSectionMainMenu */,
 				99AB794C1D71F18000AB9029 /* TableFooterView */,
+				99DB75251D74215E00CB8CBE /* UserCell */,
 				99EB2A221D4F4FC60024FEF9 /* LeftSideMenuViewController.swift */,
 				99EB2A231D4F4FC60024FEF9 /* LeftSideMenuViewController.xib */,
 			);
@@ -1070,6 +1085,7 @@
 				99ED290E1D502CC80088FCAD /* CustomMainMenuTableViewCell.xib in Resources */,
 				99C5811D1D5500D20095EE7F /* OutdoorsViewController.xib in Resources */,
 				99C581251D5501070095EE7F /* SightsViewController.xib in Resources */,
+				99DB75291D7421E800CB8CBE /* LoginTableViewCell.xib in Resources */,
 				9987AA0F1D52F83C00AB7E6D /* VenueItemTableViewCell.xib in Resources */,
 				99ED29201D5058A90088FCAD /* ViewForHeaderMenuItems.xib in Resources */,
 				99A89EA31D5707FE00429962 /* MapDetailVenueViewController.xib in Resources */,
@@ -1340,6 +1356,7 @@
 				997227FE1D5C10B80053E320 /* Photo.swift in Sources */,
 				991DACE11D5B93DE00A76A77 /* VenueLocation.swift in Sources */,
 				2DC364F81D4B3CB5006514EE /* LoginService.swift in Sources */,
+				99DB75281D7421E800CB8CBE /* LoginTableViewCell.swift in Sources */,
 				99AA465F1D542A8F004EFCB2 /* ImagePageItemViewController.swift in Sources */,
 				996DF4011D56461100693216 /* ViewHeaderVenueDetail.swift in Sources */,
 				99C58DC81D6A280B0003D23C /* ImagesCollectionViewCell.swift in Sources */,

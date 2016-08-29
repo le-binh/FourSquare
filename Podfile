@@ -10,6 +10,9 @@ target 'FourSquare' do
   # DataBase
   pod 'RealmSwift', '1.0.2'
   
+  # Login FourSquare
+  pod 'FSOAuth', '1.2.1'
+  
   # UI
   pod 'SVProgressHUD', '2.0.3'
   pod 'MBProgressHUD', '1.0.0'

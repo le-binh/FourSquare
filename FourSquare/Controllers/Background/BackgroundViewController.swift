@@ -67,10 +67,19 @@ class BackgroundViewController: LGSideMenuController {
 
     private func setUpNotificationCenter() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.updateItem), name: NotificationCenterKey.updateItemsMenu, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.loginAction), name: NotificationCenterKey.login, object: nil)
     }
 
     private func removeNotificationCenter() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
+    @objc private func loginAction() {
+        print("Login")
+        let userToken = UserOauthToken()
+        userToken.oauthToken = "ABC"
+        UserRealmManager.sharedInstance.saveOauthToken(userToken)
+        self.leftViewController.menuTableView.reloadData()
     }
 
     private func configureAllMenuItems() {

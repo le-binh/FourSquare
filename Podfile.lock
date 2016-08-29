@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (3.4.0)
+  - FSOAuth (1.2.1)
   - GoogleMaps (2.0.1):
     - GoogleMaps/Maps (= 2.0.1)
   - GoogleMaps/Base (2.0.1)
@@ -22,6 +23,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (= 3.4.0)
+  - FSOAuth (= 1.2.1)
   - GoogleMaps (= 2.0.1)
   - HanekeSwift (= 0.10.1)
   - LGSideMenuController (= 1.0.10)
@@ -36,6 +38,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  FSOAuth: abf5dc97e90d1da4cb6e04305653998088a223b3
   GoogleMaps: f09da64fc987c1aa29394567c3cab5a3df83c402
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   LGSideMenuController: 8682bdbd0008c1acfbce95eaf96cc3657bca5f95
@@ -49,6 +52,6 @@ SPEC CHECKSUMS:
   SwiftUtils: 5d71b821e96817d2b28eb7d624f2461846bb085e
   XCConsole: 5ade671a8784626320f9e3d9b49b79f074efd8d5
 
-PODFILE CHECKSUM: b73fa566a7dbce8302e40c49005131f192203c9b
+PODFILE CHECKSUM: 90bb91db22b021f00547b76666056f9fc1ffabfd
 
 COCOAPODS: 1.0.1

@@ -35,8 +35,9 @@ enum SlideMenuSection: Int {
             return 3
         case .MenuItems:
             return 6
-        case .Login():
-            return 0
+        case .Login:
+            let token = UserRealmManager.sharedInstance.getOauthToken()
+            return token != nil ? 1 : 0
         }
     }
 
@@ -47,15 +48,14 @@ enum SlideMenuSection: Int {
         case .MenuItems:
             return 35
         case .Login:
-            return 0
+            return 80
         }
     }
 
     var sectionHeight: CGFloat {
         switch self {
         case .MainMenu:
-            let token = UserRealmManager.sharedInstance.getOauthToken()
-            return token != nil ? 80 : 0.000001
+            return 0.000001
         case .MenuItems:
             return 45
         case .Login:
@@ -149,6 +149,7 @@ class LeftSideMenuViewController: UIViewController {
         self.menuTableView.registerNib(CustomMenuItemsTableViewCell)
         self.menuTableView.registerNib(ViewForHeaderMenuItems)
         self.menuTableView.registerNib(LoginAndLogoutFooterView)
+        self.menuTableView.registerNib(LoginTableViewCell)
         if isPhone4 {
             self.menuTableView.scrollEnabled = true
         }
@@ -206,7 +207,8 @@ extension LeftSideMenuViewController: UITableViewDataSource {
 
             return cell
         case .Login:
-            return UITableViewCell()
+            let cell = tableView.dequeue(LoginTableViewCell)
+            return cell
         }
     }
 }
@@ -291,10 +293,7 @@ extension LeftSideMenuViewController: UITableViewDelegate {
 extension LeftSideMenuViewController: LoginAndLogoutDelegate {
     func loginOrLogoutAction(title: String) {
         if title == Strings.Login {
-            let userToken = UserOauthToken()
-            userToken.oauthToken = "ABC"
-            UserRealmManager.sharedInstance.saveOauthToken(userToken)
-            self.menuTableView.reloadData()
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationCenterKey.login, object: nil)
         } else {
             UserRealmManager.sharedInstance.deleteOauthToken()
             self.menuTableView.reloadData()
