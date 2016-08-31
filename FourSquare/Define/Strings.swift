@@ -41,9 +41,11 @@ struct Strings {
     static let InfomationTitleWebsite = "Website"
     static let SearchTitle = "Search"
     static let NotAvailable = "Not Available"
-    static let Verified = "Yes"
-    static let NotVerified = "No"
+    static let YesString = "Yes"
+    static let NoString = "No"
     static let WhatAreYouLookingFor = "What are you looking for?"
     static let Login = "Login"
     static let Logout = "Logout"
+    static let QuestionToLogin = "Do you want Login to Comment?"
+    static let Comment = "Comment"
 }

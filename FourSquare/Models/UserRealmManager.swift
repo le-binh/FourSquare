@@ -88,4 +88,18 @@ class UserRealmManager {
             print(error.localizedDescription)
         }
     }
+
+    func updateTips(venueId: String, tip: VenueTip) {
+        do {
+            let realm = try Realm()
+            try realm.write({
+                let venues = realm.objects(Venue).filter("id = '\(venueId)'")
+                for venue in venues {
+                    venue.tips.append(tip)
+                }
+            })
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
 }

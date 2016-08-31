@@ -22,6 +22,12 @@ class LogoutTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.selectionStyle = .None
         self.configureData()
+
+    }
+
+    override func drawRect(rect: CGRect) {
+        super.drawRect(rect)
+        userAvatarImageView.cornerRadiusWith(userAvatarImageView.frame.height / 2)
     }
 
     private func configureData() {
@@ -31,7 +37,6 @@ class LogoutTableViewCell: UITableViewCell {
         self.userNameLabel.text = user.getFullName()
         if let url = user.avatar?.userAvatarPath {
             self.userAvatarImageView.hnk_setImageFromURL(url)
-            self.userAvatarImageView.cornerRadiusWith(self.userAvatarImageView.frame.height / 2)
         }
     }
     @IBAction func logoutAction(sender: AnyObject) {

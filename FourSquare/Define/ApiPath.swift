@@ -12,6 +12,7 @@ import Alamofire
 struct ApiPath {
     static let baseURL = "https://api.foursquare.com/v2/venues"
     static let userURL = "https://api.foursquare.com/v2/users/self"
+    static let commentURL = "https://api.foursquare.com/v2/tips/add"
     static let googleBaseURL = "https://maps.googleapis.com/maps/api"
 
     struct User: URLStringConvertible {
@@ -37,6 +38,11 @@ struct ApiPath {
 
     struct Direction: URLStringConvertible {
         static var path: String { return googleBaseURL + "/directions/json" }
+        var URLString: String { return "" }
+    }
+
+    struct Comment: URLStringConvertible {
+        static var path: String { return commentURL }
         var URLString: String { return "" }
     }
 }

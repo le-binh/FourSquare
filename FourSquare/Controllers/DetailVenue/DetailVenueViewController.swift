@@ -85,16 +85,15 @@ class DetailVenueViewController: BaseViewController {
 
     @IBOutlet weak var detailVenueTableView: UITableView!
     @IBOutlet weak var commentView: UIView!
-    @IBOutlet weak var textCommentTextField: UITextField!
-    var venue: Venue?
     @IBOutlet weak var bottomCommentViewLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet weak var commentTextView: UITextView!
+    var venue: Venue?
 
     // MARK:- Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureTableView()
-        self.configureTapGesture()
         self.configureCommentView()
         self.navigationBar?.title = venue?.name
         self.addHistory()
@@ -112,6 +111,11 @@ class DetailVenueViewController: BaseViewController {
         self.configureFavoriteButton()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.configureInsetTableView()
+    }
+
     override func favoriteAction(sender: AnyObject) {
         super.favoriteAction(sender)
         guard let venue = self.venue else { return }
@@ -126,14 +130,33 @@ class DetailVenueViewController: BaseViewController {
     // MARK:- Actions
 
     @IBAction func commentAction(sender: AnyObject) {
-        self.textCommentTextField.endEditing(true)
         self.resetCommentView()
+        guard let textComment = commentTextView.text else {
+            return
+        }
+        if textComment.isEmpty {
+            return
+        }
         let user = UserRealmManager.sharedInstance.getUser()
         if user == nil {
-            LoginService().login()
+            self.showLoginQuestionPopup()
         } else {
-            print("\(user?.getFullName()): \(self.textCommentTextField.text)")
-            self.textCommentTextField.text = ""
+            if let venue = self.venue {
+                CommentService().commentTips(venue.id, commentText: textComment, completion: { (completion) in
+                    if completion {
+                        guard let venue = self.venue else {
+                            return
+                        }
+                        let indexRow = venue.tips.count - 1
+                        let indexPath: NSIndexPath = NSIndexPath(forRow: indexRow, inSection: 2)
+                        self.detailVenueTableView.beginUpdates()
+                        self.detailVenueTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                        self.detailVenueTableView.endUpdates()
+                        self.detailVenueTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
+                    }
+                })
+            }
+            self.commentTextView.text = ""
         }
     }
 
@@ -144,23 +167,22 @@ class DetailVenueViewController: BaseViewController {
         self.detailVenueTableView.registerNib(DefaultVenueDetailCell)
         self.detailVenueTableView.registerNib(MapDetailVenueCell)
         self.detailVenueTableView.registerNib(TipsDetailVenueCell)
-//        self.detailVenueTableView.registerNib(PageImageHeaderView)
         self.detailVenueTableView.registerNib(ImagesCollectionViewHeader)
         self.detailVenueTableView.delegate = self
         self.detailVenueTableView.dataSource = self
         self.detailVenueTableView.rowHeight = UITableViewAutomaticDimension
         self.detailVenueTableView.estimatedRowHeight = 51
+        self.detailVenueTableView.setSeparatorInsets(UIEdgeInsetsZero)
     }
 
-    private func configureTapGesture() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(actionWhenTapOnTable))
-        tap.numberOfTapsRequired = 1
-        self.detailVenueTableView.addGestureRecognizer(tap)
+    private func configureInsetTableView() {
+        self.detailVenueTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: self.commentView.frame.height, right: 0)
     }
 
     private func configureCommentView() {
         self.commentView.hidden = true
-        self.textCommentTextField.delegate = self
+        self.commentTextView.delegate = self
+        self.commentTextView.cornerRadiusWith(2)
     }
 
     private func configureFavoriteButton() {
@@ -255,7 +277,7 @@ class DetailVenueViewController: BaseViewController {
         case .PriceTier:
             cell.textDetailLabel.text = "\(venue.price?.tier ?? 0)"
         case .Verified:
-            cell.textDetailLabel.text = venue.verified ? Strings.Verified : Strings.NotVerified
+            cell.textDetailLabel.text = venue.verified ? Strings.YesString : Strings.NoString
         case .Website:
             cell.textDetailLabel.text = venue.website.isEmpty ? Strings.NotAvailable : venue.website
         }
@@ -269,15 +291,33 @@ class DetailVenueViewController: BaseViewController {
         }
     }
     private func resetCommentView() {
+        self.commentTextView.endEditing(true)
         self.bottomCommentViewLayoutConstraint.constant = 0
         UIView.animateWithDuration(0.3) {
             self.view.layoutIfNeeded()
         }
     }
 
-    @objc private func actionWhenTapOnTable() {
-        self.textCommentTextField.endEditing(true)
-        self.resetCommentView()
+    private func showLoginQuestionPopup() {
+        let alert = UIAlertController(title: Strings.Login, message: Strings.QuestionToLogin, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: Strings.Login, style: .Default, handler: { (action) in
+            dispatch_async(dispatch_get_main_queue(), {
+                LoginService().login()
+            })
+            }))
+        alert.addAction(UIAlertAction(title: Strings.NoString, style: .Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
+    private func showSuccessCommentPopup() {
+        let alert = UIAlertController(title: Strings.Login, message: Strings.QuestionToLogin, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: Strings.Login, style: .Default, handler: { (action) in
+            dispatch_async(dispatch_get_main_queue(), {
+                LoginService().login()
+            })
+            }))
+        alert.addAction(UIAlertAction(title: Strings.NoString, style: .Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }
 
@@ -355,13 +395,23 @@ extension DetailVenueViewController: UITableViewDelegate {
     }
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView != self.detailVenueTableView {
+//            print(round((scrollView.contentSize.height / scrollView.frame.height - (17 / 15)) / 0.6))
+            return
+        }
         if scrollView.contentOffset.y > 100 {
             self.commentView.hidden = false
         } else {
             self.commentView.hidden = true
-            self.textCommentTextField.endEditing(true)
             self.resetCommentView()
         }
+    }
+
+    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+        if scrollView != self.detailVenueTableView {
+            return
+        }
+        self.resetCommentView()
     }
 }
 
@@ -374,14 +424,9 @@ extension DetailVenueViewController: ZoomImagesViewControllerDelegate {
     }
 }
 
-extension DetailVenueViewController: UITextFieldDelegate {
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+extension DetailVenueViewController: UITextViewDelegate {
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
         self.moveCommentView()
-        return true
-    }
-
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.commentAction(textField)
         return true
     }
 }

@@ -4,62 +4,66 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailVenueViewController" customModule="FourSquare" customModuleProvider="target">
             <connections>
                 <outlet property="bottomCommentViewLayoutConstraint" destination="Wti-4r-Ehc" id="oX1-zJ-ayK"/>
+                <outlet property="commentTextView" destination="mtu-Pa-xoW" id="ssz-c9-Y29"/>
                 <outlet property="commentView" destination="ZWd-mG-KvE" id="MqE-FD-EQe"/>
                 <outlet property="detailVenueTableView" destination="q8F-bb-uCr" id="qB3-qo-RuI"/>
                 <outlet property="navigationBar" destination="WUP-kC-U0h" id="JD9-JS-DEM"/>
-                <outlet property="textCommentTextField" destination="TJ5-RB-Ylj" id="0Uh-Pw-VH0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUP-kC-U0h" customClass="NavigationBar" customModule="FourSquare" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                    <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="qhd-cd-47y"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="q8F-bb-uCr">
-                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                    <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZWd-mG-KvE">
-                    <rect key="frame" x="0.0" y="508" width="320" height="60"/>
+                    <rect key="frame" x="0.0" y="685.5" width="414" height="50"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZE-Xu-Ba9">
-                            <rect key="frame" x="235" y="15" width="70" height="30"/>
-                            <state key="normal" title="Comment">
-                                <color key="titleColor" red="1" green="0.64570451090000003" blue="0.25194880089999999" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZE-Xu-Ba9">
+                            <rect key="frame" x="364" y="9.5" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="1Dp-z1-7g2"/>
+                                <constraint firstAttribute="width" secondItem="fZE-Xu-Ba9" secondAttribute="height" multiplier="1:1" id="5dr-sU-oAs"/>
+                            </constraints>
+                            <color key="tintColor" red="1" green="0.64570451090000003" blue="0.25194880089999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" image="send_cmt_ic"/>
                             <connections>
                                 <action selector="commentAction:" destination="-1" eventType="touchUpInside" id="31t-fy-c7a"/>
                             </connections>
                         </button>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TJ5-RB-Ylj">
-                            <rect key="frame" x="20" y="15" width="195" height="30"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" returnKeyType="send"/>
-                        </textField>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mtu-Pa-xoW">
+                            <rect key="frame" x="20" y="10" width="324" height="30"/>
+                            <color key="backgroundColor" red="1" green="0.98039215690000003" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <inset key="scrollIndicatorInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
+                        </textView>
                     </subviews>
                     <color key="backgroundColor" red="0.87179487179487181" green="0.87179487179487181" blue="0.87179487179487181" alpha="0.70344827586206893" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="fZE-Xu-Ba9" secondAttribute="trailing" constant="15" id="0xg-oI-PUF"/>
-                        <constraint firstItem="fZE-Xu-Ba9" firstAttribute="centerY" secondItem="ZWd-mG-KvE" secondAttribute="centerY" id="8bF-uS-E2h"/>
-                        <constraint firstItem="TJ5-RB-Ylj" firstAttribute="centerY" secondItem="ZWd-mG-KvE" secondAttribute="centerY" id="Ed8-Un-Sqw"/>
-                        <constraint firstItem="TJ5-RB-Ylj" firstAttribute="leading" secondItem="ZWd-mG-KvE" secondAttribute="leading" constant="20" id="TRE-2C-Vam"/>
-                        <constraint firstAttribute="width" secondItem="ZWd-mG-KvE" secondAttribute="height" multiplier="16:3" id="ds8-Cb-ZOy"/>
-                        <constraint firstItem="fZE-Xu-Ba9" firstAttribute="width" secondItem="ZWd-mG-KvE" secondAttribute="width" multiplier="70/320" id="dzv-mC-Q4G"/>
-                        <constraint firstItem="fZE-Xu-Ba9" firstAttribute="leading" secondItem="TJ5-RB-Ylj" secondAttribute="trailing" constant="20" id="hao-u0-eLo"/>
+                        <constraint firstItem="fZE-Xu-Ba9" firstAttribute="leading" secondItem="mtu-Pa-xoW" secondAttribute="trailing" constant="20" id="4ca-OR-Qty"/>
+                        <constraint firstAttribute="bottom" secondItem="mtu-Pa-xoW" secondAttribute="bottom" constant="10" id="Ltf-ZO-QDn"/>
+                        <constraint firstItem="mtu-Pa-xoW" firstAttribute="leading" secondItem="ZWd-mG-KvE" secondAttribute="leading" constant="20" id="ayM-VI-054"/>
+                        <constraint firstAttribute="bottom" secondItem="fZE-Xu-Ba9" secondAttribute="bottom" constant="10" id="dc3-na-r0p"/>
+                        <constraint firstItem="mtu-Pa-xoW" firstAttribute="height" secondItem="fZE-Xu-Ba9" secondAttribute="height" id="fIG-ep-VKr"/>
+                        <constraint firstItem="mtu-Pa-xoW" firstAttribute="top" secondItem="ZWd-mG-KvE" secondAttribute="top" constant="10" id="gCI-uC-0xS"/>
+                        <constraint firstAttribute="trailing" secondItem="fZE-Xu-Ba9" secondAttribute="trailing" constant="20" id="mNH-vP-jzH"/>
                     </constraints>
                 </view>
             </subviews>
@@ -76,8 +80,11 @@
                 <constraint firstAttribute="trailing" secondItem="WUP-kC-U0h" secondAttribute="trailing" id="pQR-44-y7z"/>
                 <constraint firstAttribute="bottom" secondItem="q8F-bb-uCr" secondAttribute="bottom" id="sgn-eU-G75"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
             <point key="canvasLocation" x="210" y="326"/>
         </view>
     </objects>
+    <resources>
+        <image name="send_cmt_ic" width="30" height="30"/>
+    </resources>
 </document>

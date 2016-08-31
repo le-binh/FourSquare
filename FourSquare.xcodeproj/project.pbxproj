@@ -79,6 +79,7 @@
 		99AA46601D542A8F004EFCB2 /* ImagePageItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99AA465E1D542A8F004EFCB2 /* ImagePageItemViewController.xib */; };
 		99AB79491D71ED8700AB9029 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AB79481D71ED8700AB9029 /* User.swift */; };
 		99AB794B1D71F07800AB9029 /* UserAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AB794A1D71F07800AB9029 /* UserAuthToken.swift */; };
+		99AF4FB81D7677CA00502F57 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AF4FB71D7677CA00502F57 /* CommentService.swift */; };
 		99BE7C291D5798A300CCCBFB /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BE7C281D5798A300CCCBFB /* UIImage.swift */; };
 		99C581081D54FD180095EE7F /* TopPicksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C581061D54FD180095EE7F /* TopPicksViewController.swift */; };
 		99C581091D54FD180095EE7F /* TopPicksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99C581071D54FD180095EE7F /* TopPicksViewController.xib */; };
@@ -229,6 +230,7 @@
 		99AA465E1D542A8F004EFCB2 /* ImagePageItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImagePageItemViewController.xib; sourceTree = "<group>"; };
 		99AB79481D71ED8700AB9029 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		99AB794A1D71F07800AB9029 /* UserAuthToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAuthToken.swift; sourceTree = "<group>"; };
+		99AF4FB71D7677CA00502F57 /* CommentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
 		99BE7C281D5798A300CCCBFB /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		99C581061D54FD180095EE7F /* TopPicksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopPicksViewController.swift; sourceTree = "<group>"; };
 		99C581071D54FD180095EE7F /* TopPicksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopPicksViewController.xib; sourceTree = "<group>"; };
@@ -538,6 +540,7 @@
 				2DC364F71D4B3CB5006514EE /* LoginService.swift */,
 				994B95531D5B07390013D9E3 /* VenueService.swift */,
 				991C6E621D65979E00865E4C /* GoogleDirectionsService.swift */,
+				99AF4FB71D7677CA00502F57 /* CommentService.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -1309,6 +1312,7 @@
 				2DC364F41D4B3812006514EE /* ResponseSerializer.swift in Sources */,
 				9987AA121D52F84C00AB7E6D /* MenuItemViewController.swift in Sources */,
 				99C5811C1D5500D20095EE7F /* OutdoorsViewController.swift in Sources */,
+				99AF4FB81D7677CA00502F57 /* CommentService.swift in Sources */,
 				99FC6E941D5831C600CC2B34 /* MapViewController.swift in Sources */,
 				2DC364E81D4B3344006514EE /* Keys.swift in Sources */,
 				9929666F1D6AB2120031BFD9 /* ZoomCollectionViewCell.swift in Sources */,

@@ -276,7 +276,7 @@ extension LeftSideMenuViewController: UITableViewDelegate {
             self.currentMainMenuSide = mainMenuSlide
             UIApplication.sharedApplication().backgroundViewController()?.hideLeftViewAnimated(true, completionHandler: nil)
         default:
-            LoginService().login()
+            return
         }
     }
 }
