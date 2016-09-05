@@ -14,12 +14,11 @@ class FavoriteViewController: MenuItemViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationBar?.rightBarButtonHidden = true
-        self.navigationBar?.title = Strings.FavoriteTitle
+        self.configureNavigationBar()
+        self.disableLoadMoreAndRefresh()
     }
 
     override func viewDidAppear(animated: Bool) {
-
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -32,7 +31,15 @@ class FavoriteViewController: MenuItemViewController {
     }
 
     override func refreshData() {
-        self.venueTableView?.reloadData()
-        self.refreshControl.endRefreshing()
+    }
+
+    private func configureNavigationBar() {
+        self.navigationBar?.rightBarButtonHidden = true
+        self.navigationBar?.title = Strings.FavoriteTitle
+    }
+
+    private func disableLoadMoreAndRefresh() {
+        self.willLoadMore = false
+        self.refreshControl.removeFromSuperview()
     }
 }

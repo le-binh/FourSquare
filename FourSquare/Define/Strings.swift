@@ -48,4 +48,8 @@ struct Strings {
     static let Logout = "Logout"
     static let QuestionToLogin = "Do you want Login to Comment?"
     static let Comment = "Comment"
+    static let OKString = "OK"
+    static let ErrorTitle = "Error"
+    static let EmptyCommentError = "Comment Can't Empty!!"
+    static let EmptySearchError = "Please Fill In Name Or City"
 }

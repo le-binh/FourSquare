@@ -56,8 +56,9 @@ class MenuItemViewController: BaseViewController {
         }
         if self.willLoadMore && offset < venues.count {
             offset = offset + limit
+            return offset == venues.count
         }
-        return offset == venues.count
+        return false
     }
 
     // MARK:- Life Cycle
@@ -141,6 +142,7 @@ class MenuItemViewController: BaseViewController {
     @objc private func loadVenues() {
         if !isRefresh && willLoadMore {
             SVProgressHUD.show()
+            SVProgressHUD.setDefaultMaskType(.Clear)
         }
         VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (error) in
             SVProgressHUD.dismiss()
@@ -161,6 +163,7 @@ class MenuItemViewController: BaseViewController {
     func searchVenues(name: String, address: String) {
         self.clearVenues()
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.Clear)
         VenueService().searchVeues(address, query: name) { (error) in
             SVProgressHUD.dismiss()
             self.venueTableView?.reloadData()
@@ -171,6 +174,9 @@ class MenuItemViewController: BaseViewController {
         VenueService().loadVenues(section.rawValue, limit: self.limit, offset: self.offset) { (error) in
             self.venueTableView?.reloadData()
             self.willLoadMore = true
+            UIView.animateWithDuration(0.2, animations: {
+                self.clearLoadMoreIndicator()
+            })
         }
     }
 
@@ -214,17 +220,23 @@ extension MenuItemViewController {
         }
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
-        if maximumOffset - currentOffset < 2 * self.rowHeight {
-            if self.shouldLoadMore && !isRefresh {
+        if maximumOffset - currentOffset < 2 * self.rowHeight && !isRefresh {
+            if self.shouldLoadMore {
+                if let contentOffset = self.venueTableView?.contentOffset {
+                    let newContentOffset = CGPoint(x: contentOffset.x, y: contentOffset.y + 50)
+                    if self.venueTableView?.tableFooterView == nil && maximumOffset - currentOffset == 0 {
+                        self.venueTableView?.setContentOffset(newContentOffset, animated: true)
+                    }
+                }
                 self.addLoadMoreIndicator()
                 willLoadMore = false
                 self.isRefresh = false
                 self.loadMoreVenues()
-            } else {
-                UIView.animateWithDuration(0.2, animations: {
-                    self.clearLoadMoreIndicator()
-                })
+                return
             }
+            UIView.animateWithDuration(0.2, animations: {
+                self.clearLoadMoreIndicator()
+            })
         }
     }
 }

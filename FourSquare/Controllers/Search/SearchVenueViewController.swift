@@ -78,6 +78,8 @@ class SearchVenueViewController: BaseViewController {
                 let venueSearchingViewController = self.currentViewController as? VenueSearchingViewController
                 venueSearchingViewController?.searchVenues(venueName, address: venueAddress)
             }
+        } else {
+            self.errorMessageComment(Strings.ErrorTitle, message: Strings.EmptySearchError)
         }
     }
 
@@ -93,6 +95,12 @@ class SearchVenueViewController: BaseViewController {
 
     private func configureUINavigationBar() {
         self.didShowMapView = false
+    }
+
+    private func errorMessageComment(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: Strings.OKString, style: .Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
     private func configureContainerView() {

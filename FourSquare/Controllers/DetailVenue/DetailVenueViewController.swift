@@ -135,6 +135,7 @@ class DetailVenueViewController: BaseViewController {
             return
         }
         if textComment.isEmpty {
+            self.errorMessageComment(Strings.ErrorTitle, message: Strings.EmptyCommentError)
             return
         }
         let user = UserRealmManager.sharedInstance.getUser()
@@ -144,15 +145,7 @@ class DetailVenueViewController: BaseViewController {
             if let venue = self.venue {
                 CommentService().commentTips(venue.id, commentText: textComment, completion: { (completion) in
                     if completion {
-                        guard let venue = self.venue else {
-                            return
-                        }
-                        let indexRow = venue.tips.count - 1
-                        let indexPath: NSIndexPath = NSIndexPath(forRow: indexRow, inSection: 2)
-                        self.detailVenueTableView.beginUpdates()
-                        self.detailVenueTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-                        self.detailVenueTableView.endUpdates()
-                        self.detailVenueTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
+                        self.insertCommentToTableView()
                     }
                 })
             }
@@ -183,6 +176,7 @@ class DetailVenueViewController: BaseViewController {
         self.commentView.hidden = true
         self.commentTextView.delegate = self
         self.commentTextView.cornerRadiusWith(2)
+        self.commentTextView.autocorrectionType = .No
     }
 
     private func configureFavoriteButton() {
@@ -202,6 +196,7 @@ class DetailVenueViewController: BaseViewController {
             return
         }
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.Clear)
         let group = dispatch_group_create()
         dispatch_group_enter(group)
         self.loadVenueHours {
@@ -317,6 +312,24 @@ class DetailVenueViewController: BaseViewController {
             })
             }))
         alert.addAction(UIAlertAction(title: Strings.NoString, style: .Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
+    private func insertCommentToTableView() {
+        guard let venue = self.venue else {
+            return
+        }
+        let indexRow = venue.tips.count - 1
+        let indexPath: NSIndexPath = NSIndexPath(forRow: indexRow, inSection: 2)
+        self.detailVenueTableView.beginUpdates()
+        self.detailVenueTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        self.detailVenueTableView.endUpdates()
+        self.detailVenueTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
+    }
+
+    private func errorMessageComment(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: Strings.OKString, style: .Cancel, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
 }

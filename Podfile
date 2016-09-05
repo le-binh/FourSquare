@@ -15,8 +15,6 @@ target 'FourSquare' do
   
   # UI
   pod 'SVProgressHUD', '2.0.3'
-  pod 'MBProgressHUD', '1.0.0'
-  pod 'PureLayout', '3.0.2'
   pod 'HanekeSwift', '0.10.1'
   pod 'LGSideMenuController', '1.0.10'
   pod 'PageMenu', '1.2.9'

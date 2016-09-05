@@ -13,12 +13,11 @@ import RealmSwift
 class HistoryViewController: MenuItemViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationBar?.rightBarButtonHidden = true
-        self.navigationBar?.title = Strings.HistoryTitle
+        self.configureNavigationBar()
+        self.disableLoadMoreAndRefresh()
     }
 
     override func viewDidAppear(animated: Bool) {
-
     }
 
     override func loadVenuesFromRealm() {
@@ -26,8 +25,16 @@ class HistoryViewController: MenuItemViewController {
     }
 
     override func refreshData() {
-        self.venueTableView?.reloadData()
-        self.refreshControl.endRefreshing()
+    }
+
+    private func configureNavigationBar() {
+        self.navigationBar?.rightBarButtonHidden = true
+        self.navigationBar?.title = Strings.HistoryTitle
+    }
+
+    private func disableLoadMoreAndRefresh() {
+        self.willLoadMore = false
+        self.refreshControl.removeFromSuperview()
     }
 
 }

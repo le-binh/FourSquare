@@ -20,6 +20,7 @@ class VenueSearchingMapViewController: MapViewController {
 
     func searchVenues(name: String, address: String) {
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.Clear)
         self.deleteVenues()
         VenueService().searchVeues(address, query: name) { (error) in
             SVProgressHUD.dismiss()
