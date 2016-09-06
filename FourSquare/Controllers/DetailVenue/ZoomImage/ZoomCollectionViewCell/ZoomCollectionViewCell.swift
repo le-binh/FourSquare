@@ -48,7 +48,7 @@ class ZoomCollectionViewCell: UICollectionViewCell {
 
     func configureScrollViewToZoom() {
         self.imageScrollView.minimumZoomScale = 1.0
-        self.imageScrollView.maximumZoomScale = 2.0
+        self.imageScrollView.maximumZoomScale = 1.5
         self.imageScrollView.zoomScale = 1.0
         self.imageScrollView.delegate = self
     }
@@ -75,7 +75,7 @@ class ZoomCollectionViewCell: UICollectionViewCell {
         } else {
             let point = recognizer.locationInView(recognizer.view)
             if checkPointOnImage(point) {
-                zoomToPoint(point, scale: 2.0, animated: true)
+                zoomToPoint(point, scale: 1.5, animated: true)
             }
         }
     }

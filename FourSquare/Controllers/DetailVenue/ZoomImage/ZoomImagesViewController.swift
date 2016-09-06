@@ -44,7 +44,6 @@ class ZoomImagesViewController: UIViewController {
 }
 
 extension ZoomImagesViewController: UIScrollViewDelegate {
-
 }
 
 extension ZoomImagesViewController: UICollectionViewDataSource {
