@@ -31,17 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
-        var didHandle = false
-        if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
-            if let url = userActivity.webpageURL {
-                self.handleUrl(url)
-                didHandle = true
-            }
-        }
-        return didHandle
-    }
-
     func rootViewController() -> UIViewController {
         let homeViewController = HomeViewController.vc()
         let navigationHomeController = UINavigationController(rootViewController: homeViewController)

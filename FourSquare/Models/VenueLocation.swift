@@ -21,7 +21,29 @@ class VenueLocation: Object, Mappable {
     var venues = LinkingObjects(fromType: Venue.self, property: "location")
 
     var fullAddress: String {
-        return "\(address), \(city), \(state)"
+        var result: String = ""
+        if !address.isEmpty {
+            result = result + "\(address)"
+        }
+        if !city.isEmpty {
+            if address.isEmpty {
+                result = result + "\(city)"
+            } else {
+                result = result + ", \(city)"
+            }
+        }
+        if !state.isEmpty {
+            if address.isEmpty && city.isEmpty {
+                result = result + "\(state)"
+            } else {
+                result = result + ", \(state)"
+            }
+        }
+
+        if address.isEmpty && city.isEmpty && state.isEmpty {
+            result = Strings.NotAvailable
+        }
+        return result
     }
 
     required convenience init?(_ map: Map) {

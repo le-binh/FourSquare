@@ -97,6 +97,14 @@ class MapViewController: ViewController {
         }
         let bounds: GMSCoordinateBounds = GMSCoordinateBounds(path: path)
         if path.count() == 1 {
+            if let venue = self.venues.first {
+                guard let latitude = venue.location?.latitude, longitude = venue.location?.longitude else {
+                    return
+                }
+                let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+                self.venueMapView.animateToLocation(coordinate)
+                self.venueMapView.animateToZoom(14)
+            }
             return
         }
         let edgeInsets: UIEdgeInsets = UIEdgeInsets(top: 2 * mapPadding, left: mapPadding, bottom: 5 * mapPadding, right: mapPadding)

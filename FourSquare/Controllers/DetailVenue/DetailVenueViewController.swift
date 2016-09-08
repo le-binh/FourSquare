@@ -258,7 +258,7 @@ class DetailVenueViewController: BaseViewController {
         case .Address:
             let cellMap = tableView.dequeue(MapDetailVenueCell)
             cellMap.venue = venue
-            cellMap.detailVenueViewController = self
+            cellMap.delegate = self
             return cellMap
         case .Contact:
             guard let contact = venue.contact?.contact else { break }
@@ -441,5 +441,16 @@ extension DetailVenueViewController: UITextViewDelegate {
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
         self.moveCommentView()
         return true
+    }
+}
+
+//MARK:- MapDetailVenueDelegate
+
+extension DetailVenueViewController: MapDetailVenueCellDelegate {
+    func showMapDetailVenue() {
+        let mapDetailVenueViewController = MapDetailVenueViewController.vc()
+        mapDetailVenueViewController.venue = venue
+        mapDetailVenueViewController.title = venue?.name
+        self.navigationController?.pushViewController(mapDetailVenueViewController, animated: true)
     }
 }
