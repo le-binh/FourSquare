@@ -350,15 +350,15 @@
 		2DC3648B1D4B0941006514EE /* FourSquare */ = {
 			isa = PBXGroup;
 			children = (
-				997EA6F21D62F12B00006AD8 /* Library */,
-				2DC364BB1D4B0AC8006514EE /* Define */,
-				2DC364BD1D4B0AC8006514EE /* Models */,
-				2DC364C11D4B0AC8006514EE /* Views */,
 				2DC364BA1D4B0AC8006514EE /* Controllers */,
-				2DC364BF1D4B0AC8006514EE /* Services */,
+				2DC364BB1D4B0AC8006514EE /* Define */,
 				2DC364BC1D4B0AC8006514EE /* Extensions */,
-				2DC364BE1D4B0AC8006514EE /* Resources */,
 				2DC364C71D4B0C69006514EE /* Info */,
+				997EA6F21D62F12B00006AD8 /* Library */,
+				2DC364BD1D4B0AC8006514EE /* Models */,
+				2DC364BE1D4B0AC8006514EE /* Resources */,
+				2DC364BF1D4B0AC8006514EE /* Services */,
+				2DC364C11D4B0AC8006514EE /* Views */,
 			);
 			path = FourSquare;
 			sourceTree = "<group>";
@@ -384,19 +384,19 @@
 		2DC364BA1D4B0AC8006514EE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				992A1D6D1D596BA00047B63B /* Search */,
+				2DC364C41D4B0BD7006514EE /* AppDelegate */,
+				99EB2A1C1D4F4C980024FEF9 /* Background */,
+				999165D81D52D79C00320877 /* Base */,
+				991121D21D5353C1001EDBD2 /* DetailVenue */,
+				99ED29231D507B8D0088FCAD /* Favorite */,
+				99ED29281D508AFF0088FCAD /* History */,
+				99EB2A261D4F50920024FEF9 /* Home */,
+				2DC364CA1D4B0CAE006514EE /* LaunchScreen */,
+				99EB2A211D4F4F970024FEF9 /* LeftSideMenu */,
+				2DC364CE1D4B0DB0006514EE /* Login */,
 				99FC6E911D58315900CC2B34 /* Map */,
 				99AA46611D5437E0004EFCB2 /* MenuItem */,
-				991121D21D5353C1001EDBD2 /* DetailVenue */,
-				999165D81D52D79C00320877 /* Base */,
-				99ED29281D508AFF0088FCAD /* History */,
-				99ED29231D507B8D0088FCAD /* Favorite */,
-				99EB2A261D4F50920024FEF9 /* Home */,
-				99EB2A211D4F4F970024FEF9 /* LeftSideMenu */,
-				99EB2A1C1D4F4C980024FEF9 /* Background */,
-				2DC364CA1D4B0CAE006514EE /* LaunchScreen */,
-				2DC364C41D4B0BD7006514EE /* AppDelegate */,
-				2DC364CE1D4B0DB0006514EE /* Login */,
+				992A1D6D1D596BA00047B63B /* Search */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -405,12 +405,12 @@
 			isa = PBXGroup;
 			children = (
 				2DC364E51D4B19C4006514EE /* ApiPath.swift */,
-				2DC364E71D4B3344006514EE /* Keys.swift */,
-				2DC364E91D4B334F006514EE /* Strings.swift */,
 				2DC364EB1D4B335C006514EE /* Colors.swift */,
 				2DC364ED1D4B3367006514EE /* Constants.swift */,
 				2DC364EF1D4B3383006514EE /* Errors.swift */,
+				2DC364E71D4B3344006514EE /* Keys.swift */,
 				993AD65A1D518BEE00B945FA /* NotificationCenter.swift */,
+				2DC364E91D4B334F006514EE /* Strings.swift */,
 			);
 			path = Define;
 			sourceTree = "<group>";
@@ -426,20 +426,20 @@
 		2DC364BD1D4B0AC8006514EE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2DC364E31D4B1922006514EE /* UserTip.swift */,
-				994B95511D5ACAF10013D9E3 /* Venue.swift */,
-				991DACE01D5B93DE00A76A77 /* VenueLocation.swift */,
-				991DACE21D5B969D00A76A77 /* VenueCategory.swift */,
-				997227FB1D5C0EEB0053E320 /* VenuePrice.swift */,
-				997227FD1D5C10B80053E320 /* Photo.swift */,
-				997227FF1D5C20BB0053E320 /* VenueHours.swift */,
-				997228011D5C31E50053E320 /* VenueTip.swift */,
-				997228031D5C38F50053E320 /* VenueContact.swift */,
 				9997EDE81D615DEC00E6404D /* MyLocationManager.swift */,
+				997227FD1D5C10B80053E320 /* Photo.swift */,
 				997EA6F01D62CF0900006AD8 /* RealmManager.swift */,
 				99AB79481D71ED8700AB9029 /* User.swift */,
 				99AB794A1D71F07800AB9029 /* UserAuthToken.swift */,
 				99DB75231D73EB8F00CB8CBE /* UserRealmManager.swift */,
+				2DC364E31D4B1922006514EE /* UserTip.swift */,
+				994B95511D5ACAF10013D9E3 /* Venue.swift */,
+				991DACE21D5B969D00A76A77 /* VenueCategory.swift */,
+				997228031D5C38F50053E320 /* VenueContact.swift */,
+				997227FF1D5C20BB0053E320 /* VenueHours.swift */,
+				991DACE01D5B93DE00A76A77 /* VenueLocation.swift */,
+				997227FB1D5C0EEB0053E320 /* VenuePrice.swift */,
+				997228011D5C31E50053E320 /* VenueTip.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -464,9 +464,9 @@
 		2DC364C11D4B0AC8006514EE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2DC364E01D4B18D6006514EE /* Button */,
 				992A1D721D5981580047B63B /* Marker */,
 				99ED292D1D5095530088FCAD /* NavigationBar */,
-				2DC364E01D4B18D6006514EE /* Button */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -507,11 +507,11 @@
 		2DC364DD1D4B1881006514EE /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				2DC364DE1D4B1892006514EE /* UIScrollView.swift */,
 				999165DC1D52E92C00320877 /* UIApplication.swift */,
-				99F661A91D526887009A0E47 /* UIView.swift */,
-				99BE7C281D5798A300CCCBFB /* UIImage.swift */,
 				997228071D5C74130053E320 /* UIColor.swift */,
+				99BE7C281D5798A300CCCBFB /* UIImage.swift */,
+				2DC364DE1D4B1892006514EE /* UIScrollView.swift */,
+				99F661A91D526887009A0E47 /* UIView.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -527,9 +527,9 @@
 		2DC364F11D4B37E8006514EE /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				2DC364F31D4B3812006514EE /* ResponseSerializer.swift */,
 				2DC364F51D4B3830006514EE /* ApiManager.swift */,
 				2DC364F91D4B3E59006514EE /* BaseService.swift */,
+				2DC364F31D4B3812006514EE /* ResponseSerializer.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -537,10 +537,10 @@
 		2DC364F21D4B37E8006514EE /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				99AF4FB71D7677CA00502F57 /* CommentService.swift */,
+				991C6E621D65979E00865E4C /* GoogleDirectionsService.swift */,
 				2DC364F71D4B3CB5006514EE /* LoginService.swift */,
 				994B95531D5B07390013D9E3 /* VenueService.swift */,
-				991C6E621D65979E00865E4C /* GoogleDirectionsService.swift */,
-				99AF4FB71D7677CA00502F57 /* CommentService.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -567,17 +567,17 @@
 		991121D21D5353C1001EDBD2 /* DetailVenue */ = {
 			isa = PBXGroup;
 			children = (
-				992966671D6AAF2D0031BFD9 /* ZoomImage */,
-				99C58DC01D6A244C0003D23C /* ImagesCollectionViewHeader */,
-				990395AD1D58BDE100CBE542 /* ViewPageImageHeader */,
+				991121D31D535430001EDBD2 /* DetailVenueViewController.swift */,
+				991121D41D535430001EDBD2 /* DetailVenueViewController.xib */,
 				996DF3FC1D56430C00693216 /* CellDefault */,
 				996DF3FD1D56430C00693216 /* CellForTips */,
 				996DF3FE1D56430C00693216 /* CellWithMap */,
-				996DF3FF1D56430C00693216 /* ViewForHeader */,
-				99A89E9F1D5707AA00429962 /* MapDetailVenue */,
 				99AA465C1D542A69004EFCB2 /* ImagePageItem */,
-				991121D31D535430001EDBD2 /* DetailVenueViewController.swift */,
-				991121D41D535430001EDBD2 /* DetailVenueViewController.xib */,
+				99C58DC01D6A244C0003D23C /* ImagesCollectionViewHeader */,
+				99A89E9F1D5707AA00429962 /* MapDetailVenue */,
+				996DF3FF1D56430C00693216 /* ViewForHeader */,
+				990395AD1D58BDE100CBE542 /* ViewPageImageHeader */,
+				992966671D6AAF2D0031BFD9 /* ZoomImage */,
 			);
 			path = DetailVenue;
 			sourceTree = "<group>";
@@ -585,9 +585,9 @@
 		992966671D6AAF2D0031BFD9 /* ZoomImage */ = {
 			isa = PBXGroup;
 			children = (
-				9929666C1D6AB1FF0031BFD9 /* ZoomCollectionViewCell */,
 				992966681D6AAF440031BFD9 /* ZoomImagesViewController.swift */,
 				992966691D6AAF440031BFD9 /* ZoomImagesViewController.xib */,
+				9929666C1D6AB1FF0031BFD9 /* ZoomCollectionViewCell */,
 			);
 			path = ZoomImage;
 			sourceTree = "<group>";
@@ -604,10 +604,10 @@
 		992A1D6D1D596BA00047B63B /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				992A1D781D59C6970047B63B /* OnMap */,
-				992A1D791D59C6970047B63B /* OnTableView */,
 				992A1D6E1D596C0E0047B63B /* SearchVenueViewController.swift */,
 				992A1D6F1D596C0E0047B63B /* SearchVenueViewController.xib */,
+				992A1D781D59C6970047B63B /* OnMap */,
+				992A1D791D59C6970047B63B /* OnTableView */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -694,8 +694,8 @@
 		999165D81D52D79C00320877 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				993AD65C1D519F3F00B945FA /* PageBase */,
 				999165D91D52D7AF00320877 /* BaseViewController.swift */,
+				993AD65C1D519F3F00B945FA /* PageBase */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -818,9 +818,9 @@
 		99C58DC01D6A244C0003D23C /* ImagesCollectionViewHeader */ = {
 			isa = PBXGroup;
 			children = (
-				99C58DC51D6A27F30003D23C /* ImagesCollectionViewCell */,
 				99C58DC11D6A24810003D23C /* ImagesCollectionViewHeader.swift */,
 				99C58DC31D6A248A0003D23C /* ImagesCollectionViewHeader.xib */,
+				99C58DC51D6A27F30003D23C /* ImagesCollectionViewCell */,
 			);
 			path = ImagesCollectionViewHeader;
 			sourceTree = "<group>";
@@ -856,12 +856,12 @@
 		99EB2A211D4F4F970024FEF9 /* LeftSideMenu */ = {
 			isa = PBXGroup;
 			children = (
-				99ED29181D5055B50088FCAD /* ViewForHeaderMenuItems */,
-				99ED290F1D5031600088FCAD /* CustomCellSectionMenuItems */,
-				99ED29061D502C180088FCAD /* CustomCellSectionMainMenu */,
-				99DB75251D74215E00CB8CBE /* UserCell */,
 				99EB2A221D4F4FC60024FEF9 /* LeftSideMenuViewController.swift */,
 				99EB2A231D4F4FC60024FEF9 /* LeftSideMenuViewController.xib */,
+				99ED29061D502C180088FCAD /* CustomCellSectionMainMenu */,
+				99ED290F1D5031600088FCAD /* CustomCellSectionMenuItems */,
+				99DB75251D74215E00CB8CBE /* UserCell */,
+				99ED29181D5055B50088FCAD /* ViewForHeaderMenuItems */,
 			);
 			name = LeftSideMenu;
 			sourceTree = "<group>";
@@ -940,9 +940,9 @@
 		99FC6E911D58315900CC2B34 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				99FC6E961D5846DA00CC2B34 /* VenueCollectionViewCell */,
 				99FC6E921D5831C600CC2B34 /* MapViewController.swift */,
 				99FC6E931D5831C600CC2B34 /* MapViewController.xib */,
+				99FC6E961D5846DA00CC2B34 /* VenueCollectionViewCell */,
 			);
 			path = Map;
 			sourceTree = "<group>";
