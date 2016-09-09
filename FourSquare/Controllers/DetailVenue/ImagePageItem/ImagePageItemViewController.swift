@@ -12,7 +12,7 @@ class ImagePageItemViewController: UIViewController {
 
     // MARK:- Properties
 
-    @IBOutlet weak var venueImageView: UIImageView!
+    @IBOutlet private(set) weak var venueImageView: UIImageView!
     var itemIndex: Int = 0
     var photoPathString: String = ""
     // MARK:- Life Cycle

@@ -9,8 +9,8 @@
 import UIKit
 
 class DefaultVenueDetailCell: UITableViewCell {
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var textDetailLabel: UILabel!
+    @IBOutlet private(set) weak var titleLabel: UILabel!
+    @IBOutlet private(set) weak var textDetailLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

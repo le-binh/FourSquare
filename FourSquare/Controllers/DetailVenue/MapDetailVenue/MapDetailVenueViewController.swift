@@ -13,17 +13,17 @@ class MapDetailVenueViewController: BaseViewController {
 
     // MARK:- Properties
 
-    @IBOutlet weak var googleMapView: GMSMapView!
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var venueContentView: UIView!
-    @IBOutlet weak var verifiedImageView: UIImageView!
-    @IBOutlet weak var thumbnailImageView: UIImageView!
-    @IBOutlet weak var nameVenueLabel: UILabel!
-    @IBOutlet weak var addressVenueLabel: UILabel!
-    @IBOutlet weak var ratingVenueLabel: UILabel!
-    @IBOutlet weak var categoryVenueLabel: UILabel!
-    @IBOutlet weak var priceVenueLabel: UILabel!
-    @IBOutlet weak var distanceVenueLabel: UILabel!
+    @IBOutlet private(set) weak var googleMapView: GMSMapView!
+    @IBOutlet private(set) weak var contentView: UIView!
+    @IBOutlet private(set) weak var venueContentView: UIView!
+    @IBOutlet private(set) weak var verifiedImageView: UIImageView!
+    @IBOutlet private(set) weak var thumbnailImageView: UIImageView!
+    @IBOutlet private(set) weak var nameVenueLabel: UILabel!
+    @IBOutlet private(set) weak var addressVenueLabel: UILabel!
+    @IBOutlet private(set) weak var ratingVenueLabel: UILabel!
+    @IBOutlet private(set) weak var categoryVenueLabel: UILabel!
+    @IBOutlet private(set) weak var priceVenueLabel: UILabel!
+    @IBOutlet private(set) weak var distanceVenueLabel: UILabel!
 
     var venue: Venue?
     var routePolyline: GMSPolyline!

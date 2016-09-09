@@ -9,6 +9,7 @@
 import UIKit
 import SwiftUtils
 import SVProgressHUD
+import Haneke
 
 enum DetailVenueSection: Int {
     case PageImage
@@ -83,10 +84,10 @@ class DetailVenueViewController: BaseViewController {
 
     // MARK:- Properties
 
-    @IBOutlet weak var detailVenueTableView: UITableView!
-    @IBOutlet weak var commentView: UIView!
-    @IBOutlet weak var bottomCommentViewLayoutConstraint: NSLayoutConstraint!
-    @IBOutlet weak var commentTextView: UITextView!
+    @IBOutlet private(set) weak var detailVenueTableView: UITableView!
+    @IBOutlet private(set) weak var commentView: UIView!
+    @IBOutlet private(set) weak var bottomCommentViewLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet private(set) weak var commentTextView: UITextView!
     var venue: Venue?
 
     // MARK:- Life Cycle
@@ -125,6 +126,14 @@ class DetailVenueViewController: BaseViewController {
             RealmManager.sharedInstance.addFavorite(venue)
         }
         didAddFavorite = !didAddFavorite
+    }
+
+    override func backAction(sender: AnyObject) {
+        super.backAction(sender)
+        if let venue = self.venue {
+            RealmManager.sharedInstance.deleteDetailVenue(venue)
+            Shared.imageCache.removeAll()
+        }
     }
 
     // MARK:- Actions
@@ -192,8 +201,10 @@ class DetailVenueViewController: BaseViewController {
     }
 
     private func loadVenueDetail() {
-        if self.venue?.photos.count > 0 && self.venue?.tips.count > 0 {
-            return
+        if let photos = self.venue?.photos, tips = self.venue?.tips {
+            if !photos.isEmpty && !tips.isEmpty {
+                return
+            }
         }
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.Clear)
@@ -285,6 +296,7 @@ class DetailVenueViewController: BaseViewController {
             self.view.layoutIfNeeded()
         }
     }
+
     private func resetCommentView() {
         self.commentTextView.endEditing(true)
         self.bottomCommentViewLayoutConstraint.constant = 0
@@ -334,12 +346,13 @@ class DetailVenueViewController: BaseViewController {
     }
 }
 
-//MARK:- Table View Datasource
+// MARK:- Table View Datasource
 
 extension DetailVenueViewController: UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
     }
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let detailVenueSection = DetailVenueSection(rawValue: section) else {
             return 0
@@ -354,6 +367,7 @@ extension DetailVenueViewController: UITableViewDataSource {
             return detailVenueSection.numberOfRow
         }
     }
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         guard let detailVenueSection = DetailVenueSection(rawValue: indexPath.section) else {
             return UITableViewCell()
@@ -376,7 +390,7 @@ extension DetailVenueViewController: UITableViewDataSource {
     }
 }
 
-//MARK:- Table View Delegate
+// MARK:- Table View Delegate
 
 extension DetailVenueViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -385,6 +399,7 @@ extension DetailVenueViewController: UITableViewDelegate {
         }
         return detailVenueSection.sectionHeight
     }
+
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let detailVenueSection = DetailVenueSection(rawValue: section) else {
             return nil
@@ -428,7 +443,7 @@ extension DetailVenueViewController: UITableViewDelegate {
     }
 }
 
-//MARK:- Zoom Collection View Delegate
+// MARK:- Zoom Collection View Delegate
 
 extension DetailVenueViewController: ZoomImagesViewControllerDelegate {
     func scrollCollectionView(index: Int) {
@@ -437,6 +452,8 @@ extension DetailVenueViewController: ZoomImagesViewControllerDelegate {
     }
 }
 
+// MARK:- Text View Delegate
+
 extension DetailVenueViewController: UITextViewDelegate {
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
         self.moveCommentView()
@@ -444,7 +461,7 @@ extension DetailVenueViewController: UITextViewDelegate {
     }
 }
 
-//MARK:- MapDetailVenueDelegate
+// MARK:- MapDetailVenueDelegate
 
 extension DetailVenueViewController: MapDetailVenueCellDelegate {
     func showMapDetailVenue() {

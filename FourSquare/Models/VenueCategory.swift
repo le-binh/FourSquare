@@ -18,6 +18,7 @@ class VenueCategory: Object, Mappable {
     required convenience init?(_ map: Map) {
         self.init()
     }
+
     func mapping(map: Map) {
         categoryName <- map["name"]
     }

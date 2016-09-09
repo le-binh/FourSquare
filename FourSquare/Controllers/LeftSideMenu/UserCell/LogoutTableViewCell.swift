@@ -8,15 +8,15 @@
 
 import UIKit
 
-protocol LogoutCellDelegate {
+protocol LogoutCellDelegate: NSObjectProtocol {
     func logoutAction()
 }
 
 class LogoutTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var userAvatarImageView: UIImageView!
-    @IBOutlet weak var userNameLabel: UILabel!
-    var delegate: LogoutCellDelegate!
+    @IBOutlet private(set) weak var userAvatarImageView: UIImageView!
+    @IBOutlet private(set) weak var userNameLabel: UILabel!
+    weak var delegate: LogoutCellDelegate!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,6 +39,7 @@ class LogoutTableViewCell: UITableViewCell {
             self.userAvatarImageView.hnk_setImageFromURL(url)
         }
     }
+
     @IBAction func logoutAction(sender: AnyObject) {
         delegate?.logoutAction()
     }

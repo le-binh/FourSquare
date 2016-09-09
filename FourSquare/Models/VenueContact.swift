@@ -23,6 +23,7 @@ class VenueContact: Object, Mappable {
     required convenience init?(_ map: Map) {
         self.init()
     }
+
     func mapping(map: Map) {
         phone <- map["phone"]
         twitter <- map["twitter"]

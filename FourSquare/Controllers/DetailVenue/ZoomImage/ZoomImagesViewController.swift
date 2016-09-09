@@ -10,16 +10,16 @@ import UIKit
 import RealmSwift
 import SwiftUtils
 
-protocol ZoomImagesViewControllerDelegate {
+protocol ZoomImagesViewControllerDelegate: NSObjectProtocol {
     func scrollCollectionView(index: Int)
 }
 
 class ZoomImagesViewController: UIViewController {
 
-    @IBOutlet weak var imagesCollectionView: UICollectionView!
+    @IBOutlet private(set) weak var imagesCollectionView: UICollectionView!
     var photos = RealmSwift.List<Photo>()
     var indexPath: NSIndexPath = NSIndexPath()
-    var delegate: ZoomImagesViewControllerDelegate!
+    weak var delegate: ZoomImagesViewControllerDelegate!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,16 +43,22 @@ class ZoomImagesViewController: UIViewController {
     }
 }
 
+// MARK:- ScrollView Delegate
+
 extension ZoomImagesViewController: UIScrollViewDelegate {
 }
+
+// MARK:- CollectionView DataSource
 
 extension ZoomImagesViewController: UICollectionViewDataSource {
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
+
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.photos.count
     }
+
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(ZoomCollectionViewCell.self, forIndexPath: indexPath)
         let photo = self.photos[indexPath.row]
@@ -60,6 +66,8 @@ extension ZoomImagesViewController: UICollectionViewDataSource {
         return cell
     }
 }
+
+// MARK:- CollectionView Delegate
 
 extension ZoomImagesViewController: UICollectionViewDelegate {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
@@ -69,6 +77,8 @@ extension ZoomImagesViewController: UICollectionViewDelegate {
         self.delegate?.scrollCollectionView(index)
     }
 }
+
+// MARK:- CollectionView Delegate Flow Layout
 
 extension ZoomImagesViewController: UICollectionViewDelegateFlowLayout {
 

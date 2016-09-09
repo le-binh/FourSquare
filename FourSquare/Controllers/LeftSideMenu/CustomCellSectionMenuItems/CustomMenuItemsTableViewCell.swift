@@ -9,8 +9,8 @@
 import UIKit
 
 class CustomMenuItemsTableViewCell: UITableViewCell {
-    @IBOutlet weak var menuItemTitleLable: UILabel!
-    @IBOutlet weak var menuItemsActiveSwitch: UISwitch!
+    @IBOutlet private(set) weak var menuItemTitleLable: UILabel!
+    @IBOutlet private(set) weak var menuItemsActiveSwitch: UISwitch!
 
     var itemMenu: ItemMenu = ItemMenu()
 
@@ -54,6 +54,7 @@ class ItemMenu: NSObject {
     }
 
     override convenience init() {
-        self.init(item: MenuItemsSlide(rawValue: 0)!, active: false)
+        let item: MenuItemsSlide = .Drinks
+        self.init(item: item, active: false)
     }
 }

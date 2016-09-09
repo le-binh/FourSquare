@@ -23,6 +23,7 @@ class Photo: Object, Mappable {
     required convenience init?(_ map: Map) {
         self.init()
     }
+
     func mapping(map: Map) {
         prefix <- map["prefix"]
         suffix <- map["suffix"]
@@ -30,6 +31,8 @@ class Photo: Object, Mappable {
         height <- map["height"]
     }
 }
+
+// MARK:- Photo Extension
 
 extension Photo {
     var avatarPath: NSURL? {

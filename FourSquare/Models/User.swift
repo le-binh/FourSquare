@@ -19,6 +19,7 @@ class User: Object, Mappable {
     required convenience init?(_ map: Map) {
         self.init()
     }
+
     func mapping(map: Map) {
         id <- map["id"]
         firstName <- map["firstName"]
@@ -26,6 +27,8 @@ class User: Object, Mappable {
         avatar <- map["photo"]
     }
 }
+
+// MARK:- User Extension
 
 extension User {
     func getFullName() -> String {

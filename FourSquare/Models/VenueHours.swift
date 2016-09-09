@@ -18,10 +18,13 @@ class VenueHours: Object, Mappable {
     required convenience init?(_ map: Map) {
         self.init()
     }
+
     func mapping(map: Map) {
         timeFrames <- (map["timeframes"], ListTransform<Hours>())
     }
 }
+
+// MARK:- VenueHours Extension
 
 extension VenueHours {
     var timeToday: String {
@@ -47,6 +50,7 @@ class Hours: Object, Mappable {
     required convenience init?(_ map: Map) {
         self.init()
     }
+
     func mapping(map: Map) {
         openTime <- map["open.0.start"]
         closeTime <- map["open.1.end"]

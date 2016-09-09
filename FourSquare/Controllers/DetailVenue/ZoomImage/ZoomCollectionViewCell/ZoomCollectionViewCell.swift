@@ -10,10 +10,10 @@ import UIKit
 import SwiftUtils
 
 class ZoomCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var imageScrollView: UIScrollView!
-    @IBOutlet weak var venueImageView: UIImageView!
-    @IBOutlet weak var imageViewLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var imageViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet private(set) weak var imageScrollView: UIScrollView!
+    @IBOutlet private(set) weak var venueImageView: UIImageView!
+    @IBOutlet private(set) weak var imageViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet private(set) weak var imageViewTopConstraint: NSLayoutConstraint!
     var activityIndicator: UIActivityIndicatorView!
 
     override func awakeFromNib() {
@@ -106,10 +106,12 @@ class ZoomCollectionViewCell: UICollectionViewCell {
     }
 }
 
+// MARK:- ScrollView Delegate
 extension ZoomCollectionViewCell: UIScrollViewDelegate {
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return self.venueImageView
     }
+
     func scrollViewDidZoom(scrollView: UIScrollView) {
         let imageHeight = self.venueImageView.frame.height
         UIView.animateWithDuration(0.2, animations: {

@@ -14,7 +14,7 @@ class BaseViewController: ViewController {
 
     // MARK:- Property
 
-    @IBOutlet weak var navigationBar: NavigationBar?
+    @IBOutlet private(set) weak var navigationBar: NavigationBar?
 
     var didShowMapView: Bool = false {
         didSet {

@@ -11,9 +11,9 @@ import RealmSwift
 
 class ImagesCollectionViewHeader: UITableViewHeaderFooterView {
 
-    @IBOutlet weak var imagesCollectionView: UICollectionView!
-    @IBOutlet weak var backImageButton: UIButton!
-    @IBOutlet weak var nextImageButton: UIButton!
+    @IBOutlet private(set) weak var imagesCollectionView: UICollectionView!
+    @IBOutlet private(set) weak var backImageButton: UIButton!
+    @IBOutlet private(set) weak var nextImageButton: UIButton!
 
     var detailVenueViewController = DetailVenueViewController.vc()
 
@@ -73,6 +73,7 @@ class ImagesCollectionViewHeader: UITableViewHeaderFooterView {
     }
 }
 
+// MARK:- ScrollView Delegate
 extension ImagesCollectionViewHeader: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         let contentOffsetX = self.imagesCollectionView.contentOffset.x
@@ -82,6 +83,7 @@ extension ImagesCollectionViewHeader: UIScrollViewDelegate {
     }
 }
 
+// MARK:- CollectioView DataSource
 extension ImagesCollectionViewHeader: UICollectionViewDataSource {
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -99,6 +101,7 @@ extension ImagesCollectionViewHeader: UICollectionViewDataSource {
     }
 }
 
+// MARK:- CollectionView Delegate, CollectionView Delegate Flow Layout
 extension ImagesCollectionViewHeader: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {

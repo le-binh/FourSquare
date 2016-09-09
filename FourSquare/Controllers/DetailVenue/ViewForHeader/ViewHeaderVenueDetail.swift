@@ -10,6 +10,6 @@ import UIKit
 
 class ViewHeaderVenueDetail: UITableViewHeaderFooterView {
 
-    @IBOutlet weak var titleHeader: UILabel!
+    @IBOutlet private(set) weak var titleHeader: UILabel!
 
 }

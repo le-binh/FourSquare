@@ -54,6 +54,8 @@ class Venue: Object, Mappable {
     }
 }
 
+// MARK:- Venue Extension
+
 extension Venue {
     var ratingColor: UIColor {
         return UIColor.hexToColor(self.ratingColorString)

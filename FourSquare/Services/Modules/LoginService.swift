@@ -20,7 +20,10 @@ class LoginService: BaseService {
     }
 
     func getAndSaveToken(accessCode: String, completionRequest: CompletionRequestUserInfo) {
-        FSOAuth.requestAccessTokenForCode(accessCode, clientId: APIKeys.ClientID, callbackURIString: APIKeys.uriCallBack, clientSecret: APIKeys.ClientSecret) { (authToken, requestCompletion, errorCode) in
+        let clientId = APIKeys.ClientID
+        let callbackURI = APIKeys.uriCallBack
+        let clientSecret = APIKeys.ClientSecret
+        FSOAuth.requestAccessTokenForCode(accessCode, clientId: clientId, callbackURIString: callbackURI, clientSecret: clientSecret) { (authToken, requestCompletion, errorCode) in
             if requestCompletion {
                 if errorCode == .None {
                     let userToken = UserAuthToken()

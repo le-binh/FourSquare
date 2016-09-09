@@ -11,7 +11,7 @@ import Haneke
 import SwiftUtils
 
 class ImagesCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var venueImageView: UIImageView!
+    @IBOutlet private(set) weak var venueImageView: UIImageView!
     var activityIndicator: UIActivityIndicatorView!
 
     override func awakeFromNib() {
@@ -30,6 +30,7 @@ class ImagesCollectionViewCell: UICollectionViewCell {
             })
         }
     }
+
     func configureActivityIndicator() {
         let indicatorSize: CGFloat = 50
         let originX = (kScreenSize.width - indicatorSize) / 2

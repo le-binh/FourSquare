@@ -9,8 +9,8 @@
 import UIKit
 
 class CustomMainMenuTableViewCell: UITableViewCell {
-    @IBOutlet weak var menuIconImageView: UIImageView!
-    @IBOutlet weak var menuTitleLabel: UILabel!
+    @IBOutlet private(set) weak var menuIconImageView: UIImageView!
+    @IBOutlet private(set) weak var menuTitleLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

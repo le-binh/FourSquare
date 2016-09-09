@@ -21,6 +21,7 @@ class BackgroundViewController: LGSideMenuController {
     var leftViewController = LeftSideMenuViewController()
     var allMenuItems: [ItemMenu] = []
     var activeMenuItems: [ItemMenu] = []
+    var unactiveMenuItems: [ItemMenu] = []
 
     // MARK:- Life Cycle
 
@@ -61,6 +62,7 @@ class BackgroundViewController: LGSideMenuController {
             }
         }
         self.activeMenuItems = self.allMenuItems.filter({ $0.active })
+        self.unactiveMenuItems = self.allMenuItems.filter({ !$0.active })
     }
 
     func reloadSideMenu() {

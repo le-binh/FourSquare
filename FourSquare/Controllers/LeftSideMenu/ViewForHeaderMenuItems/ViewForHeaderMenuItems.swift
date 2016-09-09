@@ -9,5 +9,5 @@
 import UIKit
 
 class ViewForHeaderMenuItems: UITableViewHeaderFooterView {
-    @IBOutlet weak var titleMenu: UILabel!
+    @IBOutlet private(set) weak var titleMenu: UILabel!
 }

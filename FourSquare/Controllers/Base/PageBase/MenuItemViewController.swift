@@ -24,7 +24,7 @@ enum SectionQuery: String {
     case Search = "search"
 }
 
-protocol MenuItemDelegate {
+protocol MenuItemDelegate: NSObjectProtocol {
     func menuItemDidLoadData(venues: Results<Venue>)
 }
 
@@ -34,11 +34,11 @@ class MenuItemViewController: BaseViewController {
     var section: SectionQuery {
         return .Search
     }
-    @IBOutlet weak var venueTableView: UITableView?
+    @IBOutlet private(set) weak var venueTableView: UITableView?
     let rowHeight: CGFloat = 140
     let loadMoreIndicatorHeight: CGFloat = 40
     var venues: Results<Venue>!
-    var delegate: MenuItemDelegate!
+    weak var delegate: MenuItemDelegate!
     var refreshControl: UIRefreshControl!
     let limit: Int = 10
     var offset: Int = 0
@@ -182,15 +182,17 @@ class MenuItemViewController: BaseViewController {
 
 }
 
-//MARK:- Table View Datasource
+// MARK:- Table View Datasource
 
 extension MenuItemViewController: UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.venues.count
     }
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(VenueItemTableViewCell)
         cell.setUpData(self.venues[indexPath.row])
@@ -198,7 +200,7 @@ extension MenuItemViewController: UITableViewDataSource {
     }
 }
 
-//MARK:- Table View Delegate
+// MARK:- Table View Delegate
 
 extension MenuItemViewController: UITableViewDelegate {
 
@@ -210,7 +212,7 @@ extension MenuItemViewController: UITableViewDelegate {
     }
 }
 
-//MARK:- Scroll View Delegate
+// MARK:- Scroll View Delegate
 
 extension MenuItemViewController {
 

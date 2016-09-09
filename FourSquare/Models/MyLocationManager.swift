@@ -30,6 +30,8 @@ class MyLocationManager: NSObject {
 
 }
 
+// MARK:- LocationManager Delegate
+
 extension MyLocationManager: CLLocationManagerDelegate {
 
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {

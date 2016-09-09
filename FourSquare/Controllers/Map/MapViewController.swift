@@ -15,18 +15,18 @@ class MapViewController: ViewController {
 
     // MARK:- Properties
 
-    @IBOutlet weak var venueMapView: GMSMapView!
-    @IBOutlet weak var venueCollectionView: UICollectionView!
-    @IBOutlet weak var backCollectionCellButton: UIButton!
-    @IBOutlet weak var nextCollectionCellButton: UIButton!
-    @IBOutlet weak var currentLocationButton: UIButton!
+    @IBOutlet private(set) weak var venueMapView: GMSMapView!
+    @IBOutlet private(set) weak var venueCollectionView: UICollectionView!
+    @IBOutlet private(set) weak var backCollectionCellButton: UIButton!
+    @IBOutlet private(set) weak var nextCollectionCellButton: UIButton!
+    @IBOutlet private(set) weak var currentLocationButton: UIButton!
     let collectionCellPadding: CGFloat = 10
     let mapPadding: CGFloat = 30
     var indexMarker: Int = 0
     var markers: [MarkerMap] = []
     var venues: Results<Venue>! {
         didSet {
-            if self.venues != nil && self.venues.count > 0 {
+            if self.venues != nil && !self.venues.isEmpty {
                 self.clearMapData()
                 self.addMultiMarker()
                 self.venueCollectionView.reloadData()
@@ -185,18 +185,20 @@ class MapViewController: ViewController {
     }
 }
 
-//MARK:- Collection View DataSource
+// MARK:- Collection View DataSource
 
 extension MapViewController: UICollectionViewDataSource {
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
+
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let venues = self.venues else {
             return 0
         }
         return venues.count
     }
+
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(VenueCollectionViewCell.self, forIndexPath: indexPath)
         let venue = self.venues[indexPath.row]
@@ -205,7 +207,7 @@ extension MapViewController: UICollectionViewDataSource {
     }
 }
 
-//MARK:- Collection View Delegate
+// MARK:- Collection View Delegate
 
 extension MapViewController: UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -216,7 +218,7 @@ extension MapViewController: UICollectionViewDelegate {
     }
 }
 
-//MARK:- Scroll View Delegate
+// MARK:- Scroll View Delegate
 
 extension MapViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
@@ -242,7 +244,7 @@ extension MapViewController: UIScrollViewDelegate {
     }
 }
 
-//MARK:- Google Map Delegate
+// MARK:- Google Map Delegate
 
 extension MapViewController: GMSMapViewDelegate {
     func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {

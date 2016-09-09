@@ -95,7 +95,51 @@ class RealmManager {
                     venue.isClear = true
                 }
                 let venues = realm.objects(Venue).filter("isFavorite = false AND isHistory = false")
-                realm.delete(venues)
+                for venue in venues {
+                    if let thumbnail = venue.thumbnail {
+                        realm.delete(thumbnail)
+                    }
+                    if let location = venue.location {
+                        realm.delete(location)
+                    }
+                    if let price = venue.price {
+                        realm.delete(price)
+                    }
+                    if let contact = venue.contact {
+                        realm.delete(contact)
+                    }
+                    if let hours = venue.hours {
+                        realm.delete(hours)
+                    }
+                    realm.delete(venue.categories)
+                    realm.delete(venue.photos)
+                    for tip in venue.tips {
+                        if let userTip = tip.userTip, avatar = userTip.avatar {
+                            realm.delete(avatar)
+                            realm.delete(userTip)
+                        }
+                        realm.delete(tip)
+                    }
+                    realm.delete(venue)
+                }
+            })
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+
+    func deleteDetailVenue(venue: Venue) {
+        do {
+            let realm = try Realm()
+            try realm.write({
+                realm.delete(venue.photos)
+                for tip in venue.tips {
+                    if let userTip = tip.userTip, avatar = userTip.avatar {
+                        realm.delete(avatar)
+                        realm.delete(userTip)
+                    }
+                    realm.delete(tip)
+                }
             })
         } catch let error as NSError {
             print(error.localizedDescription)
@@ -106,9 +150,45 @@ class RealmManager {
         do {
             let realm = try Realm()
             try realm.write({
-                let venues = realm.objects(Venue).filter("section = '\(section)'")
+                let venues = realm.objects(Venue).filter("section = '\(section.lowercaseString)'")
                 for venue in venues {
                     venue.isClear = true
+                }
+            })
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+
+    func deleteSectionWithoutFavoriteAndHistory(section: String) {
+        do {
+            let realm = try Realm()
+            try realm.write({
+                let venuesSectionWithFavoriteOrHistory = realm.objects(Venue).filter("section = '\(section.lowercaseString)' AND (isFavorite = true OR isHistory = true)")
+                for venue in venuesSectionWithFavoriteOrHistory {
+                    venue.isClear = true
+                }
+                let venues = realm.objects(Venue).filter("section = '\(section.lowercaseString)' AND isFavorite = false AND isHistory = false")
+                for venue in venues {
+                    if let thumbnail = venue.thumbnail {
+                        realm.delete(thumbnail)
+                    }
+                    if let location = venue.location {
+                        realm.delete(location)
+                    }
+                    if let price = venue.price {
+                        realm.delete(price)
+                    }
+                    if let contact = venue.contact {
+                        realm.delete(contact)
+                    }
+                    if let hours = venue.hours {
+                        realm.delete(hours)
+                    }
+                    realm.delete(venue.categories)
+                    realm.delete(venue.photos)
+                    realm.delete(venue.tips)
+                    realm.delete(venue)
                 }
             })
         } catch let error as NSError {

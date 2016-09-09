@@ -19,7 +19,7 @@ private enum ErrorType {
             return 600
         }
     }
-    
+
     var description: String {
         switch self {
         case .JSON:
@@ -32,13 +32,13 @@ struct Error {
     private static func errorWithErrorType(errorType: ErrorType) -> NSError {
         return errorWithCode(errorType.code, description: errorType.description)
     }
-    
+
     static func errorWithCode(code: Int, description: String) -> NSError {
-        var userInfo = [NSObject : AnyObject]()
+        var userInfo: [NSObject: AnyObject] = [NSObject: AnyObject]()
         userInfo[NSLocalizedDescriptionKey] = description
         return NSError(domain: ApiPath.baseURL, code: code, userInfo: userInfo)
     }
-    
+
     static let JSON: NSError = {
         return Error.errorWithErrorType(.JSON)
     }()

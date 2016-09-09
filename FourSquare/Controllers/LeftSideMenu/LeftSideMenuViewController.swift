@@ -78,14 +78,14 @@ enum MainMenuSlide: Int {
         }
     }
 
-    var icon: UIImage {
+    var icon: UIImage? {
         switch self {
         case .Home:
-            return UIImage(named: "menu_home_ic")!
+            return UIImage(named: "menu_home_ic")
         case .Favorite:
-            return UIImage(named: "menu_favorite_ic")!
+            return UIImage(named: "menu_favorite_ic")
         case .History:
-            return UIImage(named: "menu_history_ic")!
+            return UIImage(named: "menu_history_ic")
         }
     }
 
@@ -122,7 +122,7 @@ class LeftSideMenuViewController: UIViewController {
 
     // MARK:- Properties
 
-    @IBOutlet weak var menuTableView: UITableView!
+    @IBOutlet private(set) weak var menuTableView: UITableView!
     var homeViewController: HomeViewController?
     private var favoriteViewController: FavoriteViewController?
     private var historyViewController: HistoryViewController?
@@ -164,6 +164,8 @@ class LeftSideMenuViewController: UIViewController {
     }
 }
 
+// MARK:- TableView DataSource
+
 extension LeftSideMenuViewController: UITableViewDataSource {
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -194,9 +196,9 @@ extension LeftSideMenuViewController: UITableViewDataSource {
             guard let mainMenuSlide = MainMenuSlide(rawValue: indexPath.row) else {
                 return cell
             }
-
-            cell.configureCell(mainMenuSlide.title, icon: mainMenuSlide.icon)
-
+            if let icon = mainMenuSlide.icon {
+                cell.configureCell(mainMenuSlide.title, icon: icon)
+            }
             return cell
 
         case .MenuItems:
@@ -209,6 +211,8 @@ extension LeftSideMenuViewController: UITableViewDataSource {
         }
     }
 }
+
+// MARK:- TableView Delegate
 
 extension LeftSideMenuViewController: UITableViewDelegate {
 
@@ -280,6 +284,8 @@ extension LeftSideMenuViewController: UITableViewDelegate {
         }
     }
 }
+
+// MARK:- LogoutCell Delegate
 
 extension LeftSideMenuViewController: LogoutCellDelegate {
     func logoutAction() {

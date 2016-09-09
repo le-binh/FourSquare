@@ -13,14 +13,14 @@ class SearchVenueViewController: BaseViewController {
 
     // MARK:- Properties
 
-    @IBOutlet weak var showOrHideSearchBoxButton: UIButton!
-    @IBOutlet weak var searchBoxView: UIView!
-    @IBOutlet weak var venueNameTextField: UITextField!
-    @IBOutlet weak var venueAddressTextField: UITextField!
-    @IBOutlet weak var searchBoxTitleLabel: UILabel!
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var searchBoxHeightLayoutConstraint: NSLayoutConstraint!
-    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet private(set) weak var showOrHideSearchBoxButton: UIButton!
+    @IBOutlet private(set) weak var searchBoxView: UIView!
+    @IBOutlet private(set) weak var venueNameTextField: UITextField!
+    @IBOutlet private(set) weak var venueAddressTextField: UITextField!
+    @IBOutlet private(set) weak var searchBoxTitleLabel: UILabel!
+    @IBOutlet private(set) weak var containerView: UIView!
+    @IBOutlet private(set) weak var searchBoxHeightLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet private(set) weak var searchButton: UIButton!
     private let collapseArrowImage = UIImage(named: "collapse_arrow")
     private let expandArrowImage = UIImage(named: "expand_arrow")
     var currentViewController: UIViewController!

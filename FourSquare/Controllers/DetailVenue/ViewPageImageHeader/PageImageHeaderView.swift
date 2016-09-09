@@ -11,14 +11,14 @@ import RealmSwift
 
 class PageImageHeaderView: UITableViewHeaderFooterView {
 
-    @IBOutlet weak var view: UIView!
-    @IBOutlet weak var imagesPageView: UIView!
-    @IBOutlet weak var beforePageButton: UIButton!
-    @IBOutlet weak var afterPageButton: UIButton!
-    @IBOutlet weak var imagesPageControl: UIPageControl!
+    @IBOutlet private(set) weak var view: UIView!
+    @IBOutlet private(set) weak var imagesPageView: UIView!
+    @IBOutlet private(set) weak var beforePageButton: UIButton!
+    @IBOutlet private(set) weak var afterPageButton: UIButton!
+    @IBOutlet private(set) weak var imagesPageControl: UIPageControl!
     var imagePageViewController: UIPageViewController?
     var isReuseView: Bool {
-        return photos.count > 0
+        return !photos.isEmpty
     }
 
     var photos = RealmSwift.List<Photo>() {
@@ -57,7 +57,7 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
         self.imagePageViewController?.dataSource = self
         self.imagePageViewController?.delegate = self
         let imagePageItemViewController = ImagePageItemViewController.vc()
-        let startingViewControllers = [imagePageItemViewController]
+        let startingViewControllers: [ImagePageItemViewController] = [imagePageItemViewController]
         imagePageViewController?.setViewControllers(startingViewControllers, direction: .Forward, animated: false, completion: nil)
         guard let pageViewController = self.imagePageViewController else {
             return
@@ -71,7 +71,7 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
             guard let firstController = getPageItemViewController(0) else {
                 return
             }
-            let startingViewControllers = [firstController]
+            let startingViewControllers: [ImagePageItemViewController] = [firstController]
             imagePageViewController?.setViewControllers(startingViewControllers, direction: .Forward, animated: false, completion: nil)
         }
     }
@@ -157,14 +157,17 @@ class PageImageHeaderView: UITableViewHeaderFooterView {
     }
 
     func currentController() -> UIViewController? {
-        if self.imagePageViewController?.viewControllers?.count > 0 {
+        guard let viewController = self.imagePageViewController?.viewControllers else {
+            return nil
+        }
+        if viewController.isEmpty {
             return self.imagePageViewController?.viewControllers?[0]
         }
         return nil
     }
 }
 
-//MARK:- Page View Controller Delegate
+// MARK:- Page View Controller Delegate
 
 extension PageImageHeaderView: UIPageViewControllerDelegate {
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
@@ -175,7 +178,7 @@ extension PageImageHeaderView: UIPageViewControllerDelegate {
     }
 }
 
-//MARK:- Page View Controller DataSource
+// MARK:- Page View Controller DataSource
 
 extension PageImageHeaderView: UIPageViewControllerDataSource {
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {

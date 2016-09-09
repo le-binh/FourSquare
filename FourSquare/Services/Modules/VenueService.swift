@@ -74,7 +74,7 @@ class VenueService: BaseService {
                 })
                 return
             }
-            if hours.timeFrames.count == 0 {
+            if hours.timeFrames.isEmpty {
                 dispatch_async(dispatch_get_main_queue(), {
                     completion?(error: true)
                 })

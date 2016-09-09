@@ -11,6 +11,7 @@ import PageMenu
 import SwiftUtils
 import LGSideMenuController
 import RealmSwift
+import Haneke
 
 enum DefaultMenuItem: Int {
     case TopPicks
@@ -45,20 +46,20 @@ class HomeViewController: BaseViewController {
 
     // MARK:- Properties
 
-    @IBOutlet weak var viewOfPageMenu: UIView!
-    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet private(set) weak var viewOfPageMenu: UIView!
+    @IBOutlet private(set) weak var searchButton: UIButton!
     var pageMenu: CAPSPageMenu?
     var itemViewControllers: [MenuItemViewController] = []
     var activeMenuItems: [ItemMenu] = []
     var topPicksViewController: TopPicksViewController = TopPicksViewController.vc()
     var foodViewController: FoodViewController = FoodViewController.vc()
     var shopsViewController: ShopsViewController = ShopsViewController.vc()
-    lazy var drinksViewController: DrinksViewController = DrinksViewController.vc()
-    lazy var coffeeViewController: CoffeeViewController = CoffeeViewController.vc()
-    lazy var artsViewController: ArtsViewController = ArtsViewController.vc()
-    lazy var outdoorsViewController: OutdoorsViewController = OutdoorsViewController.vc()
-    lazy var sightsViewController: SightsViewController = SightsViewController.vc()
-    lazy var trendingViewController: TrendingViewController = TrendingViewController.vc()
+    var drinksViewController: DrinksViewController?
+    var coffeeViewController: CoffeeViewController?
+    var artsViewController: ArtsViewController?
+    var outdoorsViewController: OutdoorsViewController?
+    var sightsViewController: SightsViewController?
+    var trendingViewController: TrendingViewController?
     lazy var mapViewController: MapViewController = MapViewController.vc()
 
     var venues: Results<Venue>! {
@@ -111,12 +112,12 @@ class HomeViewController: BaseViewController {
         self.topPicksViewController.delegate = self
         self.foodViewController.delegate = self
         self.shopsViewController.delegate = self
-        self.drinksViewController.delegate = self
-        self.coffeeViewController.delegate = self
-        self.artsViewController.delegate = self
-        self.outdoorsViewController.delegate = self
-        self.sightsViewController.delegate = self
-        self.trendingViewController.delegate = self
+        self.drinksViewController?.delegate = self
+        self.coffeeViewController?.delegate = self
+        self.artsViewController?.delegate = self
+        self.outdoorsViewController?.delegate = self
+        self.sightsViewController?.delegate = self
+        self.trendingViewController?.delegate = self
     }
 
     private func configureMenuPage() {
@@ -187,6 +188,7 @@ class HomeViewController: BaseViewController {
     }
 
     @objc private func updatePageMenuItem() {
+        self.reloadMenuItem()
         let newActiveMenuItems = BackgroundViewController.sharedInstance.activeMenuItems
         if !isChangeActiveMenuItems(newActiveMenuItems) {
             if self.didShowMapView {
@@ -195,6 +197,29 @@ class HomeViewController: BaseViewController {
             }
             self.pageMenu?.view.removeFromSuperview()
             self.changeMenuItems(newActiveMenuItems)
+        }
+    }
+
+    private func reloadMenuItem() {
+        let unactiveMenuItems = BackgroundViewController.sharedInstance.unactiveMenuItems
+        for unactive in unactiveMenuItems {
+            let titleSection = unactive.item.title
+            RealmManager.sharedInstance.deleteSectionWithoutFavoriteAndHistory(titleSection)
+            Shared.imageCache.removeAll()
+            switch unactive.item {
+            case .Arts:
+                artsViewController = nil
+            case .Coffee:
+                coffeeViewController = nil
+            case .Drinks:
+                drinksViewController = nil
+            case .Outdoors:
+                outdoorsViewController = nil
+            case .Sights:
+                sightsViewController = nil
+            case .Trending:
+                trendingViewController = nil
+            }
         }
     }
 
@@ -209,29 +234,47 @@ class HomeViewController: BaseViewController {
         for element in self.activeMenuItems {
             switch element.item {
             case .Arts:
-                artsViewController.title = element.item.title
-                itemViewControllers.append(artsViewController)
+                artsViewController = ArtsViewController.vc()
+                artsViewController?.title = element.item.title
+                if let artsViewController = self.artsViewController {
+                    itemViewControllers.append(artsViewController)
+                }
             case .Coffee:
-                coffeeViewController.title = element.item.title
-                itemViewControllers.append(coffeeViewController)
+                coffeeViewController = CoffeeViewController.vc()
+                coffeeViewController?.title = element.item.title
+                if let coffeeViewController = self.coffeeViewController {
+                    itemViewControllers.append(coffeeViewController)
+                }
             case .Drinks:
-                drinksViewController.title = element.item.title
-                itemViewControllers.append(drinksViewController)
+                drinksViewController = DrinksViewController.vc()
+                drinksViewController?.title = element.item.title
+                if let drinksViewController = self.drinksViewController {
+                    itemViewControllers.append(drinksViewController)
+                }
             case .Outdoors:
-                outdoorsViewController.title = element.item.title
-                itemViewControllers.append(outdoorsViewController)
+                outdoorsViewController = OutdoorsViewController.vc()
+                outdoorsViewController?.title = element.item.title
+                if let outdoorsViewController = self.outdoorsViewController {
+                    itemViewControllers.append(outdoorsViewController)
+                }
             case .Sights:
-                sightsViewController.title = element.item.title
-                itemViewControllers.append(sightsViewController)
+                sightsViewController = SightsViewController.vc()
+                sightsViewController?.title = element.item.title
+                if let sightsViewController = self.sightsViewController {
+                    itemViewControllers.append(sightsViewController)
+                }
             case .Trending:
-                trendingViewController.title = element.item.title
-                itemViewControllers.append(trendingViewController)
+                trendingViewController = TrendingViewController.vc()
+                trendingViewController?.title = element.item.title
+                if let trendingViewController = self.trendingViewController {
+                    itemViewControllers.append(trendingViewController)
+                }
             }
         }
     }
 
     private func setUpNewActiveMenuItems() {
-        if self.activeMenuItems.count == 0 {
+        if self.activeMenuItems.isEmpty {
             self.setUpMenuPage(isDefault: true)
         } else {
             self.setUpMenuPage(isDefault: false)
@@ -253,14 +296,18 @@ class HomeViewController: BaseViewController {
     }
 }
 
+// MARK:- PageMenu Delegate
+
 extension HomeViewController: CAPSPageMenuDelegate {
     func didMoveToPage(controller: UIViewController, index: Int) {
         let itemViewController = self.itemViewControllers[index]
-        if itemViewController.venues.count > 0 {
+        if !itemViewController.venues.isEmpty {
             self.venues = itemViewController.venues
         }
     }
 }
+
+// MARK:- MenuItem Delegate
 
 extension HomeViewController: MenuItemDelegate {
     func menuItemDidLoadData(venues: Results<Venue>) {

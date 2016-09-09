@@ -19,10 +19,12 @@ class VenuePrice: Object, Mappable {
     required convenience init?(_ map: Map) {
         self.init()
     }
+
     func mapping(map: Map) {
         tier <- map["tier"]
         currency <- map["currency"]
     }
+
     func showCurrency() -> String {
         var result = ""
         for _ in 0..<tier {

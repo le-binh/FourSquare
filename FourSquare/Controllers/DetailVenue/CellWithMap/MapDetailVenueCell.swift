@@ -8,17 +8,17 @@
 
 import UIKit
 
-protocol MapDetailVenueCellDelegate {
+protocol MapDetailVenueCellDelegate: NSObjectProtocol {
     func showMapDetailVenue()
 }
 class MapDetailVenueCell: UITableViewCell {
-    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet private(set) weak var addressLabel: UILabel!
     var venue: Venue? {
         didSet {
             self.addressLabel.text = venue?.location?.fullAddress
         }
     }
-    var delegate: MapDetailVenueCellDelegate?
+    weak var delegate: MapDetailVenueCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +30,7 @@ class MapDetailVenueCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+
     @IBAction func mapDetailVenueAction(sender: AnyObject) {
         self.delegate?.showMapDetailVenue()
     }

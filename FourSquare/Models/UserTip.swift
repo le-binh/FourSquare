@@ -18,6 +18,7 @@ class UserTip: Object, Mappable {
     required convenience init?(_ map: Map) {
         self.init()
     }
+
     func mapping(map: Map) {
         avatar <- map["photo"]
     }

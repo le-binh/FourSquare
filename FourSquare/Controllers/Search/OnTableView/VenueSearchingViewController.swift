@@ -15,8 +15,8 @@ class VenueSearchingViewController: MenuItemViewController {
     }
 
     override func loadMoreVenues() {
-
     }
+
     override func refreshData() {
         self.refreshControl.endRefreshing()
     }
