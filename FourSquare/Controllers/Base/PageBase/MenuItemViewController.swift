@@ -222,7 +222,7 @@ extension MenuItemViewController {
         }
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
-        if maximumOffset - currentOffset < 2 * self.rowHeight && !isRefresh {
+        if maximumOffset - currentOffset < 3 * self.rowHeight && !isRefresh {
             if self.shouldLoadMore {
                 if let contentOffset = self.venueTableView?.contentOffset {
                     let newContentOffset = CGPoint(x: contentOffset.x, y: contentOffset.y + 50)
@@ -239,6 +239,12 @@ extension MenuItemViewController {
             UIView.animateWithDuration(0.2, animations: {
                 self.clearLoadMoreIndicator()
             })
+        }
+    }
+
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            scrollViewDidEndDecelerating(scrollView)
         }
     }
 }

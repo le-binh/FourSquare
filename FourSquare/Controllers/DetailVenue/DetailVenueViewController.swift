@@ -427,7 +427,7 @@ extension DetailVenueViewController: UITableViewDelegate {
 //            print(round((scrollView.contentSize.height / scrollView.frame.height - (17 / 15)) / 0.6))
             return
         }
-        if scrollView.contentOffset.y > 100 {
+        if scrollView.contentOffset.y > 50 {
             self.commentView.hidden = false
         } else {
             self.commentView.hidden = true

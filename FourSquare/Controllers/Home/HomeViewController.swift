@@ -60,12 +60,12 @@ class HomeViewController: BaseViewController {
     var outdoorsViewController: OutdoorsViewController?
     var sightsViewController: SightsViewController?
     var trendingViewController: TrendingViewController?
-    lazy var mapViewController: MapViewController = MapViewController.vc()
+    var mapViewController: MapViewController?
 
     var venues: Results<Venue>! {
         didSet {
             if didShowMapView {
-                self.mapViewController.venues = self.venues
+                self.mapViewController?.venues = self.venues
             }
         }
     }
@@ -90,9 +90,10 @@ class HomeViewController: BaseViewController {
         super.showAndHideMapViewAction(sender)
         if didShowMapView {
             self.changeMapViewToTableView()
+            self.removeCacheGoogleMaps()
         } else {
             self.changeTableViewToMapView()
-            self.mapViewController.venues = self.venues
+            self.mapViewController?.venues = self.venues
         }
         didShowMapView = !didShowMapView
     }
@@ -176,15 +177,17 @@ class HomeViewController: BaseViewController {
         let mapViewFrameY = self.viewOfPageMenu.frame.origin.x + menuHeight
         let mapViewFrameWidth = self.viewOfPageMenu.frame.width
         let mapViewFrameHeight = self.viewOfPageMenu.frame.height - menuHeight
-        mapViewController.view.frame = CGRect(x: mapViewFrameX, y: mapViewFrameY, width: mapViewFrameWidth, height: mapViewFrameHeight)
-        self.addChildViewController(mapViewController)
-        self.viewOfPageMenu.addSubview(mapViewController.view)
+        mapViewController?.view.frame = CGRect(x: mapViewFrameX, y: mapViewFrameY, width: mapViewFrameWidth, height: mapViewFrameHeight)
+        if let mapViewController = self.mapViewController {
+            self.addChildViewController(mapViewController)
+            self.viewOfPageMenu.addSubview(mapViewController.view)
+        }
     }
 
     private func changeMapViewToTableView() {
         self.searchButton.hidden = false
-        self.mapViewController.view.removeFromSuperview()
-        self.mapViewController.removeFromParentViewController()
+        self.mapViewController?.view.removeFromSuperview()
+        self.mapViewController?.removeFromParentViewController()
     }
 
     @objc private func updatePageMenuItem() {
@@ -293,6 +296,11 @@ class HomeViewController: BaseViewController {
             }
         }
         return true
+    }
+
+    private func removeCacheGoogleMaps() {
+        self.mapViewController?.clearMapData()
+        self.mapViewController = nil
     }
 }
 
