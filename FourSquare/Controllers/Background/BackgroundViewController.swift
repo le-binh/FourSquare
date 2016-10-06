@@ -45,7 +45,7 @@ class BackgroundViewController: LGSideMenuController {
 
     func loadMenuView(initWithRootViewController: UIViewController, style: LGSideMenuPresentationStyle) {
         let leftSlideViewWidth = kScreenSize.width * (2 / 3)
-        super.rootViewController = initWithRootViewController
+        rootViewController = initWithRootViewController
         leftViewController = LeftSideMenuViewController.vc()
         self.setLeftViewEnabledWithWidth(leftSlideViewWidth, presentationStyle: style, alwaysVisibleOptions: LGSideMenuAlwaysVisibleOptions.OnNone)
         self.leftViewStatusBarStyle = UIStatusBarStyle.Default
@@ -67,7 +67,7 @@ class BackgroundViewController: LGSideMenuController {
 
     func reloadSideMenu() {
         let indexSet = NSIndexSet(indexesInRange: NSRange(location: 0, length: 1))
-        self.leftViewController.menuTableView.reloadSections(indexSet, withRowAnimation: .Fade)
+        self.leftViewController.reloadMenuTableViewSection(indexSet, animation: .Fade)
     }
 
     // MARK:- Private Functions

@@ -26,7 +26,7 @@ class VenueSearchingMapViewController: MapViewController {
             SVProgressHUD.dismiss()
             self.clearMapData()
             self.addMultiMarker()
-            self.venueCollectionView.reloadData()
+            self.reloadVenueCollectionView()
             self.configureChangeCellButton(0)
         }
     }

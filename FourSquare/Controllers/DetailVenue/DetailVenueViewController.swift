@@ -84,10 +84,10 @@ class DetailVenueViewController: BaseViewController {
 
     // MARK:- Properties
 
-    @IBOutlet private(set) weak var detailVenueTableView: UITableView!
-    @IBOutlet private(set) weak var commentView: UIView!
-    @IBOutlet private(set) weak var bottomCommentViewLayoutConstraint: NSLayoutConstraint!
-    @IBOutlet private(set) weak var commentTextView: UITextView!
+    @IBOutlet private weak var detailVenueTableView: UITableView!
+    @IBOutlet private weak var commentView: UIView!
+    @IBOutlet private weak var bottomCommentViewLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var commentTextView: UITextView!
     var venue: Venue?
 
     // MARK:- Life Cycle
@@ -96,7 +96,7 @@ class DetailVenueViewController: BaseViewController {
         super.viewDidLoad()
         self.configureTableView()
         self.configureCommentView()
-        self.navigationBar?.title = venue?.name
+        self.setNavigationBarTitle(venue?.name)
         self.addHistory()
     }
 
@@ -262,10 +262,10 @@ class DetailVenueViewController: BaseViewController {
             return UITableViewCell()
         }
         let cell = tableView.dequeue(DefaultVenueDetailCell)
-        cell.titleLabel.text = infomationSection.title
+        cell.setTitleLabelText(infomationSection.title)
         switch infomationSection {
         case .Name:
-            cell.textDetailLabel.text = venue.name
+            cell.setDetailLabelText(venue.name)
         case .Address:
             let cellMap = tableView.dequeue(MapDetailVenueCell)
             cellMap.venue = venue
@@ -273,19 +273,19 @@ class DetailVenueViewController: BaseViewController {
             return cellMap
         case .Contact:
             guard let contact = venue.contact?.contact else { break }
-            cell.textDetailLabel.text = contact.isEmpty ? Strings.NotAvailable : contact
+            cell.setDetailLabelText(contact.isEmpty ? Strings.NotAvailable : contact)
         case .Categories:
-            cell.textDetailLabel.text = venue.showCategories
+            cell.setDetailLabelText(venue.showCategories)
         case .Hours:
-            cell.textDetailLabel.text = venue.hours?.timeToday ?? Strings.NotAvailable
+            cell.setDetailLabelText(venue.hours?.timeToday ?? Strings.NotAvailable)
         case .Rating:
-            cell.textDetailLabel.text = "\(venue.rating)"
+            cell.setDetailLabelText(String(venue.rating))
         case .PriceTier:
-            cell.textDetailLabel.text = "\(venue.price?.tier ?? 0)"
+            cell.setDetailLabelText(String(venue.price?.tier ?? 0))
         case .Verified:
-            cell.textDetailLabel.text = venue.verified ? Strings.YesString : Strings.NoString
+            cell.setDetailLabelText(venue.verified ? Strings.YesString : Strings.NoString)
         case .Website:
-            cell.textDetailLabel.text = venue.website.isEmpty ? Strings.NotAvailable : venue.website
+            cell.setDetailLabelText(venue.website.isEmpty ? Strings.NotAvailable : venue.website)
         }
         return cell
     }
@@ -415,9 +415,9 @@ extension DetailVenueViewController: UITableViewDelegate {
             view.photos = venue.photos
             return view
         case .Information:
-            view.titleHeader.text = Strings.DetailVenueTitleInformation
+            view.setTitleHeaderText(Strings.DetailVenueTitleInformation)
         case .Tips:
-            view.titleHeader.text = Strings.DetailVenueTitleTips
+            view.setTitleHeaderText(Strings.DetailVenueTitleTips)
         }
         return view
     }

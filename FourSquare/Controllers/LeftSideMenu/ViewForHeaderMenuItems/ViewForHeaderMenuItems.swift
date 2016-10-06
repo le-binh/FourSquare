@@ -9,5 +9,9 @@
 import UIKit
 
 class ViewForHeaderMenuItems: UITableViewHeaderFooterView {
-    @IBOutlet private(set) weak var titleMenu: UILabel!
+    @IBOutlet private weak var titleMenu: UILabel!
+
+    func setTitleMenuText(text: String) {
+        self.titleMenu.text = text
+    }
 }

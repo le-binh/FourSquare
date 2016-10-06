@@ -13,15 +13,15 @@ class VenueItemTableViewCell: UITableViewCell {
 
     // MARK:- Properties
 
-    @IBOutlet private(set) weak var venueContentView: UIView!
-    @IBOutlet private(set) weak var verifiedImageView: UIImageView!
-    @IBOutlet private(set) weak var thumbnailImageView: UIImageView!
-    @IBOutlet private(set) weak var nameVenueLabel: UILabel!
-    @IBOutlet private(set) weak var addressVenueLabel: UILabel!
-    @IBOutlet private(set) weak var ratingVenueLabel: UILabel!
-    @IBOutlet private(set) weak var categoryVenueLabel: UILabel!
-    @IBOutlet private(set) weak var priceVenueLabel: UILabel!
-    @IBOutlet private(set) weak var distanceLabel: UILabel!
+    @IBOutlet private weak var venueContentView: UIView!
+    @IBOutlet private weak var verifiedImageView: UIImageView!
+    @IBOutlet private weak var thumbnailImageView: UIImageView!
+    @IBOutlet private weak var nameVenueLabel: UILabel!
+    @IBOutlet private weak var addressVenueLabel: UILabel!
+    @IBOutlet private weak var ratingVenueLabel: UILabel!
+    @IBOutlet private weak var categoryVenueLabel: UILabel!
+    @IBOutlet private weak var priceVenueLabel: UILabel!
+    @IBOutlet private weak var distanceLabel: UILabel!
 
     // MARK:- Life Cycle
 

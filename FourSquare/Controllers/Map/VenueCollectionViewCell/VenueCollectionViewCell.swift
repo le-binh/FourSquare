@@ -10,15 +10,15 @@ import UIKit
 
 class VenueCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet private(set) weak var nameVenueLabel: UILabel!
-    @IBOutlet private(set) weak var venueContentView: UIView!
-    @IBOutlet private(set) weak var ratingVenueLabel: UILabel!
-    @IBOutlet private(set) weak var addressVenueLabel: UILabel!
-    @IBOutlet private(set) weak var categoryVenueLabel: UILabel!
-    @IBOutlet private(set) weak var priceVenueLabel: UILabel!
-    @IBOutlet private(set) weak var distanceVenueLabel: UILabel!
-    @IBOutlet private(set) weak var thumbnailVenueImageView: UIImageView!
-    @IBOutlet private(set) weak var verifiedVenueImageView: UIImageView!
+    @IBOutlet private weak var nameVenueLabel: UILabel!
+    @IBOutlet private weak var venueContentView: UIView!
+    @IBOutlet private weak var ratingVenueLabel: UILabel!
+    @IBOutlet private weak var addressVenueLabel: UILabel!
+    @IBOutlet private weak var categoryVenueLabel: UILabel!
+    @IBOutlet private weak var priceVenueLabel: UILabel!
+    @IBOutlet private weak var distanceVenueLabel: UILabel!
+    @IBOutlet private weak var thumbnailVenueImageView: UIImageView!
+    @IBOutlet private weak var verifiedVenueImageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

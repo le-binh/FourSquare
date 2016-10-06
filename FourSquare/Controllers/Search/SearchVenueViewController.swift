@@ -13,14 +13,14 @@ class SearchVenueViewController: BaseViewController {
 
     // MARK:- Properties
 
-    @IBOutlet private(set) weak var showOrHideSearchBoxButton: UIButton!
-    @IBOutlet private(set) weak var searchBoxView: UIView!
-    @IBOutlet private(set) weak var venueNameTextField: UITextField!
-    @IBOutlet private(set) weak var venueAddressTextField: UITextField!
-    @IBOutlet private(set) weak var searchBoxTitleLabel: UILabel!
-    @IBOutlet private(set) weak var containerView: UIView!
-    @IBOutlet private(set) weak var searchBoxHeightLayoutConstraint: NSLayoutConstraint!
-    @IBOutlet private(set) weak var searchButton: UIButton!
+    @IBOutlet private weak var showOrHideSearchBoxButton: UIButton!
+    @IBOutlet private weak var searchBoxView: UIView!
+    @IBOutlet private weak var venueNameTextField: UITextField!
+    @IBOutlet private weak var venueAddressTextField: UITextField!
+    @IBOutlet private weak var searchBoxTitleLabel: UILabel!
+    @IBOutlet private weak var containerView: UIView!
+    @IBOutlet private weak var searchBoxHeightLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var searchButton: UIButton!
     private let collapseArrowImage = UIImage(named: "collapse_arrow")
     private let expandArrowImage = UIImage(named: "expand_arrow")
     var currentViewController: UIViewController!
@@ -40,6 +40,7 @@ class SearchVenueViewController: BaseViewController {
         self.cleanDatabase()
         self.getSearchBoxHeightFromUI()
         self.configureContainerView()
+
     }
 
     override func showAndHideMapViewAction(sender: AnyObject) {

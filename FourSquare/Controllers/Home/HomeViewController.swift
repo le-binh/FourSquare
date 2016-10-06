@@ -46,8 +46,8 @@ class HomeViewController: BaseViewController {
 
     // MARK:- Properties
 
-    @IBOutlet private(set) weak var viewOfPageMenu: UIView!
-    @IBOutlet private(set) weak var searchButton: UIButton!
+    @IBOutlet private weak var viewOfPageMenu: UIView!
+    @IBOutlet private weak var searchButton: UIButton!
     var pageMenu: CAPSPageMenu?
     var itemViewControllers: [MenuItemViewController] = []
     var activeMenuItems: [ItemMenu] = []
@@ -75,7 +75,7 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureMenuItemDelegate()
-        self.navigationBar?.title = Strings.HomeTitle
+        self.setNavigationBarTitle(Strings.HomeTitle)
         self.itemViewControllers = self.setDefaultMenuItems()
         self.configureMenuPage()
         self.updatePageMenuItem()

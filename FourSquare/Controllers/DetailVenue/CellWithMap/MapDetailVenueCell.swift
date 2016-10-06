@@ -12,7 +12,7 @@ protocol MapDetailVenueCellDelegate: NSObjectProtocol {
     func showMapDetailVenue()
 }
 class MapDetailVenueCell: UITableViewCell {
-    @IBOutlet private(set) weak var addressLabel: UILabel!
+    @IBOutlet private weak var addressLabel: UILabel!
     var venue: Venue? {
         didSet {
             self.addressLabel.text = venue?.location?.fullAddress

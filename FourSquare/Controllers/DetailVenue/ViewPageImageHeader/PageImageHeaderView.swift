@@ -11,11 +11,11 @@ import RealmSwift
 
 class PageImageHeaderView: UITableViewHeaderFooterView {
 
-    @IBOutlet private(set) weak var view: UIView!
-    @IBOutlet private(set) weak var imagesPageView: UIView!
-    @IBOutlet private(set) weak var beforePageButton: UIButton!
-    @IBOutlet private(set) weak var afterPageButton: UIButton!
-    @IBOutlet private(set) weak var imagesPageControl: UIPageControl!
+    @IBOutlet private weak var view: UIView!
+    @IBOutlet private weak var imagesPageView: UIView!
+    @IBOutlet private weak var beforePageButton: UIButton!
+    @IBOutlet private weak var afterPageButton: UIButton!
+    @IBOutlet private weak var imagesPageControl: UIPageControl!
     var imagePageViewController: UIPageViewController?
     var isReuseView: Bool {
         return !photos.isEmpty

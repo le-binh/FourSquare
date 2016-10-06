@@ -16,7 +16,7 @@ protocol ZoomImagesViewControllerDelegate: NSObjectProtocol {
 
 class ZoomImagesViewController: UIViewController {
 
-    @IBOutlet private(set) weak var imagesCollectionView: UICollectionView!
+    @IBOutlet private weak var imagesCollectionView: UICollectionView!
     var photos = RealmSwift.List<Photo>()
     var indexPath: NSIndexPath = NSIndexPath()
     weak var delegate: ZoomImagesViewControllerDelegate!

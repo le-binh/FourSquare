@@ -10,6 +10,10 @@ import UIKit
 
 class ViewHeaderVenueDetail: UITableViewHeaderFooterView {
 
-    @IBOutlet private(set) weak var titleHeader: UILabel!
+    @IBOutlet private weak var titleHeader: UILabel!
+
+    func setTitleHeaderText(text: String) {
+        self.titleHeader.text = text
+    }
 
 }

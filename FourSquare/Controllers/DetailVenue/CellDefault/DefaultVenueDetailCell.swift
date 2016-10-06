@@ -9,8 +9,8 @@
 import UIKit
 
 class DefaultVenueDetailCell: UITableViewCell {
-    @IBOutlet private(set) weak var titleLabel: UILabel!
-    @IBOutlet private(set) weak var textDetailLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var textDetailLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +21,14 @@ class DefaultVenueDetailCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+
+    func setTitleLabelText(text: String) {
+        self.titleLabel.text = text
+    }
+
+    func setDetailLabelText(text: String) {
+        self.textDetailLabel.text = text
     }
 
 }

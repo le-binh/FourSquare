@@ -11,9 +11,9 @@ import RealmSwift
 
 class ImagesCollectionViewHeader: UITableViewHeaderFooterView {
 
-    @IBOutlet private(set) weak var imagesCollectionView: UICollectionView!
-    @IBOutlet private(set) weak var backImageButton: UIButton!
-    @IBOutlet private(set) weak var nextImageButton: UIButton!
+    @IBOutlet private weak var imagesCollectionView: UICollectionView!
+    @IBOutlet private weak var backImageButton: UIButton!
+    @IBOutlet private weak var nextImageButton: UIButton!
 
     var detailVenueViewController = DetailVenueViewController.vc()
 

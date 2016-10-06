@@ -28,8 +28,8 @@ class HistoryViewController: MenuItemViewController {
     }
 
     private func configureNavigationBar() {
-        self.navigationBar?.rightBarButtonHidden = true
-        self.navigationBar?.title = Strings.HistoryTitle
+        self.hiddenRightBarButton(true)
+        self.setNavigationBarTitle(Strings.HistoryTitle)
     }
 
     private func disableLoadMoreAndRefresh() {

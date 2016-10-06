@@ -34,7 +34,7 @@ class MenuItemViewController: BaseViewController {
     var section: SectionQuery {
         return .Search
     }
-    @IBOutlet private(set) weak var venueTableView: UITableView?
+    @IBOutlet private weak var venueTableView: UITableView?
     let rowHeight: CGFloat = 140
     let loadMoreIndicatorHeight: CGFloat = 40
     var venues: Results<Venue>!
@@ -127,18 +127,6 @@ class MenuItemViewController: BaseViewController {
         }
     }
 
-    func refreshData() {
-        self.offset = 0
-        self.isRefresh = true
-        self.willLoadMore = true
-        self.clearVenues()
-        self.loadVenues()
-    }
-
-    func loadVenuesFromRealm() {
-        self.venues = RealmManager.sharedInstance.getVenuesBySection(self.section)
-    }
-
     @objc private func loadVenues() {
         if !isRefresh && willLoadMore {
             SVProgressHUD.show()
@@ -178,6 +166,22 @@ class MenuItemViewController: BaseViewController {
                 self.clearLoadMoreIndicator()
             })
         }
+    }
+
+    func refreshData() {
+        self.offset = 0
+        self.isRefresh = true
+        self.willLoadMore = true
+        self.clearVenues()
+        self.loadVenues()
+    }
+
+    func loadVenuesFromRealm() {
+        self.venues = RealmManager.sharedInstance.getVenuesBySection(self.section)
+    }
+
+    func reloadVenueTableView() {
+        self.venueTableView?.reloadData()
     }
 
 }

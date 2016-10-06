@@ -23,7 +23,7 @@ class FavoriteViewController: MenuItemViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.venueTableView?.reloadData()
+        self.reloadVenueTableView()
     }
 
     override func loadVenuesFromRealm() {
@@ -34,8 +34,8 @@ class FavoriteViewController: MenuItemViewController {
     }
 
     private func configureNavigationBar() {
-        self.navigationBar?.rightBarButtonHidden = true
-        self.navigationBar?.title = Strings.FavoriteTitle
+        self.hiddenRightBarButton(true)
+        self.setNavigationBarTitle(Strings.FavoriteTitle)
     }
 
     private func disableLoadMoreAndRefresh() {

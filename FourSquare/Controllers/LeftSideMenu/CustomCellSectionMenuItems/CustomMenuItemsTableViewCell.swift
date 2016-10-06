@@ -9,8 +9,8 @@
 import UIKit
 
 class CustomMenuItemsTableViewCell: UITableViewCell {
-    @IBOutlet private(set) weak var menuItemTitleLable: UILabel!
-    @IBOutlet private(set) weak var menuItemsActiveSwitch: UISwitch!
+    @IBOutlet private weak var menuItemTitleLable: UILabel!
+    @IBOutlet private weak var menuItemsActiveSwitch: UISwitch!
 
     var itemMenu: ItemMenu = ItemMenu()
 

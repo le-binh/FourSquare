@@ -11,7 +11,7 @@ import Haneke
 import SwiftUtils
 
 class ImagesCollectionViewCell: UICollectionViewCell {
-    @IBOutlet private(set) weak var venueImageView: UIImageView!
+    @IBOutlet private weak var venueImageView: UIImageView!
     var activityIndicator: UIActivityIndicatorView!
 
     override func awakeFromNib() {

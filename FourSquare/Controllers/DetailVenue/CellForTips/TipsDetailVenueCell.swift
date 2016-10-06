@@ -12,9 +12,9 @@ import SwiftUtils
 
 class TipsDetailVenueCell: UITableViewCell {
 
-    @IBOutlet private(set) weak var userAvatarImageView: UIImageView!
-    @IBOutlet private(set) weak var tipCommentLabel: UILabel!
-    @IBOutlet private(set) weak var dateCommentLabel: UILabel!
+    @IBOutlet private weak var userAvatarImageView: UIImageView!
+    @IBOutlet private weak var tipCommentLabel: UILabel!
+    @IBOutlet private weak var dateCommentLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -91,8 +91,6 @@ class NavigationBar: UIView {
     // MARK:- Private functions
 
     private func commonInit() {
-        titleLabel = UILabel()
-        addSubview(titleLabel)
         configureSubviews()
         let lineView = UIView(frame: CGRect(x: 0, y: self.frame.height - 1, width: kScreenSize.width, height: 1))
         lineView.backgroundColor = UIColor.grayColor()
@@ -100,6 +98,8 @@ class NavigationBar: UIView {
     }
 
     private func configureSubviews() {
+        titleLabel = UILabel()
+        addSubview(titleLabel)
         titleLabel.textAlignment = .Center
     }
 

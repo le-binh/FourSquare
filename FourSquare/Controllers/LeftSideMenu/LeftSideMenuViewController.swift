@@ -122,7 +122,7 @@ class LeftSideMenuViewController: UIViewController {
 
     // MARK:- Properties
 
-    @IBOutlet private(set) weak var menuTableView: UITableView!
+    @IBOutlet private weak var menuTableView: UITableView!
     var homeViewController: HomeViewController?
     private var favoriteViewController: FavoriteViewController?
     private var historyViewController: HistoryViewController?
@@ -161,6 +161,12 @@ class LeftSideMenuViewController: UIViewController {
         UserRealmManager.sharedInstance.deleteUser()
         let indexSet = NSIndexSet(indexesInRange: NSRange(location: 0, length: 1))
         self.menuTableView.reloadSections(indexSet, withRowAnimation: .Fade)
+    }
+
+    // MARK:- Public Funtions
+
+    func reloadMenuTableViewSection(indexSet: NSIndexSet, animation: UITableViewRowAnimation) {
+        self.menuTableView.reloadSections(indexSet, withRowAnimation: animation)
     }
 }
 
@@ -242,7 +248,7 @@ extension LeftSideMenuViewController: UITableViewDelegate {
         switch slideMenuSection {
         case .MenuItems:
             let view = tableView.dequeue(ViewForHeaderMenuItems)
-            view.titleMenu.text = Strings.MenuItemsSectionTitle
+            view.setTitleMenuText(Strings.MenuItemsSectionTitle)
             return view
         default:
             return nil

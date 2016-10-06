@@ -15,11 +15,11 @@ class MapViewController: ViewController {
 
     // MARK:- Properties
 
-    @IBOutlet private(set) weak var venueMapView: GMSMapView!
-    @IBOutlet private(set) weak var venueCollectionView: UICollectionView!
-    @IBOutlet private(set) weak var backCollectionCellButton: UIButton!
-    @IBOutlet private(set) weak var nextCollectionCellButton: UIButton!
-    @IBOutlet private(set) weak var currentLocationButton: UIButton!
+    @IBOutlet private weak var venueMapView: GMSMapView!
+    @IBOutlet private weak var venueCollectionView: UICollectionView!
+    @IBOutlet private weak var backCollectionCellButton: UIButton!
+    @IBOutlet private weak var nextCollectionCellButton: UIButton!
+    @IBOutlet private weak var currentLocationButton: UIButton!
     let collectionCellPadding: CGFloat = 10
     let mapPadding: CGFloat = 30
     var indexMarker: Int = 0
@@ -82,6 +82,10 @@ class MapViewController: ViewController {
     func clearMapData() {
         self.venueMapView.clear()
         self.markers = []
+    }
+
+    func reloadVenueCollectionView() {
+        self.venueCollectionView.reloadData()
     }
 
     func addMultiMarker() {

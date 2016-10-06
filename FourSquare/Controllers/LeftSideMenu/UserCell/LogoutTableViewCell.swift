@@ -14,8 +14,8 @@ protocol LogoutCellDelegate: NSObjectProtocol {
 
 class LogoutTableViewCell: UITableViewCell {
 
-    @IBOutlet private(set) weak var userAvatarImageView: UIImageView!
-    @IBOutlet private(set) weak var userNameLabel: UILabel!
+    @IBOutlet private weak var userAvatarImageView: UIImageView!
+    @IBOutlet private weak var userNameLabel: UILabel!
     weak var delegate: LogoutCellDelegate!
 
     override func awakeFromNib() {

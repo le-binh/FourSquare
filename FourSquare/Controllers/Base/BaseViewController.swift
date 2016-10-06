@@ -14,7 +14,7 @@ class BaseViewController: ViewController {
 
     // MARK:- Property
 
-    @IBOutlet private(set) weak var navigationBar: NavigationBar?
+    @IBOutlet private weak var navigationBar: NavigationBar?
 
     var didShowMapView: Bool = false {
         didSet {
@@ -74,6 +74,14 @@ class BaseViewController: ViewController {
                 addInactiveFavoriteRightBarButton()
             }
         }
+    }
+
+    func setNavigationBarTitle(title: String?) {
+        self.navigationBar?.title = title
+    }
+
+    func hiddenRightBarButton(hidden: Bool) {
+        self.navigationBar?.rightBarButtonHidden = hidden
     }
 
     // MARK:- Private functions
